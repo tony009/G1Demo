@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
+
 @class PPSSignatureView;
-@interface PrintNoteViewController : BaseViewController
+@interface PrintNoteViewController : BaseViewController <NSStreamDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UIScrollView *bgScrollView;
@@ -32,6 +33,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *signImgView;
 
+@property (strong, nonatomic) IBOutlet UIButton *uploadButton;
 
 
 - (IBAction)signatureAction:(UIButton *)sender;

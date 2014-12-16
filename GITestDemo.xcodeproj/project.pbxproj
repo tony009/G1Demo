@@ -79,6 +79,7 @@
 		96D6F82F1A2C64E900CCD0B5 /* 浅绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8111A2C64E900CCD0B5 /* 浅绿色色值.jpg */; };
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
+		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,8 @@
 		96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "绿色色值.jpg"; sourceTree = "<group>"; };
 		96D6F8311A2C687200CCD0B5 /* ConnectDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectDeviceViewController.h; sourceTree = "<group>"; };
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
+		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
+		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +435,8 @@
 		96C560791A24606600A25290 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9CE6623A1A40464800B13444 /* FTPManager.h */,
+				9CE6623B1A40464800B13444 /* FTPManager.m */,
 				96BC86291A35ACE90012E746 /* PPSSignatureView */,
 				96C5607A1A24606600A25290 /* LetterpressPopup */,
 				96C5607D1A24606600A25290 /* MBProgressHUD.h */,
@@ -665,6 +670,7 @@
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				96C5608D1A24606C00A25290 /* BaseNavViewController.m in Sources */,
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,
+				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				963716B81A2D54BB002D34F3 /* ImgTButton.m in Sources */,
 				9668E27F1A25D0DC0014FDD8 /* SwipingCardViewController.m in Sources */,

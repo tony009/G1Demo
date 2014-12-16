@@ -10,13 +10,21 @@
 #import "UIUtils.h"
 #import "Anasis8583Pack.h"
 #import "PPSSignatureView.h"
+#import "FTPManager.h"
+
 
 @interface PrintNoteViewController ()
 {
     NSString *_typeStr;
     NSString *_dateStr;
     NSString *_countStr;
+
+    FMServer* server;
+    FTPManager* man;
 }
+
+
+
 @end
 
 @implementation PrintNoteViewController
@@ -26,10 +34,10 @@
     // Do any additional setup after loading the view.
     
     
-    [self _initSubViews];
+    //[self _initSubViews];
 
     
-    [self startAnimation];
+    //[self startAnimation];
     
 }
 
@@ -232,13 +240,43 @@
         [sender setTitle:@"确认" forState:UIControlStateNormal];
         
         self.ppsSignView.hidden = NO;
+        self.uploadButton.hidden = YES;
+        
     } else {
         self.ppsSignView.hidden = YES;
         
         [sender setTitle:@"重签" forState:UIControlStateNormal];
         self.signImgView.image = self.signView.signatureImage;
+        self.uploadButton.hidden = NO;
         
     }
+    
+    
+}
+
+
+
+- (IBAction)uploadImage:(id)sender {
+    
+    
+    server = [FMServer serverWithDestination:@"122.112.12.23" username:@"mpos" password:@"tenmpos123"];
+    
+    server.port = 2221;
+    
+    man = [[FTPManager alloc] init];
+    
+    //NSString *str = [NSString stringWithFormat:<#(NSString *), ...#>]
+    
+    NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/Test20150109.jpg"];
+    
+    UIImage *image = [UIUtils imageFromView:self.printView];
+    
+    NSData *data = UIImageJPEGRepresentation(image,1.0);
+    
+    [data writeToFile:jpgPath atomically:YES];
+    
+    
+    [man uploadFile:[NSURL URLWithString:jpgPath] toServer:server];
     
     
 }
@@ -246,4 +284,5 @@
 - (IBAction)resignAction:(id)sender {
     [self.signView erase];
 }
+
 @end

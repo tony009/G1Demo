@@ -192,9 +192,9 @@
 
 - (IBAction)siginAction:(UIButton *)sender {
     
-    //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
-    //return;
+    return;
     
     
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
