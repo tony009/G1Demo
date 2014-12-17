@@ -254,6 +254,15 @@
     
 }
 
+- (NSString *)getTimeNow{
+    NSString *date;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY.MM.dd.hh.mm.ss.SSS"];
+    date = [formatter stringFromDate:[NSDate date]];
+    
+    return date;
+}
 
 
 - (IBAction)uploadImage:(id)sender {
@@ -265,9 +274,11 @@
     
     man = [[FTPManager alloc] init];
     
-    //NSString *str = [NSString stringWithFormat:<#(NSString *), ...#>]
+    //NSString *str = [NSString stringWithFormat:g]
     
-    NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/Test20150109.jpg"];
+    NSString *str = [[NSString alloc]initWithFormat:@"tmp/%@.jpg",[self getTimeNow]];
+    
+    NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:str];
     
     UIImage *image = [UIUtils imageFromView:self.printView];
     
@@ -276,9 +287,33 @@
     [data writeToFile:jpgPath atomically:YES];
     
     
-    [man uploadFile:[NSURL URLWithString:jpgPath] toServer:server];
+    [self showHUD:@"正在上传"];
     
     
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        BOOL success = false;
+        
+        success = [man uploadFile:[NSURL URLWithString:jpgPath] toServer:server];
+        
+        if (success) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideHUD];
+                [self showTipView:@"上传成功"];
+                 self.uploadButton.hidden = true;
+                self.signatureBt.hidden = true;
+            });
+        }else {
+            [self hideHUD];
+            [self showTipView:@"上传失败"];
+        }
+        
+    });
+    
+    
+    
+ 
 }
 
 - (IBAction)resignAction:(id)sender {
