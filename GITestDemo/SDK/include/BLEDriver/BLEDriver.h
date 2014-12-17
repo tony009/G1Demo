@@ -23,7 +23,7 @@ DeviceDriverInterface getbleinterface;
 int (*datavaluechanged)(unsigned char *data, int datalen);
 int (*deviceErrorFunc)(int error);
 
-int deviceopen();
+int DeviceOpen();
 int DeviceDriverInit();
 int RegisterReadDataFunc(DeviceReadDataFunc func);
 int RegisterErrorFunc(DeviceErrorFunc func);

@@ -41,7 +41,7 @@ DeviceDriverInterface * GetBLEDeviceInterface()
 {
 
     NSLog(@"GetBLEDeviceInterface start...");
-    getbleinterface.DeviceOpen=&deviceopen;
+    getbleinterface.DeviceOpen=&DeviceOpen;
     getbleinterface.DeviceClose=&DeviceClose;
     getbleinterface.DeviceDriverDestroy=&DeviceDriverDestroy;
     getbleinterface.DeviceState=&DeviceState;
@@ -111,27 +111,10 @@ int DeviceDriverInit()
     NSLog(@"DeviceDriverInit");
     [bleManager startBleManager];
     
-//    int arg = 0;
-//    pthread_t ThreadScan_ID;
-//    pthread_create(&ThreadScan_ID, NULL, &thread_BleScanAction, (void *)&arg);
-//    pthread_join(ThreadScan_ID, NULL);
-//
-//    
-//    if (bleScanTimeout && !bleScaned) {
-//        NSLog(@"未找到设备！");
-//        return -1;
-//    }
-//    
-//    if (bleScanTimeout) {
-//        NSLog(@"蓝牙扫描超时！");
-//        return -1;
-//    }
-    
-
     return 0;
 }
 
-int deviceopen()
+int DeviceOpen()
 {
     NSLog(@"deviceopen");
     

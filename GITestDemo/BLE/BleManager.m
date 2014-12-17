@@ -8,19 +8,21 @@
 
 #import "BleManager.h"
 
-static BleManager *sharedObject;
+
 
 @implementation BleManager
 
+static BleManager *sharedObject = nil;
 
 + (BleManager *)sharedManager
 {
     
-    if (sharedObject == nil) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedObject = [[super allocWithZone:NULL] init];
-        
-    }
-    
+        NSLog(@"shareObject--%@",sharedObject);
+
+    });
     return sharedObject;
     
 }

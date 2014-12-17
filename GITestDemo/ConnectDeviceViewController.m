@@ -108,6 +108,8 @@
     
     self.audioStatusLabel.text = @"未连接";
     
+    
+    MiniPosSDKInit();
     DeviceDriverInterface *t;
     t=GetBLEDeviceInterface();
     MiniPosSDKRegisterDeviceInterface(t);

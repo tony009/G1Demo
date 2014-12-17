@@ -77,7 +77,7 @@
     if ([self.connectDeviceButton.titleLabel.text isEqual:@""])
     if (_isConnect) {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
-        self.connectDeviceButton.enabled = NO;
+        //self.connectDeviceButton.enabled = NO;
     } else {
         [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
         self.connectDeviceButton.enabled = YES;

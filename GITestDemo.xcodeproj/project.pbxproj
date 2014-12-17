@@ -29,7 +29,6 @@
 		96C5603B1A243A7800A25290 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C5603A1A243A7800A25290 /* Images.xcassets */; };
 		96C5604A1A243A7800A25290 /* GITestDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C560491A243A7800A25290 /* GITestDemoTests.m */; };
 		96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5605F1A243F2D00A25290 /* BLEDriver.m */; };
-		96C5606B1A243F2D00A25290 /* DeviceInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 96C560621A243F2D00A25290 /* DeviceInterface.mm */; };
 		96C5606C1A243F2D00A25290 /* libAudioDriver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560661A243F2D00A25290 /* libAudioDriver.a */; };
 		96C5606D1A243F2E00A25290 /* libMiniPosSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560671A243F2D00A25290 /* libMiniPosSDK.a */; };
 		96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */; };
@@ -135,7 +134,6 @@
 		96C5605E1A243F2D00A25290 /* BLEDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDriver.h; sourceTree = "<group>"; };
 		96C5605F1A243F2D00A25290 /* BLEDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDriver.m; sourceTree = "<group>"; };
 		96C560611A243F2D00A25290 /* DeviceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInterface.h; sourceTree = "<group>"; };
-		96C560621A243F2D00A25290 /* DeviceInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DeviceInterface.mm; sourceTree = "<group>"; };
 		96C560631A243F2D00A25290 /* FunctionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionDefine.h; sourceTree = "<group>"; };
 		96C560641A243F2D00A25290 /* MiniPosSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniPosSDK.h; sourceTree = "<group>"; };
 		96C560661A243F2D00A25290 /* libAudioDriver.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudioDriver.a; sourceTree = "<group>"; };
@@ -407,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				96C560611A243F2D00A25290 /* DeviceInterface.h */,
-				96C560621A243F2D00A25290 /* DeviceInterface.mm */,
 				96C560631A243F2D00A25290 /* FunctionDefine.h */,
 				96C560641A243F2D00A25290 /* MiniPosSDK.h */,
 			);
@@ -666,7 +663,6 @@
 				96C5608E1A24606C00A25290 /* BaseViewController.m in Sources */,
 				96BC862C1A35ACE90012E746 /* PPSSignatureView.m in Sources */,
 				96C560931A2461EA00A25290 /* LoginViewController.m in Sources */,
-				96C5606B1A243F2D00A25290 /* DeviceInterface.mm in Sources */,
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				96C5608D1A24606C00A25290 /* BaseNavViewController.m in Sources */,
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,

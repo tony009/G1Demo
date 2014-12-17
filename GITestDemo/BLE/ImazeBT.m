@@ -130,9 +130,7 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
 {
     NSString * state = nil;
     
-    int iState = (int)[manager state];
-    
-    NSLog(@"Central manager state: %i", iState);
+    BOOL flag = false;
     
     switch ([manager state])
     {
@@ -146,17 +144,20 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
             state = @"Bluetooth is currently powered off.";
             break;
         case CBCentralManagerStatePoweredOn:
-            return TRUE;
+            state = @"Bluetooth is currently powered On.";
+            flag = true;
+            break;
         case CBCentralManagerStateUnknown:
+            state = @"Bluetooth state is Unknown.";
         default:
-            return FALSE;
+           break;
             
     }
     
     NSLog(@"Central manager state: %@", state);
     
     
-    return FALSE;
+    return flag;
 }
 
 /*
@@ -169,9 +170,6 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
         
         [manager scanForPeripheralsWithServices:nil options:nil];
         //[manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"180D"]] options:nil];
-        
-
-        
         
     }
     
@@ -213,7 +211,8 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
     
     [searchDevices addObject:aPeripheral];
     
-    NSString *lastConnectDevice = [[NSUserDefaults standardUserDefaults] objectForKey:kLastConnectDevice];
+    //获取上次连接的设备名
+    NSString *lastConnectDevice = [[NSUserDefaults standardUserDefaults] objectForKey:kLastConnectedDevice];
     if (_isNeedAutoConnect) {
         if (lastConnectDevice) {
             
@@ -223,12 +222,6 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
         }
     }
     
- 
-    
-//    if ([aPeripheral.name isEqualToString:@"fac_test"]) {
-//        [self connect:aPeripheral];
-//        self.waitAper = aPeripheral;
-//    }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidDiscoverDevice object:nil];
 
@@ -278,7 +271,7 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
     [aPeripheral discoverServices:nil];
     peripheral = aPeripheral;
     
-    [[NSUserDefaults standardUserDefaults] setObject:aPeripheral.name forKey:kLastConnectDevice];
+    [[NSUserDefaults standardUserDefaults] setObject:aPeripheral.name forKey:kLastConnectedDevice];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     self.connected = @"Connected";

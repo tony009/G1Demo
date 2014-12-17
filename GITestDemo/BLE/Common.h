@@ -24,14 +24,15 @@
 
 #define kDidDiscoverDevice @"didDiscoverDevice"
 
-#define kLastConnectDevice @"lastConnectDevice"
+#define kLastConnectedDevice @"lastConnectedDevice"
 
+#define kShangHuName @"shanghuName"  
 #define kShangHuEditor @"shangHuEditor"
 #define kZhongDuanEditor @"zhongDuanEditor"
 #define kCaoZhuoYuanEditor @"caoZhuoYuanEditor"
 #define kHostEditor @"hostEditor"
 #define kPortEditor @"portEditor"
-#define kShangHuName @"shanghuName"
+
 
 
 #endif

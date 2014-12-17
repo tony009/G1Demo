@@ -532,7 +532,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="LHK-RJ-ulJ">
-                                <rect key="frame" x="20" y="241" width="280.00000018339892" height="218.99999934434894"/>
+                                <rect key="frame" x="20" y="240.99999934434894" width="280.00000018339892" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
