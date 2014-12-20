@@ -18,6 +18,13 @@
     NSString *_typeStr;
     NSString *_dateStr;
     NSString *_countStr;
+    
+    
+    NSString *_shangHuHao; //商户号
+    NSString *_zhongDuanHao; //终端号
+    NSString *_jiaoYiShiJian; //交易时间
+    NSString *_jiaoYiCanKaoHao; //交易参考号
+    
 
     FMServer* server;
     FTPManager* man;
@@ -34,10 +41,10 @@
     // Do any additional setup after loading the view.
     
     
-    //[self _initSubViews];
+    [self _initSubViews];
 
     
-    //[self startAnimation];
+    [self startAnimation];
     
 }
 
@@ -70,10 +77,13 @@
     NSData *terCodeData = [NSData dataWithBytes:(const void *)gTerminalCode length:sizeof( char)*8];
     NSString *terCodeString = [[NSString alloc] initWithData:terCodeData encoding:NSUTF8StringEncoding];
     
+    _zhongDuanHao = terCodeString;
     
     //商户号
     NSData *mcCodeData = [NSData dataWithBytes:(const void *)gMerchantCode length:sizeof( char)*15];
     NSString *mcCodeString = [[NSString alloc] initWithData:mcCodeData encoding:NSUTF8StringEncoding];
+    
+    _shangHuHao = mcCodeString;
 
     //参考号
     //gRetrieval[12]
@@ -126,6 +136,7 @@
     int date = BCDToInt(gLocalDate, 2);
     _dateStr = [NSString stringWithFormat:@"%02d/%02d %02d:%02d:%02d",date/100,date%100,time/10000,(time%10000)/100,time%100];
     
+    _jiaoYiShiJian = [NSString stringWithFormat:@"%02d%02d%02d:%02d:%02d",date/100,date%100,time/10000,(time%10000)/100,time%100];
     
     NSData *timeCodeData = [NSData dataWithBytes:(const void *)gLocalTime length:sizeof( char)*3];
     NSString *timeCodeString = [[NSString alloc] initWithData:timeCodeData encoding:NSUTF8StringEncoding];
@@ -287,6 +298,7 @@
     [data writeToFile:jpgPath atomically:YES];
     
     
+    
     [self showHUD:@"正在上传"];
     
     
@@ -294,6 +306,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
         BOOL success = false;
+    
+        //[man createNewFolder:mcCodeString atServer:server];
         
         success = [man uploadFile:[NSURL URLWithString:jpgPath] toServer:server];
         
@@ -303,6 +317,9 @@
                 [self showTipView:@"上传成功"];
                  self.uploadButton.hidden = true;
                 self.signatureBt.hidden = true;
+                //[self.navigationController popViewControllerAnimated:YES];
+                //[self.navigationController popToViewController animated:<#(BOOL)#>]
+                [self.navigationController popToRootViewControllerAnimated:YES];
             });
         }else {
             [self hideHUD];

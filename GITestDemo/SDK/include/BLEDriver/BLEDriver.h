@@ -20,14 +20,18 @@ extern "C"{
 #endif
 
 DeviceDriverInterface getbleinterface;
-int (*datavaluechanged)(unsigned char *data, int datalen);
+int (*DeviceReadPosData)(unsigned char *data, int datalen);
+int (*DeviceReadServerData)(unsigned char *data, int datalen);
 int (*deviceErrorFunc)(int error);
 
 int DeviceOpen();
 int DeviceDriverInit();
-int RegisterReadDataFunc(DeviceReadDataFunc func);
+int RegisterReadPosDataFunc(DeviceReadDataFunc func);
 int RegisterErrorFunc(DeviceErrorFunc func);
 int DeviceClose();
 int DeviceDriverDestroy();
-int WriteData(unsigned char *data, int datalen);
+int WritePosData(unsigned char *data, int datalen);
+int WriteServerData(unsigned char *data, int datalen);
+int RegisterReadServerDataFunc(DeviceReadDataFunc func);
 int DeviceState();
+unsigned long GetMsTime();

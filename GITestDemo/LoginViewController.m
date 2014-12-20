@@ -192,9 +192,9 @@
 
 - (IBAction)siginAction:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
-    return;
+    //return;
     
     
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
@@ -207,10 +207,14 @@
     
     if(MiniPosSDKPosLogin()>=0)
     {
-        self.connectStateLabel.text=@"正在签到";
+        //self.connectStateLabel.text=@"正在签到";
         [self showHUD:@"正在签到..."];
+        
+        
     }
 }
+
+
 
 
 #pragma mark - 
@@ -219,8 +223,10 @@
 {
     [super recvMiniPosSDKStatus];
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功 [%@ %@]",self.codeString,self.displayString]]) {
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
         [self hideHUD];
+        NSLog(@"LoginViewController ----签到成功");
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到成功！" message:@"点击进入操作页面！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         alertView.tag=99;
@@ -228,31 +234,32 @@
         
     }
 
-    NSLog(@"%@",self.statusStr);
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到失败 [%@ %@]",self.codeString,self.displayString]]) {
+    //NSLog(@"%@",self.statusStr);
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到失败"]]) {
         [self hideHUD];
-        
+        NSLog(@"LoginViewController ----签到失败");
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到失败！" message:self.displayString delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
         
     }
     
     
-    
-    [self.connectDeviceButton setTitle:self.statusStr forState:UIControlStateNormal];
-    
-    if ([self.statusStr isEqualToString:@"设备未连接"]) {
+    if(MiniPosSDKDeviceState()==0)
+    {
+        [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
+    }
+    else
+    {
         self.connectDeviceButton.enabled = YES;
         [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
-    } else {
-        self.connectDeviceButton.enabled = NO;
+
     }
     
-    
+    self.statusStr = @"";
 }
 
-#pragma mark - 
-#pragma mark - UIAlertView delegate 
+#pragma mark -
+#pragma mark - UIAlertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag==99)

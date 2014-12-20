@@ -115,26 +115,32 @@ typedef struct _DeviceDriverInterface
      * 返回值：0 表示发送成功， -1 表示发送失败
      **********************************************/
     
-    int (*WriteData)(unsigned char *data, int datalen);
+    int (*WritePosData)(unsigned char *data, int datalen);
+    int (*RegisterReadPosDataFunc)(DeviceReadDataFunc func);
+    int (*WriteServerData)(unsigned char *data, int datalen);
+    int (*RegisterReadServerDataFunc)(DeviceReadDataFunc func);
     
-    /**********************************************
-     * 函数指针名：RegisterReadDataFunc
-     * 功能：注册数据接受回调函数
-     * 参数：func 为数据接收回调函数
-     * 返回值：0 表示注册成功， -1 表示注册失败
-     **********************************************/
-    
-    int (*RegisterReadDataFunc)(DeviceReadDataFunc func);
-    
-    /**********************************************
-     * 函数指针名：RegisterErrorFunc
-     * 功能：注册设备异常出错处理函数
-     * 参数：func 为设备出错后的回调函数
-     * 返回值：0 表示注册成功， -1 表示注册失败
-     **********************************************/
+//    int (*WriteData)(unsigned char *data, int datalen);
+//    
+//    /**********************************************
+//     * 函数指针名：RegisterReadDataFunc
+//     * 功能：注册数据接受回调函数
+//     * 参数：func 为数据接收回调函数
+//     * 返回值：0 表示注册成功， -1 表示注册失败
+//     **********************************************/
+//    
+//    int (*RegisterReadDataFunc)(DeviceReadDataFunc func);
+//    
+//    /**********************************************
+//     * 函数指针名：RegisterErrorFunc
+//     * 功能：注册设备异常出错处理函数
+//     * 参数：func 为设备出错后的回调函数
+//     * 返回值：0 表示注册成功， -1 表示注册失败
+//     **********************************************/
     
     int (*RegisterErrorFunc)(DeviceErrorFunc func);
     
+    unsigned long (*GetMsTime)();
 } DeviceDriverInterface;
     
 #ifdef __cplusplus

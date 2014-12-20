@@ -30,7 +30,6 @@
 		96C5604A1A243A7800A25290 /* GITestDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C560491A243A7800A25290 /* GITestDemoTests.m */; };
 		96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5605F1A243F2D00A25290 /* BLEDriver.m */; };
 		96C5606C1A243F2D00A25290 /* libAudioDriver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560661A243F2D00A25290 /* libAudioDriver.a */; };
-		96C5606D1A243F2E00A25290 /* libMiniPosSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560671A243F2D00A25290 /* libMiniPosSDK.a */; };
 		96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */; };
 		96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560701A243F5800A25290 /* AudioToolbox.framework */; };
 		96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560721A243F6800A25290 /* MediaPlayer.framework */; };
@@ -79,6 +78,10 @@
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
+		9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */; };
+		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
+		9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662481A4177FE00B13444 /* AsyncSocket.m */; };
+		9CE6624B1A4413D800B13444 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6624A1A4413D800B13444 /* 152.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +140,6 @@
 		96C560631A243F2D00A25290 /* FunctionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionDefine.h; sourceTree = "<group>"; };
 		96C560641A243F2D00A25290 /* MiniPosSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniPosSDK.h; sourceTree = "<group>"; };
 		96C560661A243F2D00A25290 /* libAudioDriver.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudioDriver.a; sourceTree = "<group>"; };
-		96C560671A243F2D00A25290 /* libMiniPosSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMiniPosSDK.a; sourceTree = "<group>"; };
 		96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		96C560701A243F5800A25290 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		96C560721A243F6800A25290 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -199,6 +201,12 @@
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
+		9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPosSDK.m; sourceTree = "<group>"; };
+		9CE662441A416F3B00B13444 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
+		9CE662451A416F3B00B13444 /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
+		9CE662471A4177FE00B13444 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		9CE662481A4177FE00B13444 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		9CE6624A1A4413D800B13444 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +220,6 @@
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
-				96C5606D1A243F2E00A25290 /* libMiniPosSDK.a in Frameworks */,
 				96C5606C1A243F2D00A25290 /* libAudioDriver.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +366,8 @@
 				963716C01A2D9E7F002D34F3 /* ImazeBT.h */,
 				963716C11A2D9E7F002D34F3 /* ImazeBT.m */,
 				96C560561A243F2D00A25290 /* Common.h */,
+				9CE662441A416F3B00B13444 /* ServerManager.h */,
+				9CE662451A416F3B00B13444 /* ServerManager.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 		96C560601A243F2D00A25290 /* MiniPosSDK */ = {
 			isa = PBXGroup;
 			children = (
+				9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */,
 				96C560611A243F2D00A25290 /* DeviceInterface.h */,
 				96C560631A243F2D00A25290 /* FunctionDefine.h */,
 				96C560641A243F2D00A25290 /* MiniPosSDK.h */,
@@ -415,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				96C560661A243F2D00A25290 /* libAudioDriver.a */,
-				96C560671A243F2D00A25290 /* libMiniPosSDK.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -432,6 +441,8 @@
 		96C560791A24606600A25290 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9CE662471A4177FE00B13444 /* AsyncSocket.h */,
+				9CE662481A4177FE00B13444 /* AsyncSocket.m */,
 				9CE6623A1A40464800B13444 /* FTPManager.h */,
 				9CE6623B1A40464800B13444 /* FTPManager.m */,
 				96BC86291A35ACE90012E746 /* PPSSignatureView */,
@@ -489,6 +500,7 @@
 		96D6F7F41A2C64E900CCD0B5 /* 简化版切图 */ = {
 			isa = PBXGroup;
 			children = (
+				9CE6624A1A4413D800B13444 /* 152.png */,
 				963716B91A2D6F44002D34F3 /* icon_logo.png */,
 				96D6F7F51A2C64E900CCD0B5 /* btn_audio.png */,
 				96D6F7F61A2C64E900CCD0B5 /* btn_audio1.png */,
@@ -616,6 +628,7 @@
 				96D6F8131A2C64E900CCD0B5 /* btn_audio.png in Resources */,
 				96D6F82B1A2C64E900CCD0B5 /* icon_pos_backgound.png in Resources */,
 				96D6F8281A2C64E900CCD0B5 /* icon_date.png in Resources */,
+				9CE6624B1A4413D800B13444 /* 152.png in Resources */,
 				96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */,
 				96D6F81D1A2C64E900CCD0B5 /* btn_inquire.png in Resources */,
 				96D6F8191A2C64E900CCD0B5 /* btn_cancel.png in Resources */,
@@ -666,6 +679,8 @@
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				96C5608D1A24606C00A25290 /* BaseNavViewController.m in Sources */,
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,
+				9CE662461A416F3B00B13444 /* ServerManager.m in Sources */,
+				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				963716B81A2D54BB002D34F3 /* ImgTButton.m in Sources */,
@@ -681,6 +696,7 @@
 				96BC86271A354C320012E746 /* Anasis8583Pack.m in Sources */,
 				96C560301A243A7800A25290 /* main.m in Sources */,
 				96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */,
+				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
 				9668E2791A25C8480014FDD8 /* ConsumeViewController.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,

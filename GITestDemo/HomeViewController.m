@@ -154,7 +154,13 @@
     if(MiniPosSDKGetDeviceInfoCMD()>=0)
     {
         [self showHUD:@"正在获取设备信息"];
+        [self performSelector:@selector(showResultWithString:) withObject:@"获取设备信息超时" afterDelay:10];
     }
+}
+
+-(void) showResultWithString:(NSString *)str{
+    [self hideHUD];
+    [self showTipView:str];
 }
 
 - (IBAction)moreAction:(ImgTButton *)sender {
@@ -167,20 +173,47 @@
 {
     
     [super recvMiniPosSDKStatus];
-    [self hideHUD];
     
-    [self showTipView:self.statusStr];
+
     
     
     if ([self.statusStr isEqualToString:@"签退成功"]){
-        [self performSelector:@selector(dismissViewControllerAnimated:completion:) withObject:nil afterDelay:1.0];
+        
+        [self hideHUD];
+        
+        [self showTipView:self.statusStr];
+        
+        [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0];
+        
+
     }
+    
+    if ([self.statusStr isEqualToString:@"获取设备信息成功"]) {
+        
+        [self hideHUD];
+        NSString *info = [NSString stringWithFormat:@"机身号:%s\n内核版本：%s\n应用版本：%s",MiniPosSDKGetDeviceID(),MiniPosSDKGetCoreVersion(),MiniPosSDKGetAppVersion()];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    if ([self.statusStr isEqualToString:@"结算成功"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+
     
     if ([self.statusStr isEqualToString:@"设备未连接"]) {
         [self bleConnectAction];
     }
     
+
     
+    
+}
+
+
+-(void)backToLogin{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

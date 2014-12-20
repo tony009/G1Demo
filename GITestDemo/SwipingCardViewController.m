@@ -39,12 +39,12 @@
     
     [super recvMiniPosSDKStatus];
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"消费成功 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"消费成功"]]) {
         sendValue = @"消费交易";
         [self pushToPrint];
     }
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"查询余额成功 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"查询余额成功"]]) {
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"查询余额成功！" message:@"余额信息请在设备终端查阅。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
@@ -54,12 +54,12 @@
     }
     
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"查询余额失败 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"查询余额失败"]]) {
         [self showTipView:self.statusStr];
         [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
-    }
+    }                                                                                                                                                                                                                                                                                                                                                     
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"消费失败 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"消费失败"]]) {
         [self showTipView:self.statusStr];
         [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
     }

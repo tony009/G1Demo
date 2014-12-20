@@ -26,7 +26,7 @@
 
 + (BleManager *)sharedManager;
 - (void)startBleManager;
-
+- (void)startScan;
 
 
 

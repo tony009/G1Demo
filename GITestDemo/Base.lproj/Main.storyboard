@@ -260,6 +260,16 @@
                             <view contentMode="scaleToFill" id="8Zd-HC-GjL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="152.png" id="kju-1k-lN4">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="drf-BU-8d0">
+                                        <rect key="frame" x="141" y="96" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </pageControl>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
@@ -301,18 +311,6 @@
                                         </state>
                                         <connections>
                                             <action selector="payoffAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="Tyc-dC-jix"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1aP-IX-BB6" customClass="ImgTButton">
-                                        <rect key="frame" x="0.0" y="242" width="106" height="120"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="getDviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="iVP-wA-OKK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z5U-cM-Y3U" customClass="ImgTButton">
@@ -363,6 +361,18 @@
                                         </state>
                                         <connections>
                                             <action selector="moreAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="wxG-Uf-2z9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1aP-IX-BB6" customClass="ImgTButton">
+                                        <rect key="frame" x="0.0" y="242" width="106" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getDviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="iVP-wA-OKK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -643,16 +653,6 @@
                                 <rect key="frame" x="62" y="87" width="196" height="283"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rSv-4b-fAy">
-                                <rect key="frame" x="131" y="413" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GLh-7g-6Tj" kind="push" id="rr6-om-smZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -840,8 +840,13 @@
                                                 <rect key="frame" x="4" y="1" width="293" height="316"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" id="yfd-rH-vaJ" customClass="PPSSignatureView">
+                                                        <rect key="frame" x="0.0" y="25" width="290" height="253"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RaX-K6-zGI">
-                                                        <rect key="frame" x="108" y="207" width="72" height="30"/>
+                                                        <rect key="frame" x="110" y="291" width="72" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <state key="normal" title="重签" backgroundImage="btn_next_background.png">
@@ -852,11 +857,6 @@
                                                             <action selector="resignAction:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="tcC-X6-dW5"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" id="yfd-rH-vaJ" customClass="PPSSignatureView">
-                                                        <rect key="frame" x="-4" y="25" width="297" height="165"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
@@ -864,7 +864,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Phz-4Q-U6h">
-                                        <rect key="frame" x="110" y="337" width="101" height="34"/>
+                                        <rect key="frame" x="14" y="322" width="292" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1027,6 +1027,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="152.png" width="320" height="140"/>
         <image name="btn_audio.png" width="80" height="80"/>
         <image name="btn_background2.png" width="508" height="92"/>
         <image name="btn_bluetooth.png" width="80" height="80"/>

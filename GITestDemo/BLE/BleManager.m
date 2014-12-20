@@ -43,6 +43,9 @@ static BleManager *sharedObject = nil;
 }
 
 
+- (void)startScan{
+    [sharedObject.imBT startScan];
+}
 
 
 

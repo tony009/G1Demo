@@ -176,6 +176,8 @@ typedef enum _MiniPosSDKSessionError
     SESSION_ERROR_RECIVE_8583_ERROR,        //接收POS中心回的8583包出错，请检查网络是否正常
     SESSION_ERROR_NO_SET_PARAM,             //没有设置公共参数或没有设置POS中心IP端口
     SESSION_ERROR_DEVICE_BUSY,              //设备繁忙，请稍后再试
+    SESSION_ERROR_DEVICE_SEND,              //发送失败
+    SESSION_ERROR_SHAKE_PACK                //收到握手包
     
 } MiniPosSDKSessionError;
 
@@ -225,7 +227,7 @@ void AscToBcd(char *Dest,const char *Src,int Len);
 /************************************************************
  初始化MiniPossSDK，返回MiniPosSDK结构体指针
  *************************************************************/
-MiniPosSDK * MiniPosSDKInit();
+int MiniPosSDKInit();
 
 /************************************************************
  销毁MiniPossSDK
@@ -440,6 +442,7 @@ int MiniPosSDKReadICInfoCMD(const char *icInfo, int icInfolen);
  参数2(暂无)（TAK密文）	    LLVAR16 	TPK密文为8字节或16字节
  *************************************************************/
 int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);
+
 
 
 #ifdef __cplusplus

@@ -65,6 +65,11 @@
 {
     [super viewWillAppear:animated];
     
+    if(MiniPosSDKDeviceState()==0){
+        self.statusLabel.text = @"已连接";
+        self.bleStatusLabel.text = @"已连接";
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDiscoverDevice) name:kDidDiscoverDevice object:nil];
 
 }
@@ -107,13 +112,13 @@
     curLabel = self.bleStatusLabel;
     
     self.audioStatusLabel.text = @"未连接";
+    //self.statusLabel.text = @"未连接";
     
-    
-    MiniPosSDKInit();
-    DeviceDriverInterface *t;
-    t=GetBLEDeviceInterface();
-    MiniPosSDKRegisterDeviceInterface(t);
-    
+    //MiniPosSDKInit();
+    //DeviceDriverInterface *t;
+    //t=GetBLEDeviceInterface();
+    //MiniPosSDKRegisterDeviceInterface(t);
+    [[BleManager sharedManager] startScan];
     self.deviceView.hidden = NO;
     
 }
@@ -125,7 +130,8 @@
     
     curLabel = self.audioStatusLabel;
     self.bleStatusLabel.text = @"未连接";
-     MiniPosSDKRegisterDeviceInterface(GetAudioDeviceInterface());
+    self.statusLabel.text = @"未连接";
+     //MiniPosSDKRegisterDeviceInterface(GetAudioDeviceInterface());
 }
 
 
@@ -134,15 +140,13 @@
 {
     [super recvMiniPosSDKStatus];
     
-    self.statusLabel.text = self.statusStr;
-    if ([self.statusStr isEqualToString:@"设备已连接"]) {
+    if([self.statusStr isEqualToString:@"设备已插入"]){
         curLabel.text = @"已连接";
         _isConnect = YES;
-    } else {
+    }else {
         curLabel.text = @"未连接";
         _isConnect = NO;
     }
-    
     
 }
 

@@ -153,24 +153,38 @@ static void MiniPosSDKResponce(void *userData,
     else
         self.displayString=[[NSMutableString alloc] init];
     
-    [self performSelectorOnMainThread:@selector(deviceStatus) withObject:nil waitUntilDone:NO];
     
-    NSLog(@"MiniPosSDKResponce sessionType: %d responceCode: %d",sessionType,responceCode);
+    
+    //NSLog(@"MiniPosSDKResponce sessionType: %d responceCode: %d",self.sessionType,self.responceCode);
+    
+    //[self performSelectorOnMainThread:@selector(deviceStatus) withObject:nil waitUntilDone:NO];
+    
+    
+    [self deviceStatus];
 }
 
 
 - (void) deviceStatus
 {
     //NSLog(@"deviceStatus sessionType: %d responceCode: %d",self.sessionType,self.responceCode);
+    if ((int)(self.responceCode) < 0 || self.responceCode == SESSION_ERROR_SHAKE_PACK) {
+        
+        return;
+    }
+    
+    NSLog(@"MiniPosSDKResponce sessionType: %d(%@) responceCode: %d(%@)",self.sessionType,[self getSesstionTypeString:self.sessionType],self.responceCode,[self getResponceCodeString:self.responceCode]);
+    
     if(self.responceCode==SESSION_ERROR_ACK)
     {
         if(self.sessionType==SESSION_POS_LOGIN)
         {
             self.statusStr=@"签到成功";
+            NSLog(@"deviceStatus ------签到成功");
         }
         else if(self.sessionType==SESSION_POS_LOGOUT)
         {
             self.statusStr=@"签退成功";
+            NSLog(@"deviceStatus ------签到成功");
         }
         else if(self.sessionType==SESSION_POS_SALE_TRADE)
         {
@@ -215,13 +229,13 @@ static void MiniPosSDKResponce(void *userData,
         else if(self.sessionType==SESSION_POS_GET_DEVICE_INFO)
         {
             self.statusStr=@"获取设备信息成功";
-            NSString *info = [NSString stringWithFormat:@"设备ID:%s\nCore版本号：%s\n应用版本号：%s",MiniPosSDKGetDeviceID(),MiniPosSDKGetCoreVersion(),MiniPosSDKGetAppVersion()];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+
             
-            [self performSelectorOnMainThread:@selector(recvMiniPosSDKStatus) withObject:nil waitUntilDone:NO];
+            //[self performSelectorOnMainThread:@selector(recvMiniPosSDKStatus) withObject:nil waitUntilDone:NO];
             
-            return;
+            //[self recvMiniPosSDKStatus];
+            
+            //return;
         }
         else if(self.sessionType==SESSION_POS_GET_DEVICE_ID)
         {
@@ -248,7 +262,7 @@ static void MiniPosSDKResponce(void *userData,
             return;
         }
         
-        self.statusStr = [NSString stringWithFormat:@"%@ [%@ %@]",self.statusStr,self.codeString,self.displayString];
+       // self.statusStr = [NSString stringWithFormat:@"%@ [%@ %@]",self.statusStr,self.codeString,self.displayString];
     }
     else if(self.responceCode==SESSION_ERROR_NAK)
     {
@@ -317,10 +331,11 @@ static void MiniPosSDKResponce(void *userData,
             self.statusStr=@"中断刷卡失败";
         }
         
-        self.statusStr = [NSString stringWithFormat:@"%@ [%@ %@]",self.statusStr,self.codeString,self.displayString];
+        //self.statusStr = [NSString stringWithFormat:@"%@ [%@ %@]",self.statusStr,self.codeString,self.displayString];
     }
     else if(self.responceCode==SESSION_ERROR_DEVICE_PLUG_IN)
     {
+        NSLog(@"deviceStatus:设备已插入");
         self.statusStr=@"设备已插入";
     }
     else if(self.responceCode==SESSION_ERROR_DEVICE_PLUG_OUT)
@@ -364,11 +379,128 @@ static void MiniPosSDKResponce(void *userData,
         self.statusStr=@"设备繁忙，稍后再试";
     }
     
-    [self performSelectorOnMainThread:@selector(startTimer) withObject:nil waitUntilDone:NO];
+    //[self performSelectorOnMainThread:@selector(startTimer) withObject:nil waitUntilDone:NO];
     
-    [self performSelectorOnMainThread:@selector(recvMiniPosSDKStatus) withObject:nil waitUntilDone:NO];
+    //[self performSelectorOnMainThread:@selector(recvMiniPosSDKStatus) withObject:nil waitUntilDone:NO];
+
+    // [self startTimer];
+    [self recvMiniPosSDKStatus];
+    //[self stopTimer];
 }
 
+
+
+
+-(NSString *)getSesstionTypeString:(MiniPosSDKSessionType)type{
+    switch (type) {
+        case SESSION_POS_UNKNOWN:
+            return @"SESSION_POS_UNKNOWN";
+            break;
+        case SESSION_POS_LOGIN:
+            return @"SESSION_POS_LOGIN";
+            break;
+        case SESSION_POS_GET_DEVICE_INFO:
+            return @"SESSION_POS_GET_DEVICE_INFO";
+            break;
+        case SESSION_POS_SALE_TRADE:
+            return @"SESSION_POS_SALE_TRADE";
+            break;
+        case SESSION_POS_VOIDSALE_TRADE:
+            return @"SESSION_POS_VOIDSALE_TRADE";
+            break;
+        case SESSION_POS_QUERY:
+            return @"SESSION_POS_QUERY";
+            break;
+        case SESSION_POS_SETTLE:
+            return @"SESSION_POS_SETTLE";
+            break;
+        case SESSION_POS_DOWNLOAD_KEY:
+            return @"SESSION_POS_DOWNLOAD_KEY";
+            break;
+        case SESSION_POS_DOWNLOAD_AID_PARAM:
+            return @"SESSION_POS_DOWNLOAD_AID_PARAM";
+            break;
+        case SESSION_POS_DOWNLOAD_PARAM:
+            return @"SESSION_POS_DOWNLOAD_PARAM";
+        case SESSION_POS_PRINT:
+            return @"SESSION_POS_PRINT";
+            break;
+        case SESSION_POS_GET_DEVICE_ID:
+            return @"SESSION_POS_GET_DEVICE_ID";
+            break;
+        case SESSION_POS_CANCEL_READ_CARD:
+            return @"SESSION_POS_CANCEL_READ_CARD";
+            break;
+        case SESSION_POS_READ_CARD_INFO:
+            return @"SESSION_POS_READ_CARD_INFO";
+            break;
+        case SESSION_POS_READ_PIN_CARD_INFO:
+            return @"SESSION_POS_READ_PIN_CARD_INFO";
+            break;
+        case SESSION_POS_READ_IC_INFO:
+            return @"SESSION_POS_READ_IC_INFO";
+            break;
+        case SESSION_POS_UPDATE_KEY:
+            return @"SESSION_POS_UPDATE_KEY";
+            break;
+        case SESSION_POS_LOGOUT:
+            return @"SESSION_POS_LOGOUT";
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
+
+-(NSString *)getResponceCodeString:(int)type{
+    switch (type) {
+        case SESSION_ERROR_ACK:
+            return @"SESSION_ERROR_ACK";
+            break;
+        case SESSION_ERROR_NAK:
+            return @"SESSION_ERROR_NAK";
+            break;
+        case SESSION_ERROR_NO_REGISTE_INTERFACE:
+            return @"SESSION_ERROR_NO_REGISTE_INTERFACE";
+            break;
+        case SESSION_ERROR_NO_DEVICE:
+            return @"SESSION_ERROR_NO_DEVICE";
+            break;
+        case SESSION_ERROR_DEVICE_PLUG_IN:
+            return @"SESSION_ERROR_DEVICE_PLUG_IN";
+            break;
+        case SESSION_ERROR_DEVICE_PLUG_OUT:
+            return @"SESSION_ERROR_DEVICE_PLUG_OUT";
+            break;
+        case SESSION_ERROR_DEVICE_NO_RESPONCE:
+            return @"SESSION_ERROR_DEVICE_NO_RESPONCE";
+            break;
+        case SESSION_ERROR_DEVICE_RESPONCE_TIMEOUT:
+            return @"SESSION_ERROR_DEVICE_RESPONCE_TIMEOUT";
+            break;
+        case SESSION_ERROR_SEND_8583_ERROR:
+            return @"SESSION_ERROR_SEND_8583_ERROR";
+            break;
+        case SESSION_ERROR_RECIVE_8583_ERROR:
+            return @"SESSION_ERROR_RECIVE_8583_ERROR";
+            break;
+        case SESSION_ERROR_NO_SET_PARAM:
+            return @"SESSION_ERROR_NO_SET_PARAM";
+            break;
+        case SESSION_ERROR_DEVICE_BUSY:
+            return @"SESSION_ERROR_DEVICE_BUSY";
+            break;
+        case SESSION_ERROR_DEVICE_SEND:
+            return @"SESSION_ERROR_DEVICE_SEND";
+            break;
+        case SESSION_ERROR_SHAKE_PACK:
+            return @"SESSION_ERROR_SHAKE_PACK";
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
 
 -(void)startTimer
 {
@@ -379,21 +511,9 @@ static void MiniPosSDKResponce(void *userData,
 
 - (void)stopTimer
 {
-    MiniPosSDKSessionType sessionType = MiniPosSDKGetCurrentSessionType();
+    MiniPosSDKSessionType sessionType = self.sessionType;
     
-    if(sessionType==SESSION_POS_UNKNOWN)
-    {
-        if(MiniPosSDKDeviceState()==0)
-        {
-            self.statusStr=@"设备已连接";
-        }
-        else
-        {
-            self.statusStr=@"设备未连接";
-        }
-    }
-    else
-    {
+
         if(sessionType==SESSION_POS_LOGIN)
         {
             self.statusStr=@"正在签到";
@@ -434,7 +554,7 @@ static void MiniPosSDKResponce(void *userData,
         {
             self.statusStr=@"正在下载参数";
         }
-    }
+    
     
     [self recvMiniPosSDKStatus];
 }

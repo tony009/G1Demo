@@ -8,6 +8,7 @@
 
 #import "BLEDriver.h"
 #import "BleManager.h"
+#import "ServerManager.h"
 #import "Anasis8583Pack.h"
 
 #define bleManager [BleManager sharedManager]
@@ -37,6 +38,11 @@
 #pragma mark - 
 #pragma mark - ****DeviceDriverInterface****
 
+int DeviceErrorFunc123(int error){
+    
+    return 0;
+}
+
 DeviceDriverInterface * GetBLEDeviceInterface()
 {
 
@@ -47,18 +53,59 @@ DeviceDriverInterface * GetBLEDeviceInterface()
     getbleinterface.DeviceState=&DeviceState;
     getbleinterface.DeviceDriverInit=&DeviceDriverInit;
     getbleinterface.DeviceDriverDestroy=&DeviceDriverDestroy;
-    getbleinterface.RegisterReadDataFunc=&RegisterReadDataFunc;
+    getbleinterface.RegisterReadPosDataFunc=&RegisterReadPosDataFunc;
     getbleinterface.RegisterErrorFunc=&RegisterErrorFunc;
-    getbleinterface.WriteData=&WriteData;
+    getbleinterface.WritePosData=&WritePosData;
+    getbleinterface.WriteServerData =&WriteServerData;
+    getbleinterface.RegisterReadServerDataFunc =&RegisterReadServerDataFunc;
+    getbleinterface.GetMsTime = &GetMsTime;
+    
+    //deviceErrorFunc = &DeviceErrorFunc123;
     
     return &getbleinterface;
 }
 
-int WriteData(unsigned char *data, int datalen)
+
+
+unsigned long GetMsTime(){
+    
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
+
+    return time;
+}
+int WriteServerData(unsigned char *data, int datalen){
+    
+    
+    
+    ServerManager *server = [ServerManager sharedManager];
+    
+    server.sock.delegate = server;
+    
+    if (![server.sock isConnected]) {
+        
+        [server SocketOpen:@"122.112.12.24" port:5679];
+    }else{
+        NSLog(@"已经连接上服务器");
+    }
+    
+    
+    NSData *sendData = [NSData dataWithBytes:(const void *)data length:sizeof(char)*datalen];
+    
+    NSLog(@"WriteServerData:%@",sendData);
+    
+    [server writeData:sendData];
+    
+    return 0;
+}
+int RegisterReadServerDataFunc(DeviceReadDataFunc func){
+    DeviceReadServerData = func;
+    return 0;
+}
+
+int WritePosData(unsigned char *data, int datalen)
 {
-    NSLog(@"writedata....");
- 
-    NSLog(@"----------------------");
+    NSLog(@"WritePosData....");
+    
     NSString *s;
     s=@"";
     for (int t=1;t<=datalen;t++)
@@ -76,17 +123,12 @@ int WriteData(unsigned char *data, int datalen)
                 if (BreakupRecvPack(data[i]) == 0) {
                     NSLog(@"scc");
                 } else {
-//                    NSLog(@"fail");
+                    //NSLog(@"fail");
                 }
             }
             
-            
-            
         }
-        
-        
-        
-        
+
         NSData *sendData = [NSData dataWithBytes:(const void *)data length:sizeof( char)*datalen];
         [bleManager.imBT writeValue:sendData];
         return 0;
@@ -96,11 +138,11 @@ int WriteData(unsigned char *data, int datalen)
     return -1;
 }
 
-int RegisterReadDataFunc(DeviceReadDataFunc func)
+int RegisterReadPosDataFunc(DeviceReadDataFunc func)
 {
     //蓝牙读取到数据时候，会执行func回调函数，这里保存了该函数指针。
     NSLog(@"readdatafunction registered.");
-    datavaluechanged=func;
+    DeviceReadPosData=func;
     //蓝牙读取到数据后，根据该函数指针执行回调通知上层SDK，回调格式：datavaluechanged(unsigned char *data, int datalen);
     return 0;
 }
@@ -116,7 +158,7 @@ int DeviceDriverInit()
 
 int DeviceOpen()
 {
-    NSLog(@"deviceopen");
+    NSLog(@"DeviceOpen");
     
     if (bleManager.imBT.isCollected) {
         NSLog(@"open = 0");
@@ -128,27 +170,33 @@ int DeviceOpen()
 
 int DeviceClose()
 {
-    NSLog(@"deviceclose");
+    NSLog(@"DeviceClose");
     
     [bleManager.imBT disconnectPeripheral:nil];
     
     return 0;
 }
+
 int DeviceDriverDestroy()
 {
-    NSLog(@"devicedriverdestory");
+    NSLog(@"DeviceDriverDestory");
     return 0;
 }
+
 int DeviceState()
 {
 
-    
-    
     if (bleManager.imBT.isCollected) {
-            NSLog(@"devicestate:0");
+        
+        NSLog(@"DeviceState:设备已经连接");
+        
         return 0;
+    }else{
+        
+        NSLog(@"DeviceState:设置已断开");
+        
     }
-            NSLog(@"devicestate:-1");
+    
     return -1;
 }
 
