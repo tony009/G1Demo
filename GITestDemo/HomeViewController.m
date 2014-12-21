@@ -146,7 +146,7 @@
     
 }
 
-- (IBAction)getDviceMsgAction:(ImgTButton *)sender {
+- (IBAction)getDeviceMsgAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0)
         return;

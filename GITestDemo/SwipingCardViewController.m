@@ -70,6 +70,8 @@
         [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
     }
     
+    
+    self.statusStr = @"";
 }
 
 

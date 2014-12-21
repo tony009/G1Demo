@@ -189,7 +189,7 @@
  */
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    [self isLECapableHardware];
+    [self startScan];
 }
 
 /*
@@ -286,11 +286,11 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)aPeripheral error:(NSError *)error
 {
 	self.connected = @"Not connected";
-    self.isCollected = NO;
     self.manufacturer = @"";
     self.heartRate = 0;
     
-    
+    self.isConnected = NO;
+    //通知设备已断开
     deviceErrorFunc(3);
     
     
@@ -376,8 +376,8 @@
         
         
         if (characteristic4) {
-            self.isCollected = YES;
-            
+            self.isConnected = YES;
+            //通知设备已经连上
             deviceErrorFunc(2);
         }
    

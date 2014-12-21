@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="obH-vd-F8r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -265,10 +264,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="drf-BU-8d0">
-                                        <rect key="frame" x="141" y="96" width="39" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -372,7 +367,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="getDviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="iVP-wA-OKK"/>
+                                            <action selector="getDeviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="xFd-KK-HWN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -653,6 +648,16 @@
                                 <rect key="frame" x="62" y="87" width="196" height="283"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WMV-C3-CIL">
+                                <rect key="frame" x="137" y="426" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="GLh-7g-6Tj" kind="push" id="eun-UA-ikw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -671,7 +676,7 @@
             <objects>
                 <viewController id="GLh-7g-6Tj" customClass="PrintNoteViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hgs-vg-I42">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Uj-cY-Oin">
@@ -837,7 +842,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
                                             <view hidden="YES" contentMode="scaleToFill" id="ecI-59-4gc">
-                                                <rect key="frame" x="4" y="1" width="293" height="316"/>
+                                                <rect key="frame" x="4" y="1" width="293" height="333"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" id="yfd-rH-vaJ" customClass="PPSSignatureView">
@@ -864,13 +869,12 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Phz-4Q-U6h">
-                                        <rect key="frame" x="14" y="322" width="292" height="49"/>
+                                        <rect key="frame" x="75" y="321" width="170" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="确认上传" backgroundImage="btn_next_background.png">
                                             <color key="titleColor" red="0.24313725489999999" green="0.69019607839999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="uploadImage:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="ZJe-0Y-AG5"/>
@@ -1044,7 +1048,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HA1-qt-zOJ"/>
-        <segue reference="zWV-Zx-zg9"/>
+        <segue reference="39K-kE-LJ2"/>
+        <segue reference="eun-UA-ikw"/>
     </inferredMetricsTieBreakers>
 </document>

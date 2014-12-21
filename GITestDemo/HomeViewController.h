@@ -32,7 +32,7 @@
 
 - (IBAction)updataKeyAction:(ImgTButton *)sender;
 
-- (IBAction)getDviceMsgAction:(ImgTButton *)sender;
+- (IBAction)getDeviceMsgAction:(ImgTButton *)sender;
 
 - (IBAction)moreAction:(ImgTButton *)sender;
 

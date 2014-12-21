@@ -160,7 +160,7 @@ int DeviceOpen()
 {
     NSLog(@"DeviceOpen");
     
-    if (bleManager.imBT.isCollected) {
+    if (bleManager.imBT.isConnected) {
         NSLog(@"open = 0");
         return 0;
     }
@@ -186,14 +186,14 @@ int DeviceDriverDestroy()
 int DeviceState()
 {
 
-    if (bleManager.imBT.isCollected) {
+    if (bleManager.imBT.isConnected) {
         
         NSLog(@"DeviceState:设备已经连接");
         
         return 0;
     }else{
         
-        NSLog(@"DeviceState:设置已断开");
+        NSLog(@"DeviceState:设备已断开");
         
     }
     

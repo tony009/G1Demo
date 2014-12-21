@@ -74,8 +74,7 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillshow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillhide:) name:UIKeyboardWillHideNotification object:nil];
-    if ([self.connectDeviceButton.titleLabel.text isEqual:@""])
-    if (_isConnect) {
+    if (MiniPosSDKDeviceState() == 0) {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
         //self.connectDeviceButton.enabled = NO;
     } else {
@@ -91,7 +90,7 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-}
+} 
 
 - (void)keyboardWillshow:(NSNotification *)notification
 {
@@ -197,6 +196,8 @@
     //return;
     
     
+    
+    
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
         
         [self showTipView:@"操作员号或密码错误！请检查后重试。"];
@@ -204,14 +205,19 @@
         return;
     }
     
-    
-    if(MiniPosSDKPosLogin()>=0)
-    {
-        //self.connectStateLabel.text=@"正在签到";
-        [self showHUD:@"正在签到..."];
-        
-        
+    if (MiniPosSDKDeviceState() == 0) {
+        if(MiniPosSDKPosLogin()>=0)
+        {
+            //self.connectStateLabel.text=@"正在签到";
+            [self showHUD:@"正在签到..."];
+            
+            
+        }
+    }else{
+        [self showTipView:@"设备未连接"];
     }
+    
+
 }
 
 

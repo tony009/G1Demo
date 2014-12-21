@@ -112,7 +112,8 @@
     curLabel = self.bleStatusLabel;
     
     self.audioStatusLabel.text = @"未连接";
-    //self.statusLabel.text = @"未连接";
+    self.statusLabel.text = @"未连接";
+    self.bleStatusLabel.text =@"未连接";
     
     //MiniPosSDKInit();
     //DeviceDriverInterface *t;
@@ -142,9 +143,11 @@
     
     if([self.statusStr isEqualToString:@"设备已插入"]){
         curLabel.text = @"已连接";
+        self.statusLabel.text =@"已连接";
         _isConnect = YES;
     }else {
         curLabel.text = @"未连接";
+        self.statusLabel.text =@"未连接";
         _isConnect = NO;
     }
     
@@ -202,7 +205,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _deviceView.hidden = YES;
-    [[BleManager sharedManager].imBT connect:[searchDevices objectAtIndex:indexPath.row]];
+    [[BleManager sharedManager].imBT connect:[searchDevices objectAtIndex:indexPath.row]]; 
 }
 
 - (void)cancelAction

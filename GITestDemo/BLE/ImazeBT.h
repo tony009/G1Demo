@@ -52,7 +52,7 @@
 
 
 @property (strong, nonatomic) NSString *connected;
-@property (nonatomic, assign) BOOL isCollected;
+@property (nonatomic, assign) BOOL isConnected;  //设备是否连接
 @property (nonatomic, strong) CBPeripheral *waitAper;
 @property (nonatomic, assign) int bleState;
 

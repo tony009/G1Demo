@@ -41,10 +41,10 @@
     // Do any additional setup after loading the view.
     
     
-    [self _initSubViews];
+    //[self _initSubViews];
 
     
-    [self startAnimation];
+    //[self startAnimation];
     
 }
 
@@ -319,7 +319,9 @@
                 self.signatureBt.hidden = true;
                 //[self.navigationController popViewControllerAnimated:YES];
                 //[self.navigationController popToViewController animated:<#(BOOL)#>]
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                [self performSelector:@selector(backToHome) withObject:nil afterDelay:1.0];
+                
             });
         }else {
             [self hideHUD];
@@ -332,6 +334,14 @@
     
  
 }
+
+
+- (void)backToHome{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
 
 - (IBAction)resignAction:(id)sender {
     [self.signView erase];

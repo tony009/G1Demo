@@ -23,6 +23,7 @@
 #import "BleManager.h"
 
 #define kDidDiscoverDevice @"didDiscoverDevice"
+#define kDidConnectDevice @"didConnectDevice"
 
 #define kLastConnectedDevice @"lastConnectedDevice"
 

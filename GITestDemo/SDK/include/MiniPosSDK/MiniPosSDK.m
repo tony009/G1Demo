@@ -69,6 +69,7 @@ static SDKResponceFunc gResponseFun = NULL;
 #define PACK_STEP_POS_STRUCT 0x03
 #define PACK_STEP_SEND_SERVER 0x04
 #define PACK_STEP_RETURN_POS 0x05
+#define PACK_STEP_RETURN_REPLY 0x06
 
 static unsigned char gSDKBuf[800];
 static unsigned char gRecvBuf[800];
@@ -81,6 +82,8 @@ static unsigned long gTimeOut = 0;
 static unsigned char gWaitConfirm = 0;
 
 int DealGetDeviceInfo();
+int DealLoadAID();
+int DealLoadKey();
 int MiniPosSDKTestConnect(void);
 
 
@@ -865,6 +868,17 @@ int DealQueryTrade()
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
         len = GET_DATA_LEN(gRecvBuf);
+        if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
@@ -912,7 +926,7 @@ int DealQueryTrade()
     }
     if(gDealPackStep == PACK_STEP_RETURN_POS)
     {
-        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             gResponseFun(gUserData,
                          gSessionPos,
@@ -922,7 +936,7 @@ int DealQueryTrade()
             gSessionPos = SESSION_POS_UNKNOWN;
             return 0;
         }
-        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        else if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
         {
             gResponseFun(gUserData,
                          gSessionPos,
@@ -933,10 +947,35 @@ int DealQueryTrade()
             return 0;
         }
         
-        gSessionPos = SESSION_POS_UNKNOWN;
-        return -1;
+        gDealPackStep = PACK_STEP_RETURN_REPLY;
+        return 0;
     }
-    
+    if(gDealPackStep == PACK_STEP_RETURN_REPLY)
+    {
+        if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+            
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        gSessionPos = SESSION_POS_UNKNOWN;
+    }
     return 0;
 }
 
@@ -950,46 +989,91 @@ void DealSendPack()
         case SESSION_POS_LOGIN:
             if(DealLogIn() >= 0)
             {
+                return;
+            }
+            else
+            {
                 break;
             }
             
         case SESSION_POS_SALE_TRADE:
             DealSaleTrade();
-            break;
+            return;
             
         case SESSION_POS_QUERY:
             DealQueryTrade();
-            break;
+            return;
             
         case SESSION_POS_LOGOUT:
             DealLogOut();
-            break;
+            return;
             
         case SESSION_POS_SETTLE:
             DealSettleTrade();
-            break;
+            return;
             
         case SESSION_POS_GET_DEVICE_INFO:
             DealGetDeviceInfo();
-            break;
+            return;
+            
+        case SESSION_POS_DOWNLOAD_KEY:
+            if(DealLoadKey() >= 0)
+            {
+                return;
+            }
+            else
+            {
+                break;
+            }
+            
+        case SESSION_POS_DOWNLOAD_AID_PARAM:
+            if(DealLoadAID() >= 0)
+            {
+                return;
+            }
+            else
+            {
+                break;
+            }
             
         default:
-            if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x05)
-            {
-                gSessionPos = SESSION_POS_UNKNOWN;
-                len = GET_DATA_LEN(gRecvBuf);
-                *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
-                *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
-                gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len + 2);
-                gResponseFun(gUserData,
-                             gSessionPos,
-                             SESSION_ERROR_ACK,
-                             NULL,
-                             NULL);
-            }
-            gSessionPos = SESSION_POS_UNKNOWN;
             break;
     }
+    
+    if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x05)
+    {
+        gSessionPos = SESSION_POS_UNKNOWN;
+        len = GET_DATA_LEN(gRecvBuf);
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
+        gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len + 2);
+        /*gResponseFun(gUserData,
+         gSessionPos,
+         SESSION_ERROR_ACK,
+         NULL,
+         NULL);*/
+    }
+    else if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+        }
+    }
+    
+    gSessionPos = SESSION_POS_UNKNOWN;
 }
 
 void DealRecvPack(unsigned char *data)
@@ -1096,6 +1180,119 @@ int ReadPosData(unsigned char *data, int datalen)
 	}
 
 	return 0;
+}
+
+
+int DealLoadKey()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_SEND_SERVER)
+    {
+        len = GET_DATA_LEN(gRecvBuf);
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
+        
+        len += 2;
+        if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_SEND_8583_ERROR,
+                         NULL,
+                         NULL);
+            gDealPackStep = PACK_STEP_RETURN_POS;
+        }
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        len = 0;
+        gSDKBuf[len] = 0x00;
+        len++;
+        gSDKBuf[len] = 0x1D;
+        len++;
+        gSDKBuf[len] = 0x03;
+        len += 1;
+        memcpy((char*)&gSDKBuf[len], "53", 2);
+        len += 2;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKMerchantCode, 15);
+        len += 15;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKTerminalCode, 8);
+        len += 8;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        
+        gSDKBuf[0] = (len - 2) >> 8;
+        gSDKBuf[1] = len - 2;
+        
+        gDealPackStep = SESSION_POS_UNKNOWN;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    
+    return -1;
+}
+
+int DealLoadAID()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_SEND_SERVER)
+    {
+        len = GET_DATA_LEN(gRecvBuf);
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
+        
+        len += 2;
+        if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_SEND_8583_ERROR,
+                         NULL,
+                         NULL);
+            gDealPackStep = PACK_STEP_RETURN_POS;
+        }
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        len = 0;
+        gSDKBuf[len] = 0x00;
+        len++;
+        gSDKBuf[len] = 0x1D;
+        len++;
+        gSDKBuf[len] = 0x03;
+        len += 1;
+        memcpy((char*)&gSDKBuf[len], "54", 2);
+        len += 2;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKMerchantCode, 15);
+        len += 15;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKTerminalCode, 8);
+        len += 8;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        
+        gSDKBuf[0] = (len - 2) >> 8;
+        gSDKBuf[1] = len - 2;
+        
+        gDealPackStep = SESSION_POS_UNKNOWN;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    
+    return -1;
 }
 
 int DealGetDeviceInfo()
@@ -1628,14 +1825,44 @@ int MiniPosSDKSettleTradeCMD(const char *cashierSerialCode)
 /************************************************************
  公钥下载
  *************************************************************/
-int MiniPosSDKDownloadKeyCMD(){
+int MiniPosSDKDownloadKeyCMD()
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    gSessionPos = SESSION_POS_DOWNLOAD_KEY;
+    gTimeOut = MAX_POS_TIMEOUT;
+    MiniPosSDKTestConnect();
+    gDealPackStep = PACK_STEP_SHAKE;
+    
     return 0;
 }
 
 /************************************************************
  AID参数下载指令
  *************************************************************/
-int MiniPosSDKDownloadAIDParamCMD(){
+int MiniPosSDKDownloadAIDParamCMD()
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    gSessionPos = SESSION_POS_DOWNLOAD_AID_PARAM;
+    gTimeOut = MAX_POS_TIMEOUT;
+    MiniPosSDKTestConnect();
+    gDealPackStep = PACK_STEP_SHAKE;
+    
     return 0;
 }
 
