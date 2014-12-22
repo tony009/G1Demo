@@ -257,19 +257,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="8Zd-HC-GjL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="BII-zB-eFM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="152.png" id="kju-1k-lN4">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="142" width="320" height="362"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -371,6 +364,14 @@
                                             <action selector="getDeviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="xFd-KK-HWN"/>
                                         </connections>
                                     </button>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="QCy-K2-Ot3">
+                                        <rect key="frame" x="141" y="0.0" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="currentPageIndicatorTintColor" red="0.24313725489999999" green="0.69019607839999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="changePage:" destination="yMb-qI-H8k" eventType="valueChanged" id="nTe-aO-2QR"/>
+                                        </connections>
+                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -387,8 +388,9 @@
                     <navigationItem key="navigationItem" id="CF4-PL-xvG"/>
                     <connections>
                         <outlet property="controlView" destination="LfS-Ms-DVE" id="PYq-3u-SMe"/>
+                        <outlet property="pageControl" destination="QCy-K2-Ot3" id="1yj-Hy-PaF"/>
+                        <outlet property="scrollView" destination="BII-zB-eFM" id="3gt-hD-KKN"/>
                         <outlet property="status" destination="znl-3e-J1Q" id="PQC-Tm-brO"/>
-                        <outlet property="topView" destination="8Zd-HC-GjL" id="j8q-j5-IYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYX-0C-PyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -403,14 +405,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入撤销金额" minimumFontSize="17" id="wEe-6s-JuB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入撤销金额" minimumFontSize="17" id="wEe-6s-JuB">
                                 <rect key="frame" x="15" y="3" width="290" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入凭证号" minimumFontSize="17" id="O95-gX-PNH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入凭证号" minimumFontSize="17" id="O95-gX-PNH">
                                 <rect key="frame" x="15" y="54" width="290" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -538,7 +540,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="LHK-RJ-ulJ">
-                                <rect key="frame" x="20" y="240.99999934434894" width="280.00000018339892" height="219"/>
+                                <rect key="frame" x="20" y="241" width="280.00000018339892" height="218.99999934434894"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -649,16 +651,6 @@
                                 <rect key="frame" x="62" y="87" width="196" height="283"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WMV-C3-CIL">
-                                <rect key="frame" x="137" y="426" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GLh-7g-6Tj" kind="push" id="eun-UA-ikw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1032,7 +1024,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="152.png" width="320" height="140"/>
         <image name="btn_audio.png" width="80" height="80"/>
         <image name="btn_background2.png" width="508" height="92"/>
         <image name="btn_bluetooth.png" width="80" height="80"/>
@@ -1050,6 +1041,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="39K-kE-LJ2"/>
-        <segue reference="zWV-Zx-zg9"/>
+        <segue reference="YJl-Xi-ecU"/>
     </inferredMetricsTieBreakers>
 </document>

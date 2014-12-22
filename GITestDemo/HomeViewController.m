@@ -62,6 +62,30 @@
         button.titext = [titArray objectAtIndex:i];
     }
     
+    int width = self.view.frame.size.width;
+    int height = self.scrollView.frame.size.height;
+    
+    self.scrollView.contentSize = CGSizeMake(width*5, height);
+    
+    UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
+    UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(width, 0, width, height)];
+    UIImageView *imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(width *2, 0, width, height)];
+    UIImageView *imageView4 = [[UIImageView alloc]initWithFrame:CGRectMake(width *3, 0, width, height)];
+    UIImageView *imageView5 = [[UIImageView alloc]initWithFrame:CGRectMake(width *4, 0, width, height)];
+
+    [imageView1 setImage:[UIImage imageNamed:@"home_banner_1"]];
+    [imageView2 setImage:[UIImage imageNamed:@"home_banner_2"]];
+    [imageView3 setImage:[UIImage imageNamed:@"home_banner_3"]];
+    [imageView4 setImage:[UIImage imageNamed:@"home_banner_4"]];
+    [imageView5 setImage:[UIImage imageNamed:@"home_banner_5"]];
+    [self.scrollView addSubview:imageView1];
+    [self.scrollView addSubview:imageView2];
+    [self.scrollView addSubview:imageView3];
+    [self.scrollView addSubview:imageView4];
+    [self.scrollView addSubview:imageView5];
+    
+    
+    self.scrollView.delegate = self;
     
 //    UIImageView *leftImgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
 //    leftImgview.backgroundColor = [UIColor clearColor];
@@ -73,9 +97,23 @@
     
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void) scrollViewDidScroll: (UIScrollView *) aScrollView
+{
+    
+    CGPoint offset = aScrollView.contentOffset;
+    self.pageControl.currentPage = offset.x / 320.0f;
+    NSLog(@"scrollViewDidScroll:%d",self.pageControl.currentPage);
 
+}
 
-
+- (IBAction)changePage:(id)sender {
+    NSLog(@"changePage");
+    [UIView animateWithDuration:0.3f animations:^{
+        int whichPage = self.pageControl.currentPage;
+        self.scrollView.contentOffset = CGPointMake(320.0f * whichPage, 0.0f);
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -154,7 +192,7 @@
     if(MiniPosSDKGetDeviceInfoCMD()>=0)
     {
         [self showHUD:@"正在获取设备信息"];
-        [self performSelector:@selector(showResultWithString:) withObject:@"获取设备信息超时" afterDelay:10];
+        //[self performSelector:@selector(showResultWithString:) withObject:@"获取设备信息超时" afterDelay:10];
     }
 }
 
@@ -165,6 +203,8 @@
 
 - (IBAction)moreAction:(ImgTButton *)sender {
 }
+
+
 
 
 #pragma mark - 

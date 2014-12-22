@@ -73,6 +73,14 @@
     NSString *pingZhengHao = [[NSUserDefaults standardUserDefaults] objectForKey:KLastPingZhengHao];
     NSString *jiaoYiJinE =  [[NSUserDefaults standardUserDefaults]objectForKey:KLastJiaoYiJinE];
     
+    if (!pingZhengHao || [pingZhengHao isEqualToString:@""]) {
+        [self showTipView:@"没有可以撤销的交易"];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        });
+    }
+    
     self.countText.text = jiaoYiJinE;
     self.noNumbertext.text = pingZhengHao;
     

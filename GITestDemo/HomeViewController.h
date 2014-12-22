@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 @class ImgTButton;
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : BaseViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *topView;
 
@@ -18,7 +18,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *status;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 
 - (IBAction)customAction:(ImgTButton *)sender;
 
@@ -36,5 +38,7 @@
 
 - (IBAction)moreAction:(ImgTButton *)sender;
 
+
+- (IBAction)changePage:(id)sender;
 
 @end
