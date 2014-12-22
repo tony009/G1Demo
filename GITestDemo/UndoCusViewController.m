@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self _initSubViews];
+    
+    NSLog(@"UndoCusViewController----viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +54,8 @@
     label3.textColor = [UIColor darkGrayColor];
     label3.textAlignment = NSTextAlignmentRight;
     
+
+    
     self.countText.leftView = label1;
     self.countText.rightView = label3;
     self.countText.rightViewMode = UITextFieldViewModeAlways;
@@ -59,8 +63,20 @@
     self.countText.leftViewMode = UITextFieldViewModeAlways;
     self.noNumbertext.leftViewMode = UITextFieldViewModeAlways;
     
+
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    NSString *pingZhengHao = [[NSUserDefaults standardUserDefaults] objectForKey:KLastPingZhengHao];
+    NSString *jiaoYiJinE =  [[NSUserDefaults standardUserDefaults]objectForKey:KLastJiaoYiJinE];
+    
+    self.countText.text = jiaoYiJinE;
+    self.noNumbertext.text = pingZhengHao;
+    
+}
 
 #pragma mark - Navigation
 
@@ -110,7 +126,7 @@
     _type = 2;
     MiniPosSDKVoidSaleTradeCMD(buf, serialbuf, NULL);
     
-    [self showHUD:@"正在撤销..."];
+    //[self showHUD:@"正在撤销..."];
 }
 
 - (BOOL)isCorrectSerialNumber:(NSString*)numer
@@ -133,18 +149,29 @@
 }
 
 
-- (void)recvMiniPosSDKStatus
+-(void)recvMiniPosSDKStatus
 {
     [super recvMiniPosSDKStatus];
     
+    NSLog(@"UndoCusViewController------recvMiniPosSDKStatus");
     
-    
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"撤销消费成功 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"撤销消费成功"]]) {
         [self hideHUD];
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:KLastPingZhengHao];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:KLastJiaoYiJinE];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+       [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KLastJiaoYiJinE];
+       [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KLastPingZhengHao];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
         [self performSegueWithIdentifier:@"undoPushToPrint" sender:self];
     }
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"撤销消费失败 [%@ %@]",self.codeString,self.displayString]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"撤销消费失败"]]) {
         [self hideHUD];
         [self showTipView:self.statusStr];
         [self performSelector:@selector(backAction:) withObject:nil afterDelay:1.0];

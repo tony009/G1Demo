@@ -193,6 +193,7 @@ static void MiniPosSDKResponce(void *userData,
         else if(self.sessionType==SESSION_POS_VOIDSALE_TRADE)
         {
             self.statusStr=@"撤销消费成功";
+            NSLog(@"deviceStatus ------撤销消费成功");
         }
         else if(self.sessionType==SESSION_POS_QUERY)
         {

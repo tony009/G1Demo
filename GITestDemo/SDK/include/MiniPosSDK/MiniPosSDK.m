@@ -63,6 +63,7 @@ static unsigned char gSDKOperator[3];
 static void* gUserData = NULL;
 
 static SDKResponceFunc gResponseFun = NULL;
+static unsigned char gInputParam[100];
 
 #define PACK_STEP_IDLE 0x01
 #define PACK_STEP_SHAKE 0x02
@@ -85,7 +86,7 @@ int DealGetDeviceInfo();
 int DealLoadAID();
 int DealLoadKey();
 int MiniPosSDKTestConnect(void);
-
+int DealVoidSaleTrade();
 
 int MiniPosSDKInit()
 {
@@ -162,8 +163,9 @@ int MiniPosSDKSetPublicParam(const char *merchantCode, const char *terminalCode,
 
 int MiniPosSDKAddDelegate(void *userData, SDKResponceFunc SDKResponce)
 {
+    gUserData = userData;
 	gResponseFun = SDKResponce;
-	gUserData = userData;
+
 
 	return 0;
 }
@@ -674,6 +676,8 @@ int DealLogOut()
     return 0;
 }
 
+
+
 int DealSettleTrade()
 {
     int len;
@@ -756,7 +760,7 @@ int DealSettleTrade()
     return 0;
 }
 
-static unsigned char gInputParam[100];
+
 
 int DealSaleTrade()
 {
@@ -860,6 +864,114 @@ int DealSaleTrade()
     return 0;
 }
 
+int DealVoidSaleTrade()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_SEND_SERVER)
+    {
+        len = GET_DATA_LEN(gRecvBuf);
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
+        
+        len += 2;
+        if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_SEND_8583_ERROR,
+                         NULL,
+                         NULL);
+            gDealPackStep = PACK_STEP_RETURN_POS;
+        }
+        
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        len = 0;
+        gSDKBuf[len] = 0x00;
+        len++;
+        gSDKBuf[len] = 0x3B;
+        len++;
+        gSDKBuf[len] = 0x03;
+        len += 1;
+        memcpy((char*)&gSDKBuf[len], "02", 2);
+        len += 2;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKMerchantCode, 15);
+        len += 15;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memcpy((char*)&gSDKBuf[len], gSDKTerminalCode, 8);
+        len += 8;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        memset((unsigned char*)&gSDKBuf[len], 0x30, 12);
+        if(strlen((char*)gInputParam) > 12)
+        {
+            //金额超过12字节就截掉大于12字节部分
+            my_memcpy(gInputParam + (strlen((char*)gInputParam) - 12), gInputParam, 12, 1);
+            gInputParam[12] = 0x00;
+        }
+        strcpy((char*)&gSDKBuf[len + 12 - strlen((char*)gInputParam)], (char*)gInputParam);
+        //HexToStr(gInputParam, (unsigned char*)&gSDKBuf[len], 12);
+        len += 12;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        
+        memcpy((unsigned char*)&gSDKBuf[len], (char*)&gInputParam[13], 6);
+        len += 6;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        /*
+         strcpy((char*)&gBuf[len], (char*)"01");
+         len += 2;
+         len += 13;
+         gBuf[len] = 0x1C;
+         len++;
+         gBuf[len] = 0x1C;
+         len++;
+         */
+        gSDKBuf[0] = (len - 2) >> 8;
+        gSDKBuf[1] = (len - 2);
+        
+        gDealPackStep = PACK_STEP_SEND_SERVER;
+        gTimeOut = 30000;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_RETURN_POS)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
+        gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
+    
+    return 0;
+    
+}
 
 int DealQueryTrade()
 {
@@ -998,6 +1110,10 @@ void DealSendPack()
             
         case SESSION_POS_SALE_TRADE:
             DealSaleTrade();
+            return;
+            
+        case SESSION_POS_VOIDSALE_TRADE:
+            DealVoidSaleTrade();
             return;
             
         case SESSION_POS_QUERY:
@@ -1774,7 +1890,25 @@ int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode)
  参数2 (原交易凭证号)	N6	若为“空”，则POS 提示操作员输入
  参数3（收银流水号）	AN20	（可选，如有，记入交易流水文件对应信息）
  *************************************************************/
-int MiniPosSDKVoidSaleTradeCMD(const char *amount, const char *serialCode, const char *cashierSerialCode){
+int MiniPosSDKVoidSaleTradeCMD(const char *amount, const char *serialCode, const char *cashierSerialCode)
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
+    strncpy((char*)gInputParam, amount, 12);
+    strncpy((char*)&gInputParam[13], serialCode, 6);
+    gSessionPos = SESSION_POS_VOIDSALE_TRADE;
+    gTimeOut = MAX_POS_TIMEOUT;
+    MiniPosSDKTestConnect();
+    gDealPackStep = PACK_STEP_SHAKE;
+    
     return 0;
 }
 

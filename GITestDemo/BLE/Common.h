@@ -22,10 +22,16 @@
 
 #import "BleManager.h"
 
+
+
 #define kDidDiscoverDevice @"didDiscoverDevice"
 #define kDidConnectDevice @"didConnectDevice"
 
 #define kLastConnectedDevice @"lastConnectedDevice"
+
+#define KLastPingZhengHao @"lastPingZhengHao"
+#define KLastJiaoYiJinE @"lastJiaoYiJinE"
+
 
 #define kShangHuName @"shanghuName"  
 #define kShangHuEditor @"shangHuEditor"

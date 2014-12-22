@@ -28,6 +28,7 @@
 
     FMServer* server;
     FTPManager* man;
+    
 }
 
 
@@ -41,10 +42,10 @@
     // Do any additional setup after loading the view.
     
     
-    //[self _initSubViews];
+    [self _initSubViews];
 
     
-    //[self startAnimation];
+    [self startAnimation];
     
 }
 
@@ -61,6 +62,7 @@
         _typeStr = @"消费";
         self.countLabel.text = [NSString stringWithFormat:@"%.2f",self.count];
         self.tipLabel.text = @"消费成功，票据正在打印中";
+        NSLog(@"消费成功，票据正在打印中");
     } else if ([self.type isEqualToString:@"撤销消费"]){
         self.topLabel1.text = @"撤销：";
         _typeStr = @"撤销";
@@ -89,6 +91,8 @@
     //gRetrieval[12]
     NSData *reCodeData = [NSData dataWithBytes:(const void *)gRetrieval length:sizeof( char)*12];
     NSString *reCodeString = [[NSString alloc] initWithData:reCodeData encoding:NSUTF8StringEncoding];
+    
+    _jiaoYiCanKaoHao = reCodeString;
     
     //交易金额
     //gTransacAmount[6]
@@ -134,9 +138,21 @@
     //时间 gLocalTime[3]
     int time = BCDToInt(gLocalTime, 3);
     int date = BCDToInt(gLocalDate, 2);
+    
+    
     _dateStr = [NSString stringWithFormat:@"%02d/%02d %02d:%02d:%02d",date/100,date%100,time/10000,(time%10000)/100,time%100];
     
-    _jiaoYiShiJian = [NSString stringWithFormat:@"%02d%02d%02d:%02d:%02d",date/100,date%100,time/10000,(time%10000)/100,time%100];
+    
+    NSDate *d = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    
+    [dateFormatter setDateFormat:@"YYYY"];
+     
+    NSString *year = [dateFormatter stringFromDate:d];
+    
+    _jiaoYiShiJian = [NSString stringWithFormat:@"%04d%02d%02d%02d%02d%02d",[year intValue],date/100,date%100,time/10000,(time%10000)/100,time%100];
+    
+    //[NSDate]
     
     NSData *timeCodeData = [NSData dataWithBytes:(const void *)gLocalTime length:sizeof( char)*3];
     NSString *timeCodeString = [[NSString alloc] initWithData:timeCodeData encoding:NSUTF8StringEncoding];
@@ -150,6 +166,16 @@
     int gUserArea = BCDToInt(gUserArea60+1, 3);
     NSString *gUserAreaString = [NSString stringWithFormat:@"%.6d",gUserArea];
     
+    
+    if([self.type isEqualToString:@"消费交易"]){
+        
+        [[NSUserDefaults standardUserDefaults] setObject:audCodeString forKey:KLastPingZhengHao];
+        [[NSUserDefaults standardUserDefaults] setObject:_countStr forKey:KLastJiaoYiJinE];
+        
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    
+
     
     NSLog(@"终端号：%@  商户号：%@ 卡号：%@",terCodeString,mcCodeString,s);
 
@@ -180,15 +206,18 @@
                 break;
             case 17:
                 label.text = [NSString stringWithFormat:@"凭证号：%@",audCodeString];
+                
                 break;
             case 18:
                 label.text = [NSString stringWithFormat:@"交易时间：%@",_dateStr];
+                
                 break;
             case 19:
                 label.text = [NSString stringWithFormat:@"交易参考号：%@",reCodeString];
                 break;
             case 20:
                 label.text = [NSString stringWithFormat:@"交易金额：%@",_countStr];
+                
                 break;
                 
             default:
@@ -279,7 +308,7 @@
 - (IBAction)uploadImage:(id)sender {
     
     
-    server = [FMServer serverWithDestination:@"122.112.12.23" username:@"mpos" password:@"tenmpos123"];
+    server = [FMServer serverWithDestination:@"122.112.12.23/mpos" username:@"mpos" password:@"tenmpos123"];
     
     server.port = 2221;
     
@@ -288,6 +317,7 @@
     //NSString *str = [NSString stringWithFormat:g]
     
     NSString *str = [[NSString alloc]initWithFormat:@"tmp/%@.jpg",[self getTimeNow]];
+    //NSString *str = [[NSString alloc]initWithFormat:@"tmp/图片.jpg"];
     
     NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:str];
     
@@ -298,12 +328,50 @@
     [data writeToFile:jpgPath atomically:YES];
     
     
+//    NSString *_shangHuHao; //商户号
+//    NSString *_zhongDuanHao; //终端号
+//    NSString *_jiaoYiShiJian; //交易时间
+//    NSString *_jiaoYiCanKaoHao; //交易参考号
+    
+    
+    NSLog(@"/mpos/%@/%@/%@/%@/图片.jpg",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao);
+    
+    NSString *strs[4] ={
+        _shangHuHao,
+        _zhongDuanHao,
+        _jiaoYiShiJian,
+        _jiaoYiCanKaoHao
+    };
+    
+    self.serialQueue = dispatch_queue_create("com.wudi", DISPATCH_QUEUE_SERIAL);
+    
+    NSString *destionation =@"122.112.12.23/mpos";
+    
+    for (int i=0; i< 4; i++) {
+        NSString *s = strs[i];
+        NSLog(@"destionation:%@",destionation);
+        dispatch_async(self.serialQueue, ^{
+            server = [FMServer serverWithDestination:destionation username:@"mpos" password:@"tenmpos123"];
+            server.port =2221;
+            [man createNewFolder:s atServer:server];
+        });
+        
+       destionation = [destionation stringByAppendingPathComponent:s];
+    }
+    
     
     [self showHUD:@"正在上传"];
     
+    destionation = [NSString stringWithFormat:@"122.112.12.23/mpos/%@/%@/%@/%@/",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao];
     
+
+
+   NSLog(@"destionation:%@",destionation);
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_async(self.serialQueue, ^{
+        
+        server = [FMServer serverWithDestination:destionation username:@"mpos" password:@"tenmpos123"];
+        server.port =2221;
         
         BOOL success = false;
     

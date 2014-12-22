@@ -54,7 +54,7 @@
 
     UIViewController *send = segue.destinationViewController;
     if ([send respondsToSelector:@selector(setType:)]) {
-        [send setValue:@"消费刷卡" forKey:@"type"];
+        [send setValue:@"刷卡消费" forKey:@"type"];
     }
     
     if ([send respondsToSelector:@selector(setCount:)]) {
