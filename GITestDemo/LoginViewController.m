@@ -22,6 +22,10 @@
     
     _isNeedAutoConnect = YES;
     
+    NSLog(@"沙盒路径：%@",NSHomeDirectory());
+    NSString *Path = [[NSBundle mainBundle] pathForResource:@"kernel" ofType:@""];
+    
+    NSLog(@"kernel:%@",Path);
     
     [self _initSubViews];
     
@@ -191,9 +195,9 @@
 
 - (IBAction)siginAction:(UIButton *)sender {
     
-    //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
-    //return;
+    return;
     
     
     

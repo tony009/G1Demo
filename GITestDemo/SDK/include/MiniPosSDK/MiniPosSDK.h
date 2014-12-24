@@ -443,7 +443,7 @@ int MiniPosSDKReadICInfoCMD(const char *icInfo, int icInfolen);
  *************************************************************/
 int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);
 
-
+int DownThread();
 
 #ifdef __cplusplus
 }

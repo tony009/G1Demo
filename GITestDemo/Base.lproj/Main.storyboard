@@ -76,6 +76,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="configButton" destination="olI-nv-jIC" id="5Cd-Wi-R30"/>
                         <outlet property="connectDeviceButton" destination="DBx-Be-AuE" id="S3n-aj-muZ"/>
@@ -254,7 +255,7 @@
             <objects>
                 <viewController id="yMb-qI-H8k" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lcP-fU-K7X">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="BII-zB-eFM">
@@ -364,7 +365,7 @@
                                             <action selector="getDeviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="xFd-KK-HWN"/>
                                         </connections>
                                     </button>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="QCy-K2-Ot3">
+                                    <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="QCy-K2-Ot3">
                                         <rect key="frame" x="141" y="0.0" width="39" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="currentPageIndicatorTintColor" red="0.24313725489999999" green="0.69019607839999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -402,7 +403,7 @@
             <objects>
                 <viewController id="aFU-c5-ZSy" customClass="UndoCusViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5c-86-6mc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入撤销金额" minimumFontSize="17" id="wEe-6s-JuB">
@@ -531,17 +532,17 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="iyG-Y4-cGk">
                                 <rect key="frame" x="20" y="20" width="130" height="200"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.28885314006454921" green="0.26151715917686391" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="RR0-Ki-ORW">
-                                <rect key="frame" x="170.0000001833989" y="20" width="130" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="170" y="20" width="130" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="LHK-RJ-ulJ">
-                                <rect key="frame" x="20" y="241" width="280.00000018339892" height="218.99999934434894"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <rect key="frame" x="20" y="241" width="280" height="219"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -611,7 +612,7 @@
                             </view>
                             <view contentMode="scaleToFill" id="Q7v-qP-n5z" customClass="KCalculator">
                                 <rect key="frame" x="0.0" y="133" width="320" height="371"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -726,7 +727,7 @@
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kxZ-h4-rbx">
                                 <rect key="frame" x="0.0" y="125" width="320" height="379"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="8Gu-aa-Aft">
                                         <rect key="frame" x="10" y="0.0" width="300" height="334"/>
@@ -920,7 +921,7 @@
             <objects>
                 <viewController id="5X4-BM-FwP" customClass="DeviceConfigViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOR-RZ-7rW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="WmZ-Oa-6iv">

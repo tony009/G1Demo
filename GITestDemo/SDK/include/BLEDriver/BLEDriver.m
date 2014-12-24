@@ -112,7 +112,7 @@ int WritePosData(unsigned char *data, int datalen)
     {
         s=[NSString stringWithFormat:@"%@%.2x,",s,data[t-1]];
     }
-    NSLog(@"%@",s);
+    NSLog(@"%@---%lu",s,(unsigned long)[s length]);
 
     if (bleManager.imBT.connected) {
 

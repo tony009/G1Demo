@@ -65,24 +65,27 @@
     int width = self.view.frame.size.width;
     int height = self.scrollView.frame.size.height;
     
-    self.scrollView.contentSize = CGSizeMake(width*5, height);
+    self.scrollView.contentSize = CGSizeMake(width*6, height);
     
     UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
     UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(width, 0, width, height)];
     UIImageView *imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(width *2, 0, width, height)];
     UIImageView *imageView4 = [[UIImageView alloc]initWithFrame:CGRectMake(width *3, 0, width, height)];
     UIImageView *imageView5 = [[UIImageView alloc]initWithFrame:CGRectMake(width *4, 0, width, height)];
+    UIImageView *imageView6 = [[UIImageView alloc]initWithFrame:CGRectMake(width *5, 0, width, height)];
 
     [imageView1 setImage:[UIImage imageNamed:@"home_banner_1"]];
     [imageView2 setImage:[UIImage imageNamed:@"home_banner_2"]];
     [imageView3 setImage:[UIImage imageNamed:@"home_banner_3"]];
     [imageView4 setImage:[UIImage imageNamed:@"home_banner_4"]];
     [imageView5 setImage:[UIImage imageNamed:@"home_banner_5"]];
+    [imageView6 setImage:[UIImage imageNamed:@"home_banner_6"]];
     [self.scrollView addSubview:imageView1];
     [self.scrollView addSubview:imageView2];
     [self.scrollView addSubview:imageView3];
     [self.scrollView addSubview:imageView4];
     [self.scrollView addSubview:imageView5];
+    [self.scrollView addSubview:imageView6];
     
     
     self.scrollView.delegate = self;
@@ -202,6 +205,13 @@
 }
 
 - (IBAction)moreAction:(ImgTButton *)sender {
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        DownThread();
+    });
+    
+    
 }
 
 

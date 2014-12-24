@@ -313,11 +313,9 @@
     server.port = 2221;
     
     man = [[FTPManager alloc] init];
-    
-    //NSString *str = [NSString stringWithFormat:g]
+
     
     NSString *str = [[NSString alloc]initWithFormat:@"tmp/%@.jpg",[self getTimeNow]];
-    //NSString *str = [[NSString alloc]initWithFormat:@"tmp/图片.jpg"];
     
     NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:str];
     
