@@ -18,7 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *siginButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *configButton;
-@property (strong, nonatomic) IBOutlet UILabel *connectStateLabel;
 @property (strong, nonatomic) IBOutlet UIButton *connectDeviceButton;
 
 - (IBAction)connectDeviceAction:(UIButton *)sender;
