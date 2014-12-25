@@ -180,12 +180,12 @@
 
 - (IBAction)configAction:(id)sender {
     
-//    if (![self.controlNoText.text isEqualToString:@"99"] || ![self.pwdText.text isEqualToString:@"937927"]) {
-//        
-//        [self showTipView:@"操作员号或密码错误！请检查后重试。"];
-//        
-//        return;
-//    }
+    if (![self.controlNoText.text isEqualToString:@"99"] || ![self.pwdText.text isEqualToString:@"937927"]) {
+        
+        [self showTipView:@"操作员号或密码错误！请检查后重试。"];
+        
+        return;
+    }
     
     
     

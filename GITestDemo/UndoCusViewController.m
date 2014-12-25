@@ -134,7 +134,7 @@
     _type = 2;
     MiniPosSDKVoidSaleTradeCMD(buf, serialbuf, NULL);
     
-    //[self showHUD:@"正在撤销..."];
+    [self showHUD:@"正在撤销..."];
 }
 
 - (BOOL)isCorrectSerialNumber:(NSString*)numer

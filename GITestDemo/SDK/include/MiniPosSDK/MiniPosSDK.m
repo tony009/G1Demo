@@ -394,8 +394,8 @@ int DownThread()
             				tmpcal = (index - i) < 255 ? (index - i) : 255;
                             
                             int success = gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
-                            sleep(0.1);
-            	
+                            //sleep(0.2);
+                            [NSThread sleepForTimeInterval:0.03];
             					i += 255;
                                 
             					j = 0;
@@ -436,7 +436,9 @@ int DownThread()
             //return 0;
             
             while (hasRead == 0) {
-                sleep(0.5);
+                NSLog(@"wait for responsing------");
+                sleep(1);
+                //[NSThread sleepForTimeInterval:0.5];
             }
             
             hasRead = 0;

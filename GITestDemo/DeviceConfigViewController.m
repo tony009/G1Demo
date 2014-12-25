@@ -197,7 +197,7 @@
     
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 25, 25);
+    backButton.frame = CGRectMake(0, 0, 50, 50);
     [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
     backButton.backgroundColor = [UIColor clearColor];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];

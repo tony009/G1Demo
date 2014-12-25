@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "MiniPosSDK.h"
-#include "AudioDriver.h"
 #include "BLEDriver.h"
 
 @class MBProgressHUD;

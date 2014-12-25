@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 
 #include "MiniPosSDK.h"
-#include "AudioDriver.h"
 #include "BLEDriver.h"
 
 @interface AppDelegate ()

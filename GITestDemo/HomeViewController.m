@@ -256,7 +256,8 @@
         [self bleConnectAction];
     }
     
-
+    
+    self.statusStr=@"";
     
     
 }

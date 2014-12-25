@@ -29,7 +29,6 @@
 		96C5603B1A243A7800A25290 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C5603A1A243A7800A25290 /* Images.xcassets */; };
 		96C5604A1A243A7800A25290 /* GITestDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C560491A243A7800A25290 /* GITestDemoTests.m */; };
 		96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5605F1A243F2D00A25290 /* BLEDriver.m */; };
-		96C5606C1A243F2D00A25290 /* libAudioDriver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560661A243F2D00A25290 /* libAudioDriver.a */; };
 		96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */; };
 		96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560701A243F5800A25290 /* AudioToolbox.framework */; };
 		96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560721A243F6800A25290 /* MediaPlayer.framework */; };
@@ -142,13 +141,11 @@
 		96C560481A243A7800A25290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96C560491A243A7800A25290 /* GITestDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GITestDemoTests.m; sourceTree = "<group>"; };
 		96C560561A243F2D00A25290 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		96C5605C1A243F2D00A25290 /* AudioDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDriver.h; sourceTree = "<group>"; };
 		96C5605E1A243F2D00A25290 /* BLEDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDriver.h; sourceTree = "<group>"; };
 		96C5605F1A243F2D00A25290 /* BLEDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDriver.m; sourceTree = "<group>"; };
 		96C560611A243F2D00A25290 /* DeviceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInterface.h; sourceTree = "<group>"; };
 		96C560631A243F2D00A25290 /* FunctionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionDefine.h; sourceTree = "<group>"; };
 		96C560641A243F2D00A25290 /* MiniPosSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniPosSDK.h; sourceTree = "<group>"; };
-		96C560661A243F2D00A25290 /* libAudioDriver.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudioDriver.a; sourceTree = "<group>"; };
 		96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		96C560701A243F5800A25290 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		96C560721A243F6800A25290 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -238,7 +235,6 @@
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
-				96C5606C1A243F2D00A25290 /* libAudioDriver.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +410,6 @@
 		96C5605B1A243F2D00A25290 /* AudioDriver */ = {
 			isa = PBXGroup;
 			children = (
-				96C5605C1A243F2D00A25290 /* AudioDriver.h */,
 			);
 			path = AudioDriver;
 			sourceTree = "<group>";
@@ -442,7 +437,6 @@
 		96C560651A243F2D00A25290 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				96C560661A243F2D00A25290 /* libAudioDriver.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
