@@ -86,7 +86,7 @@
     
     NSLog(@"didReadData:%@",data);
     
-    const char *readData = [data bytes];
+    const char * readData = [data bytes];
     DeviceReadServerData(readData,[data length]);
     
     NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

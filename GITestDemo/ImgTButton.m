@@ -55,7 +55,7 @@
 - (void)_initSubViews
 {
     
-    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(23, 20, 60, 60)];
+    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(23, 10, 60, 60)];
     _imgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_imgView];
     

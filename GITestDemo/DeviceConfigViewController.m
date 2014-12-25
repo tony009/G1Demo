@@ -26,7 +26,7 @@
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     
     CGRect rect = self.view.frame;
-    NSLog(@"%i",rect.size.height);
+    NSLog(@"%f",rect.size.height);
     if( (movedUp) )
     {
         // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
