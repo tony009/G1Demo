@@ -391,12 +391,12 @@ int DownThread()
             					//dlg->OnBnClickedBtnOpen();
             					return 0;
             				}*/
-            				tmpcal = (index - i) < 255 ? (index - i) : 255;
+            				tmpcal = (index - i) < 1000 ? (index - i) : 1000;
                             
                             int success = gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
                             //sleep(0.2);
-                            [NSThread sleepForTimeInterval:0.03];
-            					i += 255;
+                            [NSThread sleepForTimeInterval:0.125];
+            					i += 1000;
                                 
             					j = 0;
             				
@@ -432,18 +432,18 @@ int DownThread()
 //                return 0;
 //            }
             
-            NSLog(@"success------");
+           
             //return 0;
             
             while (hasRead == 0) {
-                NSLog(@"wait for responsing------");
-                sleep(1);
+                //NSLog(@"wait for responsing------");
+                sleep(0.1);
                 //[NSThread sleepForTimeInterval:0.5];
             }
             
             hasRead = 0;
-            
-            sleep(0.5);
+             NSLog(@"success------");
+            //sleep(0);
             addr += 4096;
             fileno++;
         }
