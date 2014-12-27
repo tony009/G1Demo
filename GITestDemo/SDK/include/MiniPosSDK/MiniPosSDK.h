@@ -446,6 +446,7 @@ int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int tak
 int DownThread();
 
 int MiniPosSDKRunThread();
+    
 #ifdef __cplusplus
 }
 #endif

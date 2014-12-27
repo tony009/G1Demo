@@ -254,7 +254,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="140" width="320" height="361.99999990749791"/>
+                                <rect key="frame" x="0.0" y="139.99999990749788" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -267,7 +267,6 @@
                                         </state>
                                         <connections>
                                             <action selector="customAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="B2m-Xp-zYd"/>
-                                            <segue destination="Saq-0e-qb2" kind="push" identifier="xiaofei" id="hcI-9F-1iN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PXt-8H-6dN" customClass="ImgTButton">
@@ -304,7 +303,6 @@
                                         </state>
                                         <connections>
                                             <action selector="reCustomAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="u59-rp-Rvj"/>
-                                            <segue destination="aFU-c5-ZSy" kind="push" identifier="chexiao" id="Lvk-Ao-eoa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qbl-Xl-7hS" customClass="ImgTButton">
@@ -317,7 +315,6 @@
                                         </state>
                                         <connections>
                                             <action selector="checkAccountAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="Qd0-GK-BHY"/>
-                                            <segue destination="E8e-8l-lym" kind="push" identifier="chaxun" id="39K-kE-LJ2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TCe-f9-K6w" customClass="ImgTButton">
@@ -376,6 +373,9 @@
                         <outlet property="controlView" destination="LfS-Ms-DVE" id="PYq-3u-SMe"/>
                         <outlet property="pageControl" destination="QCy-K2-Ot3" id="1yj-Hy-PaF"/>
                         <outlet property="scrollView" destination="BII-zB-eFM" id="3gt-hD-KKN"/>
+                        <segue destination="aFU-c5-ZSy" kind="push" identifier="chexiao" id="7gb-Up-lTj"/>
+                        <segue destination="Saq-0e-qb2" kind="push" identifier="xiaofei" id="gYV-LV-SQt"/>
+                        <segue destination="E8e-8l-lym" kind="push" identifier="chaxun" id="gsO-y2-L4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYX-0C-PyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,7 +387,7 @@
             <objects>
                 <viewController id="aFU-c5-ZSy" customClass="UndoCusViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5c-86-6mc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入撤销金额" minimumFontSize="17" id="wEe-6s-JuB">
@@ -437,7 +437,7 @@
             <objects>
                 <viewController id="e3d-Ti-8fe" customClass="CheckResultViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jch-9U-cRR">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="ILx-Mx-gfX">
@@ -548,7 +548,7 @@
             <objects>
                 <viewController id="Saq-0e-qb2" customClass="ConsumeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CBj-Jc-7Qo">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="QXR-4x-aE0">
@@ -627,7 +627,7 @@
             <objects>
                 <viewController id="E8e-8l-lym" customClass="SwipingCardViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x9y-Va-aRP">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请正确的插卡/刷卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeS-wQ-kp5">
@@ -1030,7 +1030,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="39K-kE-LJ2"/>
+        <segue reference="gsO-y2-L4X"/>
         <segue reference="YJl-Xi-ecU"/>
     </inferredMetricsTieBreakers>
 </document>

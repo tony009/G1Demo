@@ -579,7 +579,7 @@ int MiniPosSDKTestConnect(void)
                      SESSION_ERROR_NO_REGISTE_INTERFACE,
                      NULL,
                      NULL);
-        
+        gSessionPos = SESSION_POS_UNKNOWN;
         return -1;
     }
     
@@ -594,7 +594,7 @@ int MiniPosSDKTestConnect(void)
                      SESSION_ERROR_DEVICE_SEND,
                      NULL,
                      NULL);
-        
+        gSessionPos = SESSION_POS_UNKNOWN;
         return -1;
     }
     
@@ -1824,7 +1824,10 @@ int MiniPosSDKPosLogin()
     NSLog(@"MiniPosSDKPosLogin---gSessionPos---%d",gSessionPos);
 	gSessionPos = SESSION_POS_LOGIN;
 	gTimeOut = MAX_POS_TIMEOUT;
-	MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
 	gDealPackStep = PACK_STEP_SHAKE;
 	return 0;
 }
@@ -2157,7 +2160,10 @@ int MiniPosSDKPosLogout()
     }
     gSessionPos = SESSION_POS_LOGOUT;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     return 0;
 }
@@ -2178,7 +2184,10 @@ int MiniPosSDKGetDeviceInfoCMD()
     }
     gSessionPos = SESSION_POS_GET_DEVICE_INFO;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     
     return 0;
@@ -2204,7 +2213,10 @@ int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode)
     strncpy((char*)gInputParam, amount, 12);
     gSessionPos = SESSION_POS_SALE_TRADE;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     return 0;
 }
@@ -2231,7 +2243,10 @@ int MiniPosSDKVoidSaleTradeCMD(const char *amount, const char *serialCode, const
     strncpy((char*)&gInputParam[13], serialCode, 6);
     gSessionPos = SESSION_POS_VOIDSALE_TRADE;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     
     return 0;
@@ -2278,7 +2293,10 @@ int MiniPosSDKSettleTradeCMD(const char *cashierSerialCode)
     }
     gSessionPos = SESSION_POS_SETTLE;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     
     return 0;
@@ -2300,7 +2318,10 @@ int MiniPosSDKDownloadKeyCMD()
     }
     gSessionPos = SESSION_POS_DOWNLOAD_KEY;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     
     return 0;
@@ -2322,7 +2343,10 @@ int MiniPosSDKDownloadAIDParamCMD()
     }
     gSessionPos = SESSION_POS_DOWNLOAD_AID_PARAM;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     
     return 0;

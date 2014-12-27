@@ -136,9 +136,29 @@
 
 
 - (IBAction)customAction:(ImgTButton *)sender {
+ 
+    
+    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+        
+        [self performSegueWithIdentifier:@"xiaofei" sender:self];
+        
+    }else{
+        [self showTipView:@"设备繁忙，稍后再试"];
+    }
+    
+    
 }
 
 - (IBAction)reCustomAction:(ImgTButton *)sender {
+    
+    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+        
+        [self performSegueWithIdentifier:@"chexiao" sender:self];
+    }else {
+        [self showTipView:@"设备繁忙，稍后再试"];
+    }
+    
+    
 }
 
 - (IBAction)checkAccountAction:(id)sender {
@@ -146,6 +166,12 @@
     
     if(MiniPosSDKDeviceState()<0)
         return;
+    
+    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+        
+        [self performSegueWithIdentifier:@"chaxun" sender:self];
+        
+    }
     
     if(MiniPosSDKQuery()>=0)
     {
