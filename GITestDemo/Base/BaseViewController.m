@@ -101,15 +101,23 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(run) userInfo:NULL repeats:YES];
+    
     MiniPosSDKAddDelegate((__bridge void*)self, MiniPosSDKResponce);
     
+}
+
+-(void)run{
+    MiniPosSDKRunThread();
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
 
+    [timer invalidate];
+    
     MiniPosSDKRemoveDelegate((__bridge void*)self);
 }
 
@@ -365,7 +373,71 @@ static void MiniPosSDKResponce(void *userData,
     }
     else if(self.responceCode==SESSION_ERROR_DEVICE_RESPONCE_TIMEOUT)
     {
-        self.statusStr=@"设备响应超时";
+        if(self.sessionType==SESSION_POS_LOGIN)
+        {
+            self.statusStr=@"签到响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_LOGOUT)
+        {
+            self.statusStr=@"签退响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_SALE_TRADE)
+        {
+            self.statusStr=@"消费响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_VOIDSALE_TRADE)
+        {
+            self.statusStr=@"撤销响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_QUERY)
+        {
+            self.statusStr=@"查询余额响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_SETTLE)
+        {
+            self.statusStr=@"结算响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_DOWNLOAD_KEY)
+        {
+            self.statusStr=@"下载公钥响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_DOWNLOAD_AID_PARAM)
+        {
+            self.statusStr=@"下载AID参数响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_DOWNLOAD_PARAM)
+        {
+            self.statusStr=@"下载参数响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_GET_DEVICE_INFO)
+        {
+            self.statusStr=@"获取设备信息响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_GET_DEVICE_ID)
+        {
+            self.statusStr=@"获取设备序列号响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_READ_CARD_INFO)
+        {
+            self.statusStr=@"获取磁道信息响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_READ_PIN_CARD_INFO)
+        {
+            self.statusStr=@"获取磁道密码响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_READ_IC_INFO)
+        {
+            self.statusStr=@"读取IC卡响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_UPDATE_KEY)
+        {
+            self.statusStr=@"更新密钥响应超时";
+        }
+        else if(self.sessionType==SESSION_POS_CANCEL_READ_CARD)
+        {
+            self.statusStr=@"中断刷卡响应超时";
+        }
+        
     }
     else if(self.responceCode==SESSION_ERROR_NO_REGISTE_INTERFACE)
     {
@@ -564,6 +636,12 @@ static void MiniPosSDKResponce(void *userData,
 - (void)recvMiniPosSDKStatus
 {
     //NSLog(@"self.statusStr = %@",self.statusStr);
+    //self.statusStr=@"设备繁忙，稍后再试";
+    if ([self.statusStr isEqualToString:@"设备繁忙，稍后再试"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
 }
 
 

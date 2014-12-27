@@ -106,7 +106,7 @@
     
     CGPoint offset = aScrollView.contentOffset;
     self.pageControl.currentPage = offset.x / 320.0f;
-    NSLog(@"scrollViewDidScroll:%d",self.pageControl.currentPage);
+    //NSLog(@"scrollViewDidScroll:%d",self.pageControl.currentPage);
 
 }
 
@@ -128,6 +128,7 @@
         [send setValue:sendValue forKey:@"type"];
     }
     
+    NSLog(@"prepareForSegue");
     
 }
 
@@ -169,6 +170,7 @@
     if(MiniPosSDKDeviceState()<0)
         return;
     
+    
     if(MiniPosSDKSettleTradeCMD(NULL)>=0)
     {
         [self showHUD:@"正在结算..."];
@@ -207,9 +209,9 @@
 - (IBAction)moreAction:(ImgTButton *)sender {
     
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        DownThread();
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        DownThread();
+//    });
     
     
 }
@@ -256,6 +258,36 @@
         [self bleConnectAction];
     }
     
+    
+    if ([self.statusStr isEqualToString:@"消费响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:@"撤销响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:@"查询余额响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:@"签退响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:@"结算响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:@"获取设备信息响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
     
     self.statusStr=@"";
     

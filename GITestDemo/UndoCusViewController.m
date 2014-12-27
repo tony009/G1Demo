@@ -186,6 +186,12 @@
     }
     
     
+    if ([self.statusStr isEqualToString:@"撤销响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+    
+    self.statusStr = @"";
 }
 
 

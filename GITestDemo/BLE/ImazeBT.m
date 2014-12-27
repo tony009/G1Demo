@@ -142,6 +142,9 @@
             break;
         case CBCentralManagerStatePoweredOff:
             state = @"Bluetooth is currently powered off.";
+            self.isConnected = NO;
+            //通知设备已断开
+            deviceErrorFunc(3);
             break;
         case CBCentralManagerStatePoweredOn:
             state = @"Bluetooth is currently powered On.";

@@ -56,20 +56,24 @@
     
     if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"查询余额失败"]]) {
         [self showTipView:self.statusStr];
-        [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(popAction) withObject:nil afterDelay:2.0];
     }                                                                                                                                                                                                                                                                                                                                                     
     
     if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"消费失败"]]) {
         [self showTipView:self.statusStr];
-        [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(popAction) withObject:nil afterDelay:2.0];
     }
     
     
     if ([self.statusStr isEqualToString:@"设备响应超时"]) {
         [self showTipView:self.statusStr];
-        [self performSelector:@selector(popAction) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(popAction) withObject:nil afterDelay:2.0];
     }
     
+    if ([self.statusStr isEqualToString:@"查询余额响应超时"]) {
+        [self showTipView:self.statusStr];
+        [self performSelector:@selector(popAction) withObject:nil afterDelay:2.0];
+    }
     
     self.statusStr = @"";
 }

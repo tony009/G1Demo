@@ -32,14 +32,34 @@
     self.numberText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.numberText.layer.borderWidth = 0.4;
 
+    self.timeLabel.text = [UIUtils stringFromDate:[NSDate date] formate:@"YYYY-MM-dd hh:mm"];
     
+//    self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(self.kcalculatorView.frame.origin.x, self.kcalculatorView.frame.origin.y
+//                                                                         , self.kcalculatorView.frame.size.width, self.kcalculatorView.frame.size.height)];
+    //[self.view addSubview:self.kcalculatorView];
+    NSLog(@"viewDidLoad:width:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
+
+    
+}
+-(void)viewWillLayoutSubviews{
+    NSLog(@"viewWillLayoutSubviews");
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"viewWillAppear:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
+    self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(self.kcalculatorView.frame.origin.x, self.kcalculatorView.frame.origin.y
+                                                                             , self.kcalculatorView.frame.size.width, self.kcalculatorView.frame.size.height)];
+    [self.view addSubview:self.kcalculatorView];
+    self.kcalculatorView.delegate = self;
+    //NSLog(@"%@",self.kcalculatorView.frame);
 }
 
 
-
-
-
-
+- (void)viewDidAppear:(BOOL)animated{
+        NSLog(@"viewDidAppear:width:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
+    
+    //NSLog(@"%@",self.kcalculatorView.frame);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -161,6 +161,9 @@ int MiniPosSDKRunThread()
 			NULL,
 			NULL);
 		gSessionPos = SESSION_POS_UNKNOWN;
+        gSaveTime = 0;
+        gTimeOut = 0;
+        gWaitConfirm = 0;
 	}
 
 	return 0;
@@ -530,11 +533,21 @@ int MiniPosSDKRegisterDeviceInterface(DeviceDriverInterface *driverInterface)
 
 int SDKSendToPos(unsigned char* buf, int* len)
 {
-	if(gWaitConfirm)
-	{
-		//等待确认的时候不允许发送数据
-		return -1;
-	}
+    if(gWaitConfirm)
+    {
+        //等待确认的时候不允许发送数据
+        return -1;
+    }
+    if(gInterface->DeviceState() < 0)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_PLUG_OUT,
+                     NULL,
+                     NULL);
+        gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
 	my_memcpy((unsigned char*)buf, (unsigned char*)&buf[7], *len, 0);
 	memcpy((char*)&buf[0], "\x04\x04\x04", 3);
 	buf[3] = ((*len + 2) >> 8);
@@ -555,39 +568,38 @@ int SDKSendToPos(unsigned char* buf, int* len)
 
 int MiniPosSDKTestConnect(void)
 {
-	int len;
-	unsigned char confirmcnt;
-	unsigned long tm;
-
-	if(gInterface == NULL)
-	{
-		gResponseFun(gUserData,
-			gSessionPos,
-			SESSION_ERROR_NO_REGISTE_INTERFACE,
-			NULL,
-			NULL);
-
-		return -1;
-	}
-
-	memcpy(gSDKBuf, "\x00\x03\x01\x39\x39", 5);
-	len = 5;
-
-	gSaveTime = gInterface->GetMsTime();
-	if(SDKSendToPos(gSDKBuf, &len) < 0)
-	{
-		gResponseFun(gUserData,
-			gSessionPos,
-			SESSION_ERROR_DEVICE_SEND,
-			NULL,
-			NULL);
-
-		return -1;
-	}
-
-	return 0;
+    int len;
+    unsigned char confirmcnt;
+    unsigned long tm;
+    
+    if(gInterface == NULL)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_NO_REGISTE_INTERFACE,
+                     NULL,
+                     NULL);
+        
+        return -1;
+    }
+    
+    memcpy(gSDKBuf, "\x00\x03\x01\x39\x39", 5);
+    len = 5;
+    
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(SDKSendToPos(gSDKBuf, &len) < 0)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_SEND,
+                     NULL,
+                     NULL);
+        
+        return -1;
+    }
+    
+    return 0;
 }
-
 
 int SDKDownParam(const char* syscode, const char* paramname, const char* paramvalue)
 {
@@ -814,6 +826,8 @@ int DealLogIn()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -881,7 +895,6 @@ int DealLogIn()
         gSessionPos = SESSION_POS_UNKNOWN;
         return -1;
     }
-    
     return 0;
 }
 
@@ -896,6 +909,8 @@ int DealLogOut()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -980,6 +995,8 @@ int DealSettleTrade()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -1064,6 +1081,8 @@ int DealSaleTrade()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -1121,7 +1140,7 @@ int DealSaleTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 30000;
+        gTimeOut = 50000;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -1166,6 +1185,8 @@ int DealVoidSaleTrade()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -1229,7 +1250,7 @@ int DealVoidSaleTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 30000;
+        gTimeOut = 50000;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -1278,6 +1299,7 @@ int DealQueryTrade()
                          SESSION_ERROR_NAK,
                          NULL,
                          NULL);
+            
             gSessionPos = SESSION_POS_UNKNOWN;
             return 0;
         }
@@ -1286,6 +1308,8 @@ int DealQueryTrade()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -1323,7 +1347,7 @@ int DealQueryTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 30000;
+        gTimeOut = 50000;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -1350,6 +1374,7 @@ int DealQueryTrade()
             return 0;
         }
         
+        gTimeOut = MAX_POS_TIMEOUT;
         gDealPackStep = PACK_STEP_RETURN_REPLY;
         return 0;
     }
@@ -1453,6 +1478,8 @@ void DealSendPack()
         len = GET_DATA_LEN(gRecvBuf);
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len + 2);
         /*gResponseFun(gUserData,
          gSessionPos,
@@ -1604,6 +1631,8 @@ int DealLoadKey()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -1660,6 +1689,8 @@ int DealLoadAID()
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
         len += 2;
+        gTimeOut = MAX_SERVER_TIMEOUT;
+        gSaveTime = gInterface->GetMsTime();
         if(gInterface->WriteServerData((unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2), len) < 0)
         {
             gResponseFun(gUserData,
@@ -2222,7 +2253,10 @@ int MiniPosSDKQuery()
     }
     gSessionPos = SESSION_POS_QUERY;
     gTimeOut = MAX_POS_TIMEOUT;
-    MiniPosSDKTestConnect();
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
     gDealPackStep = PACK_STEP_SHAKE;
     return 0;
 }

@@ -195,9 +195,9 @@
 
 - (IBAction)siginAction:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    //,  [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
-    return;
+    //return;
     
     
     
@@ -263,6 +263,12 @@
         self.connectDeviceButton.enabled = YES;
         [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
 
+    }
+    
+    
+    if ([self.statusStr isEqualToString:@"签到响应超时"]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
     }
     
     self.statusStr = @"";

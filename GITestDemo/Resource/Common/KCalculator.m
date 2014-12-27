@@ -23,6 +23,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+        NSLog(@"awakeFromNib:self.frame.size.width:%f,self.frame.size.height:%f",self.frame.size.width,self.frame.size.height);
     [self _initData];
 }
 
