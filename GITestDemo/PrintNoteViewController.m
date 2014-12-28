@@ -150,7 +150,7 @@
      
     NSString *year = [dateFormatter stringFromDate:d];
     
-    _jiaoYiShiJian = [NSString stringWithFormat:@"%04d%02d%02d%02d%02d%02d",[year intValue],date/100,date%100,time/10000,(time%10000)/100,time%100];
+    _jiaoYiShiJian = [NSString stringWithFormat:@"%04d%02d%02d",[year intValue],date/100,date%100];
     
     //[NSDate]
     
@@ -362,6 +362,7 @@
     
     destionation = [NSString stringWithFormat:@"122.112.12.23/mpos/%@/%@/%@/%@/",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao];
     
+    BOOL __block success = false;
 
 
    NSLog(@"destionation:%@",destionation);
@@ -371,7 +372,7 @@
         server = [FMServer serverWithDestination:destionation username:@"mpos" password:@"tenmpos123"];
         server.port =2221;
         
-        BOOL success = false;
+        
     
         //[man createNewFolder:mcCodeString atServer:server];
         
@@ -397,6 +398,13 @@
     });
     
     
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (success == false) {
+            [self hideHUD];
+            [self showTipView:@"上传超时"];
+        }
+    });
     
  
 }
