@@ -150,19 +150,19 @@
     disMissTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAction)];
     
     NSString *shangHuName = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuName];
-    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
-    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
-    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
+//    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
+//    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
+//    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
     NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
     NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
 
     NSArray *strs = nil;
     
-    if (shangHuName!= nil &&shangHu != nil && zhongDuan != nil && caoZhuoYuan != nil && host!=nil && port!= nil) {
-        strs = @[shangHuName,shangHu,zhongDuan,caoZhuoYuan,host,port];
+    if (shangHuName!= nil && host!=nil && port!= nil) {
+        strs = @[shangHuName,host,port];
     }
     
-    NSArray *array = @[@"商户名：",@"商户号：",@"终端号：",@"操作号：",@"服务IP：",@"端口号："];
+    NSArray *array = @[@"商户名：",@"服务IP：",@"端口号："];
     for (int i=0; i<array.count; i++) {
         UIView *text = [self.view viewWithTag:i+9];
         if ([text isKindOfClass:[UITextField class]]) {
@@ -177,8 +177,9 @@
             textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
             textField.layer.borderWidth = 0.4;
             
-            if (i>2)
+            if (i>2){
             textField.delegate=self;
+            }
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
             label.backgroundColor = [UIColor clearColor];
@@ -238,12 +239,12 @@
 
 - (IBAction)saveSettingValue:(UIButton *)sender {
     
-    if(![UIUtils isCorrectNumber:self.shangHuEditor.text] || self.shangHuEditor.text.length!=15)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的商户号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
+//    if(![UIUtils isCorrectNumber:self.shangHuEditor.text] || self.shangHuEditor.text.length!=15)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的商户号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
     
 //    if(![UIUtils isCorrectNumber:self.zhongDuanEditor.text] || self.zhongDuanEditor.text.length!=8)
 //    {
@@ -252,14 +253,27 @@
 //        return;
 //    }
     
-    if(![UIUtils isCorrectNumber:self.caoZhuoYuanEditor.text] && self.caoZhuoYuanEditor.text.length>0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的操作员号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    if(![UIUtils isCorrectNumber:self.caoZhuoYuanEditor.text] && self.caoZhuoYuanEditor.text.length>0)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的操作员号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
+//    
+//    
+//    if (self.zhongDuanEditor.text.length == 0) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的终端号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
+    
+    if (![UIUtils isCorrectIP:self.hostEditor.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的服务IP" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
         return;
     }
     
-    if(![UIUtils isCorrectNumber:self.portEditor.text] || self.caoZhuoYuanEditor.text.intValue<0 || self.caoZhuoYuanEditor.text.intValue>65536)
+    if(![UIUtils isCorrectNumber:self.portEditor.text] || self.portEditor.text.intValue<0 || self.portEditor.text.intValue>65536)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的端口号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
@@ -267,28 +281,18 @@
     }
     
     
-    if (self.zhongDuanEditor.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的终端号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
+//    [[NSUserDefaults standardUserDefaults] setObject:self.shangHuEditor.text forKey:kShangHuEditor];
+//    [[NSUserDefaults standardUserDefaults] setObject:self.zhongDuanEditor.text forKey:kZhongDuanEditor];
+//    [[NSUserDefaults standardUserDefaults] setObject:self.caoZhuoYuanEditor.text forKey:kCaoZhuoYuanEditor];
     
-    if (self.hostEditor.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入服务IP" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:self.shangHuEditor.text forKey:kShangHuEditor];
-    [[NSUserDefaults standardUserDefaults] setObject:self.zhongDuanEditor.text forKey:kZhongDuanEditor];
-    [[NSUserDefaults standardUserDefaults] setObject:self.caoZhuoYuanEditor.text forKey:kCaoZhuoYuanEditor];
     [[NSUserDefaults standardUserDefaults] setObject:self.hostEditor.text forKey:kHostEditor];
     [[NSUserDefaults standardUserDefaults] setObject:self.portEditor.text forKey:kPortEditor];
     [[NSUserDefaults standardUserDefaults] setObject:self.shanghuNameText.text forKey:kShangHuName];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    MiniPosSDKSetPublicParam(self.shangHuEditor.text.UTF8String, self.zhongDuanEditor.text.UTF8String, self.caoZhuoYuanEditor.text.UTF8String);
+//    MiniPosSDKSetPublicParam(self.shangHuEditor.text.UTF8String, self.zhongDuanEditor.text.UTF8String, self.caoZhuoYuanEditor.text.UTF8String);
+    
+    MiniPosSDKSetPublicParam("898100012340003","10700028","01");
     MiniPosSDKSetPostCenterParam(self.hostEditor.text.UTF8String, self.portEditor.text.intValue, 0);
     
     [self dismissViewControllerAnimated:YES completion:nil];

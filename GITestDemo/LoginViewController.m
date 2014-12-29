@@ -195,11 +195,9 @@
 
 - (IBAction)siginAction:(UIButton *)sender {
     
-    //,  [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
     //return;
-    
-    
     
     
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
@@ -208,6 +206,17 @@
         
         return;
     }
+    
+    NSString *shanghuName = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
+    NSString *ip = [[NSUserDefaults standardUserDefaults]objectForKey:kHostEditor];
+    
+    NSString *port = [[NSUserDefaults standardUserDefaults]objectForKey:kPortEditor];
+    
+    if (shanghuName ==nil || ip ==nil || port == nil) {
+        [self showTipView:@"请先进入系统设置完成参数设置。"];
+        return;
+    }
+    
     
     if (MiniPosSDKDeviceState() == 0) {
         if(MiniPosSDKPosLogin()>=0)
@@ -270,6 +279,11 @@
         [self hideHUD];
         [self showTipView:self.statusStr];
     }
+    
+//    if ([self.statusStr isEqualToString:@"未知"]) {
+//        [self hideHUD];
+//        [self showTipView:self.statusStr];
+//    }
     
     self.statusStr = @"";
 }

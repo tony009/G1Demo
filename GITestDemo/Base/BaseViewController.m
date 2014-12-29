@@ -184,7 +184,11 @@ static void MiniPosSDKResponce(void *userData,
     
     if(self.responceCode==SESSION_ERROR_ACK)
     {
-        if(self.sessionType==SESSION_POS_LOGIN)
+        if(self.sessionType==SESSION_POS_UNKNOWN)
+        {
+            self.statusStr=@"未知";
+        }
+        else if(self.sessionType==SESSION_POS_LOGIN)
         {
             self.statusStr=@"签到成功";
             NSLog(@"deviceStatus ------签到成功");

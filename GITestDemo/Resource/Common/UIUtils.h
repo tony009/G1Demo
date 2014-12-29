@@ -33,6 +33,9 @@
 //获取设备的UUID
 + (NSString*)getMyMachine;
 
+//判断是否为正确的ip
++ (BOOL)isCorrectIP:(NSString *)ip;
+
 //判断是否为纯数字
 + (BOOL)isCorrectNumber:(NSString*)numer;
 

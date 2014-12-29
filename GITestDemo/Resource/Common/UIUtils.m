@@ -237,6 +237,20 @@
     return TRUE;
 }
 
++ (BOOL)isCorrectIP:(NSString *)ip{
+    
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"" options:0 error:NULL];
+    
+    NSString *regex = @"^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)($|(?!\\.$)\\.)){4}$";
+
+    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch            = [pred evaluateWithObject:ip];
+    
+    
+    return isMatch;
+}
+
 //根据文字内容，字体大小获取宽度
 + (CGFloat)getWithWithString:(NSString *)string font:(CGFloat)fontSize
 {

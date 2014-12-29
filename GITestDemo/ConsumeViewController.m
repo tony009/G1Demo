@@ -32,7 +32,7 @@
     self.numberText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.numberText.layer.borderWidth = 0.4;
 
-    self.timeLabel.text = [UIUtils stringFromDate:[NSDate date] formate:@"YYYY-MM-dd hh:mm"];
+    self.timeLabel.text = [UIUtils stringFromDate:[NSDate date] formate:@"yyyy-MM-dd hh:mm"];
     
 //    self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(self.kcalculatorView.frame.origin.x, self.kcalculatorView.frame.origin.y
 //                                                                         , self.kcalculatorView.frame.size.width, self.kcalculatorView.frame.size.height)];

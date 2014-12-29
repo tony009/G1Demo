@@ -81,13 +81,18 @@ int WriteServerData(unsigned char *data, int datalen){
     
     server.sock.delegate = server;
     
+    
+    NSString *ip = [[NSUserDefaults standardUserDefaults] objectForKey:kHostEditor];
+    
+    NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:kPortEditor];
+    
+    if (![server.sock.connectedHost isEqualToString:ip] || server.sock.connectedPort != port.intValue) {
+        [server.sock disconnect];
+    }
+   
     if (![server.sock isConnected]) {
-        
-        NSString *ip = [[NSUserDefaults standardUserDefaults] objectForKey:kHostEditor];
-        
-        NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:kPortEditor];
-        
-        NSLog(@"host:%s,port:%d",ip.UTF8String,port.intValue);;
+ 
+         NSLog(@"host:%s,port:%d",ip.UTF8String,port.intValue);;
         
         [server SocketOpen:ip port:port.intValue];
         

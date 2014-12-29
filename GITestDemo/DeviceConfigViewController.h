@@ -12,11 +12,12 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *shanghuNameText; //商户名
 
-@property (strong, nonatomic) IBOutlet UITextField *shangHuEditor; //商户号
+//@property (strong, nonatomic) IBOutlet UITextField *shangHuEditor; //商户号
+//
+//@property (strong, nonatomic) IBOutlet UITextField *zhongDuanEditor; //终端号
+//
+//@property (strong, nonatomic) IBOutlet UITextField *caoZhuoYuanEditor; //操作员
 
-@property (strong, nonatomic) IBOutlet UITextField *zhongDuanEditor; //终端号
-
-@property (strong, nonatomic) IBOutlet UITextField *caoZhuoYuanEditor; //操作员
 @property (strong, nonatomic) IBOutlet UITextField *hostEditor; //主机号
 @property (strong, nonatomic) IBOutlet UITextField *portEditor; //端口号
 

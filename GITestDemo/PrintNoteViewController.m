@@ -146,7 +146,7 @@
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     
-    [dateFormatter setDateFormat:@"YYYY"];
+    [dateFormatter setDateFormat:@"yyyy"];
      
     NSString *year = [dateFormatter stringFromDate:d];
     
@@ -321,7 +321,7 @@
     
     UIImage *image = [UIUtils imageFromView:self.printView];
     
-    NSData *data = UIImageJPEGRepresentation(image,1.0);
+    NSData *data = UIImageJPEGRepresentation(image,0.4);
     
     [data writeToFile:jpgPath atomically:YES];
     
@@ -344,16 +344,17 @@
     self.serialQueue = dispatch_queue_create("com.wudi", DISPATCH_QUEUE_SERIAL);
     
   //  NSString *destionation =@"122.112.12.23/mpos";
-    NSString *destionation =@"120.24.213.123/mpos";
-    NSString *username = @"yogiaftp";
-    NSString *password = @"yogiaftp0923#)(";
+    NSString *destionation =@"123.56.106.39/mpos";
+    NSString *username = @"mpos";
+    NSString *password = @"tenmpos123";
+    int  port = 2221;
     
     for (int i=0; i< 4; i++) {
         NSString *s = strs[i];
         NSLog(@"destionation:%@",destionation);
         dispatch_async(self.serialQueue, ^{
             server = [FMServer serverWithDestination:destionation username:username password:password];
-            //server.port =2221;
+            server.port =port;
             [man createNewFolder:s atServer:server];
         });
         
@@ -373,7 +374,7 @@
     dispatch_async(self.serialQueue, ^{
         
         server = [FMServer serverWithDestination:destionation username:username password:password];
-        //server.port =2221;
+        server.port =port;
         
         
     

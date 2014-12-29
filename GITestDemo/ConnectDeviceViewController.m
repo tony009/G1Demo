@@ -103,11 +103,11 @@
 
 - (IBAction)bleConnectAction:(UIButton *)sender {
     
-    NSString *zhongduan = [[NSUserDefaults standardUserDefaults] objectForKey:kZhongDuanEditor];
-    if (zhongduan == nil) {
-        [self showTipView:@"你还未设置终端号！请先进入系统设置完成信息设置。"];
-        return;
-    }
+//    NSString *zhongduan = [[NSUserDefaults standardUserDefaults] objectForKey:kZhongDuanEditor];
+//    if (zhongduan == nil) {
+//        [self showTipView:@"你还未设置终端号！请先进入系统设置完成信息设置。"];
+//        return;
+//    }
     
     curLabel = self.bleStatusLabel;
     
