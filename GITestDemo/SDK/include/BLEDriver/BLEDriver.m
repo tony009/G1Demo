@@ -83,7 +83,14 @@ int WriteServerData(unsigned char *data, int datalen){
     
     if (![server.sock isConnected]) {
         
-        [server SocketOpen:@"122.112.12.24" port:5679];
+        NSString *ip = [[NSUserDefaults standardUserDefaults] objectForKey:kHostEditor];
+        
+        NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:kPortEditor];
+        
+        NSLog(@"host:%s,port:%d",ip.UTF8String,port.intValue);;
+        
+        [server SocketOpen:ip port:port.intValue];
+        
     }else{
         NSLog(@"已经连接上服务器");
     }

@@ -308,9 +308,9 @@
 - (IBAction)uploadImage:(id)sender {
     
     
-    server = [FMServer serverWithDestination:@"122.112.12.23/mpos" username:@"mpos" password:@"tenmpos123"];
-    
-    server.port = 2221;
+//    server = [FMServer serverWithDestination:@"122.112.12.23/mpos" username:@"mpos" password:@"tenmpos123"];
+//    
+//    server.port = 2221;
     
     man = [[FTPManager alloc] init];
 
@@ -343,14 +343,17 @@
     
     self.serialQueue = dispatch_queue_create("com.wudi", DISPATCH_QUEUE_SERIAL);
     
-    NSString *destionation =@"122.112.12.23/mpos";
+  //  NSString *destionation =@"122.112.12.23/mpos";
+    NSString *destionation =@"120.24.213.123/mpos";
+    NSString *username = @"yogiaftp";
+    NSString *password = @"yogiaftp0923#)(";
     
     for (int i=0; i< 4; i++) {
         NSString *s = strs[i];
         NSLog(@"destionation:%@",destionation);
         dispatch_async(self.serialQueue, ^{
-            server = [FMServer serverWithDestination:destionation username:@"mpos" password:@"tenmpos123"];
-            server.port =2221;
+            server = [FMServer serverWithDestination:destionation username:username password:password];
+            //server.port =2221;
             [man createNewFolder:s atServer:server];
         });
         
@@ -360,7 +363,7 @@
     
     [self showHUD:@"正在上传"];
     
-    destionation = [NSString stringWithFormat:@"122.112.12.23/mpos/%@/%@/%@/%@/",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao];
+    //destionation = [NSString stringWithFormat:@"122.112.12.23/mpos/%@/%@/%@/%@/",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao];
     
     BOOL __block success = false;
 
@@ -369,8 +372,8 @@
     
     dispatch_async(self.serialQueue, ^{
         
-        server = [FMServer serverWithDestination:destionation username:@"mpos" password:@"tenmpos123"];
-        server.port =2221;
+        server = [FMServer serverWithDestination:destionation username:username password:password];
+        //server.port =2221;
         
         
     

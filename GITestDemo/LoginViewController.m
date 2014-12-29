@@ -46,14 +46,14 @@
         caoZhuoYuan = @"01";
     }
     if (!host) {
-        host = @"122.112.12.24";
+        host = @"122.112.12.227";
     }
     if (!port) {
-        port = @"5679";
+        port = @"5555";
     }
     
     MiniPosSDKInit();
-    
+    NSLog(@"host:%s,port:%d",host.UTF8String,port.intValue);
     MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
     MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
     [self.connectDeviceButton setTitle:@"正在连接设备..." forState:UIControlStateNormal];

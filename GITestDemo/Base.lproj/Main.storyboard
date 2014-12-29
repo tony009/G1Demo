@@ -254,7 +254,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="139.99999988407788" width="320" height="362"/>
+                                <rect key="frame" x="0.0" y="139.99999986056454" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
