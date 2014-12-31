@@ -100,6 +100,11 @@
     
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    MiniPosSDKInit();
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void) scrollViewDidScroll: (UIScrollView *) aScrollView
 {
@@ -117,6 +122,7 @@
         self.scrollView.contentOffset = CGPointMake(320.0f * whichPage, 0.0f);
     }];
 }
+
 
 #pragma mark - Navigation
 
@@ -137,6 +143,10 @@
 
 - (IBAction)customAction:(ImgTButton *)sender {
  
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
+        return;
+    }
     
     if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
         
@@ -151,6 +161,11 @@
 
 - (IBAction)reCustomAction:(ImgTButton *)sender {
     
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
+        return;
+    }
+    
     if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
         
         [self performSegueWithIdentifier:@"chexiao" sender:self];
@@ -164,8 +179,10 @@
 - (IBAction)checkAccountAction:(id)sender {
     sendValue = @"查询余额";
     
-    if(MiniPosSDKDeviceState()<0)
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
         return;
+    }
     
     if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
         
@@ -182,8 +199,11 @@
 
 - (IBAction)sginOutAction:(ImgTButton *)sender {
     
-    if(MiniPosSDKDeviceState()<0)
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
         return;
+    }
+    
     
     if(MiniPosSDKPosLogout()>=0)
     {
@@ -193,8 +213,10 @@
 
 - (IBAction)payoffAction:(ImgTButton *)sender {
     
-    if(MiniPosSDKDeviceState()<0)
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
         return;
+    }
     
     
     if(MiniPosSDKSettleTradeCMD(NULL)>=0)
@@ -205,8 +227,10 @@
 
 - (IBAction)updataKeyAction:(ImgTButton *)sender {
     
-    if(MiniPosSDKDeviceState()<0)
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
         return;
+    }
     
     if(MiniPosSDKDownloadParamCMD()>=0)
     {
@@ -217,8 +241,10 @@
 
 - (IBAction)getDeviceMsgAction:(ImgTButton *)sender {
     
-    if(MiniPosSDKDeviceState()<0)
+    if(MiniPosSDKDeviceState()<0){
+        [self showTipView:@"设备未连接"];
         return;
+    }
     
     if(MiniPosSDKGetDeviceInfoCMD()>=0)
     {

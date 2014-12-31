@@ -1,4 +1,4 @@
-//
+                                                                                                                   //
 //  BaseViewController.m
 //  MovePower
 //
@@ -175,7 +175,11 @@ static void MiniPosSDKResponce(void *userData,
 - (void) deviceStatus
 {
     //NSLog(@"deviceStatus sessionType: %d responceCode: %d",self.sessionType,self.responceCode);
-    if ((int)(self.responceCode) < 0 || self.responceCode == SESSION_ERROR_SHAKE_PACK) {
+//    if ((int)(self.responceCode) < 0 || self.responceCode == SESSION_ERROR_SHAKE_PACK) {
+//        
+//        return;
+//    }
+    if ((int)(self.responceCode) < 0 ) {
         
         return;
     }

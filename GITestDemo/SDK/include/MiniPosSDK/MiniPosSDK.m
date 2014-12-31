@@ -37,7 +37,8 @@ typedef int (*DeviceErrorFunc)(int error);
 #define BUF_SIZE 500
 #define MAX_RETRY 3
 #define MAX_POS_TIMEOUT 2000		//从POS机返回指令超时
-#define MAX_SERVER_TIMEOUT 60000	//从后台返回数据超时
+#define MAX_SERVER_TIMEOUT 20000	//从后台返回数据超时
+#define MAX_USRER_TIMEOUT 50000     //用户操作超时
 #define GET_PACKET_CNT(buf) buf[5]
 #define GET_PACKET_TYPE(buf) buf[6]
 #define GET_PACKET_ATTRIBUTE(buf) buf[9]
@@ -47,11 +48,6 @@ typedef int (*DeviceErrorFunc)(int error);
 int ReadServerData(unsigned char *data, int datalen);
 unsigned short AnasisPacket(unsigned char*buf, unsigned char element, unsigned char isrestart);
 void my_memcpy(unsigned char* src, unsigned char* dest, int len, unsigned char direction);
-#define MAX_PACKET_LEN 2048
-#define BUF_SIZE 500
-#define MAX_RETRY 3
-#define MAX_POS_TIMEOUT 2000		//从POS机返回指令超时
-#define MAX_SERVER_TIMEOUT 60000	//从后台返回数据超时
 void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigned char *abyCrcOut);
 
 int ReadPosData(unsigned char *data, int datalen);
@@ -892,10 +888,10 @@ int DealLogIn()
             return 0;
         }
         
-        gSessionPos = SESSION_POS_UNKNOWN;
+        // gSessionPos = SESSION_POS_UNKNOWN;
         return -1;
     }
-    return 0;
+    return -1;
 }
 
 int DealLogOut()
@@ -1077,6 +1073,18 @@ int DealSaleTrade()
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
         len = GET_DATA_LEN(gRecvBuf);
+        
+        if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
@@ -1140,7 +1148,7 @@ int DealSaleTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 50000;
+        gTimeOut = MAX_USRER_TIMEOUT;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -1181,6 +1189,20 @@ int DealVoidSaleTrade()
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
         len = GET_DATA_LEN(gRecvBuf);
+        
+        if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
+        *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
         
@@ -1250,7 +1272,7 @@ int DealVoidSaleTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 50000;
+        gTimeOut = MAX_USRER_TIMEOUT;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -1291,6 +1313,7 @@ int DealQueryTrade()
     
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
+        NSLog(@"PACK_STEP_SEND_SERVER");
         len = GET_DATA_LEN(gRecvBuf);
         if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
         {
@@ -1323,6 +1346,7 @@ int DealQueryTrade()
     }
     if(gDealPackStep == PACK_STEP_POS_STRUCT)
     {
+        NSLog(@"PACK_STEP_POS_STRUCT");
         len = 0;
         gSDKBuf[len] = 0x00;
         len++;
@@ -1347,12 +1371,13 @@ int DealQueryTrade()
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = 50000;
+        gTimeOut = MAX_USRER_TIMEOUT;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
     if(gDealPackStep == PACK_STEP_RETURN_POS)
     {
+        NSLog(@"PACK_STEP_RETURN_POS");
         if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             gResponseFun(gUserData,
@@ -1380,6 +1405,7 @@ int DealQueryTrade()
     }
     if(gDealPackStep == PACK_STEP_RETURN_REPLY)
     {
+        NSLog(@"PACK_STEP_RETURN_REPLY");
         if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             gResponseFun(gUserData,
@@ -1445,8 +1471,14 @@ void DealSendPack()
             return;
             
         case SESSION_POS_GET_DEVICE_INFO:
-            DealGetDeviceInfo();
-            return;
+            if(DealGetDeviceInfo() >= 0)
+            {
+                return;
+            }
+            else
+            {
+                break;
+            }
             
         case SESSION_POS_DOWNLOAD_KEY:
             if(DealLoadKey() >= 0)
@@ -1474,7 +1506,8 @@ void DealSendPack()
     
     if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x05)
     {
-        gSessionPos = SESSION_POS_UNKNOWN;
+        // gSessionPos = SESSION_POS_UNKNOWN;
+        //gDealPackStep = PACK_STEP_DRIVER;
         len = GET_DATA_LEN(gRecvBuf);
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
@@ -1496,6 +1529,7 @@ void DealSendPack()
                          SESSION_ERROR_ACK,
                          NULL,
                          NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
         }
         else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
         {
@@ -1504,10 +1538,11 @@ void DealSendPack()
                          SESSION_ERROR_NAK,
                          NULL,
                          NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
         }
     }
     
-    gSessionPos = SESSION_POS_UNKNOWN;
+    //gSessionPos = SESSION_POS_UNKNOWN;
 }
 
 void DealRecvPack(unsigned char *data)
@@ -1580,11 +1615,16 @@ int ReadPosData(unsigned char *data, int datalen)
     
     NSLog(@"ReadPosData = %@  ----l = %d",str,datalen);
     
-    //NSLog(@"ReadPosData--%@",data);
+//    
+//    
+//    
+//    NSString *d = [[NSString alloc]initWithData:[[NSData alloc]initWithBytes:data length:datalen] encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"ReadPosData--%@ ----l =%lu",d,(unsigned long)d.length);
     
 	static unsigned long timeout = 0;
 	unsigned short re;
-
+ 
 	if(gInterface->GetMsTime() > timeout + 800)
 	{
 		//接收超时
@@ -1822,6 +1862,7 @@ int MiniPosSDKPosLogin()
 		return -1;
 	}
     NSLog(@"MiniPosSDKPosLogin---gSessionPos---%d",gSessionPos);
+    gWaitConfirm = 0;
 	gSessionPos = SESSION_POS_LOGIN;
 	gTimeOut = MAX_POS_TIMEOUT;
     if(MiniPosSDKTestConnect() < 0)
@@ -2139,10 +2180,6 @@ int MiniPosSDKDeviceState(){
     return gInterface->DeviceState();
 }
 
-/************************************************************
- 签到指令
- *************************************************************/
-int MiniPosSDKPosLogin();
 
 /************************************************************
  签退指令
