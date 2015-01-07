@@ -205,8 +205,8 @@
     NSArray *serviceUUIDs = [advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey];
     
     NSLog(@"Peripheral = %@",aPeripheral.name);
-    NSLog(@"SERVICEUUIDS = %@",serviceUUIDs);
-    NSLog(@"advertisementData = %@",advertisementData);
+//    NSLog(@"SERVICEUUIDS = %@",serviceUUIDs);
+//    NSLog(@"advertisementData = %@",advertisementData);
     
     
     [self addDiscoveredPeripheral:aPeripheral];
@@ -462,11 +462,16 @@
 #pragma mark - 测试
 - (void)connect:(CBPeripheral *)aper
 {
+    if (peripheral == aper){
+        NSLog(@"重新连接");
+        return;
+    }
+    
     if (peripheral != nil) {
         [self disconnectPeripheral:peripheral];
     }
+
     
-   
     //aper
     
     if (aper.UUID) {

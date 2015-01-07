@@ -59,6 +59,8 @@
     [button addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_deviceView addSubview:button];
+    
+    curLabel = self.bleStatusLabel;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,9 +113,9 @@
     
     curLabel = self.bleStatusLabel;
     
-    self.audioStatusLabel.text = @"未连接";
-    self.statusLabel.text = @"未连接";
-    self.bleStatusLabel.text =@"未连接";
+//    self.audioStatusLabel.text = @"未连接";
+//    self.statusLabel.text = @"未连接";
+//    self.bleStatusLabel.text =@"未连接";
     
     //MiniPosSDKInit();
     //DeviceDriverInterface *t;
@@ -145,11 +147,14 @@
         curLabel.text = @"已连接";
         self.statusLabel.text =@"已连接";
         _isConnect = YES;
-    }else {
+    }
+    
+    if ([self.statusStr isEqualToString:@"设备已拔出"]) {
         curLabel.text = @"未连接";
         self.statusLabel.text =@"未连接";
         _isConnect = NO;
     }
+
     
     self.statusStr = @"";
     

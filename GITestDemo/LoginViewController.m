@@ -22,10 +22,10 @@
     
     _isNeedAutoConnect = YES;
     
-    NSLog(@"沙盒路径：%@",NSHomeDirectory());
-    NSString *Path = [[NSBundle mainBundle] pathForResource:@"kernel" ofType:@""];
+    //NSLog(@"沙盒路径：%@",NSHomeDirectory());
+    //NSString *Path = [[NSBundle mainBundle] pathForResource:@"kernel" ofType:@""];
     
-    NSLog(@"kernel:%@",Path);
+    //NSLog(@"kernel:%@",Path);
     
     [self _initSubViews];
     
