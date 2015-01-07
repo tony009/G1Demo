@@ -151,6 +151,8 @@
         _isConnect = NO;
     }
     
+    self.statusStr = @"";
+    
 }
 
 #pragma mark -

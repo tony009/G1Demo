@@ -1,5 +1,6 @@
 #include "DeviceInterface.h"
 #import "MiniPosSDK.h"
+#import "CustomAlertView.h"
 #define PROTOCOL_STANDARD_CCID	0x01
 #define PROTOCOL_EXTERND_CCID	0x02
 #define PROTOCOL_UNKNOWN		0xFF
@@ -83,6 +84,8 @@ int DealLoadAID();
 int DealLoadKey();
 int MiniPosSDKTestConnect(void);
 int DealVoidSaleTrade();
+int DealCancel();
+int DealDownPro();
 unsigned long  GetHash(unsigned long crc, unsigned char * szSrc, unsigned long dwSrcLen);
 
 unsigned long const tbCRC32[256] = {
@@ -122,12 +125,6 @@ int MiniPosSDKInit()
 	return 0;
 }
 
-int MiniPosSDKCancelCMD()
-{
-	gSessionPos = SESSION_POS_UNKNOWN;
-
-	return 0;
-}
 
 int MiniPosSDKRunThread()
 {
@@ -206,11 +203,12 @@ unsigned long  GetHash(unsigned long crc, unsigned char * szSrc, unsigned long d
 }
 
 
-extern int hasRead;
+extern int hasReadPosReply;
 
-int DownThread()
+int DownThread(void *c,NSArray *array)
 {
     //DownProgram *dlg = (DownProgram*)lPvoid;
+    CustomAlertView *cav = (__bridge CustomAlertView*)c;
     unsigned char downbuf[4096 + 68 + 100];
     unsigned char recvbuf[256];
     int recvlen;
@@ -231,43 +229,36 @@ int DownThread()
     unsigned long filelen;
     unsigned long crc = 0xFFFFFFFF;
     
-    //dlg->m_downpro.ShowWindow(SW_SHOW);
-    //dlg->m_listfile.EnableWindow(FALSE);
-    filenum = 1;
-    //	for(fileindex = 0; fileindex < dlg->m_showitemnum; fileindex++)
-    //	{
-    //		/*if(dlg->m_listfile.GetCheck(fileindex))
-    //		{
-    //			filenum++;
-    //		}*/
-    //	}
-    //dlg->SetDlgItemText(IDC_ST_STATUS, "开始下载");
+    int repeatNo = 0;
+    int repeatTime = 5;
     
-    hasRead =0;
+    filenum = [array count];
+    
+    if(MiniPosSDKDeviceState()==0){
+        
+        NSLog(@"connected-------------");
+    }else{
+        NSLog(@"Not Connected-------------");
+    }
+    
+    [NSThread sleepForTimeInterval:2];
+    hasReadPosReply =0;
     
     for(fileindex = 0; fileindex < filenum; fileindex++)
     {
-        //filenum = dlg->m_showitemnum;
-        /*if(!dlg->m_listfile.GetCheck(fileindex))
-         {
-         continue;
-         }*/
+
         fileno = 0x00;
         addr = 0x00000000;
         crc = 0xFFFFFFFF;
         
-        //dlg->m_downpro.SetPos(0); // 进度条清零
-        //		memset(destfilename, 0x00, sizeof(destfilename));
-        //		memset(filename, 0x00, sizeof(filename));
-        //		strcat((char*)destfilename, dlg->m_showfile[fileindex].m_dest);
-        //		 ((char*)filename, dlg->m_showfile[fileindex].m_src);
-        
         
         memset(destfilename, 0x00, sizeof(destfilename));
         memset(filename, 0x00, sizeof(filename));
-        strcat((char*)destfilename, "task");
+        strcat((char*)destfilename, [array[fileindex] cStringUsingEncoding:NSASCIIStringEncoding]);
         
-        strcat((char*)filename, [[[NSBundle mainBundle] pathForResource:@"task" ofType:@""]cStringUsingEncoding:NSASCIIStringEncoding]);
+        NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",array[fileindex]]];
+        
+        strcat((char*)filename, [str cStringUsingEncoding:NSASCIIStringEncoding]);
         
         //文件名称路径赋值给filename
     
@@ -284,6 +275,7 @@ int DownThread()
         
         fseek(pfile, 0, SEEK_END); //定位到文件末尾
         filelen = ftell(pfile);  //获取文件大小
+        NSLog(@"文件长度：%lu",filelen);
         fseek(pfile, 0, SEEK_SET);
         totalpack = (filelen + 4095) / 4096;
         crc = 0xFFFFFFFF;
@@ -300,6 +292,7 @@ int DownThread()
             memset(&downbuf[index], 0x00, 68);
             downbuf[index] = filenum;
             index++;
+            NSLog(@"fileno:%i--fileplace:%ld",fileno,ftell(pfile));
             downbuf[index] = fileno;
             index++;
             downbuf[index] = totalpack;
@@ -336,6 +329,13 @@ int DownThread()
             tmpcal = fread((char*)&downbuf[index], 1, 4096, pfile); //读取4k文件到downbuf,
             
             //dlg->m_downpro.SetPos(fileno * 100 / totalpack); //设置进度条（当前包数*100/总包数）
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+               // NSLog(@"fileno:%i,totalpack:%i",fileno,totalpack);
+                
+                [cav updateProgress:((float)fileno / (float)totalpack)];
+                [cav updateTitle:[NSString stringWithFormat:@"正在传输%@",array[fileindex]]];
+            });
             if(tmpcal <= 0)
             {
                 break;
@@ -362,104 +362,84 @@ int DownThread()
             downbuf[i] = ((unsigned char*)&crc)[0];
             i++;
             
-            downbuf[index] = 0;
+            
             index = 4168;
             memcpy((char*)&downbuf[index], "\x55\xaa\x55\xaa", 4);
             index += 4;
+            
+            downbuf[index] = 0;
+            
             for(i = 4; i < index - 4; i++)
             {
                 downbuf[index] += downbuf[i];
             }
             index++;
             
-//            j = 0;
-            			for(i = 0; i < index; )
-            			{
-            				/*if(dlg->m_istostop)
-            				{
-            					//dlg->SetDlgItemText(IDC_ST_STATUS, "下载停止");
             
-            
-            					fclose(pfile);
-            					//dlg->m_downpro.ShowWindow(SW_HIDE);
-            					//dlg->SetDlgItemText(IDC_ST_DOWN, "");
-            					//dlg->SetDlgItemText(IDC_BTN_DOWN, "下载");
-            					//dlg->m_downthread = NULL;
-            					SCardControl(dlg->m_hCardHandle, SCARD_CTL_CODE(3500), "\xFF\x64\x00\x00\x00", 5, recvbuf, sizeof(recvbuf), (LPDWORD)&recvlen);
-            					//dlg->m_listfile.EnableWindow(TRUE);
-            					//dlg->OnBnClickedBtnOpen();
-            					return 0;
-            				}*/
-            				tmpcal = (index - i) < 1000 ? (index - i) : 1000;
-                            
-                            int success = gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
-                            //sleep(0.2);
-                            [NSThread sleepForTimeInterval:0.125];
-            					i += 1000;
-                                
-            					j = 0;
-            				
-                        }
-////            				else
-////            				{
-////            					j++;
-////            					if(j > 7)
-////            					{
-////            						//dlg->SetDlgItemText(IDC_ST_STATUS, "下载失败");
-////            
-////            
-////            						fclose(pfile);
-////            						//dlg->m_downpro.ShowWindow(SW_HIDE);
-////            						//dlg->SetDlgItemText(IDC_ST_DOWN, "");
-////            						//dlg->SetDlgItemText(IDC_BTN_DOWN, "下载");
-////            						//dlg->m_downthread = NULL;
-////            						SCardControl(dlg->m_hCardHandle, SCARD_CTL_CODE(3500), "\xFF\x64\x00\x00\x00", 5, recvbuf, sizeof(recvbuf), (LPDWORD)&recvlen);
-////            						//dlg->m_listfile.EnableWindow(TRUE);
-////            						//dlg->OnBnClickedBtnOpen();
-////            						return 0;
-////            					}
-////            				}
-//            			}
-//            //sprintf((char*)downbuf, "%s %d%%", dlg->m_showfile[fileindex].m_dest, fileno * 100 / totalpack);
-//            //dlg->SetDlgItemText(IDC_ST_DOWN, CString(downbuf));
-            
-//            int success = gInterface->WritePosData((unsigned char*)downbuf, index);
-//            
-//            if (success<0) {
-//                NSLog(@"fail-------");
-//                fclose(pfile);
-//                return 0;
-//            }
-            
-           
-            //return 0;
-            
-            while (hasRead == 0) {
-                //NSLog(@"wait for responsing------");
-                sleep(0.1);
-                //[NSThread sleepForTimeInterval:0.5];
+            while (1){
+                
+                for(i = 0; i < index; )
+                {
+                    
+                    tmpcal = (index - i) < 1000 ? (index - i) : 1000;
+                    hasReadPosReply = 0;
+                    int success = gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
+                    
+                    [NSThread sleepForTimeInterval:0.125];
+                    
+                    i += 1000;
+                    
+                }
+                
+                
+                
+                int waitTime = 0;
+                
+                while (hasReadPosReply == 0) {
+                    //NSLog(@"wait for responsing------");
+                    
+                    [NSThread sleepForTimeInterval:0.1];
+                    
+                    waitTime++ ;
+                    
+                    if (waitTime > repeatTime*10) {
+                        break;
+                    }
+                
+                }
+                
+                if (hasReadPosReply == 0) {
+                    
+                    if (repeatNo > 5) {
+                        return -1;
+                    }
+                    repeatNo++;
+                    NSLog(@"repeatNo-----%i-------------------------------------fileno----%i",repeatNo,fileno);
+                    //fseek(pfile, -4096, SEEK_CUR);
+                    
+                    
+                }else{
+                    
+                    NSLog(@"success------");
+                    
+                    repeatNo =0;
+                    hasReadPosReply = 0;
+                    //sleep(0);
+                    addr += 4096;
+                    fileno++;
+                    break;
+                }
             }
             
-            hasRead = 0;
-             NSLog(@"success------");
-            //sleep(0);
-            addr += 4096;
-            fileno++;
+
+            
+
         }
         
         fclose(pfile);
-        //dlg->m_downpro.SetPos(100);
-        //sprintf((char*)downbuf, "%s %d%%", dlg->m_showfile[fileindex].m_dest, 100);
-        //dlg->SetDlgItemText(IDC_ST_DOWN, CString(downbuf));
-        sleep(1);
+        
     }
-    //dlg->m_downpro.ShowWindow(SW_HIDE);
-    //dlg->SetDlgItemText(IDC_ST_STATUS, "下载完毕");
-    //dlg->SetDlgItemText(IDC_ST_DOWN, "");
-    //dlg->SetDlgItemText(IDC_BTN_DOWN, "下载");
-    //dlg->m_downthread = NULL;
-    //dlg->m_listfile.EnableWindow(TRUE);
-    //dlg->OnBnClickedBtnOpen();
+
     return 0;
 }
 
@@ -1499,6 +1479,13 @@ void DealSendPack()
             {
                 break;
             }
+        case SESSION_POS_CANCEL:
+            DealCancel();
+            break;
+            
+        case SESSION_POS_DOWN_PRO:
+            DealDownPro();
+            break;
             
         default:
             break;
@@ -1600,27 +1587,21 @@ int ReadServerData(unsigned char *data, int datalen)
 	return 0;
 }
 
-int hasRead = 0;
+int hasReadPosReply = 0;
 
 int ReadPosData(unsigned char *data, int datalen)
 {
-    hasRead = 1;
+    hasReadPosReply = 1;
     
-    NSString *str = @"";
-    for (int t=1;t<=datalen;t++)
-    {
-        //                NSLog(@"%x",data[t-1]);
-        str = [NSString stringWithFormat:@"%@,%.2x",str,data[t-1]];
-    }
+//    NSString *str = @"";
+//    for (int t=1;t<=datalen;t++)
+//    {
+//        
+//        str = [NSString stringWithFormat:@"%@,%.2x",str,data[t-1]];
+//    }
+//    
+//    NSLog(@"ReadPosData = %@  ----l = %d",str,datalen);
     
-    NSLog(@"ReadPosData = %@  ----l = %d",str,datalen);
-    
-//    
-//    
-//    
-//    NSString *d = [[NSString alloc]initWithData:[[NSData alloc]initWithBytes:data length:datalen] encoding:NSUTF8StringEncoding];
-//    
-//    NSLog(@"ReadPosData--%@ ----l =%lu",d,(unsigned long)d.length);
     
 	static unsigned long timeout = 0;
 	unsigned short re;
@@ -2568,3 +2549,142 @@ int MiniPosSDKReadICInfoCMD(const char *icInfo, int icInfolen);
  参数2(暂无)（TAK密文）	    LLVAR16 	TPK密文为8字节或16字节
  *************************************************************/
 int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);
+
+
+
+int MiniPosSDKDownPro()
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    gSessionPos = SESSION_POS_DOWN_PRO;
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
+    gDealPackStep = PACK_STEP_SHAKE;
+    
+    return 0;
+}
+
+int MiniPosSDKCancelCMD()
+{
+    if(false)//(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    gSessionPos = SESSION_POS_CANCEL;
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
+    gDealPackStep = PACK_STEP_SHAKE;
+    
+    return 0;
+}
+
+int DealCancel()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        memcpy(gSDKBuf, "\x00\x04\x03\x41\x36\x1C", 6);
+        len = 6;
+        
+        gDealPackStep = PACK_STEP_RETURN_POS;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_RETURN_POS)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            len = GET_DATA_LEN(gRecvBuf);
+            memset(gInputParam, 0x00, sizeof(gInputParam));
+            memcpy(gInputParam, GET_DATA_INDEX(gRecvBuf) + 2, len -2);
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
+        //gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
+    return -1;
+}
+
+int DealDownPro()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        memcpy(gSDKBuf, "\x00\x04\x03\x41\x37\x1C", 6);
+        len = 6;
+        
+        gDealPackStep = PACK_STEP_RETURN_POS;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_RETURN_POS)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            len = GET_DATA_LEN(gRecvBuf);
+            memset(gInputParam, 0x00, sizeof(gInputParam));
+            memcpy(gInputParam, GET_DATA_INDEX(gRecvBuf) + 2, len -2);
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
+        //gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
+    return -1;
+}
+

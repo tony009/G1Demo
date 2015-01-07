@@ -267,7 +267,7 @@
 {
     
     [UIView animateWithDuration:3.0 animations:^{
-        self.printView.top = 0;
+        self.printView.top = -10;
     } completion:^(BOOL finished) {
        
     }];
@@ -391,7 +391,9 @@
                 //[self.navigationController popViewControllerAnimated:YES];
                 //[self.navigationController popToViewController animated:<#(BOOL)#>]
                 
-                [self performSelector:@selector(backToHome) withObject:nil afterDelay:1.0];
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+                
+                [self performSelector:@selector(backToHome) withObject:nil afterDelay:5.0];
                 
             });
         }else {

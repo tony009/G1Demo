@@ -157,6 +157,8 @@ typedef enum _MiniPosSDKSessionType
     SESSION_POS_READ_IC_INFO,         		//读取IC卡信息           by lianghuiyuan
     SESSION_POS_UPDATE_KEY,         		//更新工作密钥           by lianghuiyuan
     SESSION_POS_LOGOUT,	         			//签退           by lianghuiyuan
+    SESSION_POS_CANCEL,						//取消操作
+    SESSION_POS_DOWN_PRO					//下载程序
 } MiniPosSDKSessionType;
 
 /************************************************************
@@ -443,10 +445,11 @@ int MiniPosSDKReadICInfoCMD(const char *icInfo, int icInfolen);
  *************************************************************/
 int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);
 
-int DownThread();
+int DownThread(void *cva,NSArray *array);
 
 int MiniPosSDKRunThread();
-    
+int MiniPosSDKDownPro();
+int MiniPosSDKCancelCMD();
 #ifdef __cplusplus
 }
 #endif

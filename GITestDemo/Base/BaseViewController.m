@@ -253,6 +253,11 @@ static void MiniPosSDKResponce(void *userData,
             //[self recvMiniPosSDKStatus];
             
             //return;
+            
+        }else if(self.sessionType == SESSION_POS_DOWN_PRO)
+        {
+            self.statusStr=@"开始下载";
+            
         }
         else if(self.sessionType==SESSION_POS_GET_DEVICE_ID)
         {

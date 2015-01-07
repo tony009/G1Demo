@@ -8,6 +8,7 @@
 
 #import "UpdateViewController.h"
 #import "AFNetworking.h"
+
 @interface UpdateViewController ()
 
 @end
@@ -33,6 +34,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
 
 - (IBAction)check:(id)sender {
     
@@ -72,9 +76,29 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本"
                                                             message:message
                                                            delegate:nil
-                                                  cancelButtonTitle:@"Ok"
+                                                  cancelButtonTitle:@"ok"
                                                   otherButtonTitles:nil];
+        
+        UIProgressView *progressView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+        
+        progressView.frame = CGRectMake(30, 80, 225, 30);
+        progressView.progress = 0.5;
+        
+        [alertView addSubview:progressView];
+        
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        button.frame = CGRectMake(30, 80, 225, 30);
+        
         [alertView show];
+        [alertView addSubview:progressView];
+        [alertView addSubview:button];
+
+   
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            alertView.title = @"版本111";
+        });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure");
@@ -96,19 +120,31 @@
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     
-    NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/task.tar"];
+    NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/IosMiniposSDK.rar"];
     
     NSLog(@"%@",str);
     
     operation.inputStream = [NSInputStream inputStreamWithURL:baseURL];
     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:str append:NO];
+    CustomAlertView  *cav = [[CustomAlertView alloc]init];
     
-    
+    [self.view addSubview:cav];
+    [cav show];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
         NSLog(@"is download：%f", (float)totalBytesRead/totalBytesExpectedToRead);
         //self.progressView set
-        self.progressView.progress = (float)totalBytesRead/totalBytesExpectedToRead;
+        float progress = (float)totalBytesRead/totalBytesExpectedToRead;
+        
+
+        
+        
+       
+        
+        [cav updateProgress:progress];
+
+        
+        
     }];
     
     //NSString *filePath = [NSString alloc]in
@@ -121,12 +157,93 @@
     
     [operation start];
     
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        cav.hidden = YES;
+        //[cav dismiss];
+        NSLog(@"hidden-------");
+        //[cav removeFromSuperview];
+});
+    
 }
 
 - (IBAction)update:(id)sender {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        DownThread();
-    });
+//    if (MiniPosSDKDownPro() ==0) {
+//
+//    } ;
+    
+//    [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        DownThread();
+//        
+//        [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
+//    });
+
+    
+//    CustomAlertView *cav = [[CustomAlertView alloc]init];
+//    
+//    [self.view addSubview:cav];
+//
+//    
+//    [cav show];
+    
+    NSString *baseURLString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"success json1");
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"qqq");
+//    }];
+//    
+//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"success json2");
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"qqq");
+//    }];
+//    
+//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"success json3");
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"qqq");
+//    }];
+//    
+//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"success json4");
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"qqq");
+//    }];
+    
+    
+    
+
+}
+
+
+#pragma mark -
+#pragma mark - /*******/
+- (void)recvMiniPosSDKStatus
+{
+    [super recvMiniPosSDKStatus];
+    
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"开始下载"]]) {
+        
+        [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+           // DownThread();
+            
+            [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
+        });
+        
+        
+    }
+    
+    
+    self.statusStr = @"";
 }
 @end

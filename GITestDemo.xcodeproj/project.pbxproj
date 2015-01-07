@@ -52,7 +52,7 @@
 		96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7F91A2C64E900CCD0B5 /* btn_background2.png */; };
 		96D6F8181A2C64E900CCD0B5 /* btn_bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FA1A2C64E900CCD0B5 /* btn_bluetooth.png */; };
 		96D6F8191A2C64E900CCD0B5 /* btn_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FB1A2C64E900CCD0B5 /* btn_cancel.png */; };
-		96D6F81A1A2C64E900CCD0B5 /* btn_data_revision.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FC1A2C64E900CCD0B5 /* btn_data_revision.png */; };
+		96D6F81A1A2C64E900CCD0B5 /* btn_update.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FC1A2C64E900CCD0B5 /* btn_update.png */; };
 		96D6F81B1A2C64E900CCD0B5 /* btn_equipment.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FD1A2C64E900CCD0B5 /* btn_equipment.png */; };
 		96D6F81C1A2C64E900CCD0B5 /* btn_gathring.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FE1A2C64E900CCD0B5 /* btn_gathring.png */; };
 		96D6F81D1A2C64E900CCD0B5 /* btn_inquire.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7FF1A2C64E900CCD0B5 /* btn_inquire.png */; };
@@ -76,6 +76,7 @@
 		96D6F82F1A2C64E900CCD0B5 /* 浅绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8111A2C64E900CCD0B5 /* 浅绿色色值.jpg */; };
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
+		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
 		9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8B61A53A3870067377C /* UpdateViewController.m */; };
 		9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BA1A53A4AF0067377C /* AFHTTPRequestOperation.m */; };
 		9C7CA8DF1A53A4AF0067377C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BC1A53A4AF0067377C /* AFHTTPRequestOperationManager.m */; };
@@ -106,8 +107,6 @@
 		9CEDDDAC1A4819CF000C23A5 /* home_banner_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDDA61A4819CF000C23A5 /* home_banner_4.png */; };
 		9CEDDDAD1A4819CF000C23A5 /* home_banner_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDDA71A4819CF000C23A5 /* home_banner_5.png */; };
 		9CEDDDAE1A4819CF000C23A5 /* home_banner_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDDA81A4819CF000C23A5 /* home_banner_6.png */; };
-		9CEDDDB01A4909B0000C23A5 /* kernel in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDDAF1A4909B0000C23A5 /* kernel */; };
-		9CEDDDB21A499D97000C23A5 /* task in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDDB11A499D97000C23A5 /* task */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,7 +197,7 @@
 		96D6F7F91A2C64E900CCD0B5 /* btn_background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_background2.png; sourceTree = "<group>"; };
 		96D6F7FA1A2C64E900CCD0B5 /* btn_bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bluetooth.png; sourceTree = "<group>"; };
 		96D6F7FB1A2C64E900CCD0B5 /* btn_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel.png; sourceTree = "<group>"; };
-		96D6F7FC1A2C64E900CCD0B5 /* btn_data_revision.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_data_revision.png; sourceTree = "<group>"; };
+		96D6F7FC1A2C64E900CCD0B5 /* btn_update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_update.png; sourceTree = "<group>"; };
 		96D6F7FD1A2C64E900CCD0B5 /* btn_equipment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_equipment.png; sourceTree = "<group>"; };
 		96D6F7FE1A2C64E900CCD0B5 /* btn_gathring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_gathring.png; sourceTree = "<group>"; };
 		96D6F7FF1A2C64E900CCD0B5 /* btn_inquire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_inquire.png; sourceTree = "<group>"; };
@@ -223,6 +222,8 @@
 		96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "绿色色值.jpg"; sourceTree = "<group>"; };
 		96D6F8311A2C687200CCD0B5 /* ConnectDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectDeviceViewController.h; sourceTree = "<group>"; };
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
+		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
+		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		9C7CA8B51A53A3870067377C /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		9C7CA8B61A53A3870067377C /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		9C7CA8B91A53A4AF0067377C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -276,8 +277,6 @@
 		9CEDDDA61A4819CF000C23A5 /* home_banner_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_banner_4.png; sourceTree = "<group>"; };
 		9CEDDDA71A4819CF000C23A5 /* home_banner_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_banner_5.png; sourceTree = "<group>"; };
 		9CEDDDA81A4819CF000C23A5 /* home_banner_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_banner_6.png; sourceTree = "<group>"; };
-		9CEDDDAF1A4909B0000C23A5 /* kernel */ = {isa = PBXFileReference; lastKnownFileType = file; path = kernel; sourceTree = "<group>"; };
-		9CEDDDB11A499D97000C23A5 /* task */ = {isa = PBXFileReference; lastKnownFileType = file; path = task; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,8 +501,6 @@
 		96C560781A24606600A25290 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9CEDDDB11A499D97000C23A5 /* task */,
-				9CEDDDAF1A4909B0000C23A5 /* kernel */,
 				96C560791A24606600A25290 /* Common */,
 				96C560831A24606600A25290 /* UI_IMG */,
 			);
@@ -529,6 +526,8 @@
 				96C560821A24606600A25290 /* UIViewExt.m */,
 				96C4A2751A2ECE2200799505 /* KCalculator.h */,
 				96C4A2761A2ECE2200799505 /* KCalculator.m */,
+				9C2917101A5A711F00D28A63 /* CustomAlertView.h */,
+				9C2917111A5A711F00D28A63 /* CustomAlertView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -589,7 +588,7 @@
 				96D6F7F91A2C64E900CCD0B5 /* btn_background2.png */,
 				96D6F7FA1A2C64E900CCD0B5 /* btn_bluetooth.png */,
 				96D6F7FB1A2C64E900CCD0B5 /* btn_cancel.png */,
-				96D6F7FC1A2C64E900CCD0B5 /* btn_data_revision.png */,
+				96D6F7FC1A2C64E900CCD0B5 /* btn_update.png */,
 				96D6F7FD1A2C64E900CCD0B5 /* btn_equipment.png */,
 				96D6F7FE1A2C64E900CCD0B5 /* btn_gathring.png */,
 				96D6F7FF1A2C64E900CCD0B5 /* btn_inquire.png */,
@@ -776,13 +775,11 @@
 				96D6F8161A2C64E900CCD0B5 /* btn_background1.png in Resources */,
 				9CEDDDAE1A4819CF000C23A5 /* home_banner_6.png in Resources */,
 				96D6F82C1A2C64E900CCD0B5 /* inco_me1.png in Resources */,
-				96D6F81A1A2C64E900CCD0B5 /* btn_data_revision.png in Resources */,
+				96D6F81A1A2C64E900CCD0B5 /* btn_update.png in Resources */,
 				96D6F8251A2C64E900CCD0B5 /* btn_sign_in.png in Resources */,
-				9CEDDDB01A4909B0000C23A5 /* kernel in Resources */,
 				96D6F8181A2C64E900CCD0B5 /* btn_bluetooth.png in Resources */,
 				96D6F8271A2C64E900CCD0B5 /* icon1.png in Resources */,
 				96D6F82A1A2C64E900CCD0B5 /* icon_password1.png in Resources */,
-				9CEDDDB21A499D97000C23A5 /* task in Resources */,
 				96D6F8241A2C64E900CCD0B5 /* btn_settlement.png in Resources */,
 				96D6F81E1A2C64E900CCD0B5 /* btn_more.png in Resources */,
 				96D6F81C1A2C64E900CCD0B5 /* btn_gathring.png in Resources */,
@@ -855,6 +852,7 @@
 				9C7CA8E01A53A4AF0067377C /* AFHTTPSessionManager.m in Sources */,
 				9C7CA8E11A53A4AF0067377C /* AFNetworkReachabilityManager.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
+				9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */,
 				9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */,
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,
 				9C7CA8E81A53A4AF0067377C /* UIActivityIndicatorView+AFNetworking.m in Sources */,

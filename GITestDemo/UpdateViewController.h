@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "CustomAlertView.h"
 @interface UpdateViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 - (IBAction)check:(id)sender;

@@ -34,7 +34,7 @@
     NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
     NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
     NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
-    
+      
     
     if (!shangHu) {
         shangHu  = @"898100012340003";
@@ -53,7 +53,7 @@
     }
     
     MiniPosSDKInit();
-    NSLog(@"host:%s,port:%d",host.UTF8String,port.intValue);
+    NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
     MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
     MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
     [self.connectDeviceButton setTitle:@"正在连接设备..." forState:UIControlStateNormal];
@@ -80,7 +80,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillhide:) name:UIKeyboardWillHideNotification object:nil];
     if (MiniPosSDKDeviceState() == 0) {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
-        //self.connectDeviceButton.enabled = NO;
     } else {
         [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
         self.connectDeviceButton.enabled = YES;
@@ -187,9 +186,6 @@
         return;
     }
     
-    
-    
-    
     [self performSegueWithIdentifier:@"loginModalToConfig" sender:self];
 }
 
@@ -209,7 +205,6 @@
     
     NSString *shanghuName = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
     NSString *ip = [[NSUserDefaults standardUserDefaults]objectForKey:kHostEditor];
-    
     NSString *port = [[NSUserDefaults standardUserDefaults]objectForKey:kPortEditor];
     
     if (shanghuName ==nil || ip ==nil || port == nil) {
