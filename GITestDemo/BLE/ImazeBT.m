@@ -168,7 +168,7 @@
  */
 - (void)startScan
 {
-    
+    NSLog(@"startScan");
     if ([self isLECapableHardware]) {
         
         [manager scanForPeripheralsWithServices:nil options:nil];
@@ -202,7 +202,7 @@
 {
 
     //Let's see if we are interested in this device   using CBAdvertisementDataServiceUUIDsKey
-    NSArray *serviceUUIDs = [advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey];
+   // NSArray *serviceUUIDs = [advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey];
     
     NSLog(@"Peripheral = %@",aPeripheral.name);
 //    NSLog(@"SERVICEUUIDS = %@",serviceUUIDs);
@@ -462,12 +462,15 @@
 #pragma mark - 测试
 - (void)connect:(CBPeripheral *)aper
 {
-    if (peripheral == aper){
+    
+    //需要连接的设备为 目前已经连接的设备 直接返回
+    if (self.isConnected && peripheral == aper){
         NSLog(@"重新连接");
         return;
     }
     
-    if (peripheral != nil) {
+    //已经连接，先断开连接
+    if (self.isConnected && peripheral != nil) {
         [self disconnectPeripheral:peripheral];
     }
 
@@ -475,6 +478,7 @@
     //aper
     
     if (aper.UUID) {
+        NSLog(@"Retrieve....");
         [manager retrievePeripherals:[NSArray arrayWithObject:(id)aper.UUID]];
     } else {
         NSLog(@"connecting ....%@",aper.name);
