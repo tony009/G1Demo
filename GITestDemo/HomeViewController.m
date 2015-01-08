@@ -302,6 +302,8 @@
 //从服务器下载版本文件
 - (void)downloadWebVersionFile{
     
+    [self showHUD:@"正在从服务器获取版本信息"];
+    
     // 1
     NSString *baseURLString = @"http://120.24.213.123/app/version.json";
     NSURL *url = [NSURL URLWithString:baseURLString];
@@ -319,7 +321,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        
+        [self hideHUD];
     
         
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]initWithContentsOfFile:str] options:kNilOptions error:NULL];
@@ -341,6 +343,8 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure");
+        [self hideHUD];
+        [self showTipView:@"获取失败,请检查网络"];
         
     }];
     
