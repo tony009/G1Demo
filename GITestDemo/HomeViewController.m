@@ -33,7 +33,9 @@
     [super viewDidLoad];
     [self _initSubViews];
     
-  
+    isFirstGetVersionInfo = true;
+    
+
 }
 
 - (void)back
@@ -96,7 +98,11 @@
     [super viewWillAppear:animated];
     MiniPosSDKInit();
     
-    MiniPosSDKGetDeviceInfoCMD();
+    if (isFirstGetVersionInfo) {
+        MiniPosSDKGetDeviceInfoCMD();
+        isFirstGetVersionInfo = false;
+    }
+    
     
     int width = self.view.frame.size.width;
     //int height = self.scrollView.frame.size.height;

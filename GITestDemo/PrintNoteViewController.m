@@ -45,6 +45,13 @@
     [self _initSubViews];
 
     
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    
     [self startAnimation];
     
 }
@@ -267,7 +274,7 @@
 {
     
     [UIView animateWithDuration:3.0 animations:^{
-        self.printView.top = -10;
+        self.printView.top = 0;
     } completion:^(BOOL finished) {
        
     }];
