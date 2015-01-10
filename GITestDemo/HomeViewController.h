@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 @class ImgTButton;
 
-@interface HomeViewController : BaseViewController <UIScrollViewDelegate,UIAlertViewDelegate>
+@interface HomeViewController : BaseViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *topView;
 

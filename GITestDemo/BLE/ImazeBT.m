@@ -168,7 +168,7 @@
  */
 - (void)startScan
 {
-    NSLog(@"startScan");
+    
     if ([self isLECapableHardware]) {
         
         [manager scanForPeripheralsWithServices:nil options:nil];

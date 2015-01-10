@@ -69,9 +69,6 @@ DeviceDriverInterface * GetBLEDeviceInterface()
 
 unsigned long GetMsTime(){
     
-    static unsigned long  firstTime = 0;
-    
-
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
     
     if (firstTime == 0) {
