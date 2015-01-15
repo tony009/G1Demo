@@ -1,6 +1,5 @@
 #include "DeviceInterface.h"
 #import "MiniPosSDK.h"
-#import "CustomAlertView.h"
 #define PROTOCOL_STANDARD_CCID	0x01
 #define PROTOCOL_EXTERND_CCID	0x02
 #define PROTOCOL_UNKNOWN		0xFF
@@ -2596,7 +2595,6 @@ int MiniPosSDKReadICInfoCMD(const char *icInfo, int icInfolen);
  参数1(暂无)（TAK密文长度）	AN2 	    TPK密文长度为8或16
  参数2(暂无)（TAK密文）	    LLVAR16 	TPK密文为8字节或16字节
  *************************************************************/
-int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);
 
 
 
@@ -2736,3 +2734,4 @@ int DealDownPro()
     return -1;
 }
 
+int MiniPosSDKUpdateKeyCMD(const char *tpk, int tpklen, const char *tak, int taklen);

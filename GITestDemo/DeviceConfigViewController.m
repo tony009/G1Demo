@@ -150,9 +150,9 @@
     disMissTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAction)];
     
     NSString *shangHuName = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuName];
-//    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
-//    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
-//    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
+    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
+    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
+    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
     NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
     NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
 
