@@ -53,7 +53,7 @@
 {
     if ([_sock isConnected])
     {
-        [_sock disconnectAfterReadingAndWriting];
+        [_sock disconnect];
     }
     return 0;
 }

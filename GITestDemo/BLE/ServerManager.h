@@ -11,6 +11,7 @@
 @interface ServerManager : NSObject<AsyncSocketDelegate>
 + (instancetype)sharedManager;
 - (NSInteger)SocketOpen:(NSString*)addr port:(NSInteger)port;
+- (NSInteger)SocketClose;
 -(void)writeData:(NSData *)data;
 @property (strong,nonatomic) AsyncSocket *sock;
 
