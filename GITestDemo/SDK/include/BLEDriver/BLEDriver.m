@@ -69,7 +69,7 @@ DeviceDriverInterface * GetBLEDeviceInterface()
 
 unsigned long GetMsTime(){
     
-    static unsigned long  firstTime = 0;
+    static unsigned long long  firstTime = 0;
     
 
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
@@ -78,9 +78,8 @@ unsigned long GetMsTime(){
         firstTime = time;
     }
     
-    //NSDate date
 
-    return firstTime - time;
+    return time - firstTime;
 }
 int WriteServerData(unsigned char *data, int datalen){
     

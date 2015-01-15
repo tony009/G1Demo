@@ -86,6 +86,7 @@ int MiniPosSDKTestConnect(void);
 int DealVoidSaleTrade();
 int DealCancel();
 int DealDownPro();
+int DealDownParam();
 unsigned long  GetHash(unsigned long crc, unsigned char * szSrc, unsigned long dwSrcLen);
 
 unsigned long const tbCRC32[256] = {
@@ -190,7 +191,7 @@ int MiniPosSDKAddDelegate(void *userData, SDKResponceFunc SDKResponce)
 
 unsigned long  GetHash(unsigned long crc, unsigned char * szSrc, unsigned long dwSrcLen)
 {
-    unsigned long len = dwSrcLen;
+   // unsigned long len = dwSrcLen;
     
     while (dwSrcLen)
     {
@@ -210,12 +211,12 @@ int DownThread(void *c,NSArray *array)
     //DownProgram *dlg = (DownProgram*)lPvoid;
     CustomAlertView *cav = (__bridge CustomAlertView*)c;
     unsigned char downbuf[4096 + 68 + 100];
-    unsigned char recvbuf[256];
-    int recvlen;
+//    unsigned char recvbuf[256];
+//    int recvlen;
     FILE*pfile = NULL;
     int index;
     int i;
-    int j;
+//    int j;
     unsigned char fileindex = 0;
     unsigned char filenum = 0x01;
     unsigned char fileno = 0x00;
@@ -383,7 +384,7 @@ int DownThread(void *c,NSArray *array)
                     
                     tmpcal = (index - i) < 1000 ? (index - i) : 1000;
                     hasReadPosReply = 0;
-                    int success = gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
+                    gInterface->WritePosData((unsigned char*)&downbuf[i], tmpcal);
                     
                     [NSThread sleepForTimeInterval:0.125];
                     
@@ -545,8 +546,8 @@ int SDKSendToPos(unsigned char* buf, int* len)
 int MiniPosSDKTestConnect(void)
 {
     int len;
-    unsigned char confirmcnt;
-    unsigned long tm;
+  //  unsigned char confirmcnt;
+  //  unsigned long tm;
     
     if(gInterface == NULL)
     {
@@ -577,109 +578,65 @@ int MiniPosSDKTestConnect(void)
     return 0;
 }
 
-int SDKDownParam(const char* syscode, const char* paramname, const char* paramvalue)
+int SDKTestConnect(void)
 {
-	int len;
-	unsigned char confirmcnt;
-	unsigned char replycnt;
-	unsigned long tm;
-	
-	if(gSessionPos != SESSION_POS_UNKNOWN)
-	{
-		return -1;
-	}
-	gSessionPos = SESSION_POS_DOWNLOAD_PARAM;
-	if(MiniPosSDKTestConnect() < 0)
-	{
-		gSessionPos = SESSION_POS_UNKNOWN;
-		return -1;
-	}
-	
-	for(replycnt = 0; replycnt < MAX_RETRY; replycnt++)
-	{
-		for(confirmcnt = 0; confirmcnt < MAX_RETRY; confirmcnt++)
-		{
-			//组装报文
-			memcpy(gSDKBuf, "\x00\x04\x03\x35\x35", 5);
-			len = 5;
-			memset((char*)&gSDKBuf[len], 0x00, 8);
-			strncpy((char*)&gSDKBuf[len], (char*)syscode, 8);
-			len += 8;
-			gSDKBuf[len] = 0x00;
-			len++;
-			if(paramname)
-			{
-				strncpy((char*)&gSDKBuf[len], (char*)paramname, 32);
-				len += strlen((char*)&gSDKBuf[len]);
-				gSDKBuf[len] = 0x00;
-				len++;
-			}
-			if(paramvalue)
-			{
-				strncpy((char*)&gSDKBuf[len], (char*)paramvalue, 32);
-				len += strlen((char*)&gSDKBuf[len]);
-				gSDKBuf[len] = 0x00;
-				len++;
-			}
-			gSDKBuf[0] = (len - 2) >> 8;
-			gSDKBuf[1] = len - 2;
+    int len;
+    unsigned char confirmcnt;
+    unsigned long tm;
+    
+    for(confirmcnt = 0; confirmcnt < MAX_RETRY; confirmcnt++)
+    {
+        memcpy(gSDKBuf, "\x00\x03\x01\x39\x39", 5);
+        len = 5;
+        
+        if(SDKSendToPos(gSDKBuf, &len) < 0)
+        {
+            continue;
+        }
+        tm = gInterface->GetMsTime();
+        while(gWaitConfirm)
+        {
+            if(tm + MAX_POS_TIMEOUT < gInterface->GetMsTime())
+            {
+                break;
+            }
+        }
+        if(gWaitConfirm)
+        {
+            continue;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
+    return -1;
+}
 
-			if(SDKSendToPos(gSDKBuf, &len) < 0)
-			{
-				continue;
-			}
-
-			tm = gInterface->GetMsTime();
-			while(gWaitConfirm)
-			{
-				if(tm + MAX_POS_TIMEOUT < gInterface->GetMsTime())
-				{
-					break;
-				}
-			}
-			if(gWaitConfirm)
-			{
-				continue;
-			}
-			else
-			{
-				//指令应答成功
-				break;
-			}
-		}
-		if(confirmcnt >= MAX_RETRY)
-		{
-			//gSessionPos = SESSION_POS_UNKNOWN;
-			continue;
-		}
-		tm = gInterface->GetMsTime();
-		while(1)
-		{
-			if(gRecvLen > 3)
-			{
-				//if(/*GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x04 &&*/ *GET_DATA_INDEX(gRecvBuf) == 0x06)
-				{
-					gSessionPos = SESSION_POS_UNKNOWN;
-					return 0;
-				}
-			}
-			if(tm + MAX_POS_TIMEOUT < gInterface->GetMsTime())
-			{
-				break;
-			}
-		}
-	}
-
-	gSessionPos = SESSION_POS_UNKNOWN;
-
-	if(replycnt >= MAX_RETRY)
-	{
-		return -1;
-	}
-	else
-	{
-		return 0;
-	}
+int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* paramvalue)
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    gWaitConfirm = 0;
+    gSessionPos = SESSION_POS_DOWNLOAD_PARAM;
+    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
+    strcpy((char*)gInputParam, paramname);
+    strcpy((char*)gInputParam + strlen(paramname) + 1, paramvalue);
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
+    gDealPackStep = PACK_STEP_SHAKE;
+    return 0;
 }
 
 int MiniPosSDKUploadParam(const char* syscode, const char* paramname, const char* paramvalue)
@@ -797,6 +754,7 @@ int DealLogIn()
     
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
+        NSLog(@"DealLogIn---PACK_STEP_SEND_SERVER");
         len = GET_DATA_LEN(gRecvBuf);
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 2) = len >> 8;
         *(unsigned char*)(GET_DATA_INDEX(gRecvBuf) - 1) = len;
@@ -817,6 +775,7 @@ int DealLogIn()
     }
     if(gDealPackStep == PACK_STEP_POS_STRUCT)
     {
+        NSLog(@"DealLogIn---PACK_STEP_POS_STRUCT");
         len = 0;
         gSDKBuf[len] = 0x00;
         len++;
@@ -958,7 +917,85 @@ int DealLogOut()
     return 0;
 }
 
-
+int DealDownParam()
+{
+    int len;
+    unsigned char* paramname = NULL;
+    unsigned char* paramvalue = NULL;
+    
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        gInputParam[sizeof(gInputParam) - 1] = 0x00;
+        paramname = (unsigned char*)gInputParam;
+        paramvalue = strlen((char*)gInputParam) + 1 + (unsigned char*)gInputParam;
+        if(paramvalue >= (unsigned char*)gInputParam + sizeof(gInputParam))
+        {
+            paramvalue = NULL;
+        }
+        memcpy(gSDKBuf, "\x00\x04\x03\x35\x35", 5);
+        len = 5;
+        memset((char*)&gSDKBuf[len], 0x00, 8);
+        strncpy((char*)&gSDKBuf[len], (char*)"88888888", 8);
+        len += 8;
+        gSDKBuf[len] = 0x00;
+        len++;
+        if(paramname)
+        {
+            strncpy((char*)&gSDKBuf[len], (char*)paramname, 32);
+            len += strlen((char*)&gSDKBuf[len]);
+            gSDKBuf[len] = 0x00;
+            len++;
+        }
+        if(paramvalue)
+        {
+            strncpy((char*)&gSDKBuf[len], (char*)paramvalue, 32);
+            len += strlen((char*)&gSDKBuf[len]);
+            gSDKBuf[len] = 0x00;
+            len++;
+        }
+        gSDKBuf[0] = (len - 2) >> 8;
+        gSDKBuf[1] = len - 2;
+        
+        //memcpy(gSDKBuf, "\x00\x04\x03\x39\x38\x1C", 6);
+        //len = 6;
+        
+        gDealPackStep = PACK_STEP_RETURN_POS;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_RETURN_POS)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            //len = GET_DATA_LEN(gRecvBuf);
+            //memset(gInputParam, 0x00, sizeof(gInputParam));
+            //memcpy(gInputParam, GET_DATA_INDEX(gRecvBuf) + 2, len -2);
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
+        //gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
+    
+    return -1;
+}
 
 int DealSettleTrade()
 {
@@ -1486,7 +1523,9 @@ void DealSendPack()
         case SESSION_POS_DOWN_PRO:
             DealDownPro();
             break;
-            
+       	case SESSION_POS_DOWNLOAD_PARAM:
+            DealDownParam();
+            return;
         default:
             break;
     }
@@ -1602,6 +1641,15 @@ int ReadPosData(unsigned char *data, int datalen)
 //    
 //    NSLog(@"ReadPosData = %@  ----l = %d",str,datalen);
     
+    NSLog(@"ReadPosData....");
+    
+    for (int i=0; i<datalen; i++) {
+        printf("%.2x",data[i]);
+        if (i%2 !=0) {
+            printf(" ");
+        }
+    }
+    printf("\n");
     
 	static unsigned long timeout = 0;
 	unsigned short re;
@@ -2053,8 +2101,8 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
 {
 	unsigned short wCrc = 0;
 	unsigned char result[2];
-	unsigned char byTemp;
-	unsigned short mg_awhalfCrc16CCITT[16];
+	//unsigned char byTemp;
+	//unsigned short mg_awhalfCrc16CCITT[16];
 	unsigned long i;		
 	int val;
 

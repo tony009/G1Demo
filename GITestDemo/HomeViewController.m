@@ -74,7 +74,7 @@
         button.titext = [titArray objectAtIndex:i];
     }
     
-    int width = self.view.frame.size.width;
+    //int width = self.view.frame.size.width;
     //int height = self.scrollView.frame.size.height;
     //int height = 140;
     

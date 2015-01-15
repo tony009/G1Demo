@@ -149,14 +149,14 @@ typedef enum _MiniPosSDKSessionType
     SESSION_POS_DOWNLOAD_KEY,               //公钥下载
     SESSION_POS_DOWNLOAD_AID_PARAM,         //AID参数下载
     SESSION_POS_DOWNLOAD_PARAM,             //参数下载
-    SESSION_POS_PRINT,                      //打印   G3 by lianghuiyuan
-    SESSION_POS_GET_DEVICE_ID,              //获取设备序列号    by lianghuiyuan
-    SESSION_POS_CANCEL_READ_CARD,           //取消刷卡                    by lianghuiyuan
-    SESSION_POS_READ_CARD_INFO,             //读取磁道信息           by lianghuiyuan
-    SESSION_POS_READ_PIN_CARD_INFO,         //输密并读取磁道信息 by lianghuiyuan
-    SESSION_POS_READ_IC_INFO,         		//读取IC卡信息           by lianghuiyuan
-    SESSION_POS_UPDATE_KEY,         		//更新工作密钥           by lianghuiyuan
-    SESSION_POS_LOGOUT,	         			//签退           by lianghuiyuan
+    SESSION_POS_PRINT,                      //打印
+    SESSION_POS_GET_DEVICE_ID,              //获取设备序列号
+    SESSION_POS_CANCEL_READ_CARD,           //取消刷卡
+    SESSION_POS_READ_CARD_INFO,             //读取磁道信息
+    SESSION_POS_READ_PIN_CARD_INFO,         //输密并读取磁道信息
+    SESSION_POS_READ_IC_INFO,         		//读取IC卡信息
+    SESSION_POS_UPDATE_KEY,         		//更新工作密钥
+    SESSION_POS_LOGOUT,	         			//签退
     SESSION_POS_CANCEL,						//取消操作
     SESSION_POS_DOWN_PRO					//下载程序
 } MiniPosSDKSessionType;
@@ -450,6 +450,7 @@ int DownThread(void *cva,NSArray *array);
 int MiniPosSDKRunThread();
 int MiniPosSDKDownPro();
 int MiniPosSDKCancelCMD();
+int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* paramvalue);
 #ifdef __cplusplus
 }
 #endif

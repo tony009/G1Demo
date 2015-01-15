@@ -8,6 +8,7 @@
 
 #import "UpdateViewController.h"
 #import "AFNetworking.h"
+#import "UIUtils.h"
 
 @interface UpdateViewController ()
 
@@ -189,9 +190,9 @@
 //    
 //    [cav show];
     
-    NSString *baseURLString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSString *baseURLString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
 //    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"success json1");
@@ -223,6 +224,15 @@
 }
 
 
+
+- (IBAction)downloadParam:(id)sender {
+
+    
+    //MiniPosSDKDownParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
+    // MiniPosSDKDownParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
+    MiniPosSDKDownParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340003");
+}
+
 #pragma mark -
 #pragma mark - /*******/
 - (void)recvMiniPosSDKStatus
@@ -243,6 +253,7 @@
         
     }
     
+    NSLog(@"------------");
     
     self.statusStr = @"";
 }

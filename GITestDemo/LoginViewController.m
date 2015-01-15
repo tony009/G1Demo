@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "UIUtils.h"
 @interface LoginViewController ()<UIAlertViewDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -179,6 +179,11 @@
 
 - (IBAction)configAction:(id)sender {
     
+    
+    
+    //MiniPosSDKDownParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
+    //return;
+    
     if (![self.controlNoText.text isEqualToString:@"99"] || ![self.pwdText.text isEqualToString:@"937927"]) {
         
         [self showTipView:@"操作员号或密码错误！请检查后重试。"];
@@ -194,7 +199,7 @@
     //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
     //return;
-    
+
     
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
         

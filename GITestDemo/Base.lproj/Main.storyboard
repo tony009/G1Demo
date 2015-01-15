@@ -254,7 +254,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="139.99999995380523" width="320" height="362"/>
+                                <rect key="frame" x="0.0" y="139.9999998603063" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -582,6 +582,16 @@
                                 </state>
                                 <connections>
                                     <action selector="check:" destination="grw-5E-TU5" eventType="touchUpInside" id="Xki-P4-lfV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zaA-Z2-Ngf">
+                                <rect key="frame" x="130" y="375" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="下载参数">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadParam:" destination="grw-5E-TU5" eventType="touchUpInside" id="ioB-5W-geW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1058,7 +1068,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HA1-qt-zOJ"/>
+        <segue reference="gsO-y2-L4X"/>
         <segue reference="YJl-Xi-ecU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -140,7 +140,7 @@
 - (BOOL)isCorrectSerialNumber:(NSString*)numer
 {
     const char *str = numer.UTF8String;
-    int len = numer.length;
+    NSUInteger len = numer.length;
     
     if(len<=0)
         return FALSE;

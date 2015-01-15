@@ -41,4 +41,6 @@
 
 //根据文字内容，字体大小获取宽度
 + (CGFloat)getWithWithString:(NSString *)string font:(CGFloat)fontSize;
+//utf8字符串转换为GB2312 char字符串
++ (char *)UTF8_To_GB2312:(NSString*)utf8string;
 @end

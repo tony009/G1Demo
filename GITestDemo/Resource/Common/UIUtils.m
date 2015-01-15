@@ -268,4 +268,11 @@
     return nameW;
 }
 
++ (char *)UTF8_To_GB2312:(NSString*)utf8string
+{
+    NSStringEncoding encoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    const char *gb2312 = [utf8string cStringUsingEncoding:encoding];
+    return gb2312;
+}
+
 @end

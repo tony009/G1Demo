@@ -394,42 +394,13 @@
 - (void) peripheral:(CBPeripheral *)aPeripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     
-    NSLog(@"didUpdateValueForCharacteristic : %@", characteristic.UUID);
+    //NSLog(@"didUpdateValueForCharacteristic : %@", characteristic.UUID);
 
 
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"49535343-1E4D-4BD9-BA61-23C647249616"]])
     {
         if( (characteristic.value)  || !error )
         {
-//            const char *data = [characteristic.value bytes];
-//            
-//            if (data[0] == 0x04 && data[1] == 0x04 && data[2] == 0x04) {
-//                dataLength = data[3]*256+data[4];
-//                curLength = 0;
-//            }
-//            
-//            NSUInteger length = characteristic.value.length;
-// 
-//            
-//            NSString *str = @"";
-//            for (int t=1;t<=length;t++)
-//            {
-////                NSLog(@"%x",data[t-1]);
-//                str = [NSString stringWithFormat:@"%@,%.2x",str,data[t-1]];
-//            }
-//            
-//            NSLog(@"-recv - Str = %@  ----l = %d",str,length);
-//            
-//            memcpy(&allData[curLength], data, length);
-//            curLength += length;
-//            
-//            
-//            if (dataLength+8 <= curLength) {
-//                
-//                DeviceReadPosData(allData,dataLength+8);
-//
-//                dataLength = 0;
-//            }
             
             const char *data = [characteristic.value bytes];
             

@@ -161,12 +161,12 @@
     
     //[NSDate]
     
-    NSData *timeCodeData = [NSData dataWithBytes:(const void *)gLocalTime length:sizeof( char)*3];
-    NSString *timeCodeString = [[NSString alloc] initWithData:timeCodeData encoding:NSUTF8StringEncoding];
-    
-    //日期 gLocalDate[2]
-    NSData *dateCodeData = [NSData dataWithBytes:(const void *)gLocalDate length:sizeof( char)*2];
-    NSString *dateCodeString = [[NSString alloc] initWithData:dateCodeData encoding:NSUTF8StringEncoding];
+//    NSData *timeCodeData = [NSData dataWithBytes:(const void *)gLocalTime length:sizeof( char)*3];
+//    NSString *timeCodeString = [[NSString alloc] initWithData:timeCodeData encoding:NSUTF8StringEncoding];
+//    
+//    //日期 gLocalDate[2]
+//    NSData *dateCodeData = [NSData dataWithBytes:(const void *)gLocalDate length:sizeof( char)*2];
+//    NSString *dateCodeString = [[NSString alloc] initWithData:dateCodeData encoding:NSUTF8StringEncoding];
     
     
     //批次号
