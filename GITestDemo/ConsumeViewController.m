@@ -46,6 +46,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     NSLog(@"viewWillAppear:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
     self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(self.kcalculatorView.frame.origin.x, self.kcalculatorView.frame.origin.y
                                                                              , self.kcalculatorView.frame.size.width, self.kcalculatorView.frame.size.height)];
