@@ -77,6 +77,7 @@
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
 		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
+		9C4138C81A6768D90027E809 /* libMiniPosSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4138C71A6768D90027E809 /* libMiniPosSDK.a */; };
 		9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8B61A53A3870067377C /* UpdateViewController.m */; };
 		9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BA1A53A4AF0067377C /* AFHTTPRequestOperation.m */; };
 		9C7CA8DF1A53A4AF0067377C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BC1A53A4AF0067377C /* AFHTTPRequestOperationManager.m */; };
@@ -96,7 +97,6 @@
 		9C7CA8ED1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DB1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m */; };
 		9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
-		9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */; };
 		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
 		9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662481A4177FE00B13444 /* AsyncSocket.m */; };
 		9CE6624B1A4413D800B13444 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6624A1A4413D800B13444 /* 152.png */; };
@@ -224,6 +224,7 @@
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
 		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		9C4138C71A6768D90027E809 /* libMiniPosSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMiniPosSDK.a; sourceTree = "<group>"; };
 		9C7CA8B51A53A3870067377C /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		9C7CA8B61A53A3870067377C /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		9C7CA8B91A53A4AF0067377C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -264,7 +265,6 @@
 		9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
-		9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPosSDK.m; sourceTree = "<group>"; };
 		9CE662441A416F3B00B13444 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
 		9CE662451A416F3B00B13444 /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
 		9CE662471A4177FE00B13444 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */,
+				9C4138C81A6768D90027E809 /* libMiniPosSDK.a in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,7 +485,6 @@
 			isa = PBXGroup;
 			children = (
 				96C560641A243F2D00A25290 /* MiniPosSDK.h */,
-				9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */,
 				96C560611A243F2D00A25290 /* DeviceInterface.h */,
 				96C560631A243F2D00A25290 /* FunctionDefine.h */,
 			);
@@ -494,6 +494,7 @@
 		96C560651A243F2D00A25290 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				9C4138C71A6768D90027E809 /* libMiniPosSDK.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -847,7 +848,6 @@
 				9C7CA8EB1A53A4AF0067377C /* UIImageView+AFNetworking.m in Sources */,
 				9C7CA8E91A53A4AF0067377C /* UIAlertView+AFNetworking.m in Sources */,
 				9C7CA8E51A53A4AF0067377C /* AFURLResponseSerialization.m in Sources */,
-				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
 				9668E2791A25C8480014FDD8 /* ConsumeViewController.m in Sources */,
 				9C7CA8E01A53A4AF0067377C /* AFHTTPSessionManager.m in Sources */,
 				9C7CA8E11A53A4AF0067377C /* AFNetworkReachabilityManager.m in Sources */,

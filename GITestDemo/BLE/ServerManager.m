@@ -78,11 +78,13 @@
     
     //这是异步返回的连接成功，
     
-    [sock readDataWithTimeout:-1 tag:0];
+    //[sock readDataWithTimeout:-1 tag:0];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    
+    
     
     NSLog(@"didReadData:%@",data);
     
@@ -97,6 +99,7 @@
         NSLog(@"-收到的数据:%@",msg);
     }
     
+    [self SocketClose];
 
 }
 
