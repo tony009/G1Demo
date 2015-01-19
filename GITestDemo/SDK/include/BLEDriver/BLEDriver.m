@@ -68,8 +68,9 @@ DeviceDriverInterface * GetBLEDeviceInterface()
 
 
 unsigned long GetMsTime(){
-    
+
     static unsigned long long  firstTime = 0;
+
     
 
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970]*1000;
@@ -83,7 +84,7 @@ unsigned long GetMsTime(){
 }
 int WriteServerData(unsigned char *data, int datalen){
     
-    
+
     
     ServerManager *server = [ServerManager sharedManager];
     
@@ -93,6 +94,10 @@ int WriteServerData(unsigned char *data, int datalen){
     NSString *ip = [[NSUserDefaults standardUserDefaults] objectForKey:kHostEditor];
     
     NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:kPortEditor];
+    
+    if ([server.sock isConnected]) {
+        [server.sock disconnect];
+    }
     
     if (![server.sock.connectedHost isEqualToString:ip] || server.sock.connectedPort != port.intValue) {
         [server.sock disconnect];
