@@ -276,8 +276,11 @@
     [UIView animateWithDuration:3.0 animations:^{
         self.printView.top = 0;
     } completion:^(BOOL finished) {
-       
+        NSLog(@"self.bgScrollView:%@",self.bgScrollView);
+        //self.bgScrollView
+        self.bgScrollView.contentSize = CGSizeMake(320, 500);
     }];
+    
 }
 
 - (IBAction)signatureAction:(UIButton *)sender {
