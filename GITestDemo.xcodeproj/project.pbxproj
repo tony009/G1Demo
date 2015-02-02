@@ -77,6 +77,7 @@
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
 		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
+		9C486CC81A7D00D300134959 /* 文件刷卡动画.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9C486CC71A7D00D300134959 /* 文件刷卡动画.gif */; };
 		9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8B61A53A3870067377C /* UpdateViewController.m */; };
 		9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BA1A53A4AF0067377C /* AFHTTPRequestOperation.m */; };
 		9C7CA8DF1A53A4AF0067377C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BC1A53A4AF0067377C /* AFHTTPRequestOperationManager.m */; };
@@ -224,6 +225,7 @@
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
 		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		9C486CC71A7D00D300134959 /* 文件刷卡动画.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "文件刷卡动画.gif"; sourceTree = "<group>"; };
 		9C7CA8B51A53A3870067377C /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		9C7CA8B61A53A3870067377C /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		9C7CA8B91A53A4AF0067377C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 		96D6F7F41A2C64E900CCD0B5 /* 简化版切图 */ = {
 			isa = PBXGroup;
 			children = (
+				9C486CC71A7D00D300134959 /* 文件刷卡动画.gif */,
 				9CEDDDA31A4819CF000C23A5 /* home_banner_1.png */,
 				9CEDDDA41A4819CF000C23A5 /* home_banner_2.png */,
 				9CEDDDA51A4819CF000C23A5 /* home_banner_3.png */,
@@ -715,7 +718,7 @@
 				TargetAttributes = {
 					96C560291A243A7800A25290 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = ZXYD745HM6;
+						DevelopmentTeam = EY9GA3N4W5;
 					};
 					96C560421A243A7800A25290 = {
 						CreatedOnToolsVersion = 6.1;
@@ -769,6 +772,7 @@
 				963716BA1A2D6F44002D34F3 /* icon_logo.png in Resources */,
 				96D6F81B1A2C64E900CCD0B5 /* btn_equipment.png in Resources */,
 				96C4A2741A2E9F1000799505 /* Default.png in Resources */,
+				9C486CC81A7D00D300134959 /* 文件刷卡动画.gif in Resources */,
 				96D6F8141A2C64E900CCD0B5 /* btn_audio1.png in Resources */,
 				9CEDDD981A4801F2000C23A5 /* 未标题-6副本.png in Resources */,
 				96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */,
@@ -908,7 +912,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Tencrwin (business) Co. Ltd. (EY9GA3N4W5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -929,7 +933,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ccffb056-afb5-4f94-900b-5e70ed3b7768";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -951,8 +955,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Tencrwin (business) Co. Ltd. (EY9GA3N4W5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -965,7 +969,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "ccffb056-afb5-4f94-900b-5e70ed3b7768";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

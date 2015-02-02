@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="obH-vd-F8r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="obH-vd-F8r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -254,7 +254,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="140" width="320" height="361.9999998138984"/>
+                                <rect key="frame" x="0.0" y="139.99999995393253" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -693,10 +693,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon1.png" id="kxz-f5-ury">
-                                <rect key="frame" x="62" y="87" width="196" height="283"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请正确的插卡/刷卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeS-wQ-kp5">
                                 <rect key="frame" x="76" y="20" width="168" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -704,11 +700,17 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" id="mmg-nK-bAq">
+                                <rect key="frame" x="10" y="70" width="300" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="消费刷卡" id="ddR-gd-Nz5"/>
                     <connections>
+                        <outlet property="webView" destination="mmg-nK-bAq" id="iLj-UC-IIj"/>
                         <segue destination="GLh-7g-6Tj" kind="push" identifier="swipPushToPrint" id="zWV-Zx-zg9"/>
                         <segue destination="e3d-Ti-8fe" kind="push" identifier="swipPushToCheck" id="ttl-58-oJV"/>
                     </connections>
@@ -764,6 +766,19 @@
                                 <rect key="frame" x="5" y="96" width="310" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MGC-gY-jLf">
+                                <rect key="frame" x="203" y="8" width="101" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="请签名" backgroundImage="btn_next_background.png">
+                                    <color key="titleColor" red="0.24313725490196078" green="0.69019607843137254" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signatureAction:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="oQL-8Y-EYo"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kxZ-h4-rbx">
                                 <rect key="frame" x="0.0" y="105" width="320" height="379"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -915,19 +930,6 @@
                                     </button>
                                 </subviews>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MGC-gY-jLf">
-                                <rect key="frame" x="203" y="8" width="101" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="请签名" backgroundImage="btn_next_background.png">
-                                    <color key="titleColor" red="0.24313725490196078" green="0.69019607843137254" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signatureAction:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="oQL-8Y-EYo"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1056,7 +1058,6 @@
         <image name="btn_background2.png" width="508" height="92"/>
         <image name="btn_bluetooth.png" width="80" height="80"/>
         <image name="btn_next_background.png" width="170" height="62"/>
-        <image name="icon1.png" width="220" height="340"/>
         <image name="icon_list_backgound.png" width="550" height="600"/>
         <image name="icon_pos_backgound.png" width="580" height="30"/>
         <image name="inco_me1.png" width="170" height="170"/>
@@ -1069,6 +1070,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gsO-y2-L4X"/>
-        <segue reference="YJl-Xi-ecU"/>
+        <segue reference="zWV-Zx-zg9"/>
     </inferredMetricsTieBreakers>
 </document>
