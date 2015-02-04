@@ -169,6 +169,8 @@
     self.pwdText.layer.masksToBounds = YES;
 
   
+    
+    
 }
 
 

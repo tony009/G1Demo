@@ -40,7 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.hidesBackButton = YES;
     
     [self _initSubViews];
 
@@ -147,15 +148,14 @@
     int date = BCDToInt(gLocalDate, 2);
     
     
-    _dateStr = [NSString stringWithFormat:@"%02d/%02d %02d:%02d:%02d",date/100,date%100,time/10000,(time%10000)/100,time%100];
-    
-    
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     
     [dateFormatter setDateFormat:@"yyyy"];
      
     NSString *year = [dateFormatter stringFromDate:d];
+    
+    _dateStr = [NSString stringWithFormat:@"%04d/%02d/%02d %02d:%02d:%02d",[year intValue],date/100,date%100,time/10000,(time%10000)/100,time%100];
     
     _jiaoYiShiJian = [NSString stringWithFormat:@"%04d%02d%02d",[year intValue],date/100,date%100];
     
@@ -189,41 +189,83 @@
     for (int i = 10; i <= 20; i++) {
         UILabel *label = (UILabel *)[self.printView viewWithTag:i];
         
+//        switch (i) {
+//            case 10:
+//                label.text = [NSString stringWithFormat:@"商户名称：%@",[[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName]];
+//                break;
+//            case 11:
+//                label.text = [NSString stringWithFormat:@"商户编号：%@",mcCodeString];
+//                break;
+//            case 12:
+//                label.text = [NSString stringWithFormat:@"终端编号：%@",terCodeString];
+//                break;
+//            case 13:
+//                label.text = [NSString stringWithFormat:@"操作员号：%@",@"01"];
+//                break;
+//            case 14:
+//                label.text = [NSString stringWithFormat:@"付款卡号：%@",s];
+//                break;
+//            case 15:
+//                label.text = [NSString stringWithFormat:@"交易类型：%@",_typeStr];
+//                break;
+//            case 16:
+//                label.text = [NSString stringWithFormat:@"批次号：%@",gUserAreaString];
+//                break;
+//            case 17:
+//                label.text = [NSString stringWithFormat:@"凭证号：%@",audCodeString];
+//                
+//                break;
+//            case 18:
+//                label.text = [NSString stringWithFormat:@"交易时间：%@",_dateStr];
+//                
+//                break;
+//            case 19:
+//                label.text = [NSString stringWithFormat:@"交易参考号：%@",reCodeString];
+//                break;
+//            case 20:
+//                label.text = [NSString stringWithFormat:@"交易金额：%@",_countStr];
+//                
+//                break;
+//                
+//            default:
+//                break;
+//        }
+        
         switch (i) {
             case 10:
-                label.text = [NSString stringWithFormat:@"商户名称：%@",[[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName]];
+                label.text = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName]];
                 break;
             case 11:
-                label.text = [NSString stringWithFormat:@"商户编号：%@",mcCodeString];
+                label.text = [NSString stringWithFormat:@"%@",mcCodeString];
                 break;
             case 12:
-                label.text = [NSString stringWithFormat:@"终端编号：%@",terCodeString];
+                label.text = [NSString stringWithFormat:@"%@",terCodeString];
                 break;
             case 13:
-                label.text = [NSString stringWithFormat:@"操作员号：%@",@"01"];
+                label.text = [NSString stringWithFormat:@"%@",@"01"];
                 break;
             case 14:
-                label.text = [NSString stringWithFormat:@"付款卡号：%@",s];
+                label.text = [NSString stringWithFormat:@"%@",s];
                 break;
             case 15:
-                label.text = [NSString stringWithFormat:@"交易类型：%@",_typeStr];
+                label.text = [NSString stringWithFormat:@"%@",_typeStr];
                 break;
             case 16:
-                label.text = [NSString stringWithFormat:@"批次号：%@",gUserAreaString];
+                label.text = [NSString stringWithFormat:@"%@",gUserAreaString];
                 break;
             case 17:
-                label.text = [NSString stringWithFormat:@"凭证号：%@",audCodeString];
+                label.text = [NSString stringWithFormat:@"%@",audCodeString];
                 
                 break;
             case 18:
-                label.text = [NSString stringWithFormat:@"交易时间：%@",_dateStr];
+                label.text = [NSString stringWithFormat:@"%@",_dateStr];
                 
                 break;
             case 19:
-                label.text = [NSString stringWithFormat:@"交易参考号：%@",reCodeString];
+                label.text = [NSString stringWithFormat:@"%@",reCodeString];
                 break;
             case 20:
-                label.text = [NSString stringWithFormat:@"交易金额：%@",_countStr];
+                label.text = [NSString stringWithFormat:@"%@",_countStr];
                 
                 break;
                 
@@ -278,7 +320,7 @@
     } completion:^(BOOL finished) {
         NSLog(@"self.bgScrollView:%@",self.bgScrollView);
         //self.bgScrollView
-        self.bgScrollView.contentSize = CGSizeMake(320, 500);
+        self.bgScrollView.contentSize = CGSizeMake(320, 565);
     }];
     
 }
@@ -294,7 +336,7 @@
         
     } else {
         self.ppsSignView.hidden = YES;
-        
+        [self.view bringSubviewToFront:self.signImgView];
         [sender setTitle:@"重签" forState:UIControlStateNormal];
         self.signImgView.image = self.signView.signatureImage;
         self.uploadButton.hidden = NO;

@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *configButton;
 @property (strong, nonatomic) IBOutlet UIButton *connectDeviceButton;
+@property (strong, nonatomic) IBOutlet UIView *protocolView;
 
 - (IBAction)connectDeviceAction:(UIButton *)sender;
 
