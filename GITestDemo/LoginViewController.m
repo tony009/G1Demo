@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "UIUtils.h"
+#import "QCheckBox.h"
 @interface LoginViewController ()<UIAlertViewDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -169,8 +170,17 @@
     self.pwdText.layer.masksToBounds = YES;
 
   
-    
-    
+    _checkBox = [[QCheckBox alloc]initWithDelegate:nil];
+    _checkBox.frame = CGRectMake(20, 6, 120, 30);
+    [_checkBox setTitle:@"我已阅读并同意" forState:UIControlStateNormal];
+    _checkBox.titleLabel.font =[UIFont systemFontOfSize: 10];
+    [_checkBox setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_checkBox setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    [_checkBox setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_checkBox setImage:[UIImage imageNamed:@"uncheck_icon.png"] forState:UIControlStateNormal];
+    [_checkBox setImage:[UIImage imageNamed:@"check_icon.png"] forState:UIControlStateSelected];
+    [self.protocolView addSubview:_checkBox];
+    [_checkBox setChecked:YES];
 }
 
 
@@ -202,6 +212,12 @@
     
     //return;
 
+    if (!self.checkBox.checked) {
+        
+        [self showTipView:@"请先勾选服务协议"];
+        return;
+    }
+    
     
     if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
         

@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "QCheckBox.h"
 @interface LoginViewController : BaseViewController
 
 
@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *configButton;
 @property (strong, nonatomic) IBOutlet UIButton *connectDeviceButton;
 @property (strong, nonatomic) IBOutlet UIView *protocolView;
-
+@property (strong, nonatomic) IBOutlet QCheckBox *checkBox;
 - (IBAction)connectDeviceAction:(UIButton *)sender;
 
 - (IBAction)configAction:(id)sender;
