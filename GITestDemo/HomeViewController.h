@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "SIAlertView.h"
 @class ImgTButton;
 
 @interface HomeViewController : BaseViewController <UIScrollViewDelegate,UIAlertViewDelegate>

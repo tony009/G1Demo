@@ -114,6 +114,8 @@
 		9C7CA8EC1A53A4AF0067377C /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8D91A53A4AF0067377C /* UIProgressView+AFNetworking.m */; };
 		9C7CA8ED1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DB1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m */; };
 		9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */; };
+		9C9D4A851A84A780001ADA4B /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */; };
+		9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D4A841A84A780001ADA4B /* SIAlertView.m */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
 		9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */; };
 		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
@@ -296,6 +298,9 @@
 		9C7CA8DB1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		9C7CA8DC1A53A4AF0067377C /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SIAlertView.bundle; sourceTree = "<group>"; };
+		9C9D4A831A84A780001ADA4B /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
+		9C9D4A841A84A780001ADA4B /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAlertView.m; sourceTree = "<group>"; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPosSDK.m; sourceTree = "<group>"; };
@@ -540,6 +545,7 @@
 		96C560791A24606600A25290 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9C9D4A811A84A780001ADA4B /* SIAlertView */,
 				9C7CA8B81A53A4AF0067377C /* AFNetworking */,
 				9C7CA8CC1A53A4AF0067377C /* UIKit+AFNetworking */,
 				9CE662471A4177FE00B13444 /* AsyncSocket.h */,
@@ -717,6 +723,16 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		9C9D4A811A84A780001ADA4B /* SIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */,
+				9C9D4A831A84A780001ADA4B /* SIAlertView.h */,
+				9C9D4A841A84A780001ADA4B /* SIAlertView.m */,
+			);
+			path = SIAlertView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -819,6 +835,7 @@
 				96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */,
 				96D6F81D1A2C64E900CCD0B5 /* btn_inquire.png in Resources */,
 				96D6F8191A2C64E900CCD0B5 /* btn_cancel.png in Resources */,
+				9C9D4A851A84A780001ADA4B /* SIAlertView.bundle in Resources */,
 				9C6D9DBC1A820DC7002A7845 /* check_icon@2x.png in Resources */,
 				963716BA1A2D6F44002D34F3 /* icon_logo.png in Resources */,
 				96D6F81B1A2C64E900CCD0B5 /* btn_equipment.png in Resources */,
@@ -914,6 +931,7 @@
 				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
 				9668E2791A25C8480014FDD8 /* ConsumeViewController.m in Sources */,
 				9C7CA8E01A53A4AF0067377C /* AFHTTPSessionManager.m in Sources */,
+				9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */,
 				9C7CA8E11A53A4AF0067377C /* AFNetworkReachabilityManager.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
 				9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */,

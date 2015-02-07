@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "UIUtils.h"
 #import "QCheckBox.h"
+#import "SIAlertView.h"
 @interface LoginViewController ()<UIAlertViewDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -267,8 +268,26 @@
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到成功！" message:@"点击进入操作页面！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         alertView.tag=99;
-        [alertView show];
+        //[alertView show];
         
+        
+        SIAlertView *salertView = [[SIAlertView alloc] initWithTitle:@"签到成功！" andMessage:@"点击进入操作页面！"];
+        [salertView addButtonWithTitle:@"OK"
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alertView) {
+                                  [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+                              }];
+//        [salertView addButtonWithTitle:@"Cancel"
+//                                 type:SIAlertViewButtonTypeCancel
+//                              handler:^(SIAlertView *alertView) {
+//                                  NSLog(@"Cancel Clicked");
+//                                  //[salertView dismissAnimated:YES];
+//                              }];
+        salertView.titleColor = [UIColor blueColor];
+        salertView.cornerRadius = 10;
+        salertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+        salertView.transitionStyle = SIAlertViewTransitionStyleSlideFromTop;
+        [salertView show];
     }
 
     //NSLog(@"%@",self.statusStr);
