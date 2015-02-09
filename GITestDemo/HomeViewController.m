@@ -65,8 +65,8 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新"];
-    NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
+    NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"资金结算",@"设备信息",@"参数下载",@"固件更新"];
+    NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_data_revision.png",@"btn_update.png"];
     
     for (int i = 0; i < titArray.count; i++) {
         ImgTButton *button = (ImgTButton *)[self.controlView viewWithTag:i+10];
@@ -390,7 +390,7 @@
         [updateFiles addObject:@"task"];
     }
     
-
+    
     if([updateFiles count]>0){
         
         NSString *info = [NSString stringWithFormat:@"有%i个文件需要更新，预计耗时%i分钟",[updateFiles count],[updateFiles count]*5];

@@ -367,7 +367,7 @@
     man = [[FTPManager alloc] init];
 
     
-    NSString *str = [[NSString alloc]initWithFormat:@"tmp/%@.jpg",[self getTimeNow]];
+    NSString *str = [[NSString alloc]initWithFormat:@"tmp/%@.%@.jpg",_jiaoYiCanKaoHao,_countStr];
     
     NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:str];
     
@@ -386,22 +386,23 @@
     
     NSLog(@"/mpos/%@/%@/%@/%@/图片.jpg",_shangHuHao,_zhongDuanHao,_jiaoYiShiJian,_jiaoYiCanKaoHao);
     
-    NSString *strs[4] ={
+    NSString *strs[3] ={
+        _jiaoYiShiJian,
         _shangHuHao,
         _zhongDuanHao,
-        _jiaoYiShiJian,
-        _jiaoYiCanKaoHao
+        
+       // _jiaoYiCanKaoHao
     };
     
     self.serialQueue = dispatch_queue_create("com.wudi", DISPATCH_QUEUE_SERIAL);
     
   //  NSString *destionation =@"122.112.12.23/mpos";
-    NSString *destionation =@"123.56.106.39/mpos";
-    NSString *username = @"mpos";
-    NSString *password = @"tenmpos123";
-    int  port = 2221;
+    NSString *destionation =@"mpos.100pay.com.cn/mpos";
+    NSString *username = @"axftp";
+    NSString *password = @"ax100ftp";
+    int  port = 21;
     
-    for (int i=0; i< 4; i++) {
+    for (int i=0; i< 3; i++) {
         NSString *s = strs[i];
         NSLog(@"destionation:%@",destionation);
         dispatch_async(self.serialQueue, ^{

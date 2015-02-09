@@ -83,7 +83,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2091,7 +2091,7 @@ Cgo
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="140" width="320" height="361.99999981377277"/>
+                                <rect key="frame" x="0.0" y="139.99999979100821" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -2115,7 +2115,7 @@ Cgo
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="sginOutAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="LkU-IH-4QK"/>
+                                            <action selector="payoffAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="Zw9-VF-Aei"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dSj-uo-i2T" customClass="ImgTButton">
@@ -2127,7 +2127,7 @@ Cgo
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="payoffAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="Tyc-dC-jix"/>
+                                            <action selector="getDeviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="ATt-J9-ZC1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z5U-cM-Y3U" customClass="ImgTButton">
@@ -2162,9 +2162,6 @@ Cgo
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="getDeviceMsgAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="e9s-AO-A6C"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1aP-IX-BB6" customClass="ImgTButton">
                                         <rect key="frame" x="0.0" y="242" width="106" height="120"/>
@@ -2539,7 +2536,7 @@ Cgo
                             </label>
                             <webView contentMode="scaleToFill" id="mmg-nK-bAq">
                                 <rect key="frame" x="10" y="70" width="300" height="400"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
@@ -2910,6 +2907,6 @@ Cgo
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gsO-y2-L4X"/>
-        <segue reference="YJl-Xi-ecU"/>
+        <segue reference="zWV-Zx-zg9"/>
     </inferredMetricsTieBreakers>
 </document>
