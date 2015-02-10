@@ -66,7 +66,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <view contentMode="scaleToFill" id="QXN-Z0-t52">
+                            <view hidden="YES" contentMode="scaleToFill" id="QXN-Z0-t52">
                                 <rect key="frame" x="40" y="494" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -2091,7 +2091,7 @@ Cgo
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="140" width="320" height="361.99999981377277"/>
+                                <rect key="frame" x="0.0" y="139.99999979100821" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -2539,7 +2539,7 @@ Cgo
                             </label>
                             <webView contentMode="scaleToFill" id="mmg-nK-bAq">
                                 <rect key="frame" x="10" y="70" width="300" height="400"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
@@ -2910,6 +2910,6 @@ Cgo
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gsO-y2-L4X"/>
-        <segue reference="YJl-Xi-ecU"/>
+        <segue reference="zWV-Zx-zg9"/>
     </inferredMetricsTieBreakers>
 </document>
