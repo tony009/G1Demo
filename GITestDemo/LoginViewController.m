@@ -10,6 +10,8 @@
 #import "UIUtils.h"
 #import "QCheckBox.h"
 #import "SIAlertView.h"
+#import "Reachability.h"
+#import "AFNetworking.h"
 @interface LoginViewController ()<UIAlertViewDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -87,6 +89,45 @@
         self.connectDeviceButton.enabled = YES;
     }
     
+    if ([Reachability reachabilityWithHostName:@"www.apple.com"]!=NotReachable) {
+        NSLog(@"网络已经连接");
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:@"http://mpos.100pay.com.cn/app/version/ios/e-swipe.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            //NSDictionary *response = responseObject;
+            NSLog(@"JSON: %@", responseObject);
+            NSString *curVerCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            NSString *url = responseObject[@"downloadUrl"];
+            BOOL forceUpdate = [responseObject[@"forceUpdate"] boolValue];
+            NSString *verCode = responseObject[@"version"];
+            
+            
+            SIAlertView *salertView = [[SIAlertView alloc] initWithTitle:@"有更新" andMessage:@"点击进入更新页面！"];
+            [salertView addButtonWithTitle:@"确认"
+                                      type:SIAlertViewButtonTypeDefault
+                                   handler:^(SIAlertView *alertView) {
+                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                   }];
+            if (!forceUpdate) {
+                [salertView addButtonWithTitle:@"取消" type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView) {
+                    
+                }];
+            }
+            
+            salertView.titleColor = [UIColor blueColor];
+            salertView.cornerRadius = 10;
+            salertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+            salertView.transitionStyle = SIAlertViewTransitionStyleSlideFromTop;
+            
+            if ([verCode compare:curVerCode options:NSNumericSearch] == NSOrderedDescending) {
+                [salertView show];
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+        
+    }
     
 }
 

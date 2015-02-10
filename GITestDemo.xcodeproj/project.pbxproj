@@ -116,6 +116,8 @@
 		9C9D4A9C1A85F09F001ADA4B /* btn_bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A9B1A85F09F001ADA4B /* btn_bluetooth.png */; };
 		9C9D4A9E1A85F0B6001ADA4B /* btn_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A9D1A85F0B6001ADA4B /* btn_audio.png */; };
 		9C9D4AA01A85F426001ADA4B /* btn_data_revision.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A9F1A85F426001ADA4B /* btn_data_revision.png */; };
+		9C9D4AA31A8899C7001ADA4B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D4AA21A8899C7001ADA4B /* Reachability.m */; };
+		9C9D4AA61A889B79001ADA4B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D4AA51A889B79001ADA4B /* SystemConfiguration.framework */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
 		9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */; };
 		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
@@ -301,6 +303,9 @@
 		9C9D4A9B1A85F09F001ADA4B /* btn_bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bluetooth.png; sourceTree = "<group>"; };
 		9C9D4A9D1A85F0B6001ADA4B /* btn_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_audio.png; sourceTree = "<group>"; };
 		9C9D4A9F1A85F426001ADA4B /* btn_data_revision.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_data_revision.png; sourceTree = "<group>"; };
+		9C9D4AA11A8899C7001ADA4B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		9C9D4AA21A8899C7001ADA4B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		9C9D4AA51A889B79001ADA4B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPosSDK.m; sourceTree = "<group>"; };
@@ -317,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C9D4AA61A889B79001ADA4B /* SystemConfiguration.framework in Frameworks */,
 				96C560771A243F8600A25290 /* libc++.dylib in Frameworks */,
 				96C5609E1A24877000A25290 /* openssl.framework in Frameworks */,
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
@@ -399,6 +405,7 @@
 		96C560211A243A7800A25290 = {
 			isa = PBXGroup;
 			children = (
+				9C9D4AA51A889B79001ADA4B /* SystemConfiguration.framework */,
 				96C5609D1A24877000A25290 /* openssl.framework */,
 				96C560761A243F8600A25290 /* libc++.dylib */,
 				96C560741A243F7A00A25290 /* libstdc++.dylib */,
@@ -550,6 +557,7 @@
 				9C7CA8CC1A53A4AF0067377C /* UIKit+AFNetworking */,
 				9CE662471A4177FE00B13444 /* AsyncSocket.h */,
 				9CE662481A4177FE00B13444 /* AsyncSocket.m */,
+				9C9D4AA41A8899CF001ADA4B /* Reachability */,
 				9CE6623A1A40464800B13444 /* FTPManager.h */,
 				9CE6623B1A40464800B13444 /* FTPManager.m */,
 				96BC86291A35ACE90012E746 /* PPSSignatureView */,
@@ -731,6 +739,15 @@
 				9C9D4A841A84A780001ADA4B /* SIAlertView.m */,
 			);
 			path = SIAlertView;
+			sourceTree = "<group>";
+		};
+		9C9D4AA41A8899CF001ADA4B /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				9C9D4AA11A8899C7001ADA4B /* Reachability.h */,
+				9C9D4AA21A8899C7001ADA4B /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -915,6 +932,7 @@
 				96C560331A243A7800A25290 /* AppDelegate.m in Sources */,
 				963716BD1A2D878A002D34F3 /* CheckResultViewController.m in Sources */,
 				9C6D9DAC1A820A8D002A7845 /* QCheckBox.m in Sources */,
+				9C9D4AA31A8899C7001ADA4B /* Reachability.m in Sources */,
 				9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */,
 				96C560991A24685A00A25290 /* MainNavViewController.m in Sources */,
 				96C560841A24606600A25290 /* LPPopup.m in Sources */,
