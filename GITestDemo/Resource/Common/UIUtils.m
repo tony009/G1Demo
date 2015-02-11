@@ -275,4 +275,11 @@
     return gb2312;
 }
 
++ (NSString*) GB2312_To_UTF8:(char *)gb2312string
+{
+    NSStringEncoding encoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSString *gb2312 = [NSString stringWithCString:gb2312string encoding:encoding];
+    return gb2312;
+}
+
 @end

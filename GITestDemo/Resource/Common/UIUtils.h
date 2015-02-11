@@ -43,4 +43,5 @@
 + (CGFloat)getWithWithString:(NSString *)string font:(CGFloat)fontSize;
 //utf8字符串转换为GB2312 char字符串
 + (char *)UTF8_To_GB2312:(NSString*)utf8string;
++ (NSString*) GB2312_To_UTF8:(char *)gb2312string;
 @end

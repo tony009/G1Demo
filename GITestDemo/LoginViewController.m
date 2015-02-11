@@ -253,7 +253,12 @@
     //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
     
     //return;
-
+//    MiniPosSDKUploadParam("00000000", [UIUtils UTF8_To_GB2312:@"商户号"]);
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        MiniPosSDKUploadParam("00000000", [UIUtils UTF8_To_GB2312:@"终端号"]);
+//    });
+//    return;
     if (!self.checkBox.checked) {
         
         [self showTipView:@"请先勾选服务协议"];
@@ -341,6 +346,7 @@
     }
     
     
+    
     if(MiniPosSDKDeviceState()==0)
     {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
@@ -356,6 +362,17 @@
     if ([self.statusStr isEqualToString:@"签到响应超时"]) {
         [self hideHUD];
         [self showTipView:self.statusStr];
+    }
+    
+    
+    if ([self.statusStr isEqualToString:@"获取商户号成功"]) {
+        //[self hideHUD];
+        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
+    }
+    
+    if ([self.statusStr isEqualToString:@"获取终端号成功"]) {
+        //[self hideHUD];
+        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
     }
     
 //    if ([self.statusStr isEqualToString:@"未知"]) {
