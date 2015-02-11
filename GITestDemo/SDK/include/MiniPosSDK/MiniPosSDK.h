@@ -158,7 +158,8 @@ typedef enum _MiniPosSDKSessionType
     SESSION_POS_UPDATE_KEY,         		//更新工作密钥
     SESSION_POS_LOGOUT,	         			//签退
     SESSION_POS_CANCEL,						//取消操作
-    SESSION_POS_DOWN_PRO					//下载程序
+    SESSION_POS_DOWN_PRO,					//下载程序
+    SESSION_POS_UPLOAD_PARAM				//上传参数
 } MiniPosSDKSessionType;
 
 /************************************************************
@@ -451,6 +452,9 @@ int MiniPosSDKRunThread();
 int MiniPosSDKDownPro();
 int MiniPosSDKCancelCMD();
 int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* paramvalue);
+int MiniPosSDKUploadParam(const char* syscode, const char* paramname);
+char *MiniPosSDKGetParamName();
+char *MiniPosSDKGetParamValue();
 #ifdef __cplusplus
 }
 #endif

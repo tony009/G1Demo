@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "MBProgressHUD.h"
-
+#import "UIUtils.h"
 #import "LPPopup.h"
 
 @interface BaseViewController ()
@@ -281,6 +281,13 @@ static void MiniPosSDKResponce(void *userData,
             NSString *info = [NSString stringWithFormat:@"加密后卡密:%s\n磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetEncryptPin(),MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
+            return;
+        }
+        else if(self.sessionType== SESSION_POS_UPLOAD_PARAM)
+        {
+            
+            
+            self.statusStr=[NSString stringWithFormat:@"获取%@成功",[UIUtils GB2312_To_UTF8:MiniPosSDKGetParamName()]];
             return;
         }
         

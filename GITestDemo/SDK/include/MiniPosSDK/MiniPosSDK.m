@@ -87,6 +87,7 @@ int DealVoidSaleTrade();
 int DealCancel();
 int DealDownPro();
 int DealDownParam();
+int DealUploadParam();
 unsigned long  GetHash(unsigned long crc, unsigned char * szSrc, unsigned long dwSrcLen);
 
 unsigned long const tbCRC32[256] = {
@@ -639,114 +640,6 @@ int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* 
     return 0;
 }
 
-int MiniPosSDKUploadParam(const char* syscode, const char* paramname, const char* paramvalue)
-{
-	int len;
-	unsigned char confirmcnt;
-	unsigned char replycnt;
-	unsigned long tm;
-
-	if(gSessionPos != SESSION_POS_UNKNOWN)
-	{
-		return -1;
-	}
-	gSessionPos = SESSION_POS_DOWNLOAD_PARAM;
-	if(MiniPosSDKTestConnect() < 0)
-	{
-		gSessionPos = SESSION_POS_UNKNOWN;
-		return -1;
-	}
-
-	for(replycnt = 0; replycnt < MAX_RETRY; replycnt++)
-	{
-		for(confirmcnt = 0; confirmcnt < MAX_RETRY; confirmcnt++)
-		{
-			//组装报文
-			memcpy(gSDKBuf, "\x00\x04\x03\x35\x37", 5);
-			len = 5;
-			memset((char*)&gSDKBuf[len], 0x00, 8);
-			strncpy((char*)&gSDKBuf[len], (char*)syscode, 8);
-			len += 8;
-			gSDKBuf[len] = 0x00;
-			len++;
-			if(paramname)
-			{
-				strncpy((char*)&gSDKBuf[len], (char*)paramname, 32);
-				len += strlen((char*)&gSDKBuf[len]);
-				gSDKBuf[len] = 0x00;
-				len++;
-			}/*
-			if(paramvalue)
-			{
-				strncpy((char*)&gSDKBuf[len], (char*)paramvalue, 32);
-				len += strlen((char*)&gSDKBuf[len]);
-				gSDKBuf[len] = 0x00;
-				len++;
-			}*/
-			gSDKBuf[0] = (len - 2) >> 8;
-			gSDKBuf[1] = len - 2;
-
-			if(SDKSendToPos(gSDKBuf, &len) < 0)
-			{
-				continue;
-			}
-
-			tm = gInterface->GetMsTime();
-			while(gWaitConfirm)
-			{
-				if(tm + MAX_POS_TIMEOUT < gInterface->GetMsTime())
-				{
-					break;
-				}
-			}
-			if(gWaitConfirm)
-			{
-				continue;
-			}
-			else
-			{
-				//指令应答成功
-				break;
-			}
-		}
-		if(confirmcnt >= MAX_RETRY)
-		{
-			//gSessionPos = SESSION_POS_UNKNOWN;
-			continue;
-		}
-		tm = gInterface->GetMsTime();
-		while(1)
-		{
-			if(gRecvLen > 3)
-			{
-				if(GET_PACKET_ATTRIBUTE(gRecvBuf) != 0x04)
-				{
-					//return GET_ERR_CODE(ERR_REPLAY_DATA);
-					break;
-				}
-
-				strncpy((char*)paramvalue, (char*)GET_DATA_INDEX(gRecvBuf), GET_DATA_LEN(gRecvBuf));
-				gSessionPos = SESSION_POS_UNKNOWN;
-				return 0;
-			}
-			if(tm + MAX_POS_TIMEOUT < gInterface->GetMsTime())
-			{
-				break;
-			}
-		}
-	}
-
-	gSessionPos = SESSION_POS_UNKNOWN;
-
-	if(replycnt >= MAX_RETRY)
-	{
-		return -1;
-	}
-	else
-	{
-		return 0;
-	}
-}
 
 int DealLogIn()
 {
@@ -1466,27 +1359,24 @@ void DealSendPack()
             {
                 break;
             }
-            
         case SESSION_POS_SALE_TRADE:
             DealSaleTrade();
             return;
-            
         case SESSION_POS_VOIDSALE_TRADE:
             DealVoidSaleTrade();
             return;
-            
         case SESSION_POS_QUERY:
             DealQueryTrade();
             return;
-            
         case SESSION_POS_LOGOUT:
             DealLogOut();
             return;
-            
         case SESSION_POS_SETTLE:
             DealSettleTrade();
             return;
-            
+        case SESSION_POS_DOWNLOAD_PARAM:
+            DealDownParam();
+            return;
         case SESSION_POS_GET_DEVICE_INFO:
             if(DealGetDeviceInfo() >= 0)
             {
@@ -1496,7 +1386,6 @@ void DealSendPack()
             {
                 break;
             }
-            
         case SESSION_POS_DOWNLOAD_KEY:
             if(DealLoadKey() >= 0)
             {
@@ -1506,7 +1395,6 @@ void DealSendPack()
             {
                 break;
             }
-            
         case SESSION_POS_DOWNLOAD_AID_PARAM:
             if(DealLoadAID() >= 0)
             {
@@ -1519,13 +1407,15 @@ void DealSendPack()
         case SESSION_POS_CANCEL:
             DealCancel();
             break;
-            
         case SESSION_POS_DOWN_PRO:
             DealDownPro();
             break;
-       	case SESSION_POS_DOWNLOAD_PARAM:
-            DealDownParam();
-            return;
+        case SESSION_POS_UPLOAD_PARAM:
+            if(DealUploadParam() >= 0)
+            {
+                return;
+            }
+            break;
         default:
             break;
     }
@@ -2736,3 +2626,118 @@ int DealDownPro()
     return -1;
 }
 
+int MiniPosSDKUploadParam(const char* syscode, const char* paramname)
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
+    strncpy((char*)gInputParam, syscode, 8);
+    strncpy((char*)&gInputParam[9], paramname, 30);
+    gSessionPos = SESSION_POS_UPLOAD_PARAM;
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
+    gDealPackStep = PACK_STEP_SHAKE;
+    
+    return 0;
+}
+
+
+int DealUploadParam()
+{
+    int len;
+    
+    if(gDealPackStep == PACK_STEP_POS_STRUCT)
+    {
+        memcpy(gSDKBuf, "\x00\x04\x03\x35\x38\x1C", 5);
+        len = 5;
+        memset((char*)&gSDKBuf[len], 0x00, 8);
+        strncpy((char*)&gSDKBuf[len], (char*)gInputParam, 8);
+        len += 8;
+        gSDKBuf[len] = 0x00;
+        len++;
+        strncpy((char*)&gSDKBuf[len], (char*)&gInputParam[9], 32);
+        len += strlen((char*)&gSDKBuf[len]);
+        gSDKBuf[len] = 0x00;
+        len++;
+        gSDKBuf[0] = (len - 2) >> 8;
+        gSDKBuf[1] = (len - 2);
+        gDealPackStep = PACK_STEP_RETURN_POS;
+        gTimeOut = MAX_POS_TIMEOUT;
+        SDKSendToPos(gSDKBuf, &len);
+        return 0;
+    }
+    if(gDealPackStep == PACK_STEP_RETURN_POS)
+    {
+        if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
+        {
+            len = GET_DATA_LEN(gRecvBuf);
+            memset(gInputParam, 0x00, sizeof(gInputParam));
+            memcpy(gInputParam, GET_DATA_INDEX(gRecvBuf) + 2, len -2);
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_ACK,
+                         NULL,
+                         (const char*)gInputParam);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
+        {
+            gResponseFun(gUserData,
+                         gSessionPos,
+                         SESSION_ERROR_NAK,
+                         NULL,
+                         NULL);
+            gSessionPos = SESSION_POS_UNKNOWN;
+            return 0;
+        }
+        
+        //gSessionPos = SESSION_POS_UNKNOWN;
+        return -1;
+    }
+    
+    return -1;
+}
+char *MiniPosSDKGetParamName()
+{
+    int i;
+    
+    for(i = 0; i < 500; i++){
+        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+            gInputParam[i] = 0x00;
+            break;
+        }
+    }
+    return (char*)&gInputParam[0];
+}
+
+char *MiniPosSDKGetParamValue()
+{
+    int i;
+    char *p = NULL;
+    
+    for(i = 0; i < 500; i++){
+        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+            break;
+        }
+    }
+    
+    p = (char*)&gInputParam[i + 1];
+    for(i = i + 1; i < 500; i++){
+        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+            gInputParam[i] = 0x00;
+            break;
+        }
+    }
+    return p;
+}
