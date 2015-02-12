@@ -91,7 +91,7 @@
 //    UIBarButtonItem *legtItem = [[UIBarButtonItem alloc] initWithCustomView:leftImgview];
 //    self.navigationItem.leftBarButtonItem = legtItem;
     
-    
+    self.navigationItem.title = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuName];
 }
 
 -(void) viewWillAppear:(BOOL)animated{

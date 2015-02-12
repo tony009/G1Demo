@@ -16,6 +16,10 @@
 {
     UITapGestureRecognizer *disMissTap;
     NSTimer *timer;
+    
+    NSString *_zhongduanhao;
+    NSString *_shanghuhao;
+    NSString *_shanghuming;
 }
 @end
 
@@ -92,6 +96,8 @@
     if ([Reachability reachabilityWithHostName:@"www.apple.com"]!=NotReachable) {
         NSLog(@"网络已经连接");
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        //http://mpos.100pay.com.cn:8080/pms/authentication/check?merchantNo=898100012340003&terminalNo=10700028
+        //http://mpos.100pay.com.cn/app/version/ios/e-swipe.json
         [manager GET:@"http://mpos.100pay.com.cn/app/version/ios/e-swipe.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             //NSDictionary *response = responseObject;
             NSLog(@"JSON: %@", responseObject);
@@ -282,6 +288,33 @@
         return;
     }
     
+    NSString *url = [NSString stringWithFormat:@"http://mpos.100pay.com.cn:8080/pms/authentication/check?merchantNo=%@&terminalNo=%@",_shanghuhao,_zhongduanhao];
+    //url = @"http://mpos.100pay.com.cn:8080/pms/authentication/check?merchantNo=884210054117002&terminalNo=44700907";
+    NSLog(@"url:%@",url);
+    
+    
+    //NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+
+    //NSDictionary *dic = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:url]];
+    
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    
+    NSLog(@"str:%@",dic);
+    
+    _shanghuming = dic[@"result"][@"mname"];
+    
+    if (_shanghuming != nil) {
+        [[NSUserDefaults standardUserDefaults] setObject:_shanghuming forKey:kShangHuName];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    NSLog(@"_shanghuming:%@",_shanghuming);
+    
+    
     
     if (MiniPosSDKDeviceState() == 0) {
         if(MiniPosSDKPosLogin()>=0)
@@ -350,12 +383,23 @@
     if(MiniPosSDKDeviceState()==0)
     {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
+        
+
     }
     else
     {
         self.connectDeviceButton.enabled = YES;
         [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
 
+    }
+    
+    if ([self.statusStr isEqualToString:@"设备已插入"]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            MiniPosSDKUploadParam("00000000", [UIUtils UTF8_To_GB2312:@"商户号"]);
+        });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            MiniPosSDKUploadParam("00000000", [UIUtils UTF8_To_GB2312:@"终端号"]);
+        });
     }
     
     
@@ -367,12 +411,14 @@
     
     if ([self.statusStr isEqualToString:@"获取商户号成功"]) {
         //[self hideHUD];
-        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
+        _shanghuhao = [NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding];
+        //[self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
     }
     
     if ([self.statusStr isEqualToString:@"获取终端号成功"]) {
         //[self hideHUD];
-        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
+        _zhongduanhao = [NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding];
+        //[self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
     }
     
 //    if ([self.statusStr isEqualToString:@"未知"]) {

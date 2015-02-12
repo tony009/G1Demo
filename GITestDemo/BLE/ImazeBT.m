@@ -192,6 +192,7 @@
  */
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    NSLog(@"centralManagerDidUpdateState");
     [self startScan];
 }
 
