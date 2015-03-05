@@ -615,7 +615,7 @@ int SDKTestConnect(void)
     return -1;
 }
 
-int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* paramvalue)
+int MiniPosSDKSetParam(const char* syscode, const char* paramname, const char* paramvalue)
 {
     if(gSessionPos != SESSION_POS_UNKNOWN)
     {
@@ -2626,7 +2626,7 @@ int DealDownPro()
     return -1;
 }
 
-int MiniPosSDKUploadParam(const char* syscode, const char* paramname)
+int MiniPosSDKGetParam(const char* syscode, const char* paramname)
 {
     if(gSessionPos != SESSION_POS_UNKNOWN)
     {

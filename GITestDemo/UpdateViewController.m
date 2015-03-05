@@ -11,7 +11,10 @@
 #import "UIUtils.h"
 
 @interface UpdateViewController ()
-
+{
+    NSArray *pickerArray;
+    BOOL hasSettedParam;
+}
 @end
 
 @implementation UpdateViewController
@@ -19,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    pickerArray = [NSArray arrayWithObjects:@"kernel",@"task",@"boot",@"btparam", nil];
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,18 +33,28 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
 }
-*/
 
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [pickerArray count];
+}
 
-
-
+-(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [pickerArray objectAtIndex:row];
+}
 - (IBAction)check:(id)sender {
     
     // 1
@@ -94,8 +110,8 @@
         [alertView show];
         [alertView addSubview:progressView];
         [alertView addSubview:button];
-
-   
+        
+        
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             alertView.title = @"版本111";
@@ -103,7 +119,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure");
-
+        
     }];
     
     // 5
@@ -112,23 +128,36 @@
 }
 
 - (IBAction)download:(id)sender {
+    //NSURLCacheStorageNotAllowed
+    NSInteger row = [self.pickerView selectedRowInComponent:0];
+    NSString *file = [pickerArray objectAtIndex:row];
     
-    
-    NSString *baseURLString = @"http://120.24.213.123/app/IosMiniposSDK.rar";
+    NSString *baseURLString = [NSString stringWithFormat:@"http://120.24.213.123/app/%@",file];
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:baseURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+    
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     
-    NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/IosMiniposSDK.rar"];
+    NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",file]];
+    
+    NSFileManager *manager  = [NSFileManager defaultManager];
+    
+    //    if ([manager fileExistsAtPath:str]) {
+    //        [manager removeItemAtPath:str error:nil];
+    //        NSLog(@"文件已经删除");
+    //        return;
+    //    }
+    
+    
     
     NSLog(@"%@",str);
     
     operation.inputStream = [NSInputStream inputStreamWithURL:baseURL];
     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:str append:NO];
     CustomAlertView  *cav = [[CustomAlertView alloc]init];
-    
+    [cav updateTitle:[NSString stringWithFormat:@"下载%@",file]];
     [self.view addSubview:cav];
     [cav show];
     
@@ -137,13 +166,8 @@
         //self.progressView set
         float progress = (float)totalBytesRead/totalBytesExpectedToRead;
         
-
-        
-        
-       
-        
         [cav updateProgress:progress];
-
+        
         
         
     }];
@@ -152,85 +176,99 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"success");
+        NSLog(@"文件大小:%llu",[[manager attributesOfItemAtPath:str error:nil] fileSize]);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            cav.hidden = YES;
+            NSLog(@"hidden-------");
+            
+        });
+        
+        [operation.outputStream close];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure");
+        cav.hidden = YES;
     }];
     
     [operation start];
     
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        cav.hidden = YES;
-        //[cav dismiss];
-        NSLog(@"hidden-------");
-        //[cav removeFromSuperview];
-});
     
 }
 
 - (IBAction)update:(id)sender {
     
-//    if (MiniPosSDKDownPro() ==0) {
-//
-//    } ;
+    NSInteger row = [self.pickerView selectedRowInComponent:0];
+    NSString *file = [pickerArray objectAtIndex:row];
+    CustomAlertView  *cav = [[CustomAlertView alloc]init];
+    [cav updateTitle:[NSString stringWithFormat:@"正在传输%@",file]];
     
-//    [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
-//    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//        DownThread();
-//        
-//        [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
-//    });
-
+    MiniPosSDKDownPro();
+    [cav show];
+    [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
+    NSArray *array = [NSArray arrayWithObject:file];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        DownThread((__bridge void*)cav,array);
+        
+        [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
+        
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [cav dismiss];
+        });
+        
+    });
     
-//    CustomAlertView *cav = [[CustomAlertView alloc]init];
-//    
-//    [self.view addSubview:cav];
-//
-//    
-//    [cav show];
+    return;
     
-//    NSString *baseURLString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"success json1");
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"qqq");
-//    }];
-//    
-//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"success json2");
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"qqq");
-//    }];
-//    
-//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"success json3");
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"qqq");
-//    }];
-//    
-//    [manager GET:baseURLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"success json4");
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"qqq");
-//    }];
-    
-    
-    
-
 }
 
 
 
 - (IBAction)downloadParam:(id)sender {
-
     
-    //MiniPosSDKDownParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
-    // MiniPosSDKDownParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
-    MiniPosSDKDownParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340003");
+    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+
+    //MiniPosSDKSetParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
+    // MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340002");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], "10700027");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", "", "");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    //MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], "107000028");
+    //MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
 }
 
 #pragma mark -
@@ -240,20 +278,22 @@
     [super recvMiniPosSDKStatus];
     
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"开始下载"]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
         
-        [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
+//        [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
+//        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            // DownThread();
+//            
+//            [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
+//        });
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-           // DownThread();
-            
-            [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
-        });
-        
-        
+         NSLog(@"------------");
+         hasSettedParam = true;
     }
     
-    NSLog(@"------------");
+    
+   
     
     self.statusStr = @"";
 }

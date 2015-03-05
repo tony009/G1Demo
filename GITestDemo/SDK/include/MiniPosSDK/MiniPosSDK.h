@@ -451,8 +451,17 @@ int DownThread(void *cva,NSArray *array);
 int MiniPosSDKRunThread();
 int MiniPosSDKDownPro();
 int MiniPosSDKCancelCMD();
-int MiniPosSDKDownParam(const char* syscode, const char* paramname, const char* paramvalue);
-int MiniPosSDKUploadParam(const char* syscode, const char* paramname);
+/************************************************************
+修改pos端的参数
+参数1（系统代码）	"000000000"
+参数2（参数名称）
+参数3（参数值）
+*************************************************************/
+int MiniPosSDKSetParam(const char* syscode, const char* paramname, const char* paramvalue);
+/**
+ 从pos端获取参数
+ */
+int MiniPosSDKGetParam(const char* syscode, const char* paramname);
 char *MiniPosSDKGetParamName();
 char *MiniPosSDKGetParamValue();
 #ifdef __cplusplus

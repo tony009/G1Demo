@@ -495,12 +495,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         NSString *baseURLString = [NSString stringWithFormat:@"http://120.24.213.123/app/%@",fileName];
         NSURL *baseURL = [NSURL URLWithString:baseURLString];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
+        NSURLRequest *request = [NSURLRequest requestWithURL:baseURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
         
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
         
         NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
-    NSLog(@"%@",baseURLString);
+        NSLog(@"%@",baseURLString);
         NSLog(@"%@",str);
         
         operation.inputStream = [NSInputStream inputStreamWithURL:baseURL];
