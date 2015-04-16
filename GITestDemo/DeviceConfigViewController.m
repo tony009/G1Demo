@@ -12,6 +12,7 @@
 @interface DeviceConfigViewController ()
 {
     UITapGestureRecognizer *disMissTap;
+    BOOL hasSettedParam;
 }
 @end
 
@@ -62,6 +63,50 @@
     self.view.frame = rect;
     
     [UIView commitAnimations];
+}
+- (IBAction)setDefaultParameter:(id)sender {
+    
+    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+    
+    //MiniPosSDKSetParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
+    // MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340003");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], "10700028");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", "", "");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+    });
+    
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -296,5 +341,23 @@
     MiniPosSDKSetPostCenterParam(self.hostEditor.text.UTF8String, self.portEditor.text.intValue, 0);
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)recvMiniPosSDKStatus
+{
+    [super recvMiniPosSDKStatus];
+    
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+        
+        
+        NSLog(@"------------");
+        hasSettedParam = true;
+    }
+    
+    
+    
+    
+    self.statusStr = @"";
 }
 @end

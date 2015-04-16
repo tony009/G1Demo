@@ -14,6 +14,7 @@
 {
     NSArray *pickerArray;
     BOOL hasSettedParam;
+    CustomAlertView *_cav;
 }
 @end
 
@@ -55,6 +56,12 @@
 -(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return [pickerArray objectAtIndex:row];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (IBAction)check:(id)sender {
     
     // 1
@@ -156,17 +163,17 @@
     
     operation.inputStream = [NSInputStream inputStreamWithURL:baseURL];
     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:str append:NO];
-    CustomAlertView  *cav = [[CustomAlertView alloc]init];
-    [cav updateTitle:[NSString stringWithFormat:@"下载%@",file]];
-    [self.view addSubview:cav];
-    [cav show];
+    _cav = [[CustomAlertView alloc]init];
+    [_cav updateTitle:[NSString stringWithFormat:@"下载%@",file]];
+    
+    [_cav show];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
         NSLog(@"is download：%f", (float)totalBytesRead/totalBytesExpectedToRead);
         //self.progressView set
         float progress = (float)totalBytesRead/totalBytesExpectedToRead;
         
-        [cav updateProgress:progress];
+        [_cav updateProgress:progress];
         
         
         
@@ -177,16 +184,22 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"success");
         NSLog(@"文件大小:%llu",[[manager attributesOfItemAtPath:str error:nil] fileSize]);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            cav.hidden = YES;
-            NSLog(@"hidden-------");
+        [operation.outputStream close];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [_cav dismiss];
+//            NSLog(@"hidden-------");
+           
+            [self update:nil];
+            [_cav updateProgress:0];
             
         });
         
-        [operation.outputStream close];
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure");
-        cav.hidden = YES;
+       [_cav dismiss];
     }];
     
     [operation start];
@@ -197,23 +210,24 @@
 
 - (IBAction)update:(id)sender {
     
+
     NSInteger row = [self.pickerView selectedRowInComponent:0];
     NSString *file = [pickerArray objectAtIndex:row];
-    CustomAlertView  *cav = [[CustomAlertView alloc]init];
-    [cav updateTitle:[NSString stringWithFormat:@"正在传输%@",file]];
+    
+    [_cav updateTitle:[NSString stringWithFormat:@"正在传输%@",file]];
     
     MiniPosSDKDownPro();
-    [cav show];
+    [_cav show];
     [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
     NSArray *array = [NSArray arrayWithObject:file];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        DownThread((__bridge void*)cav,array);
+        DownThread((__bridge void*)_cav,array);
         
         [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
         
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [cav dismiss];
+            [_cav dismiss];
         });
         
     });
@@ -224,53 +238,6 @@
 
 
 
-- (IBAction)downloadParam:(id)sender {
-    
-    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
-
-    //MiniPosSDKSetParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
-    // MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
-    
-    dispatch_async(serial_queue, ^{
-        hasSettedParam = false;
-        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340002");
-        while (hasSettedParam ==false) {
-            
-        }
-        
-    });
-    
-    dispatch_async(serial_queue, ^{
-        hasSettedParam = false;
-        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], "10700027");
-        while (hasSettedParam ==false) {
-            
-        }
-        
-    });
-    
-    dispatch_async(serial_queue, ^{
-        hasSettedParam = false;
-        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
-        while (hasSettedParam ==false) {
-            
-        }
-        
-    });
-    
-    dispatch_async(serial_queue, ^{
-        hasSettedParam = false;
-        MiniPosSDKSetParam("000000000", "", "");
-        while (hasSettedParam ==false) {
-            
-        }
-        
-    });
-    
-    //MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], "107000028");
-    //MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
-}
-
 #pragma mark -
 #pragma mark - /*******/
 - (void)recvMiniPosSDKStatus
@@ -279,14 +246,6 @@
     
     
     if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
-        
-//        [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
-//        
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            // DownThread();
-//            
-//            [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
-//        });
         
          NSLog(@"------------");
          hasSettedParam = true;

@@ -9,11 +9,9 @@
 #import "BaseViewController.h"
 #import "CustomAlertView.h"
 @interface UpdateViewController : BaseViewController <UIPickerViewDelegate,UIPickerViewDataSource>
+
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (strong, nonatomic) IBOutlet UITextField *shanghuhao;
-@property (strong, nonatomic) IBOutlet UITextField *zhongduanhao;
-@property (strong, nonatomic) IBOutlet UITextField *zhumiyao1;
 
 - (IBAction)check:(id)sender;
 

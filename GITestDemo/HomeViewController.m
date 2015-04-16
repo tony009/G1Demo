@@ -32,10 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self _initSubViews];
-    
+    _isNeedAutoConnect = YES;
     isFirstGetVersionInfo = true;
-    
 
+
+    
 }
 
 - (void)back
@@ -143,7 +144,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void) scrollViewDidScroll: (UIScrollView *) aScrollView
 {
-    
+
     CGPoint offset = aScrollView.contentOffset;
     self.pageControl.currentPage = offset.x / 320.0f;
     //NSLog(@"scrollViewDidScroll:%d",self.pageControl.currentPage);
@@ -430,7 +431,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         
         cav = [[CustomAlertView alloc]init];
         
-        [self.view addSubview:cav];
+        //[self.view addSubview:cav];
         [cav show];
         
         [self download:updateFiles[0] CompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

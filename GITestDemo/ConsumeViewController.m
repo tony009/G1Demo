@@ -10,10 +10,13 @@
 #import "SwipingCardViewController.h"
 #import "UIUtils.h"
 #import "KCalculator.h"
+#import "SystemPrivacySDK.h"
 
 @interface ConsumeViewController ()<kCalculatorDelegate>
 {
     float _allMoneyCount;
+    SystemPrivacySDK *_sysSDK;
+    BOOL hasSettedParam;
 }
 @end
 
@@ -102,10 +105,71 @@
         MiniPosSDKSaleTradeCMD(buf, NULL);
         
         
+        
+     
         [self performSegueWithIdentifier:@"custPushToSwip" sender:self];
+
+        
     } else {
+        
         [self showTipView:@"请确定交易金额！"];
+
+        
     }
+    
+    
+//    NSBundle *bundle = [NSBundle mainBundle];
+//    NSDictionary *info = [bundle infoDictionary];
+//    NSString *prodName = [info objectForKey:@"CFBundleDisplayName"];
+//    _sysSDK = [[SystemPrivacySDK alloc]init];
+//    [_sysSDK getLocationAuthorityWithAppName:prodName];
+//    NSString *transTerminalId = [_sysSDK getSystemPrivacy];
+//    
+//    NSLog(@"transTerminalId:%@",transTerminalId);
+//    
+//    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+//    
+//    dispatch_async(serial_queue, ^{
+//        hasSettedParam = false;
+//        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"domain63"], [transTerminalId cStringUsingEncoding:NSASCIIStringEncoding]);
+//        while (hasSettedParam ==false) {
+//            
+//        }
+//        
+//    });
+//    
+//    dispatch_async(serial_queue, ^{
+//        
+//        if (_allMoneyCount > 0) {
+//            
+//            int amount = _allMoneyCount * 100;
+//            char buf[20];
+//            
+//            sprintf(buf,"%012d",amount);
+//            
+//            NSLog(@"amount: %s",buf);
+//            
+//            
+//            _type = 1;
+//            MiniPosSDKSaleTradeCMD(buf, NULL);
+//            
+//            
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self performSegueWithIdentifier:@"custPushToSwip" sender:self];
+//            });
+//            
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self showTipView:@"请确定交易金额！"];
+//            });
+//            
+//        }
+//        
+//    });
+
+    
+
     
 }
 
@@ -125,6 +189,25 @@
     } else {
         self.numberText.text = [NSString stringWithFormat:@"%.2f元",[kCalculator.sumString floatValue]];
     }
+    
+}
+
+- (void)recvMiniPosSDKStatus
+{
+    [super recvMiniPosSDKStatus];
+    
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+        
+        
+        NSLog(@"------------");
+        hasSettedParam = true;
+    }
+    
+    
+    
+    
+    self.statusStr = @"";
 }
 
 @end

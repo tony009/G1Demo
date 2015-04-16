@@ -23,7 +23,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _initSubViews];
+        [self initSubViews];
         
     }
     return self;
@@ -33,7 +33,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self _initSubViews];
+    [self initSubViews];
 }
 
 
@@ -52,7 +52,7 @@
 }
 
 
-- (void)_initSubViews
+- (void)initSubViews
 {
     
     _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(23, 10, 60, 60)];

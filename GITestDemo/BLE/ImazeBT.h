@@ -58,7 +58,7 @@
 
 @property (nonatomic) BOOL autoConnect;
 
-@property (nonatomic) NSTimeInterval lastData;
+@property (nonatomic) NSTimeInterval lastData; 
 @property (strong, nonatomic) id delegate;
 @property (nonatomic) SEL selector;
 - (id)initWithDelegate:(id)_delegate
