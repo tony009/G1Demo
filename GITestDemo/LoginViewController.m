@@ -99,6 +99,7 @@
 
 - (void)keyboardWillshow:(NSNotification *)notification
 {
+    NSLog(@"keyboardWillshow");
     //获取键盘的高度
     //    NSValue *sizeValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     //    CGRect frame = [sizeValue CGRectValue];
@@ -309,6 +310,8 @@
     if(MiniPosSDKDeviceState()==0)
     {
         [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
+        NSLog(@"recvMiniPosSDKStatus:设备已连接");
+        
     }
     else
     {

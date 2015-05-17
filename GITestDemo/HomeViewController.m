@@ -42,6 +42,7 @@
 - (void)back
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 

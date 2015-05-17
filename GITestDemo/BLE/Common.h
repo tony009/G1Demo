@@ -39,8 +39,7 @@
 #define kCaoZhuoYuanEditor @"caoZhuoYuanEditor"
 #define kHostEditor @"hostEditor"
 #define kPortEditor @"portEditor"
-
-
+#define kSignUpPhoneNo @"SignUpPhoneNo" //注册时验证通过的手机号码
 
 #endif
 

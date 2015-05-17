@@ -76,6 +76,7 @@
 		96D6F82F1A2C64E900CCD0B5 /* 浅绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8111A2C64E900CCD0B5 /* 浅绿色色值.jpg */; };
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
+		9C039AA91ADFA9800010FB72 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C039AA81ADFA9800010FB72 /* SignupViewController.m */; };
 		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
 		9C486CC81A7D00D300134959 /* 文件刷卡动画.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9C486CC71A7D00D300134959 /* 文件刷卡动画.gif */; };
 		9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6671921A835997004BD24B /* ProtocolViewController.m */; };
@@ -115,6 +116,20 @@
 		9C7CA8EC1A53A4AF0067377C /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8D91A53A4AF0067377C /* UIProgressView+AFNetworking.m */; };
 		9C7CA8ED1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DB1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m */; };
 		9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */; };
+		9C7E3BD71B01A6D100F40A74 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */; };
+		9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */; };
+		9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */; };
+		9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA031AE642DD00A5124E /* MHTextField.m */; };
+		9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA061AE6516A00A5124E /* DemoTextField.m */; };
+		9C84DA091AE7323200A5124E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA081AE7323200A5124E /* Localizable.strings */; };
+		9C84DA111AE79B1400A5124E /* QRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA0C1AE79B1400A5124E /* QRadioButton.m */; };
+		9C84DA121AE79B1400A5124E /* radio_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA0D1AE79B1400A5124E /* radio_checked.png */; };
+		9C84DA131AE79B1400A5124E /* radio_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA0E1AE79B1400A5124E /* radio_checked@2x.png */; };
+		9C84DA141AE79B1400A5124E /* radio_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA0F1AE79B1400A5124E /* radio_unchecked.png */; };
+		9C84DA151AE79B1400A5124E /* radio_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA101AE79B1400A5124E /* radio_unchecked@2x.png */; };
+		9C87445B1B043489002CC526 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C87445A1B043489002CC526 /* RootViewController.m */; };
+		9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */; };
+		9C8744611B04422E002CC526 /* BankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8744601B04422E002CC526 /* BankInfoViewController.m */; };
 		9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7721AD3B138001639C5 /* CoreLocation.framework */; };
 		9C96C7751AD3B148001639C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */; };
 		9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7761AD3B150001639C5 /* Security.framework */; };
@@ -126,6 +141,8 @@
 		9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662481A4177FE00B13444 /* AsyncSocket.m */; };
 		9CE6624B1A4413D800B13444 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6624A1A4413D800B13444 /* 152.png */; };
 		9CEDDD981A4801F2000C23A5 /* 未标题-6副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDD971A4801F2000C23A5 /* 未标题-6副本.png */; };
+		9CFCEBE01AE10341007D27CF /* WDPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFCEBDF1AE10341007D27CF /* WDPickView.m */; };
+		9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFCEBE91AE10EBC007D27CF /* Address.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +258,8 @@
 		96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "绿色色值.jpg"; sourceTree = "<group>"; };
 		96D6F8311A2C687200CCD0B5 /* ConnectDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectDeviceViewController.h; sourceTree = "<group>"; };
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
+		9C039AA71ADFA9800010FB72 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		9C039AA81ADFA9800010FB72 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		9C486CC71A7D00D300134959 /* 文件刷卡动画.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "文件刷卡动画.gif"; sourceTree = "<group>"; };
@@ -304,6 +323,29 @@
 		9C7CA8DB1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		9C7CA8DC1A53A4AF0067377C /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		9C7CA8DD1A53A4AF0067377C /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		9C7E3BD51B01A6D100F40A74 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
+		9C81D92E1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetPhoneVerificationCodeViewController.h; sourceTree = "<group>"; };
+		9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPhoneVerificationCodeViewController.m; sourceTree = "<group>"; };
+		9C81D9311B003D2000CD9DD7 /* VerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeViewController.h; sourceTree = "<group>"; };
+		9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeViewController.m; sourceTree = "<group>"; };
+		9C84DA021AE642DD00A5124E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
+		9C84DA031AE642DD00A5124E /* MHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTextField.m; sourceTree = "<group>"; };
+		9C84DA051AE6516A00A5124E /* DemoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextField.h; sourceTree = "<group>"; };
+		9C84DA061AE6516A00A5124E /* DemoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTextField.m; sourceTree = "<group>"; };
+		9C84DA081AE7323200A5124E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		9C84DA0B1AE79B1400A5124E /* QRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRadioButton.h; sourceTree = "<group>"; };
+		9C84DA0C1AE79B1400A5124E /* QRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRadioButton.m; sourceTree = "<group>"; };
+		9C84DA0D1AE79B1400A5124E /* radio_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_checked.png; sourceTree = "<group>"; };
+		9C84DA0E1AE79B1400A5124E /* radio_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio_checked@2x.png"; sourceTree = "<group>"; };
+		9C84DA0F1AE79B1400A5124E /* radio_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_unchecked.png; sourceTree = "<group>"; };
+		9C84DA101AE79B1400A5124E /* radio_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio_unchecked@2x.png"; sourceTree = "<group>"; };
+		9C8744591B043489002CC526 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		9C87445A1B043489002CC526 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9C87445C1B043FF8002CC526 /* MerchantInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantInfoViewController.h; sourceTree = "<group>"; };
+		9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInfoViewController.m; sourceTree = "<group>"; };
+		9C87445F1B04422E002CC526 /* BankInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankInfoViewController.h; sourceTree = "<group>"; };
+		9C8744601B04422E002CC526 /* BankInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankInfoViewController.m; sourceTree = "<group>"; };
 		9C96C7721AD3B138001639C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9C96C7761AD3B150001639C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -319,6 +361,9 @@
 		9CE662481A4177FE00B13444 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		9CE6624A1A4413D800B13444 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
 		9CEDDD971A4801F2000C23A5 /* 未标题-6副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未标题-6副本.png"; sourceTree = "<group>"; };
+		9CFCEBDE1AE10341007D27CF /* WDPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDPickView.h; path = WDPickView/WDPickView.h; sourceTree = "<group>"; };
+		9CFCEBDF1AE10341007D27CF /* WDPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDPickView.m; path = WDPickView/WDPickView.m; sourceTree = "<group>"; };
+		9CFCEBE91AE10EBC007D27CF /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +406,7 @@
 		963716B51A2D5458002D34F3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9C81D92D1AFC8E9400CD9DD7 /* SignUp */,
 				96C560971A24685A00A25290 /* MainNavViewController.h */,
 				96C560981A24685A00A25290 /* MainNavViewController.m */,
 				96C560911A2461EA00A25290 /* LoginViewController.h */,
@@ -385,6 +431,8 @@
 				9C7CA8B61A53A3870067377C /* UpdateViewController.m */,
 				9C6671911A835997004BD24B /* ProtocolViewController.h */,
 				9C6671921A835997004BD24B /* ProtocolViewController.m */,
+				9C039AA71ADFA9800010FB72 /* SignupViewController.h */,
+				9C039AA81ADFA9800010FB72 /* SignupViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -456,6 +504,8 @@
 		96C5602D1A243A7800A25290 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9C84DA081AE7323200A5124E /* Localizable.strings */,
+				9CFCEBE91AE10EBC007D27CF /* Address.plist */,
 				96C5602E1A243A7800A25290 /* Info.plist */,
 				96C5602F1A243A7800A25290 /* main.m */,
 				96C5608F1A2460BE00A25290 /* GITestDemo-Prefix.pch */,
@@ -563,6 +613,11 @@
 		96C560791A24606600A25290 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9C84DA021AE642DD00A5124E /* MHTextField.h */,
+				9C84DA031AE642DD00A5124E /* MHTextField.m */,
+				9C84DA051AE6516A00A5124E /* DemoTextField.h */,
+				9C84DA061AE6516A00A5124E /* DemoTextField.m */,
+				9CFCEBDC1AE0F790007D27CF /* WDPickView */,
 				9C9D4A811A84A780001ADA4B /* SIAlertView */,
 				9C7CA8B81A53A4AF0067377C /* AFNetworking */,
 				9C7CA8CC1A53A4AF0067377C /* UIKit+AFNetworking */,
@@ -574,6 +629,7 @@
 				96C5607A1A24606600A25290 /* LetterpressPopup */,
 				96C5607D1A24606600A25290 /* MBProgressHUD.h */,
 				96C5607E1A24606600A25290 /* MBProgressHUD.m */,
+				9C84DA0A1AE79B1400A5124E /* QRadioButton */,
 				9C6D9DB61A820BAA002A7845 /* QCheckBox */,
 				96C5607F1A24606600A25290 /* UIUtils.h */,
 				96C560801A24606600A25290 /* UIUtils.m */,
@@ -741,6 +797,38 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		9C81D92D1AFC8E9400CD9DD7 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				9C8744591B043489002CC526 /* RootViewController.h */,
+				9C87445A1B043489002CC526 /* RootViewController.m */,
+				9C81D92E1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.h */,
+				9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */,
+				9C81D9311B003D2000CD9DD7 /* VerifyCodeViewController.h */,
+				9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */,
+				9C7E3BD51B01A6D100F40A74 /* PersonInfoViewController.h */,
+				9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */,
+				9C87445C1B043FF8002CC526 /* MerchantInfoViewController.h */,
+				9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */,
+				9C87445F1B04422E002CC526 /* BankInfoViewController.h */,
+				9C8744601B04422E002CC526 /* BankInfoViewController.m */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		9C84DA0A1AE79B1400A5124E /* QRadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				9C84DA0B1AE79B1400A5124E /* QRadioButton.h */,
+				9C84DA0C1AE79B1400A5124E /* QRadioButton.m */,
+				9C84DA0D1AE79B1400A5124E /* radio_checked.png */,
+				9C84DA0E1AE79B1400A5124E /* radio_checked@2x.png */,
+				9C84DA0F1AE79B1400A5124E /* radio_unchecked.png */,
+				9C84DA101AE79B1400A5124E /* radio_unchecked@2x.png */,
+			);
+			path = QRadioButton;
+			sourceTree = "<group>";
+		};
 		9C9D4A811A84A780001ADA4B /* SIAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +837,15 @@
 				9C9D4A841A84A780001ADA4B /* SIAlertView.m */,
 			);
 			path = SIAlertView;
+			sourceTree = "<group>";
+		};
+		9CFCEBDC1AE0F790007D27CF /* WDPickView */ = {
+			isa = PBXGroup;
+			children = (
+				9CFCEBDE1AE10341007D27CF /* WDPickView.h */,
+				9CFCEBDF1AE10341007D27CF /* WDPickView.m */,
+			);
+			name = WDPickView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -833,6 +930,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C84DA151AE79B1400A5124E /* radio_unchecked@2x.png in Resources */,
 				9C6D9DB41A820B90002A7845 /* checkbox1_unchecked@2x.png in Resources */,
 				96D6F82D1A2C64E900CCD0B5 /* incon_me2.png in Resources */,
 				9637170F1A2DC6C6002D34F3 /* Default@2x.png in Resources */,
@@ -842,12 +940,15 @@
 				9C6D9DB11A820B90002A7845 /* checkbox1_checked.png in Resources */,
 				96D6F82E1A2C64E900CCD0B5 /* 收款宝-4.png in Resources */,
 				96D6F8211A2C64E900CCD0B5 /* btn_next_background.png in Resources */,
+				9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */,
 				96D6F81F1A2C64E900CCD0B5 /* btn_next.png in Resources */,
 				9C6D9DB31A820B90002A7845 /* checkbox1_unchecked.png in Resources */,
 				96D6F8131A2C64E900CCD0B5 /* btn_audio.png in Resources */,
 				96D6F82B1A2C64E900CCD0B5 /* icon_pos_backgound.png in Resources */,
 				96D6F8281A2C64E900CCD0B5 /* icon_date.png in Resources */,
+				9C84DA091AE7323200A5124E /* Localizable.strings in Resources */,
 				9C6D9DBB1A820DC7002A7845 /* check_icon.png in Resources */,
+				9C84DA121AE79B1400A5124E /* radio_checked.png in Resources */,
 				9C6D9D6D1A7F7C9B002A7845 /* icon_list_background3.jpg in Resources */,
 				9CE6624B1A4413D800B13444 /* 152.png in Resources */,
 				96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */,
@@ -872,8 +973,10 @@
 				96D6F8251A2C64E900CCD0B5 /* btn_sign_in.png in Resources */,
 				9C6D9DA01A82015C002A7845 /* home_banner_2.png in Resources */,
 				96D6F8181A2C64E900CCD0B5 /* btn_bluetooth.png in Resources */,
+				9C84DA141AE79B1400A5124E /* radio_unchecked.png in Resources */,
 				96D6F8271A2C64E900CCD0B5 /* icon1.png in Resources */,
 				9C6D9DBD1A820DC7002A7845 /* uncheck_icon.png in Resources */,
+				9C84DA131AE79B1400A5124E /* radio_checked@2x.png in Resources */,
 				96D6F82A1A2C64E900CCD0B5 /* icon_password1.png in Resources */,
 				96D6F8241A2C64E900CCD0B5 /* btn_settlement.png in Resources */,
 				9C6D9D731A7F99AD002A7845 /* icon_list_background6.jpg in Resources */,
@@ -909,16 +1012,20 @@
 			files = (
 				9C7CA8ED1A53A4AF0067377C /* UIRefreshControl+AFNetworking.m in Sources */,
 				96C5608E1A24606C00A25290 /* BaseViewController.m in Sources */,
+				9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */,
 				96BC862C1A35ACE90012E746 /* PPSSignatureView.m in Sources */,
 				96C560931A2461EA00A25290 /* LoginViewController.m in Sources */,
 				9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */,
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				9C7CA8EC1A53A4AF0067377C /* UIProgressView+AFNetworking.m in Sources */,
 				9C7CA8E71A53A4AF0067377C /* AFNetworkActivityIndicatorManager.m in Sources */,
+				9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */,
 				9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */,
+				9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */,
 				9C7CA8E31A53A4AF0067377C /* AFURLConnectionOperation.m in Sources */,
 				96C5608D1A24606C00A25290 /* BaseNavViewController.m in Sources */,
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,
+				9C87445B1B043489002CC526 /* RootViewController.m in Sources */,
 				9CE662461A416F3B00B13444 /* ServerManager.m in Sources */,
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
@@ -931,11 +1038,14 @@
 				96C5609C1A246EB300A25290 /* HomeViewController.m in Sources */,
 				96C560861A24606600A25290 /* UIUtils.m in Sources */,
 				96C560331A243A7800A25290 /* AppDelegate.m in Sources */,
+				9C8744611B04422E002CC526 /* BankInfoViewController.m in Sources */,
 				963716BD1A2D878A002D34F3 /* CheckResultViewController.m in Sources */,
 				9C6D9DAC1A820A8D002A7845 /* QCheckBox.m in Sources */,
 				9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */,
+				9C84DA111AE79B1400A5124E /* QRadioButton.m in Sources */,
 				96C560991A24685A00A25290 /* MainNavViewController.m in Sources */,
 				96C560841A24606600A25290 /* LPPopup.m in Sources */,
+				9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */,
 				963716C21A2D9E7F002D34F3 /* BleManager.m in Sources */,
 				9C7CA8E21A53A4AF0067377C /* AFSecurityPolicy.m in Sources */,
 				9C7CA8E61A53A4AF0067377C /* AFURLSessionManager.m in Sources */,
@@ -945,14 +1055,18 @@
 				96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */,
 				9C7CA8EB1A53A4AF0067377C /* UIImageView+AFNetworking.m in Sources */,
 				9C7CA8E91A53A4AF0067377C /* UIAlertView+AFNetworking.m in Sources */,
+				9C7E3BD71B01A6D100F40A74 /* PersonInfoViewController.m in Sources */,
 				9C7CA8E51A53A4AF0067377C /* AFURLResponseSerialization.m in Sources */,
 				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
 				9668E2791A25C8480014FDD8 /* ConsumeViewController.m in Sources */,
+				9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */,
 				9C7CA8E01A53A4AF0067377C /* AFHTTPSessionManager.m in Sources */,
+				9C039AA91ADFA9800010FB72 /* SignupViewController.m in Sources */,
 				9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */,
 				9C7CA8E11A53A4AF0067377C /* AFNetworkReachabilityManager.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
 				9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */,
+				9CFCEBE01AE10341007D27CF /* WDPickView.m in Sources */,
 				9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */,
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,
 				9C7CA8E81A53A4AF0067377C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
