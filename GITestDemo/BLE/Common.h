@@ -40,6 +40,14 @@
 #define kHostEditor @"hostEditor"
 #define kPortEditor @"portEditor"
 #define kSignUpPhoneNo @"SignUpPhoneNo" //注册时验证通过的手机号码
+#define kLoginPhoneNo @"LoginPhoneNo" //登录成功的手机号码
+
+#define kMposG1SN @"SnNo"  //mposSN号
+#define kMposG1TerminalNo @"TerminalNo" //mpos终端号
+#define kMposG1MerchantNo @"MerchantNo" //mpos商户号
+
+#define kServerIP @"122.112.12.20" //注册登录的ip
+#define kServerPort @"8081" //注册登录的端口
 
 #endif
 

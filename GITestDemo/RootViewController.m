@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-
+#import "LPPopup.h"
 @interface RootViewController ()
 
 @end
@@ -65,10 +65,29 @@
     
 }
 
+- (void)showTipView:(NSString *)tip
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        LPPopup *popup = [LPPopup popupWithText:tip];
+        popup.popupColor = [UIColor blackColor];
+        popup.textColor = [UIColor whiteColor];
+        [popup showInView:self.view
+            centerAtPoint:self.view.center
+                 duration:kLPPopupDefaultWaitDuration
+               completion:nil];
+    });
+
+
+}
 
 - (void)hideHUD{
-    
-    [self.hud hide:YES];
+    if (_hud) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_hud hide:YES];
+        });
+    }
+  
     
 }
 

@@ -10,35 +10,39 @@
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "VerifyCodeViewController.h"
-
+#import "LPPopup.h"
 @implementation GetPhoneVerificationCodeViewController{
-    MBProgressHUD *_hub;
+    
 }
 
 
 - (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 50, 50);
+    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+    backButton.backgroundColor = [UIColor clearColor];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+
     [self.phoneNo becomeFirstResponder];
 }
 
-- (void)showHUDWithText:(NSString *)str{
-    
-    _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _hub.labelText = str ;
-    
+
+- (void)back
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)hideHUD{
-    if (_hub) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_hub hide:YES];
-        });
-    }
-}
-
+//获取手机验证码
 - (IBAction)getPhoneVerificationCode:(id)sender {
     
-    
+    [self.view endEditing:YES];
+   
     NSString *phoneNo = self.phoneNo.text;
     
     if (![self checkPhoneNo:phoneNo]) {
@@ -54,35 +58,77 @@
     }
     
     
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"http://122.112.12.25:8081/MposApp/queryAuthCode.action?phone=%@",phoneNo]];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
+    [self showHUD:@"正在获取"];
     
     
-    [self showHUDWithText:@"正在获取"];
-    
-    [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/queryAuthCode.action?phone=%@",kServerIP,kServerPort,phoneNo];
+    NSLog(@"url:%@",url);
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        NSLog(@"json:%@",responseObject);
         
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        int code = [responseObject[@"resultMap"][@"code"] intValue];
         
-        
-        int code = [json[@"resultMap"][@"code"] intValue];
-        
-   
         [self hideHUD];
-        
-        //返回                                 就跳转到下个界面
+    
+        //返回就跳转到下个界面
         if (code == 0) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self performSegueWithIdentifier:@"GetPinToVerify" sender:self];
             });
             
+        }else{
+            
+            [self showTipView:responseObject[@"resultMap"][@"msg"]];
+            
         }
         
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self hideHUD];
+        NSLog(@"failure");
+        [self showTipView:@"获取失败"];
 
-    }] resume];
+    }];
+    
+//    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"http://122.112.12.25:8081/MposApp/queryAuthCode.action?phone=%@",phoneNo]];
+//    NSLog(@"url:%@",url);
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        
+//        
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//        
+//        
+//        NSLog(@"json:%@",json);
+//        
+//        int code = [json[@"resultMap"][@"code"] intValue];
+//        
+//   
+//        [self hideHUD];
+//        
+//   
+//        
+//        
+//        
+//        //返回就跳转到下个界面
+//        if (code == 0) {
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self performSegueWithIdentifier:@"GetPinToVerify" sender:self];
+//            });
+//            
+//        }else{
+//            
+//            [self showTipView:json[@"resultMap"][@"msg"]];
+//     
+//        }
+//        
+//
+//    }] resume];
     
 
 }

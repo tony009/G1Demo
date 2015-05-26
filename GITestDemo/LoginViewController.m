@@ -10,6 +10,8 @@
 #import "UIUtils.h"
 #import "QCheckBox.h"
 #import "SIAlertView.h"
+#import "AFNetworking.h"
+#include "des.h"
 @interface LoginViewController ()<UIAlertViewDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -161,15 +163,15 @@
     imageView2.image = [UIImage imageNamed:@"icon_password1.png"];
     
     
-    self.controlNoText.leftView = imageView1;
-    self.pwdText.leftView = imageView2;
-    self.controlNoText.leftViewMode = UITextFieldViewModeAlways;
-    self.pwdText.leftViewMode = UITextFieldViewModeAlways;
+    self.phoneNo.leftView = imageView1;
+    self.password.leftView = imageView2;
+    self.phoneNo.leftViewMode = UITextFieldViewModeAlways;
+    self.password.leftViewMode = UITextFieldViewModeAlways;
     
-    self.controlNoText.layer.cornerRadius = 3.0;
-    self.pwdText.layer.cornerRadius = 3.0;
-    self.controlNoText.layer.masksToBounds = YES;
-    self.pwdText.layer.masksToBounds = YES;
+    self.phoneNo.layer.cornerRadius = 3.0;
+    self.password.layer.cornerRadius = 3.0;
+    self.phoneNo.layer.masksToBounds = YES;
+    self.password.layer.masksToBounds = YES;
 
   
     _checkBox = [[QCheckBox alloc]initWithDelegate:nil];
@@ -191,6 +193,9 @@
     
 }
 
+
+
+
 - (IBAction)configAction:(id)sender {
     
     
@@ -198,27 +203,77 @@
    //MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], "3E61C7071A836483628567ADB6F8F2EC");
    //return;
     
-    if (![self.controlNoText.text isEqualToString:@"99"] || ![self.pwdText.text isEqualToString:@"937927"]) {
-        
-        [self showTipView:@"操作员号或密码错误！请检查后重试。"];
-        
-        return;
-    }
+//    if (![self.phoneNo.text isEqualToString:@"99"] || ![self.password.text isEqualToString:@"937927"]) {
+//        
+//        [self showTipView:@"操作员号或密码错误！请检查后重试。"];
+//        
+//        return;
+//    }
     
     [self performSegueWithIdentifier:@"loginModalToConfig" sender:self];
 }
 
+
 - (IBAction)siginAction:(UIButton *)sender {
     
-    //[self performSegueWithIdentifier:@"loginModalToHome" sender:self];
-    
-    //return;
-//    MiniPosSDKGetParam("00000000", [UIUtils UTF8_To_GB2312:@"商户号"]);
+//    char paramname[100];
 //    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        MiniPosSDKGetParam("00000000", [UIUtils UTF8_To_GB2312:@"终端号"]);
-//    });
+//    memset(paramname, 0x00, sizeof(paramname));
+//    strcat(paramname, "TerminalNo");
+//    strcat(paramname, "\x1C");
+//    strcat(paramname, "MerchantNo");
+//    strcat(paramname, "\x1C");
+//    strcat(paramname, "SnNo");
+//    
+//    MiniPosSDKGetParams("88888888", paramname);
+//    
+//    
+//    
 //    return;
+
+    if(![UIUtils isCorrectPhoneNo:self.phoneNo.text]){
+        [self showTipView:@"请输入正确的手机号"];
+        return;
+    }
+    
+    if ([self.password.text isEqualToString:@""]) {
+        [self showTipView:@"密码不能为空"];
+        return;
+    }
+    
+    //[self showTipView:@"正在登陆"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+     NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/login.action?phone=%@&passwd=%@",kServerIP,kServerPort,self.phoneNo.text,self.password.text];
+    NSLog(@"url:%@",url);
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"responseObject:%@",responseObject[@"resultMap"][@"msg"]);
+        
+        [self hideHUD];
+        
+        int code = [responseObject[@"resultMap"][@"code"]intValue];
+        
+        if(code == 0){
+            
+            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+            
+        }else{
+            [self showTipView:responseObject[@"resultMap"][@"msg"] ];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHUD];
+        NSLog(@"failure");
+        [self showTipView:@"登录失败"];
+    }];
+    
+    
+    return;
+    
     if (!self.checkBox.checked) {
         
         [self showTipView:@"请先勾选服务协议"];
@@ -226,7 +281,7 @@
     }
     
     
-    if (![self.controlNoText.text isEqualToString:@"01"] || ![self.pwdText.text isEqualToString:@"0000"]) {
+    if (![self.phoneNo.text isEqualToString:@"01"] || ![self.password.text isEqualToString:@"0000"]) {
         
         [self showTipView:@"操作员号或密码错误！请检查后重试。"];
         
@@ -329,20 +384,67 @@
     
     if ([self.statusStr isEqualToString:@"获取商户号成功"]) {
         //[self hideHUD];
-        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
+        //[self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
     }
     
     if ([self.statusStr isEqualToString:@"获取终端号成功"]) {
         //[self hideHUD];
-        [self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
+        //[self showTipView:[NSString stringWithCString:MiniPosSDKGetParamValue() encoding:NSASCIIStringEncoding]];
     }
     
 //    if ([self.statusStr isEqualToString:@"未知"]) {
 //        [self hideHUD];
 //        [self showTipView:self.statusStr];
 //    }
+    if ([self.statusStr isEqualToString:@"获取参数成功"]) {
+        //NSLog(@"SnNo:%s,TerminalNo:%s,MerchantNo:%s",MiniPosSDKGetParam("SnNo"), MiniPosSDKGetParam("TerminalNo"), MiniPosSDKGetParam("MerchantNo"));
+        
+        NSString *SnNo = [NSString stringWithCString:MiniPosSDKGetParam("SnNo") encoding:NSUTF8StringEncoding];
+        NSString *TerminalNo = [NSString stringWithCString:MiniPosSDKGetParam("TerminalNo") encoding:NSUTF8StringEncoding];
+        NSString *MerchantNo = [NSString stringWithCString:MiniPosSDKGetParam("MerchantNo") encoding:NSUTF8StringEncoding];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:SnNo forKey:kMposG1SN];
+        [[NSUserDefaults standardUserDefaults] setObject:TerminalNo forKey:kMposG1TerminalNo];
+        [[NSUserDefaults standardUserDefaults] setObject:MerchantNo forKey:kMposG1MerchantNo];
+        
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        NSLog(@"SnNo:%@,TerminalNo:%@,MerchantNo:%@",[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1MerchantNo]);
+
+    }
+    
+    if([self.statusStr isEqualToString:@"设备已插入"]){
+
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            
+            [self getPosParams];
+            
+        });
+        
+        
+    }
+    
+    
     
     self.statusStr = @"";
+}
+
+-(void)getPosParams{
+    
+    NSLog(@"didConnectDevice");
+    
+    char paramname[100];
+    
+    memset(paramname, 0x00, sizeof(paramname));
+    strcat(paramname, "TerminalNo");
+    strcat(paramname, "\x1C");
+    strcat(paramname, "MerchantNo");
+    strcat(paramname, "\x1C");
+    strcat(paramname, "SnNo");
+    
+    MiniPosSDKGetParams("88888888", paramname);
 }
 
 #pragma mark -

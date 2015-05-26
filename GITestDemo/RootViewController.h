@@ -21,5 +21,5 @@
 - (void)hideHUD;
 
 
-
+-(void)showTipView:(NSString *)tip;
 @end

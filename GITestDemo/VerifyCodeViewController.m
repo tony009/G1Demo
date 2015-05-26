@@ -8,6 +8,7 @@
 
 #import "VerifyCodeViewController.h"
 #import "GetPhoneVerificationCodeViewController.h"
+#import "AFNetworking.h"
 @implementation VerifyCodeViewController
 {
  
@@ -17,6 +18,8 @@
 
 -(void)viewDidLoad{
 
+    [super viewDidLoad];
+    
     GetPhoneVerificationCodeViewController *gpvcc = self.navigationController.viewControllers[0];
     
     self.phoneNo.text = gpvcc.phoneNo.text;
@@ -34,82 +37,94 @@
     [_timer fire];
 }
 
-
+//重新获取手机验证码
 - (IBAction)getVerCode:(UIButton *)sender {
     
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"http://122.112.12.25:8081/MposApp/queryAuthCode.action?phone=%@",self.phoneNo.text]];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    
+    [self.view endEditing:YES];
+
     [self showHUD:@"正在获取"];
     
-    [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/queryAuthCode.action?phone=%@",kServerIP,kServerPort,self.phoneNo.text];
+    
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSLog(@"json:%@",responseObject);
+        
+        int code = [responseObject[@"resultMap"][@"code"] intValue];
+        
+        [self hideHUD];
         
         
-        int code = [json[@"resultMap"][@"code"] intValue];
-
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if (code == 0) {
             
-            [self hideHUD];
+            [self startCountDown];
             
-            if (code == 0) {
-                
-                [self startCountDown];
-                
-            }
-        });
+        }else{
+            
+            [self showTipView:responseObject[@"resultMap"][@"msg"]];
+            
+        }
         
-
-
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-    }] resume];
+        [self hideHUD];
+        NSLog(@"failure");
+        [self showTipView:@"获取失败"];
+        
+    }];
+
 }
 
+//提交服务器验证
 - (IBAction)submit:(id)sender {
+    
+    [self.view endEditing:YES];
+    
     if ([self.verificationCode.text isEqualToString:@""]) {
-        [self showHUD:@"请输入您收到的短信验证码"];
+        [self showTipView:@"请输入您收到的短信验证码"];
+        return;
     }
     
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"http://122.112.12.25:8081/MposApp/checkAuthCode.action?phone=%@&authCode=%@",self.phoneNo.text,self.verificationCode.text]];
+    NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/checkAuthCode.action",kServerIP,kServerPort];
+    NSLog(@"url:%@",url);
+    NSDictionary *parameters = @{@"phone":self.phoneNo.text,@"authCode":self.verificationCode.text};
     
-    NSURLSession *session = [NSURLSession sharedSession];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     
     [self showHUD:@"正在提交验证"];
     
-    [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         
-        int code = [json[@"resultMap"][@"code"] intValue];
+                int code = [responseObject[@"resultMap"][@"code"] intValue];
         
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self hideHUD];
-            
-            
-            
-            
-            if(code == 0){
-                
-                [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kSignUpPhoneNo];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-
-                [self performSegueWithIdentifier:@"VerifyToSignup" sender:self];
-            }
-            
-        });
+                [self hideHUD];
         
         
+                    if(code == 0){
         
+                        [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kSignUpPhoneNo];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
         
-    }] resume];
+                        [self performSegueWithIdentifier:@"VerifyToSignup" sender:self];
+                        
+                    }else{
+                        
+                        [self showTipView:responseObject[@"resultMap"][@"msg"]];
+                         
+                    }
+              
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHUD];
+        NSLog(@"failure");
+        [self showTipView:@"验证失败"];
+    }];
+    
     
 }
 

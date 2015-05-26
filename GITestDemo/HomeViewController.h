@@ -23,9 +23,9 @@
 
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 
-- (IBAction)customAction:(ImgTButton *)sender;
+- (IBAction)consumeAction:(ImgTButton *)sender;
 
-- (IBAction)reCustomAction:(ImgTButton *)sender;
+- (IBAction)unconsumeAction:(ImgTButton *)sender;
 
 - (IBAction)checkAccountAction:(ImgTButton *)sender;
 

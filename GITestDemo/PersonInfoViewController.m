@@ -7,10 +7,11 @@
 //
 
 #import "PersonInfoViewController.h"
-
+#import "UIUtils.h"
 @interface PersonInfoViewController ()
 {
     UIButton *_lastPressedBtn;
+    NSString *_imageDocPath;
 
 }
 @end
@@ -24,17 +25,6 @@
     
     [self _initViews];
     
-    //获取Documents文件夹目录
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentPath = [path objectAtIndex:0];
-    //指定新建文件夹路径
-    NSString *imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_g"];
-    //创建ImageFile文件夹
-    [[NSFileManager defaultManager] createDirectoryAtPath:imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
-    //保存图片的路径
-    self.imagePath1 = [imageDocPath stringByAppendingPathComponent:@"1.jpg"];
-    self.imagePath2 = [imageDocPath stringByAppendingPathComponent:@"2.jpg"];
-    self.imagePath3 = [imageDocPath stringByAppendingPathComponent:@"3.jpg"];
 }
 
 - (void)_initViews{
@@ -43,6 +33,20 @@
     self.password.delegate = self;
     self.name.delegate = self;
     self.ID.delegate = self;
+    
+    
+    //获取Documents文件夹目录
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [path objectAtIndex:0];
+    //指定新建文件夹路径
+    _imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_g"];
+    //创建ImageFile文件夹
+    [[NSFileManager defaultManager] createDirectoryAtPath:_imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
+
+    
+    self.imagePath1 = @"";
+    self.imagePath2 = @"";
+    self.imagePath3 = @"";
 }
 
 
@@ -108,6 +112,40 @@
     
 }
 
+- (IBAction)next:(id)sender {
+    
+    
+    //校验信息
+    
+    if (![UIUtils isCorrectPassword:self.password.text]) {
+        [self showTipView:@"请输入正确的密码"];
+        return;
+    }else if ([UIUtils isEmptyString:self.name.text]) {
+        [self showTipView:@"请输入正确的姓名"];
+        return;
+    }else if (![UIUtils isCorrectID:self.ID.text]) {
+        [self showTipView:@"请输入正确的身份证号码"];
+        return;
+    }else if ([UIUtils isEmptyString:self.imagePath1]){
+        [self showTipView:@"请选择身份证正面照"];
+        return;
+    }else if ([UIUtils isEmptyString:self.imagePath2]){
+        [self showTipView:@"请选择身份证反面照"];
+        return;
+    }else if ([UIUtils isEmptyString:self.imagePath3]){
+        [self showTipView:@"请选择法人持身份证照"];
+        return;
+    }
+    
+    //跳转
+    [self performSegueWithIdentifier:@"NEXT" sender:nil];
+    
+    
+    
+}
+
+
+
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -115,7 +153,6 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -138,12 +175,16 @@
 
         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         
+        
         //保存
         if (_lastPressedBtn == self.IDPhotoFront) {
+            self.imagePath1 = [_imageDocPath stringByAppendingString:@"1.jpg"];
             [[NSFileManager defaultManager] createFileAtPath:self.imagePath1 contents:data attributes:nil];
         }else if (_lastPressedBtn == self.IDPhotoBack){
+            self.imagePath2 = [_imageDocPath stringByAppendingString:@"2.jpg"];
             [[NSFileManager defaultManager] createFileAtPath:self.imagePath2 contents:data attributes:nil];
         }else if (_lastPressedBtn == self.IDPhotoAndPerson){
+            self.imagePath3 = [_imageDocPath stringByAppendingString:@"3.jpg"];
             [[NSFileManager defaultManager] createFileAtPath:self.imagePath3 contents:data attributes:nil];
         }
         
@@ -156,7 +197,7 @@
     
     
 }
-
+#pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];

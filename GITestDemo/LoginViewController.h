@@ -11,8 +11,8 @@
 @interface LoginViewController : BaseViewController
 
 
-@property (strong, nonatomic) IBOutlet UITextField *controlNoText;
-@property (strong, nonatomic) IBOutlet UITextField *pwdText;
+@property (strong, nonatomic) IBOutlet UITextField *phoneNo;
+@property (strong, nonatomic) IBOutlet UITextField *password;
 
 
 @property (strong, nonatomic) IBOutlet UIButton *siginButton;

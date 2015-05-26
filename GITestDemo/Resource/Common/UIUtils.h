@@ -39,6 +39,14 @@
 //判断是否为纯数字
 + (BOOL)isCorrectNumber:(NSString*)numer;
 
+//判断是否为电话号码
++ (BOOL)isCorrectPhoneNo:(NSString *)number;
+//判断是否为正确的身份证号码
++ (BOOL)isCorrectID:(NSString *)str;
+//判断是否为正确的密码
++ (BOOL)isCorrectPassword:(NSString *)str;
+//判断是否未空字符
++ (BOOL)isEmptyString:(NSString *)str;
 //根据文字内容，字体大小获取宽度
 + (CGFloat)getWithWithString:(NSString *)string font:(CGFloat)fontSize;
 //utf8字符串转换为GB2312 char字符串

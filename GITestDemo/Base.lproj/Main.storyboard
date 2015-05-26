@@ -427,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWD-9t-UvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1364" y="-1435"/>
+            <point key="canvasLocation" x="1896" y="-1435"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lSn-9d-btH">
@@ -442,53 +442,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwP-ql-LYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="-1177"/>
+            <point key="canvasLocation" x="2348" y="-1177"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RKG-Q7-Ggf">
             <objects>
-                <viewController id="obH-vd-F8r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LOGIN" id="obH-vd-F8r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mqt-UH-qEi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" placeholder="输入密码" textAlignment="center" minimumFontSize="17" id="0Bb-LP-A0S">
-                                <rect key="frame" x="40" y="291" width="240" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" placeholder="登录密码" textAlignment="center" minimumFontSize="17" id="0Bb-LP-A0S">
+                                <rect key="frame" x="40" y="293" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.8862745098" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="olI-nv-jIC">
-                                <rect key="frame" x="40" y="386" width="240" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="系统设置">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="configAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="fgm-Fv-Xht"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1ye-kZ-id1">
-                                <rect key="frame" x="40" y="341" width="240" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="执行签到">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="siginAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="IYT-b9-wYy"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inco_me1.png" id="DyO-T3-Wif">
                                 <rect key="frame" x="110" y="130" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DBx-Be-AuE">
-                                <rect key="frame" x="85" y="436" width="150" height="30"/>
+                                <rect key="frame" x="85" y="464" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="请先选择连接移动终端">
                                     <color key="titleColor" red="0.72549019607843135" green="0.63921568627450975" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
@@ -498,7 +474,7 @@
                                     <action selector="connectDeviceAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="W6C-SZ-bYn"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="01" placeholder="请输入操作员号" textAlignment="center" minimumFontSize="17" id="y8n-IF-UR1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="13202264038" placeholder="用户手机号" textAlignment="center" minimumFontSize="17" id="y8n-IF-UR1">
                                 <rect key="frame" x="40" y="246" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.8862745098" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -506,7 +482,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <view hidden="YES" contentMode="scaleToFill" id="QXN-Z0-t52">
-                                <rect key="frame" x="40" y="494" width="240" height="40"/>
+                                <rect key="frame" x="40" y="341" width="240" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ewh-9P-pOc">
@@ -531,7 +507,36 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zpO-Fs-Umr" kind="modal" id="8qw-K5-6ze"/>
+                                    <segue destination="yCn-HE-7qU" kind="modal" id="Q8M-UX-sP6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WqM-Pb-TZ5">
+                                <rect key="frame" x="168" y="508" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="更多">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w1L-yc-y9B">
+                                <rect key="frame" x="114" y="508" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="设置">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="configAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="cN0-Wl-BRY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1ye-kZ-id1">
+                                <rect key="frame" x="40" y="389" width="240" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="siginAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="IYT-b9-wYy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -539,11 +544,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="bKB-Ji-bh5"/>
                     <connections>
-                        <outlet property="configButton" destination="olI-nv-jIC" id="5Cd-Wi-R30"/>
                         <outlet property="connectDeviceButton" destination="DBx-Be-AuE" id="S3n-aj-muZ"/>
-                        <outlet property="controlNoText" destination="y8n-IF-UR1" id="buw-Lp-fSD"/>
+                        <outlet property="password" destination="0Bb-LP-A0S" id="TEG-4q-J5u"/>
+                        <outlet property="phoneNo" destination="y8n-IF-UR1" id="Cfe-gi-Wok"/>
                         <outlet property="protocolView" destination="QXN-Z0-t52" id="LMH-0c-e8X"/>
-                        <outlet property="pwdText" destination="0Bb-LP-A0S" id="6d9-om-xQx"/>
                         <outlet property="siginButton" destination="1ye-kZ-id1" id="d4B-aK-kdW"/>
                         <segue destination="xZI-0g-M8V" kind="modal" identifier="loginModalToHome" id="nyG-z1-Y6F"/>
                         <segue destination="qQH-1q-K6a" kind="modal" identifier="loginModalToConnect" id="vLg-dH-zuP"/>
@@ -2540,7 +2544,7 @@ Cgo
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="LfS-Ms-DVE">
-                                <rect key="frame" x="0.0" y="139.99999990736987" width="320" height="362"/>
+                                <rect key="frame" x="0.0" y="139.99999976647624" width="320" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pLL-vx-MFc" customClass="ImgTButton">
@@ -2552,7 +2556,7 @@ Cgo
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="customAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="B2m-Xp-zYd"/>
+                                            <action selector="consumeAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="ywe-CN-Dmo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PXt-8H-6dN" customClass="ImgTButton">
@@ -2588,7 +2592,7 @@ Cgo
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="reCustomAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="u59-rp-Rvj"/>
+                                            <action selector="unconsumeAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="AdY-Hn-SWR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qbl-Xl-7hS" customClass="ImgTButton">
@@ -2627,14 +2631,17 @@ Cgo
                                             <segue destination="grw-5E-TU5" kind="push" id="2uD-WS-Hoj"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="20" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ebL-U7-EUV" customClass="ImgTButton">
+                                    <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ebL-U7-EUV" customClass="ImgTButton">
                                         <rect key="frame" x="107" y="242" width="106" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="更新">
+                                        <state key="normal" title="签到">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="siginAction:" destination="yMb-qI-H8k" eventType="touchUpInside" id="f1h-hc-HoG"/>
+                                        </connections>
                                     </button>
                                     <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="QCy-K2-Ot3">
                                         <rect key="frame" x="141" y="0.0" width="39" height="37"/>
@@ -3453,7 +3460,7 @@ Cgo
                                 <rect key="frame" x="186" y="89" width="118" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FUG-ro-sOb">
@@ -3477,7 +3484,7 @@ Cgo
                         <outlet property="getVerCodeLabel" destination="CCr-gX-Mqo" id="qkY-C7-cjy"/>
                         <outlet property="phoneNo" destination="4oV-MG-GIi" id="S9l-zb-KoF"/>
                         <outlet property="verificationCode" destination="LWA-fw-xHX" id="Kd9-pP-l7D"/>
-                        <segue destination="zpO-Fs-Umr" kind="modal" identifier="VerifyToSignup" id="ekj-0d-eg5"/>
+                        <segue destination="15D-ov-ZX1" kind="push" identifier="VerifyToSignup" id="Wx9-Pv-d8K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6O-1r-Hup" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3539,7 +3546,7 @@ Cgo
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Fo1-eO-mQB" kind="push" id="dZq-Xa-zQs"/>
+                                    <action selector="next:" destination="tfu-5T-Dxb" eventType="touchUpInside" id="7jW-on-L0j"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ho8-F3-CHf">
@@ -3633,11 +3640,12 @@ Cgo
                         <outlet property="IDPhotoFront" destination="PEu-Vp-kLh" id="i4f-TG-AMr"/>
                         <outlet property="name" destination="fWa-3s-nmt" id="CE6-sC-qiE"/>
                         <outlet property="password" destination="Khg-Tr-owK" id="Y0A-5W-gw0"/>
+                        <segue destination="Fo1-eO-mQB" kind="push" identifier="NEXT" id="7Vt-ad-4Pw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0B-MS-eAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="-1862"/>
+            <point key="canvasLocation" x="2348" y="-1862"/>
         </scene>
         <!--Merchant Info View Controller-->
         <scene sceneID="hKe-zb-VWh">
@@ -3708,7 +3716,7 @@ Cgo
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Lu1-dB-0Cy" kind="push" id="5Km-jJ-FZ5"/>
+                                    <action selector="next:" destination="Fo1-eO-mQB" eventType="touchUpInside" id="yMX-rS-6YC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kUA-DK-5TT">
@@ -3721,6 +3729,30 @@ Cgo
                                     <action selector="back:" destination="Fo1-eO-mQB" eventType="touchUpInside" id="hdy-iz-th9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SN号:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SsT-QV-6pI">
+                                <rect key="frame" x="33" y="293" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="机身号" minimumFontSize="17" id="bJE-CQ-hFs">
+                                <rect key="frame" x="126" y="284" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e4I-cn-tVG">
+                                <rect key="frame" x="254" y="284" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="获取">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getSN:" destination="YX1-5j-KAy" eventType="touchUpInside" id="AjU-bS-Zzf"/>
+                                    <action selector="getSN:" destination="Fo1-eO-mQB" eventType="touchUpInside" id="Y8k-A2-gG5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3729,11 +3761,13 @@ Cgo
                     <connections>
                         <outlet property="address" destination="c5v-T4-8El" id="prJ-1N-M0N"/>
                         <outlet property="area" destination="sKA-Hl-HPP" id="UdK-9T-wPx"/>
+                        <outlet property="sn" destination="bJE-CQ-hFs" id="IlU-9D-Cxx"/>
+                        <segue destination="Lu1-dB-0Cy" kind="push" identifier="NEXT" id="PSP-ob-4O0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RBj-Q1-OwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="-1862"/>
+            <point key="canvasLocation" x="2743" y="-1862"/>
         </scene>
         <!--Bank Info View Controller-->
         <scene sceneID="IJt-zJ-ISA">
@@ -3923,7 +3957,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aj-zS-k0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2653" y="-1862"/>
+            <point key="canvasLocation" x="3185" y="-1862"/>
         </scene>
         <!--Main Nav View Controller-->
         <scene sceneID="vFp-Ku-3Qe">
@@ -3943,25 +3977,6 @@ Cgo
             </objects>
             <point key="canvasLocation" x="94" y="-2588"/>
         </scene>
-        <!--Main Nav View Controller-->
-        <scene sceneID="m8d-DV-CKw">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zpO-Fs-Umr" customClass="MainNavViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="4Nc-tl-CoS"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ICd-S8-Tvd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="15D-ov-ZX1" kind="relationship" relationship="rootViewController" id="kEn-ZZ-Oqc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4l4-qf-xn4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="832" y="-1435"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Default.png" width="320" height="480"/>
@@ -3980,7 +3995,6 @@ Cgo
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8qw-K5-6ze"/>
         <segue reference="gsO-y2-L4X"/>
         <segue reference="YJl-Xi-ecU"/>
     </inferredMetricsTieBreakers>

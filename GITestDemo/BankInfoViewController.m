@@ -11,9 +11,13 @@
 #import "AFNetworking.h"
 #import "PersonInfoViewController.h"
 #import "MerchantInfoViewController.h"
+#import "LoginViewController.h"
 @interface BankInfoViewController ()
 
 @end
+
+#define kOFFSET_FOR_KEYBOARD 140
+#define kOFFSET_FOR_KEYBOARD_PAD 140
 
 @implementation BankInfoViewController
 
@@ -35,9 +39,9 @@
 
 - (void)_initViews{
     
-    self.bankName.delegate = self;
-    self.province.delegate = self;
-    self.city.delegate = self;
+    //self.bankName.delegate = self;
+    //self.province.delegate = self;
+    //self.city.delegate = self;
     self.bankBranch.delegate = self;
     self.accName.delegate = self;
     self.settleAccno.delegate = self;
@@ -80,30 +84,57 @@
 - (IBAction)submit:(UIButton *)sender {
 
     
-    PersonInfoViewController *pivc = self.navigationController.viewControllers[1];
-    MerchantInfoViewController *mivc = self.navigationController.viewControllers[2];
+    //校验信息
+    
+    if ([UIUtils isEmptyString:self.bankName.text]) {
+        [self showTipView:@"请输入正确的开户行全称"];
+        return;
+    }else if ([UIUtils isEmptyString:self.province.text]) {
+        [self showTipView:@"请输入正确的省份"];
+        return;
+    }else if([UIUtils isEmptyString:self.city.text]){
+        [self showTipView:@"请输入正确的城市"];
+        return;
+    }else if([UIUtils isEmptyString:self.bankBranch.text]){
+        [self showTipView:@"请输入正确的支行名称"];
+        return;
+    }else if([UIUtils isEmptyString:self.settleAccno.text]){
+        [self showTipView:@"请输入正确的开户账号"];
+        return;
+    }else if([UIUtils isEmptyString:self.accName.text]){
+        [self showTipView:@"请输入正确的姓名"];
+        return;
+    }else if([UIUtils isEmptyString:self.imagePath4]){
+        [self showTipView:@"请选择银行卡正面照"];
+        return;
+    }
+    
+    
+    
+    PersonInfoViewController *pivc = self.navigationController.viewControllers[3];
+    MerchantInfoViewController *mivc = self.navigationController.viewControllers[4];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString *phoneNo = [[NSUserDefaults standardUserDefaults]objectForKey:kSignUpPhoneNo];
-    phoneNo = @"13202264038";
+    //phoneNo = @"13202264038";
    
-//    NSLog(@" pivc.password.text:%@", pivc.password.text);
-//    NSLog(@" mivc.area.text:%@", mivc.area.text);
-//    NSLog(@" pivc.name.text:%@", pivc.name.text);
-//    NSLog(@" phoneNo:%@", phoneNo);
-//    NSLog(@" pivc.ID.text:%@", pivc.ID.text);
-//    NSLog(@" mivc.address.text:%@", mivc.address.text);
-//    NSLog(@" self.accountType.text:%@", self.accountType.text);
-//    NSLog(@" self.isPrivate.text:%@", self.isPrivate.text);
-//    NSLog(@" self.bankName.text:%@",self.bankName.text);
-//    NSLog(@" self.province.text:%@", self.province.text);
-//    NSLog(@" self.city.text:%@", self.city.text);
-//    NSLog(@" self.bankBranch.text:%@", self.bankBranch.text);
-//    NSLog(@" self.settleAccno.text:%@",self.settleAccno.text);
-//    NSLog(@"self.accName.text:%@",self.accName.text);
+    NSLog(@" pivc.password.text:%@", pivc.password.text);
+    NSLog(@" mivc.area.text:%@", mivc.area.text);
+    NSLog(@" pivc.name.text:%@", pivc.name.text);
+    NSLog(@" phoneNo:%@", phoneNo);
+    NSLog(@" pivc.ID.text:%@", pivc.ID.text);
+    NSLog(@" mivc.address.text:%@", mivc.address.text);
+    NSLog(@" self.accountType.text:%@", self.accountType.text);
+    NSLog(@" self.isPrivate.text:%@", self.isPrivate.text);
+    NSLog(@" self.bankName.text:%@",self.bankName.text);
+    NSLog(@" self.province.text:%@", self.province.text);
+    NSLog(@" self.city.text:%@", self.city.text);
+    NSLog(@" self.bankBranch.text:%@", self.bankBranch.text);
+    NSLog(@" self.settleAccno.text:%@",self.settleAccno.text);
+    NSLog(@"self.accName.text:%@",self.accName.text);
     
-    NSDictionary *parameters = @{@"merType": @"6",@"passwd":pivc.password.text,@"areaCode":mivc.area.text,@"lawMan":pivc.name.text,@"phone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20150512",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":@"G1000100130",@"settleBank":@"12345"};
+    NSDictionary *parameters = @{@"merType": @"6",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20150512",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":@"12345"};
     
     
     NSLog(@"parameters:%@",parameters);
@@ -115,8 +146,8 @@
     NSURL *filePath4 = [NSURL fileURLWithPath:self.imagePath4];
 
     [self showHUD:@"正在提交"];
-    
-    [manager POST:@"http://122.112.12.25:8081/MposApp/registerMchInfo.action" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+    NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/registerMchInfo.action",kServerIP,kServerPort];
+    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
         [formData appendPartWithFileURL:filePath1 name:@"file1" error:nil];
         [formData appendPartWithFileURL:filePath2 name:@"file2" error:nil];
         [formData appendPartWithFileURL:filePath3 name:@"file3" error:nil];
@@ -124,12 +155,27 @@
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         
-        [self hideHUD];
         
+        int code = [responseObject[@"resultMap"][@"code"]intValue];
+        
+        [self hideHUD];
+    
+        [self showTipView:responseObject[@"resultMap"][@"msg"]];
+        
+        if(code ==0){
+            
+            //[self presentModalViewController: ViewController animated:YES];
+            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
+            [self presentViewController:lvc animated:YES completion:nil];
+
+            
+        }
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        
+        [self hideHUD];
+        [self showTipView:@"提交失败"];
     }];
     
     
@@ -238,11 +284,71 @@
     
 }
 
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    
+    
+    CGRect rect = self.view.frame;
+    NSLog(@"%f",rect.size.height);
+    if( (movedUp) )
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        if (rect.origin.y>=0)
+        {
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+                rect.size.height += kOFFSET_FOR_KEYBOARD;
+            }
+            if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+                rect.origin.y -= kOFFSET_FOR_KEYBOARD_PAD;
+                rect.size.height += kOFFSET_FOR_KEYBOARD_PAD;
+            }
+        }
+
+    }
+    else
+    {
+        
+        if   (rect.origin.y<0)
+            // revert back to the normal state.
+        {
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                rect.origin.y += kOFFSET_FOR_KEYBOARD;
+                rect.size.height -= kOFFSET_FOR_KEYBOARD;
+            }
+            if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
+                rect.origin.y += kOFFSET_FOR_KEYBOARD_PAD;
+                rect.size.height -= kOFFSET_FOR_KEYBOARD_PAD;
+            }
+            
+        }
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
 #pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [self setViewMovedUp:YES];
+    return YES;
+}
+
+//override
+- (void)dismissAction{
+    
+    [self setViewMovedUp:false];
+    [self.view endEditing:YES];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    [textField resignFirstResponder];
+    [self dismissAction];
     
     return YES;
 }

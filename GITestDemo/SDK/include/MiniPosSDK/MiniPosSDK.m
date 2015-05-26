@@ -60,7 +60,7 @@ static unsigned char gSDKOperator[3];
 static void* gUserData = NULL;
 
 static SDKResponceFunc gResponseFun = NULL;
-static unsigned char gInputParam[100];
+static unsigned char gInputParam[400];
 
 #define PACK_STEP_IDLE 0x01
 #define PACK_STEP_SHAKE 0x02
@@ -1344,7 +1344,7 @@ int DealQueryTrade()
 }
 
 
-void DealSendPack()
+static void DealSendPack()
 {
     int len;
     
@@ -2626,30 +2626,30 @@ int DealDownPro()
     return -1;
 }
 
-int MiniPosSDKGetParam(const char* syscode, const char* paramname)
-{
-    if(gSessionPos != SESSION_POS_UNKNOWN)
-    {
-        gResponseFun(gUserData,
-                     gSessionPos,
-                     SESSION_ERROR_DEVICE_BUSY,
-                     NULL,
-                     NULL);
-        return -1;
-    }
-    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
-    strncpy((char*)gInputParam, syscode, 8);
-    strncpy((char*)&gInputParam[9], paramname, 30);
-    gSessionPos = SESSION_POS_UPLOAD_PARAM;
-    gTimeOut = MAX_POS_TIMEOUT;
-    if(MiniPosSDKTestConnect() < 0)
-    {
-        return -1;
-    }
-    gDealPackStep = PACK_STEP_SHAKE;
-    
-    return 0;
-}
+//int MiniPosSDKGetParam(const char* syscode, const char* paramname)
+//{
+//    if(gSessionPos != SESSION_POS_UNKNOWN)
+//    {
+//        gResponseFun(gUserData,
+//                     gSessionPos,
+//                     SESSION_ERROR_DEVICE_BUSY,
+//                     NULL,
+//                     NULL);
+//        return -1;
+//    }
+//    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
+//    strncpy((char*)gInputParam, syscode, 8);
+//    strncpy((char*)&gInputParam[9], paramname, 30);
+//    gSessionPos = SESSION_POS_UPLOAD_PARAM;
+//    gTimeOut = MAX_POS_TIMEOUT;
+//    if(MiniPosSDKTestConnect() < 0)
+//    {
+//        return -1;
+//    }
+//    gDealPackStep = PACK_STEP_SHAKE;
+//    
+//    return 0;
+//}
 
 
 int DealUploadParam()
@@ -2708,36 +2708,101 @@ int DealUploadParam()
     
     return -1;
 }
-char *MiniPosSDKGetParamName()
-{
-    int i;
-    
-    for(i = 0; i < 500; i++){
-        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
-            gInputParam[i] = 0x00;
-            break;
-        }
-    }
-    return (char*)&gInputParam[0];
-}
+//char *MiniPosSDKGetParamName()
+//{
+//    int i;
+//    
+//    for(i = 0; i < 500; i++){
+//        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+//            gInputParam[i] = 0x00;
+//            break;
+//        }
+//    }
+//    return (char*)&gInputParam[0];
+//}
 
-char *MiniPosSDKGetParamValue()
+//char *MiniPosSDKGetParamValue()
+//{
+//    int i;
+//    char *p = NULL;
+//    
+//    for(i = 0; i < 500; i++){
+//        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+//            break;
+//        }
+//    }
+//    
+//    p = (char*)&gInputParam[i + 1];
+//    for(i = i + 1; i < 500; i++){
+//        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+//            gInputParam[i] = 0x00;
+//            break;
+//        }
+//    }
+//    return p;
+//}
+
+
+/**
+ **描述:     从pos端获取参数
+ **输入参数: syscode：系统设置密码；paramname：参数名字。
+ **输出参数:
+ **返回值: >= 0:成功； < 0:失败。
+ **备注:异步调用，返回状态在回调函数中。
+ */
+int MiniPosSDKGetParams(const char* syscode, const char* paramname)
+{
+    if(gSessionPos != SESSION_POS_UNKNOWN)
+    {
+        gResponseFun(gUserData,
+                     gSessionPos,
+                     SESSION_ERROR_DEVICE_BUSY,
+                     NULL,
+                     NULL);
+        return -1;
+    }
+    memset((char*)gInputParam, 0x00, sizeof(gInputParam));
+    strncpy((char*)gInputParam, syscode, 8);
+    strncpy((char*)&gInputParam[9], paramname, 30);
+    gSessionPos = SESSION_POS_UPLOAD_PARAM;
+    gTimeOut = MAX_POS_TIMEOUT;
+    if(MiniPosSDKTestConnect() < 0)
+    {
+        return -1;
+    }
+    gDealPackStep = PACK_STEP_SHAKE;
+    return 0;
+}
+/**
+ 解析从pos端获取的参数
+ */
+char *MiniPosSDKGetParam(char* paramname)
 {
     int i;
-    char *p = NULL;
+    int j = strlen((char*)&gInputParam[0]);
+    int k = 0;
     
-    for(i = 0; i < 500; i++){
-        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
-            break;
-        }
-    }
-    
-    p = (char*)&gInputParam[i + 1];
-    for(i = i + 1; i < 500; i++){
-        if(gInputParam[i] == 0x1C || gInputParam[i] == 0x00){
+    for(i = 0; i < j; i++){
+        if(gInputParam[i] == 0x1C){
             gInputParam[i] = 0x00;
-            break;
         }
     }
-    return p;
+    
+    for(i = 0, k = 0; i < j; k++){
+        if(strcmp(paramname, (char*)&gInputParam[i]) == 0 && (k % 2 == 0)){
+            i += (strlen((char*)&gInputParam[i]) + 1);
+            break;
+        }
+        i += (strlen((char*)&gInputParam[i]) + 1);
+    }
+    
+    strcpy((char*)&gInputParam[j + 1], (char*)&gInputParam[i]);
+    
+    for(k = 0; k < j; k++){
+        if(gInputParam[k] == 0x00){
+            gInputParam[k] = 0x1C;
+        }
+    }
+    
+    return (char*)&gInputParam[j + 1];
 }

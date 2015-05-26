@@ -458,12 +458,20 @@ int MiniPosSDKCancelCMD();
 参数3（参数值）
 *************************************************************/
 int MiniPosSDKSetParam(const char* syscode, const char* paramname, const char* paramvalue);
+///**
+// 从pos端获取参数
+// */
+//int MiniPosSDKGetParam(const char* syscode, const char* paramname);
+//char *MiniPosSDKGetParamName();
+//char *MiniPosSDKGetParamValue();
 /**
  从pos端获取参数
  */
-int MiniPosSDKGetParam(const char* syscode, const char* paramname);
-char *MiniPosSDKGetParamName();
-char *MiniPosSDKGetParamValue();
+int MiniPosSDKGetParams(const char* syscode, const char* paramname);
+/**
+ 解析从pos端获取的参数
+ */
+char *MiniPosSDKGetParam(char* paramname);
 #ifdef __cplusplus
 }
 #endif

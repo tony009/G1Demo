@@ -35,7 +35,14 @@
 
 //隐藏加载
 - (void)hideHUD {
-    [self.hud hide:YES];
+    if (_hud) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_hud hide:YES];
+        });
+    }
+    
+   // [self.hud hide:YES];
     
 }
 
@@ -286,8 +293,8 @@ static void MiniPosSDKResponce(void *userData,
         else if(self.sessionType== SESSION_POS_UPLOAD_PARAM)
         {
             
-            
-            self.statusStr=[NSString stringWithFormat:@"获取%@成功",[UIUtils GB2312_To_UTF8:MiniPosSDKGetParamName()]];
+            self.statusStr = @"获取参数成功";
+            //self.statusStr=[NSString stringWithFormat:@"获取%@成功",[UIUtils GB2312_To_UTF8:MiniPosSDKGetParamName()]];
             return;
         }
         
@@ -538,6 +545,9 @@ static void MiniPosSDKResponce(void *userData,
             break;
         case SESSION_POS_LOGOUT:
             return @"SESSION_POS_LOGOUT";
+            break;
+        case SESSION_POS_UPLOAD_PARAM:
+            return @"SESSION_POS_UPLOAD_PARAM";
             break;
         default:
             return @"";

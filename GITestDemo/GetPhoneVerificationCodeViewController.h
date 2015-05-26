@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GetPhoneVerificationCodeViewController : UIViewController
+#import "RootViewController.h"
+@interface GetPhoneVerificationCodeViewController : RootViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *phoneNo;
 @end

@@ -11,6 +11,10 @@
 #import "SwipingCardViewController.h"
 #import "CustomAlertView.h"
 #import "AFNetworking.h"
+#import "ConnectDeviceViewController.h"
+#import "LoginViewController.h"
+#include "des.h"
+#import "UIUtils.h"
 @interface HomeViewController ()
 {
     NSTimer *timer;
@@ -24,6 +28,8 @@
     NSString *pos_task;
     NSMutableArray *updateFiles;
     CustomAlertView *cav;
+    
+    BOOL hasSettedParam;
 }
 @end
 
@@ -175,15 +181,214 @@
     
 }
 
+static void HexString2Bytes(unsigned char *hexstr,unsigned char *str) {
+    int no = strlen(hexstr)/2;
+		  for (int i = 0; i < no; i++) {
+              unsigned char c0 = *hexstr++;
+              unsigned char c1 = *hexstr++;
+              str[i] = (unsigned char) ((parse(c0) << 4) | parse(c1));
+              //printf("%x\n",str[i]);
+          }
+    
+}
 
+static char parse(char c) {
+    if (c >= 'a')
+        return (c - 'a' + 10) & 0x0f;
+    if (c >= 'A')
+        return (c - 'A' + 10) & 0x0f;
+    return (c - '0') & 0x0f;
+}
 
+//签到
+- (IBAction)siginAction:(ImgTButton *)sender {
+    
 
-- (IBAction)customAction:(ImgTButton *)sender {
+    
+    if(MiniPosSDKDeviceState()<0){
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
+        return;
+    }else{
+        
+//            char paramname[100];
+//        
+//            memset(paramname, 0x00, sizeof(paramname));
+//            strcat(paramname, "TerminalNo");
+//            strcat(paramname, "\x1C");
+//            strcat(paramname, "MerchantNo");
+//            strcat(paramname, "\x1C");
+//            strcat(paramname, "SnNo");
+//        
+//            MiniPosSDKGetParams("88888888", paramname);
+//    
+//        return;
+        
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
+        NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
+        NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
+        NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
+        
+        if ([merchantNo isEqualToString:@""] || merchantNo == nil) {
+            
+            NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=&tid=",kServerIP,kServerPort,sn,phoneNo];
+            NSLog(@"url:%@",url);
+            [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                NSLog(@"responseObject:%@",responseObject);
+                NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
+                
+                int code = [responseObject[@"resultMap"][@"code"]intValue];
+                
+                if (code == 3 ) {
+                    
+                    NSString *src = responseObject[@"resultMap"][@"tmk"];
+                    NSMutableString *des = [[NSMutableString alloc]initWithString:@""];
+                    
+                    NSString *src1 = [src substringToIndex:16];
+                    NSString *src2 = [src substringFromIndex:16];
+                    
+                    
+                    unsigned char *lpIn = [src1 cStringUsingEncoding:NSUTF8StringEncoding];
+                    
+                    unsigned char *key = "01CCA5D0712519DE01CCA5D0712519DE";
+                    unsigned char key1[16];
+                    HexString2Bytes(key, key1);
+                    
+                    unsigned char lpIn1[8];
+                    HexString2Bytes(lpIn, lpIn1);
+                    
+                    unsigned char lpOut[8];
+                    
+                    
+                    des3_decrypt(lpIn1, lpOut, key1);
+                    
+                    
+                    unsigned char d[17];
+                    d[16] = '\0';
+                    for (int i = 0; i<8; i++) {
+                        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+                    }
+                    
+                    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
+                    
+                    lpIn = [src2 cStringUsingEncoding:NSUTF8StringEncoding];
+                    HexString2Bytes(lpIn, lpIn1);
+                    des3_decrypt(lpIn1, lpOut, key1);
+                    
+                    for (int i = 0; i<8; i++) {
+                        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+                    }
+                    
+                    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
+                    
+                    NSLog(@"des:%@",des);
+                    
+                    
+                    NSString *tid = responseObject[@"resultMap"][@"tid"];
+                    NSString *mid = responseObject[@"resultMap"][@"mid"];
+                    
+                    
+                    
+                    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+                    
+                    //MiniPosSDKSetParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
+                    // MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
+                    
+                    dispatch_async(serial_queue, ^{
+                        hasSettedParam = false;
+                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], [mid UTF8String]);
+                        while (hasSettedParam ==false) {
+                            
+                        }
+                        
+                    });
+                    
+                    dispatch_async(serial_queue, ^{
+                        hasSettedParam = false;
+                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], [tid UTF8String]);
+                        while (hasSettedParam ==false) {
+                            
+                        }
+                        
+                    });
+                    
+                    dispatch_async(serial_queue, ^{
+                        hasSettedParam = false;
+                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], [des UTF8String]);
+                        while (hasSettedParam ==false) {
+                            
+                        }
+                        
+                    });
+                    
+                    dispatch_async(serial_queue, ^{
+                        hasSettedParam = false;
+                        MiniPosSDKSetParam("000000000", "", "");
+                        while (hasSettedParam ==false) {
+                            
+                        }
+                        
+                    });
+                    
+                    
+                }
+                
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
+        }else{
+            
+            NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
+            NSLog(@"url:%@",url);
+            
+            [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                int code = [responseObject[@"resultMap"][@"code"]intValue];
+                
+                if (code == 0 ) {
+                    
+                    if(MiniPosSDKPosLogin()>=0)
+                    {
+                        
+                        
+                        [self showHUD:@"正在签到"];
+ 
+                    }
+                }else{
+                    [self showTipView:responseObject[@"resultMap"][@"msg"]];
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            }];
+            
+            
+        }
+        
+   
+        
+    }
+    
+
+    
+}
+
+//消费
+- (IBAction)consumeAction:(ImgTButton *)sender {
  
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
+    
+    
     
     if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
         
@@ -195,11 +400,12 @@
     
     
 }
-
-- (IBAction)reCustomAction:(ImgTButton *)sender {
+//撤销
+- (IBAction)unconsumeAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
     
@@ -212,12 +418,13 @@
     
     
 }
-
+//查询余额
 - (IBAction)checkAccountAction:(id)sender {
     sendValue = @"查询余额";
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
     
@@ -233,11 +440,12 @@
     }
     
 }
-
+//签退
 - (IBAction)sginOutAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
     
@@ -247,11 +455,12 @@
         [self showHUD:@"正在签退..."];
     }
 }
-
+//结算
 - (IBAction)payoffAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
     
@@ -276,10 +485,35 @@
     
 }
 
+
+- (void)showConnectionAlert{
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    alertView.tag = 44;
+    [alertView show];
+    
+//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"设备未连接"
+//                                                                   message:@"点击跳转设备连接界面"
+//                                                            preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+//                                                          handler:^(UIAlertAction * action) {
+//                                                              ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
+//                                                              [self.navigationController pushViewController:cdvc animated:YES];
+//                                                          }];
+//    
+//    [alert addAction:defaultAction];
+//    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
 - (IBAction)getDeviceMsgAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        //[self showTipView:@"设备未连接"];
+        
+        [self showConnectionAlert];
         return;
     }
     
@@ -290,6 +524,8 @@
         //[self performSelector:@selector(showResultWithString:) withObject:@"获取设备信息超时" afterDelay:10];
     }
 }
+
+
 
 -(void) showResultWithString:(NSString *)str{
     [self hideHUD];
@@ -417,9 +653,19 @@
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    if (buttonIndex ==1) {
-        [self downloadFromWebAndTransmitToPos ];
+
+    
+    if (alertView.tag == 44) {
+        if (buttonIndex == 0) {
+            ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
+            [self.navigationController pushViewController:cdvc animated:YES];
+        }
+    }else{
+        if (buttonIndex ==1) {
+            [self downloadFromWebAndTransmitToPos ];
+        }
     }
+    
     
 }
 
@@ -547,6 +793,23 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     
     
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
+        [self hideHUD];
+        NSLog(@"LoginViewController ----签到成功");
+        
+        [self showTipView:self.statusStr];
+    }
+    
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到失败"]]) {
+        [self hideHUD];
+        NSLog(@"LoginViewController ----签到失败");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到失败！" message:self.displayString delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        
+    }
+    
+    
     if ([self.statusStr isEqualToString:@"签退成功"]){
         
         [self hideHUD];
@@ -613,8 +876,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if ([self.statusStr isEqualToString:@"设备未连接"]) {
         [self bleConnectAction];
+
     }
     
+    if ([self.statusStr isEqualToString:@"获取参数成功"]) {
+        //NSLog(@"SnNo:%s,TerminalNo:%s,MerchantNo:%s",MiniPosSDKGetParam("SnNo"), MiniPosSDKGetParam("TerminalNo"), MiniPosSDKGetParam("MerchantNo"));
+    }
     
     if ([self.statusStr isEqualToString:@"消费响应超时"]) {
         [self hideHUD];
@@ -644,6 +911,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     if ([self.statusStr isEqualToString:@"获取设备信息响应超时"] && isGetDeviceMsgAction) {
         [self hideHUD];
         [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+        
+        hasSettedParam = true;
     }
     
     self.statusStr=@"";

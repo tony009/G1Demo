@@ -141,6 +141,9 @@
 		9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662481A4177FE00B13444 /* AsyncSocket.m */; };
 		9CE6624B1A4413D800B13444 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6624A1A4413D800B13444 /* 152.png */; };
 		9CEDDD981A4801F2000C23A5 /* 未标题-6副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CEDDD971A4801F2000C23A5 /* 未标题-6副本.png */; };
+		9CF64D401B0C58E700DB2B84 /* json-array-of-city.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CF64D3F1B0C58E700DB2B84 /* json-array-of-city.json */; };
+		9CF64D421B0C58F000DB2B84 /* json-array-of-province.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CF64D411B0C58F000DB2B84 /* json-array-of-province.json */; };
+		9CF64D451B0D8C8F00DB2B84 /* des.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF64D431B0D8C8F00DB2B84 /* des.m */; };
 		9CFCEBE01AE10341007D27CF /* WDPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFCEBDF1AE10341007D27CF /* WDPickView.m */; };
 		9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFCEBE91AE10EBC007D27CF /* Address.plist */; };
 /* End PBXBuildFile section */
@@ -361,6 +364,10 @@
 		9CE662481A4177FE00B13444 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		9CE6624A1A4413D800B13444 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
 		9CEDDD971A4801F2000C23A5 /* 未标题-6副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未标题-6副本.png"; sourceTree = "<group>"; };
+		9CF64D3F1B0C58E700DB2B84 /* json-array-of-city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "json-array-of-city.json"; sourceTree = "<group>"; };
+		9CF64D411B0C58F000DB2B84 /* json-array-of-province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "json-array-of-province.json"; sourceTree = "<group>"; };
+		9CF64D431B0D8C8F00DB2B84 /* des.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = des.m; path = ../../des.m; sourceTree = "<group>"; };
+		9CF64D441B0D8C8F00DB2B84 /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = des.h; path = ../../des.h; sourceTree = "<group>"; };
 		9CFCEBDE1AE10341007D27CF /* WDPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDPickView.h; path = WDPickView/WDPickView.h; sourceTree = "<group>"; };
 		9CFCEBDF1AE10341007D27CF /* WDPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDPickView.m; path = WDPickView/WDPickView.m; sourceTree = "<group>"; };
 		9CFCEBE91AE10EBC007D27CF /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
@@ -504,6 +511,8 @@
 		96C5602D1A243A7800A25290 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9CF64D411B0C58F000DB2B84 /* json-array-of-province.json */,
+				9CF64D3F1B0C58E700DB2B84 /* json-array-of-city.json */,
 				9C84DA081AE7323200A5124E /* Localizable.strings */,
 				9CFCEBE91AE10EBC007D27CF /* Address.plist */,
 				96C5602E1A243A7800A25290 /* Info.plist */,
@@ -586,6 +595,8 @@
 		96C560601A243F2D00A25290 /* MiniPosSDK */ = {
 			isa = PBXGroup;
 			children = (
+				9CF64D431B0D8C8F00DB2B84 /* des.m */,
+				9CF64D441B0D8C8F00DB2B84 /* des.h */,
 				96C560641A243F2D00A25290 /* MiniPosSDK.h */,
 				9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */,
 				96C560611A243F2D00A25290 /* DeviceInterface.h */,
@@ -934,6 +945,7 @@
 				9C6D9DB41A820B90002A7845 /* checkbox1_unchecked@2x.png in Resources */,
 				96D6F82D1A2C64E900CCD0B5 /* incon_me2.png in Resources */,
 				9637170F1A2DC6C6002D34F3 /* Default@2x.png in Resources */,
+				9CF64D421B0C58F000DB2B84 /* json-array-of-province.json in Resources */,
 				9C6D9D9F1A82015C002A7845 /* home_banner_1.png in Resources */,
 				9637170E1A2DC6C6002D34F3 /* Default-568h@2x.png in Resources */,
 				96C560391A243A7800A25290 /* Main.storyboard in Resources */,
@@ -975,6 +987,7 @@
 				96D6F8181A2C64E900CCD0B5 /* btn_bluetooth.png in Resources */,
 				9C84DA141AE79B1400A5124E /* radio_unchecked.png in Resources */,
 				96D6F8271A2C64E900CCD0B5 /* icon1.png in Resources */,
+				9CF64D401B0C58E700DB2B84 /* json-array-of-city.json in Resources */,
 				9C6D9DBD1A820DC7002A7845 /* uncheck_icon.png in Resources */,
 				9C84DA131AE79B1400A5124E /* radio_checked@2x.png in Resources */,
 				96D6F82A1A2C64E900CCD0B5 /* icon_password1.png in Resources */,
@@ -1049,6 +1062,7 @@
 				963716C21A2D9E7F002D34F3 /* BleManager.m in Sources */,
 				9C7CA8E21A53A4AF0067377C /* AFSecurityPolicy.m in Sources */,
 				9C7CA8E61A53A4AF0067377C /* AFURLSessionManager.m in Sources */,
+				9CF64D451B0D8C8F00DB2B84 /* des.m in Sources */,
 				96BC86271A354C320012E746 /* Anasis8583Pack.m in Sources */,
 				9C7CA8DF1A53A4AF0067377C /* AFHTTPRequestOperationManager.m in Sources */,
 				96C560301A243A7800A25290 /* main.m in Sources */,

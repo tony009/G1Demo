@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MerchantInfoViewController : UIViewController<UITextFieldDelegate>
+#import "RootViewController.h"
+#import "UIUtils.h"
+#import "WDPickView.h"
+#import "BaseViewController.h"
+@interface MerchantInfoViewController :BaseViewController<UITextFieldDelegate,WDPickViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *area;
+@property (strong,nonatomic)  NSString *areaCode; //地区编码
 @property (strong, nonatomic) IBOutlet UITextField *address;
+@property (strong, nonatomic) IBOutlet UITextField *sn;
 
 @end

@@ -268,6 +268,43 @@
     return nameW;
 }
 
++ (BOOL)isCorrectPhoneNo:(NSString *)number{
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:number];
+    
+    return isMatch;
+}
+
+//判断是否为正确的身份证号码
++ (BOOL)isCorrectID:(NSString *)str{
+    
+    NSString *regex = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    BOOL isMatch = [pred evaluateWithObject:str];
+    return isMatch;
+    
+}
+
++ (BOOL)isCorrectPassword:(NSString *)str{
+    NSString *regex = @"^[0-9A-Za-z]{6,20}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    BOOL isMatch = [pred evaluateWithObject:str];
+    return isMatch;
+}
++ (BOOL)isEmptyString:(NSString *)str{
+    
+    
+    if (str == nil|| [str isEqualToString:@""]) {
+        return true;
+    }else{
+        return false;
+    }
+    
+}
 + (char *)UTF8_To_GB2312:(NSString*)utf8string
 {
     NSStringEncoding encoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
