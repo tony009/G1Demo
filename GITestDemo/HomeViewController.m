@@ -200,30 +200,94 @@ static char parse(char c) {
     return (c - '0') & 0x0f;
 }
 
-//签到
-- (IBAction)siginAction:(ImgTButton *)sender {
+//解密从服务器获取的主密钥
+-(NSString *)decryptMainKey:(NSString *)mainKey{
     
+    NSMutableString *des = [[NSMutableString alloc]initWithString:@""];
+    
+    NSString *src1 = [mainKey substringToIndex:16];
+    NSString *src2 = [mainKey substringFromIndex:16];
+    
+    
+    unsigned char *lpIn = [src1 cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    unsigned char *key = "01CCA5D0712519DE01CCA5D0712519DE";
+    unsigned char key1[16];
+    HexString2Bytes(key, key1);
+    
+    unsigned char lpIn1[8];
+    HexString2Bytes(lpIn, lpIn1);
+    
+    unsigned char lpOut[8];
+    
+    
+    des3_decrypt(lpIn1, lpOut, key1);
+    
+    
+    unsigned char d[17];
+    d[16] = '\0';
+    for (int i = 0; i<8; i++) {
+        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+    }
+    
+    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
+    
+    lpIn = [src2 cStringUsingEncoding:NSUTF8StringEncoding];
+    HexString2Bytes(lpIn, lpIn1);
+    des3_decrypt(lpIn1, lpOut, key1);
+    
+    for (int i = 0; i<8; i++) {
+        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+    }
+    
+    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
 
     
-    if(MiniPosSDKDeviceState()<0){
-        //[self showTipView:@"设备未连接"];
-        [self showConnectionAlert];
-        return;
-    }else{
+    return des;
+}
+
+- (void)setPosWithParams:(NSDictionary *)dictionary success:(void (^)())success{
+    
+    
+    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+    
+
+    NSArray *array = [dictionary allKeys];
+    
+    for (NSString *key in array) {
         
-//            char paramname[100];
-//        
-//            memset(paramname, 0x00, sizeof(paramname));
-//            strcat(paramname, "TerminalNo");
-//            strcat(paramname, "\x1C");
-//            strcat(paramname, "MerchantNo");
-//            strcat(paramname, "\x1C");
-//            strcat(paramname, "SnNo");
-//        
-//            MiniPosSDKGetParams("88888888", paramname);
-//    
-//        return;
+        dispatch_async(serial_queue, ^{
+            hasSettedParam = false;
+            MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:key], [[dictionary objectForKey:key]UTF8String]);
+            while (hasSettedParam ==false) {
+                
+            }
+            
+        });
         
+    }
+    
+        dispatch_async(serial_queue, ^{
+            hasSettedParam = false;
+            MiniPosSDKSetParam("000000000", "", "");
+            while (hasSettedParam ==false) {
+    
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self hideHUD];
+                success();
+            });
+            
+        });
+    
+    
+}
+
+//验证pos端的参数，成功后执行block
+- (void) verifyParamsSuccess:(void (^)())success{
+    {
         
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -233,149 +297,103 @@ static char parse(char c) {
         NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
         NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
         
-        if ([merchantNo isEqualToString:@""] || merchantNo == nil) {
+        
+        
+        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
+        NSLog(@"url:%@",url);
+        
+        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=&tid=",kServerIP,kServerPort,sn,phoneNo];
-            NSLog(@"url:%@",url);
-            [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                
-                NSLog(@"responseObject:%@",responseObject);
-                NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
-                
-                int code = [responseObject[@"resultMap"][@"code"]intValue];
-                
-                if (code == 3 ) {
-                    
-                    NSString *src = responseObject[@"resultMap"][@"tmk"];
-                    NSMutableString *des = [[NSMutableString alloc]initWithString:@""];
-                    
-                    NSString *src1 = [src substringToIndex:16];
-                    NSString *src2 = [src substringFromIndex:16];
-                    
-                    
-                    unsigned char *lpIn = [src1 cStringUsingEncoding:NSUTF8StringEncoding];
-                    
-                    unsigned char *key = "01CCA5D0712519DE01CCA5D0712519DE";
-                    unsigned char key1[16];
-                    HexString2Bytes(key, key1);
-                    
-                    unsigned char lpIn1[8];
-                    HexString2Bytes(lpIn, lpIn1);
-                    
-                    unsigned char lpOut[8];
-                    
-                    
-                    des3_decrypt(lpIn1, lpOut, key1);
-                    
-                    
-                    unsigned char d[17];
-                    d[16] = '\0';
-                    for (int i = 0; i<8; i++) {
-                        sprintf(&d[i * 2],"%.2X",lpOut[i]);
-                    }
-                    
-                    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
-                    
-                    lpIn = [src2 cStringUsingEncoding:NSUTF8StringEncoding];
-                    HexString2Bytes(lpIn, lpIn1);
-                    des3_decrypt(lpIn1, lpOut, key1);
-                    
-                    for (int i = 0; i<8; i++) {
-                        sprintf(&d[i * 2],"%.2X",lpOut[i]);
-                    }
-                    
-                    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
-                    
-                    NSLog(@"des:%@",des);
-                    
-                    
-                    NSString *tid = responseObject[@"resultMap"][@"tid"];
-                    NSString *mid = responseObject[@"resultMap"][@"mid"];
-                    
-                    
-                    
-                    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
-                    
-                    //MiniPosSDKSetParam("000000000", "\xC9\xCC\xBB\xA7\xBA\xC5", "898100012340004");
-                    // MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], "898100012340005");
-                    
-                    dispatch_async(serial_queue, ^{
-                        hasSettedParam = false;
-                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"商户号"], [mid UTF8String]);
-                        while (hasSettedParam ==false) {
-                            
-                        }
-                        
-                    });
-                    
-                    dispatch_async(serial_queue, ^{
-                        hasSettedParam = false;
-                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"终端号"], [tid UTF8String]);
-                        while (hasSettedParam ==false) {
-                            
-                        }
-                        
-                    });
-                    
-                    dispatch_async(serial_queue, ^{
-                        hasSettedParam = false;
-                        MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:@"主密钥1"], [des UTF8String]);
-                        while (hasSettedParam ==false) {
-                            
-                        }
-                        
-                    });
-                    
-                    dispatch_async(serial_queue, ^{
-                        hasSettedParam = false;
-                        MiniPosSDKSetParam("000000000", "", "");
-                        while (hasSettedParam ==false) {
-                            
-                        }
-                        
-                    });
-                    
-                    
-                }
-                
-                
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                
-            }];
-        }else{
+            NSLog(@"responseObject:%@",responseObject);
+            NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
             
-            NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
-            NSLog(@"url:%@",url);
+            int code = [responseObject[@"resultMap"][@"code"]intValue];
             
-            [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (code == 3 ) {
                 
-                int code = [responseObject[@"resultMap"][@"code"]intValue];
+                [self showHUD:@"正在写入参数"];
                 
-                if (code == 0 ) {
-                    
+                
+                NSString *mainKey  = [self decryptMainKey:responseObject[@"resultMap"][@"tmk"]];
+                NSString *tid = responseObject[@"resultMap"][@"tid"];
+                NSString *mid = responseObject[@"resultMap"][@"mid"];
+                NSLog(@"mainKey:%@",mainKey);
+                
+                NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
+                
+                [self setPosWithParams:dictionary success:^{
                     if(MiniPosSDKPosLogin()>=0)
                     {
                         
-                        
                         [self showHUD:@"正在签到"];
- 
+                        
                     }
-                }else{
-                    [self showTipView:responseObject[@"resultMap"][@"msg"]];
-                }
+                }];
                 
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];
+                [[NSUserDefaults standardUserDefaults]setObject:tid forKey:kMposG1TerminalNo];
+                [[NSUserDefaults standardUserDefaults]setObject:mainKey forKey:kMposG1MainKey];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
+                
+                
+            }else  if (code == 0 ) {
+                
+               
+                success();
+                
+            }else{
+                
+                [self showTipView:responseObject[@"resultMap"][@"msg"]];
+            }
             
-            }];
             
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
-        }
+            [self hideHUD];
+            NSLog(@"failure");
+            [self showTipView:@"网络异常"];
+        }];
+    }
+}
+
+//签到
+- (IBAction)siginAction:(ImgTButton *)sender {
+    
+//    NSDictionary *dictionary = @{@"商户号":@"123",@"终端号":@"123",@"主密钥1":@"123"};
+//    [self showHUD:@"正在写入参数"];
+//    //[self showTipView:@"正在写入参数"];
+//    [self setPosWithParams:dictionary success:^{
+//        if(MiniPosSDKPosLogin()>=0)
+//        {
+//            
+//            [self showHUD:@"正在签到"];
+//            
+//        }
+//    }];
+//
+//    return;
+    
+
+    if(MiniPosSDKDeviceState()<0){
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
+        return;
+    }else{
         
-   
+        [self verifyParamsSuccess:^{
+            
+            if(MiniPosSDKPosLogin()>=0)
+            {
+                
+                [self showHUD:@"正在签到"];
+                
+            }
+            
+        }];
         
     }
     
-
     
 }
 
@@ -386,18 +404,23 @@ static char parse(char c) {
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
-    }
-    
-    
-    
-    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-        
-        [self performSegueWithIdentifier:@"xiaofei" sender:self];
-        
     }else{
-        [self showTipView:@"设备繁忙，稍后再试"];
+        
+        [self verifyParamsSuccess:^{
+            
+            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+                
+                [self performSegueWithIdentifier:@"xiaofei" sender:self];
+                
+            }else{
+                [self showTipView:@"设备繁忙，稍后再试"];
+            }
+            
+        }];
+        
+        
+        
     }
-    
     
 }
 //撤销
@@ -407,14 +430,20 @@ static char parse(char c) {
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
+    }else {
+        [self verifyParamsSuccess:^{
+            
+            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+                
+                [self performSegueWithIdentifier:@"chexiao" sender:self];
+            }else {
+                [self showTipView:@"设备繁忙，稍后再试"];
+            }
+            
+        }];
     }
     
-    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-        
-        [self performSegueWithIdentifier:@"chexiao" sender:self];
-    }else {
-        [self showTipView:@"设备繁忙，稍后再试"];
-    }
+
     
     
 }
@@ -426,18 +455,35 @@ static char parse(char c) {
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
+    }else {
+        [self verifyParamsSuccess:^{
+            
+            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+                
+                [self performSegueWithIdentifier:@"chaxun" sender:self];
+                
+            }
+            
+            if(MiniPosSDKQuery()>=0)
+            {
+                NSLog(@"正在查询余额...");
+            }
+        }];
+        
+//                    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+//        
+//                        [self performSegueWithIdentifier:@"chaxun" sender:self];
+//        
+//                    }
+//        
+//                    if(MiniPosSDKQuery()>=0)
+//                    {
+//                        NSLog(@"正在查询余额...");
+//                    }
+        
     }
     
-    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-        
-        [self performSegueWithIdentifier:@"chaxun" sender:self];
-        
-    }
-    
-    if(MiniPosSDKQuery()>=0)
-    {
-        NSLog(@"正在查询余额...");
-    }
+
     
 }
 //签退
@@ -447,13 +493,24 @@ static char parse(char c) {
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
+    }else {
+        [self verifyParamsSuccess:^{
+            
+            if(MiniPosSDKPosLogout()>=0)
+            {
+                [self showHUD:@"正在签退..."];
+            }
+            
+        }];
+        
+//        if(MiniPosSDKPosLogout()>=0)
+//        {
+//            [self showHUD:@"正在签退..."];
+//        }
     }
     
     
-    if(MiniPosSDKPosLogout()>=0)
-    {
-        [self showHUD:@"正在签退..."];
-    }
+
 }
 //结算
 - (IBAction)payoffAction:(ImgTButton *)sender {
@@ -462,13 +519,21 @@ static char parse(char c) {
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
+    }else {
+        [self verifyParamsSuccess:^{
+            if(MiniPosSDKSettleTradeCMD(NULL)>=0)
+            {
+                [self showHUD:@"正在结算..."];
+            }
+        }];
+//        if(MiniPosSDKSettleTradeCMD(NULL)>=0)
+//        {
+//            [self showHUD:@"正在结算..."];
+//        }
     }
     
     
-    if(MiniPosSDKSettleTradeCMD(NULL)>=0)
-    {
-        [self showHUD:@"正在结算..."];
-    }
+
 }
 
 - (IBAction)updataKeyAction:(ImgTButton *)sender {
@@ -515,14 +580,17 @@ static char parse(char c) {
         
         [self showConnectionAlert];
         return;
+    }else {
+        [self verifyParamsSuccess:^{
+            if(MiniPosSDKGetDeviceInfoCMD()>=0)
+            {
+                [self showHUD:@"正在获取设备信息"];
+                isGetDeviceMsgAction = true;
+            }
+        }];
     }
     
-    if(MiniPosSDKGetDeviceInfoCMD()>=0)
-    {
-        [self showHUD:@"正在获取设备信息"];
-        isGetDeviceMsgAction = true;
-        //[self performSelector:@selector(showResultWithString:) withObject:@"获取设备信息超时" afterDelay:10];
-    }
+
 }
 
 

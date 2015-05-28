@@ -45,6 +45,7 @@
 #define kMposG1SN @"SnNo"  //mposSN号
 #define kMposG1TerminalNo @"TerminalNo" //mpos终端号
 #define kMposG1MerchantNo @"MerchantNo" //mpos商户号
+#define kMposG1MainKey  @"MainKey"  //mpos主密钥
 
 #define kServerIP @"122.112.12.20" //注册登录的ip
 #define kServerPort @"8081" //注册登录的端口
