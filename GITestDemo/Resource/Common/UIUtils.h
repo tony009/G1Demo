@@ -43,6 +43,8 @@
 + (BOOL)isCorrectPhoneNo:(NSString *)number;
 //判断是否为正确的身份证号码
 + (BOOL)isCorrectID:(NSString *)str;
+//判断是否为正确的银行卡号
++ (BOOL)isCorrectBankCardNumber:(NSString *)str;
 //判断是否为正确的密码
 + (BOOL)isCorrectPassword:(NSString *)str;
 //判断是否未空字符

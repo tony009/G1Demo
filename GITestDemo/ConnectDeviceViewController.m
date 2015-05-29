@@ -27,16 +27,6 @@
 
 - (void)_initSubViews
 {
-    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 50, 50);
-    //    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    //    [backButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
-    backButton.backgroundColor = [UIColor clearColor];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = leftItem;
     
     _deviceView = [[UIView alloc] initWithFrame:CGRectMake(10, kScreenHeight-64-200, kScreenWidth-20, 180)];
     _deviceView.layer.cornerRadius = 20.0;
@@ -60,6 +50,8 @@
     [_deviceView addSubview:button];
     
     curLabel = self.bleStatusLabel;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

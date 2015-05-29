@@ -93,13 +93,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor =rgb(245, 245, 245, 1);
+    self.view.backgroundColor =rgb(229, 229, 229, 1);
     
     if (self.navigationController.viewControllers.count > 1) {
         UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         leftButton.frame = CGRectMake(0, 0, 50, 50);
         leftButton.backgroundColor = [UIColor clearColor];
-        [leftButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+        [leftButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
         [leftButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];

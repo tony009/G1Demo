@@ -48,7 +48,7 @@
     
 
     QRadioButton *accountType_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"accountType"];
-    accountType_radio1.frame = CGRectMake(130, 80, 100, 40);
+    accountType_radio1.frame = CGRectMake(150, 80, 100, 40);
     accountType_radio1.tag = 1;
     [accountType_radio1 setTitle:@"借记卡" forState:UIControlStateNormal];
     [self.view addSubview:accountType_radio1];
@@ -60,13 +60,13 @@
     [self.view addSubview:accountType_radio2];
     
     QRadioButton *isPrivate_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"isPrivate"];
-    isPrivate_radio1.frame = CGRectMake(130, 125, 100, 40);
+    isPrivate_radio1.frame = CGRectMake(150, 115, 100, 40);
     isPrivate_radio1.tag = 1;
     [isPrivate_radio1 setTitle:@"对私" forState:UIControlStateNormal];
     [self.view addSubview:isPrivate_radio1];
     [isPrivate_radio1 setChecked:YES];
     QRadioButton *isPrivate_radio2 = [[QRadioButton alloc] initWithDelegate:self groupId:@"isPrivate"];
-    isPrivate_radio2.frame = CGRectMake(220, 125, 100, 40);
+    isPrivate_radio2.frame = CGRectMake(220, 115, 100, 40);
     isPrivate_radio2.tag = 0;
     [isPrivate_radio2 setTitle:@"对公" forState:UIControlStateNormal];
     [self.view addSubview:isPrivate_radio2];
@@ -86,25 +86,29 @@
     
     //校验信息
     
-    if ([UIUtils isEmptyString:self.bankName.text]) {
+    if ([UIUtils isEmptyString:self.bankName.text]||[self.bankName.text length] > 20) {
         [self showTipView:@"请输入正确的开户行全称"];
         return;
-    }else if ([UIUtils isEmptyString:self.province.text]) {
+    }else if ([UIUtils isEmptyString:self.province.text]||[self.province.text length] > 10) {
         [self showTipView:@"请输入正确的省份"];
         return;
-    }else if([UIUtils isEmptyString:self.city.text]){
+    }else if([UIUtils isEmptyString:self.city.text]||[self.city.text length] > 10){
         [self showTipView:@"请输入正确的城市"];
         return;
-    }else if([UIUtils isEmptyString:self.bankBranch.text]){
+    }else if([UIUtils isEmptyString:self.bankBranch.text]||[self.bankBranch.text length] > 20){
         [self showTipView:@"请输入正确的支行名称"];
         return;
-    }else if([UIUtils isEmptyString:self.settleAccno.text]){
+    }else if(![UIUtils isCorrectBankCardNumber:self.settleAccno.text]){
         [self showTipView:@"请输入正确的开户账号"];
         return;
-    }else if([UIUtils isEmptyString:self.accName.text]){
+    }else if([UIUtils isEmptyString:self.accName.text]||[self.accName.text length] > 10){
         [self showTipView:@"请输入正确的姓名"];
         return;
-    }else if([UIUtils isEmptyString:self.imagePath4]){
+    }else if([UIUtils isEmptyString:self.settleBank.text]||[self.settleBank.text length] > 20){
+        [self showTipView:@"请输入正确的银行联行号"];
+        return;
+    }
+    else if([UIUtils isEmptyString:self.imagePath4]){
         [self showTipView:@"请选择银行卡正面照"];
         return;
     }
@@ -134,7 +138,7 @@
     NSLog(@" self.settleAccno.text:%@",self.settleAccno.text);
     NSLog(@"self.accName.text:%@",self.accName.text);
     
-    NSDictionary *parameters = @{@"merType": @"6",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20240404",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":@"12345"};
+    NSDictionary *parameters = @{@"merType": @"6",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20240404",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":self.settleBank.text};
     
     
     NSLog(@"parameters:%@",parameters);
@@ -164,10 +168,10 @@
         
         if(code ==0){
             
-            //[self presentModalViewController: ViewController animated:YES];
-            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
-            [self presentViewController:lvc animated:YES completion:nil];
-
+//            //[self presentModalViewController: ViewController animated:YES];
+//            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
+//            [self presentViewController:lvc animated:YES completion:nil];
+            [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             
         }
         

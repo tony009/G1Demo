@@ -278,6 +278,15 @@
     
     return isMatch;
 }
+//判断是否为正确的银行卡号
++ (BOOL)isCorrectBankCardNumber:(NSString *)str{
+    
+    NSString *regex = @"^(\\d{15,30})";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    BOOL isMatch = [pred evaluateWithObject:str];
+    return isMatch;
+    
+}
 
 //判断是否为正确的身份证号码
 + (BOOL)isCorrectID:(NSString *)str{
@@ -288,13 +297,14 @@
     return isMatch;
     
 }
-
+//判断是否为正确的密码
 + (BOOL)isCorrectPassword:(NSString *)str{
     NSString *regex = @"^[0-9A-Za-z]{6,20}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     BOOL isMatch = [pred evaluateWithObject:str];
     return isMatch;
 }
+//判断是否未空字符串
 + (BOOL)isEmptyString:(NSString *)str{
     
     

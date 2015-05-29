@@ -19,24 +19,21 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 50, 50);
-    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
-    backButton.backgroundColor = [UIColor clearColor];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = leftItem;
-    
 
-    [self.phoneNo becomeFirstResponder];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    imageView1.backgroundColor = [UIColor clearColor];
+    imageView1.image = [UIImage imageNamed:@"人物标志.png"];
+    
+    
+    self.phoneNo.leftView = imageView1;
+    self.phoneNo.leftViewMode = UITextFieldViewModeAlways;
+    self.phoneNo.layer.cornerRadius = 3.0;
+    //self.phoneNo.
+    //[self.phoneNo becomeFirstResponder];
 }
 
 
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 //获取手机验证码
 - (IBAction)getPhoneVerificationCode:(id)sender {

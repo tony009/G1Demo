@@ -26,21 +26,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        self.navigationBar.translucent = NO;
-        self.navigationBar.barTintColor = rgb(74, 177, 163, 1);
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    } else {
-        self.navigationBar.tintColor = rgb(74, 177, 163, 1);
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    }
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+//        self.navigationBar.translucent = NO;
+//        self.navigationBar.barTintColor = rgb(74, 177, 163, 1);
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    } else {
+//        self.navigationBar.tintColor = rgb(74, 177, 163, 1);
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+//    }
+//    
+//    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                [UIColor whiteColor], UITextAttributeTextColor,
+//                                                [UIColor colorWithRed:0 green:0.7 blue:0.8 alpha:1], UITextAttributeTextShadowColor,
+//                                                [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
+//                                                [UIFont boldSystemFontOfSize:18], UITextAttributeFont,
+//                                                nil]];
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 50, 50);
+    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+    backButton.backgroundColor = [UIColor clearColor];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                [UIColor whiteColor], UITextAttributeTextColor,
-                                                [UIColor colorWithRed:0 green:0.7 blue:0.8 alpha:1], UITextAttributeTextShadowColor,
-                                                [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
-                                                [UIFont boldSystemFontOfSize:18], UITextAttributeFont,
-                                                nil]];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
 }
 
 - (void)didReceiveMemoryWarning

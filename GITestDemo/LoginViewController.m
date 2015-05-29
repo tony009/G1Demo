@@ -12,7 +12,7 @@
 #import "SIAlertView.h"
 #import "AFNetworking.h"
 #include "des.h"
-@interface LoginViewController ()<UIAlertViewDelegate>
+@interface LoginViewController ()<UIAlertViewDelegate,QCheckBoxDelegate>
 {
     UITapGestureRecognizer *disMissTap;
     NSTimer *timer;
@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = NO;
     
     _isNeedAutoConnect = YES;
     
@@ -130,7 +132,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
-//    LoginModalToHome
+//    
 }
 
 /*
@@ -156,11 +158,11 @@
     
     UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     imageView1.backgroundColor = [UIColor clearColor];
-    imageView1.image = [UIImage imageNamed:@"incon_me2.png"];
+    imageView1.image = [UIImage imageNamed:@"人物标志.png"];
     
     UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     imageView2.backgroundColor = [UIColor clearColor];
-    imageView2.image = [UIImage imageNamed:@"icon_password1.png"];
+    imageView2.image = [UIImage imageNamed:@"密码标志.png"];
     
     
     self.phoneNo.leftView = imageView1;
@@ -174,17 +176,25 @@
     self.password.layer.masksToBounds = YES;
 
   
-    _checkBox = [[QCheckBox alloc]initWithDelegate:nil];
+    _checkBox = [[QCheckBox alloc]initWithDelegate:self];
     _checkBox.frame = CGRectMake(20, 6, 120, 30);
-    [_checkBox setTitle:@"我已阅读并同意" forState:UIControlStateNormal];
-    _checkBox.titleLabel.font =[UIFont systemFontOfSize: 10];
+    [_checkBox setTitle:@"记住密码" forState:UIControlStateNormal];
+    _checkBox.titleLabel.font =[UIFont systemFontOfSize: 12];
     [_checkBox setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_checkBox setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    [_checkBox setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-    [_checkBox setImage:[UIImage imageNamed:@"uncheck_icon.png"] forState:UIControlStateNormal];
-    [_checkBox setImage:[UIImage imageNamed:@"check_icon.png"] forState:UIControlStateSelected];
+//    [_checkBox setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//    [_checkBox setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_checkBox setImage:[UIImage imageNamed:@"小方框.png"] forState:UIControlStateNormal];
+    [_checkBox setImage:[UIImage imageNamed:@"小方框2.png"] forState:UIControlStateSelected];
     [self.protocolView addSubview:_checkBox];
-    [_checkBox setChecked:YES];
+    
+    BOOL b = [[NSUserDefaults standardUserDefaults]boolForKey:kRememberPassword];
+    [_checkBox setChecked:b];
+    
+    self.phoneNo.text = [[NSUserDefaults standardUserDefaults]stringForKey:kLoginPhoneNo];
+    
+    if (b) {
+        self.password.text  = [[NSUserDefaults standardUserDefaults]stringForKey:KPassword];
+    }
 }
 
 
@@ -257,9 +267,10 @@
         if(code == 0){
             
             [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
+            [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+            [self performSegueWithIdentifier:@"loginToHome" sender:self];
             
         }else{
             [self showTipView:responseObject[@"resultMap"][@"msg"] ];
@@ -336,7 +347,7 @@
         [salertView addButtonWithTitle:@"OK"
                                  type:SIAlertViewButtonTypeDefault
                               handler:^(SIAlertView *alertView) {
-                                  [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+                                  [self performSegueWithIdentifier:@"loginToHome" sender:self];
                               }];
 //        [salertView addButtonWithTitle:@"Cancel"
 //                                 type:SIAlertViewButtonTypeCancel
@@ -447,14 +458,20 @@
     MiniPosSDKGetParams("88888888", paramname);
 }
 
-#pragma mark -
+
 #pragma mark - UIAlertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag==99)
-    [self performSegueWithIdentifier:@"loginModalToHome" sender:self];
+    [self performSegueWithIdentifier:@"loginToHome" sender:self];
 }
 
+#pragma mark - QCheckBoxDelegate
+
+- (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked{
+
+    [[NSUserDefaults standardUserDefaults] setBool:checked forKey:kRememberPassword];
+}
 
 
 

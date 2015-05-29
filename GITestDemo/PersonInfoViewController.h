@@ -11,6 +11,7 @@
 @interface PersonInfoViewController : RootViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *password; //登录密码
+@property (strong, nonatomic) IBOutlet UITextField *rePassword; //确认密码
 @property (strong, nonatomic) IBOutlet UITextField *name; //姓名
 @property (strong, nonatomic) IBOutlet UITextField *ID; //身份证
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoFront; //身份证正面

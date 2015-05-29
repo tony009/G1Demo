@@ -25,10 +25,25 @@
     // Do any additional setup after loading the view.
     NSLog(@"viewDidLoad");
     
+    
+    self.view.backgroundColor =rgb(229, 229, 229, 1);
+    
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 50, 50);
+    [backButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
+    backButton.backgroundColor = [UIColor clearColor];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissAction)];
     
 }
 
+- (void)back
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

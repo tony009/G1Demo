@@ -53,7 +53,7 @@
     if ([UIUtils isEmptyString:self.area.text]) {
         [self showTipView:@"请输入地区"];
         return;
-    }else if ([UIUtils isEmptyString:self.address.text]) {
+    }else if ([UIUtils isEmptyString:self.address.text]||[self.address.text length] > 30) {
         [self showTipView:@"请输入正确的经营地址"];
         return;
     }else if([UIUtils isEmptyString:self.sn.text]){

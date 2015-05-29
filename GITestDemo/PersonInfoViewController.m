@@ -120,7 +120,10 @@
     if (![UIUtils isCorrectPassword:self.password.text]) {
         [self showTipView:@"请输入正确的密码"];
         return;
-    }else if ([UIUtils isEmptyString:self.name.text]) {
+    }else if (![self.rePassword.text isEqualToString:self.password.text]) {
+        [self showTipView:@"2次密码不一致，请重新输入"];
+        return;
+    }else if ([UIUtils isEmptyString:self.name.text]||[self.name.text length] > 10) {
         [self showTipView:@"请输入正确的姓名"];
         return;
     }else if (![UIUtils isCorrectID:self.ID.text]) {

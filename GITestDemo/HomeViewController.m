@@ -62,20 +62,18 @@
 
 - (void)_initSubViews
 {
-    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 50, 50);
-    //    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    //    [backButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
-    backButton.backgroundColor = [UIColor clearColor];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.frame = CGRectMake(0, 0, 50, 50);
+    leftButton.backgroundColor = [UIColor clearColor];
+    [leftButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
     NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新"];
-    NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
-    
+    //NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
+    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png"];
     for (int i = 0; i < titArray.count; i++) {
         ImgTButton *button = (ImgTButton *)[self.controlView viewWithTag:i+10];
         button.imageName = [imgArray objectAtIndex:i];
@@ -104,6 +102,9 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.translucent = NO;
+    
     MiniPosSDKInit();
     
     if (isFirstGetVersionInfo) {
@@ -146,6 +147,10 @@
     
     
     self.scrollView.delegate = self;
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    //self.navigationController.navigationBar.translucent = YES;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -717,7 +722,7 @@ static char parse(char c) {
     
     
 }
-
+#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     
@@ -727,6 +732,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         if (buttonIndex == 0) {
             ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
             [self.navigationController pushViewController:cdvc animated:YES];
+            //[self presentViewController:cdvc animated:YES completion:nil];
         }
     }else{
         if (buttonIndex ==1) {

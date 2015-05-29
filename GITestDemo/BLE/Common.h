@@ -39,8 +39,10 @@
 #define kCaoZhuoYuanEditor @"caoZhuoYuanEditor"
 #define kHostEditor @"hostEditor"
 #define kPortEditor @"portEditor"
+#define kRememberPassword @"RememberPassword" //是否记住密码
 #define kSignUpPhoneNo @"SignUpPhoneNo" //注册时验证通过的手机号码
 #define kLoginPhoneNo @"LoginPhoneNo" //登录成功的手机号码
+#define KPassword @"Password" //登录成功的密码
 
 #define kMposG1SN @"SnNo"  //mposSN号
 #define kMposG1TerminalNo @"TerminalNo" //mpos终端号

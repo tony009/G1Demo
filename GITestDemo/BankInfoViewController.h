@@ -27,5 +27,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *bankBranch;//支行名称
 @property (strong, nonatomic) IBOutlet UITextField *settleAccno; //开户账号
 @property (strong, nonatomic) IBOutlet UITextField *accName; //开户姓名
+@property (weak, nonatomic) IBOutlet UITextField *settleBank; //银行联行号
 
 @end
