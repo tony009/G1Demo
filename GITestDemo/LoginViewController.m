@@ -35,49 +35,11 @@
     
     [self _initSubViews];
     
-    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
-    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
-    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
-    NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
-    NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
-      
-    
-    if (!shangHu) {
-        shangHu  = @"898100012340003";
-    }
-    if (!zhongDuan) {
-        zhongDuan = @"10700028";
-    }
-    if (!caoZhuoYuan) {
-        caoZhuoYuan = @"01";
-    }
-    if (!host) {
-        host = @"122.112.12.227";
-    }
-    if (!port) {
-        port = @"5555";
-    }
-    
-    MiniPosSDKInit();
-    NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
-    MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
-    MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
-    [self.connectDeviceButton setTitle:@"正在连接设备..." forState:UIControlStateNormal];
-    
-    [self bleConnectAction];
-    
+    [self initBLESDK];
     
     // Do any additional setup after loading the view.
 }
 
-
-- (void)bleConnectAction {
-    
-    DeviceDriverInterface *t;
-    t=GetBLEDeviceInterface();
-    MiniPosSDKRegisterDeviceInterface(t);
-    
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -240,6 +202,16 @@
 //    
 //    
 //    return;
+    
+    if (DEBUG) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
+        [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self performSegueWithIdentifier:@"loginToHome" sender:self];
+        return;
+    }
+    
 
     if(![UIUtils isCorrectPhoneNo:self.phoneNo.text]){
         [self showTipView:@"请输入正确的手机号"];

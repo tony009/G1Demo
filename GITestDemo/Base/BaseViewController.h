@@ -42,5 +42,6 @@
 
 
 - (void)recvMiniPosSDKStatus;
-
+//初始化BLE SDK
+- (void)initBLESDK;
 @end

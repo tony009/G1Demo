@@ -352,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBH-sO-d5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="-614"/>
+            <point key="canvasLocation" x="787" y="-952"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8Uu-vB-OJY">
@@ -394,7 +394,7 @@
         <!--选择商户类型-->
         <scene sceneID="D1n-ea-Ltc">
             <objects>
-                <viewController id="15D-ov-ZX1" sceneMemberID="viewController">
+                <viewController id="15D-ov-ZX1" customClass="RootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjr-PZ-R4E">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -408,7 +408,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="getVerCode:" destination="L06-QX-SwD" eventType="touchUpInside" id="5QB-se-h4z"/>
                                     <segue destination="tfu-5T-Dxb" kind="push" id="2a3-vy-Z5J"/>
                                 </connections>
                             </button>
@@ -420,9 +419,6 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="getVerCode:" destination="L06-QX-SwD" eventType="touchUpInside" id="OSB-Ft-6F7"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
@@ -431,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWD-9t-UvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896" y="-1435"/>
+            <point key="canvasLocation" x="1669" y="-2588"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lSn-9d-btH">
@@ -446,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwP-ql-LYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-1177"/>
+            <point key="canvasLocation" x="2316" y="-3139"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="ww7-3P-czo">
@@ -468,7 +464,7 @@
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.49411764705882355" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AYL-YK-rnl">
-                                <rect key="frame" x="20" y="510" width="280" height="45"/>
+                                <rect key="frame" x="20" y="500" width="280" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -481,7 +477,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vOK-fo-QXt">
-                                <rect key="frame" x="20" y="450" width="280" height="45"/>
+                                <rect key="frame" x="20" y="440" width="280" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.49411764705882355" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -580,48 +576,54 @@
                         <outlet property="phoneNo" destination="y8n-IF-UR1" id="Cfe-gi-Wok"/>
                         <outlet property="protocolView" destination="QXN-Z0-t52" id="LMH-0c-e8X"/>
                         <outlet property="siginButton" destination="ntm-Gc-gVQ" id="UJO-P3-s4q"/>
-                        <segue destination="YzT-Ss-ZBL" kind="modal" identifier="loginModalToConfig" id="8Wg-sG-MEV"/>
                         <segue destination="vPX-Vr-y6c" kind="modal" identifier="loginModalToConnect" id="jGi-GX-hUj"/>
                         <segue destination="AgC-Xy-JuH" kind="modal" identifier="loginToHome" id="6VY-FX-RWS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ss-Xr-qWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="572"/>
+            <point key="canvasLocation" x="318" y="562"/>
         </scene>
-        <!--View Controller-->
+        <!--更多-->
         <scene sceneID="pFq-re-zon">
             <objects>
-                <viewController id="WaN-7a-yz0" sceneMemberID="viewController">
+                <viewController id="WaN-7a-yz0" customClass="RootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dAj-28-fQ1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="I75-tH-Kbg">
-                                <rect key="frame" x="137" y="327" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y7h-hw-w7o">
+                                <rect key="frame" x="0.0" y="80" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="设置">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vKf-B6-Bnw">
-                                <rect key="frame" x="142" y="451" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="连接">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="系统设置">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vPX-Vr-y6c" kind="push" id="5JX-DY-jhh"/>
+                                    <segue destination="5X4-BM-FwP" kind="push" id="TXd-Lw-6Ee"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JAz-FP-D1K">
+                                <rect key="frame" x="0.0" y="130" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="连接蓝牙">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vPX-Vr-y6c" kind="push" id="IBh-Aj-qd0"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2By-ho-x6Z"/>
+                    <navigationItem key="navigationItem" title="更多" id="2By-ho-x6Z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kom-Lc-KuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="38"/>
+            <point key="canvasLocation" x="760" y="-297"/>
         </scene>
         <!--Protocol View Controller-->
         <scene sceneID="6YO-U5-zUo">
@@ -2437,9 +2439,9 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rci-0r-rB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="1964"/>
+            <point key="canvasLocation" x="472" y="2177"/>
         </scene>
-        <!--Connect Device View Controller-->
+        <!--设备连接-->
         <scene sceneID="IWX-lE-g7f">
             <objects>
                 <viewController storyboardIdentifier="CD" id="vPX-Vr-y6c" customClass="ConnectDeviceViewController" sceneMemberID="viewController">
@@ -2448,14 +2450,10 @@ Cgo
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="bSZ-Up-LHI">
-                                <rect key="frame" x="0.0" y="119" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="81" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_background2.png" id="uTd-1r-Vtr">
-                                        <rect key="frame" x="-5" y="0.0" width="331" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_bluetooth.png" id="xby-Pm-9fj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="蓝牙.png" id="xby-Pm-9fj">
                                         <rect key="frame" x="20" y="15" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -2477,7 +2475,6 @@ Cgo
                                         <rect key="frame" x="161" y="24" width="150" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.64313725489999995" green="0.79215686269999996" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yLu-al-o3U">
@@ -2492,17 +2489,13 @@ Cgo
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="11a-CD-rkr">
-                                <rect key="frame" x="0.0" y="220" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="159" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_background2.png" id="Szy-DT-Vv4">
-                                        <rect key="frame" x="-5" y="0.0" width="331" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_audio.png" id="5sA-HN-ioP">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="音频.png" id="5sA-HN-ioP">
                                         <rect key="frame" x="20" y="15" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -2524,7 +2517,6 @@ Cgo
                                         <rect key="frame" x="161" y="24" width="150" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.64313725489999995" green="0.79215686269999996" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LEi-tf-O13">
@@ -2539,10 +2531,10 @@ Cgo
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备连接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hE8-fL-sXg">
-                                <rect key="frame" x="96" y="82" width="129" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备连接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hE8-fL-sXg">
+                                <rect key="frame" x="96" y="264" width="129" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2551,7 +2543,7 @@ Cgo
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6SD-NK-XDh"/>
+                    <navigationItem key="navigationItem" title="设备连接" id="6SD-NK-XDh"/>
                     <connections>
                         <outlet property="audioStatusLabel" destination="YI8-sn-04W" id="qtn-Uf-XiJ"/>
                         <outlet property="bleStatusLabel" destination="KdO-sn-8b4" id="yqg-9B-h5e"/>
@@ -2560,7 +2552,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUA-PE-Ux7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792" y="1301"/>
+            <point key="canvasLocation" x="289" y="-207"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="8kT-Mo-DRC">
@@ -2662,12 +2654,12 @@ Cgo
                                             <segue destination="grw-5E-TU5" kind="push" id="2uD-WS-Hoj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ebL-U7-EUV" customClass="ImgTButton">
+                                    <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ebL-U7-EUV" userLabel="Button" customClass="ImgTButton">
                                         <rect key="frame" x="107" y="242" width="106" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="签到">
+                                        <state key="normal">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2701,7 +2693,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYX-0C-PyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="562"/>
+            <point key="canvasLocation" x="1617" y="562"/>
         </scene>
         <!--撤销消费-->
         <scene sceneID="NzB-re-pWs">
@@ -2712,34 +2704,34 @@ Cgo
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入撤销金额" minimumFontSize="17" id="wEe-6s-JuB">
-                                <rect key="frame" x="15" y="0.0" width="290" height="50"/>
+                                <rect key="frame" x="0.0" y="16" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入凭证号" minimumFontSize="17" id="O95-gX-PNH">
-                                <rect key="frame" x="15" y="54" width="290" height="50"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kbN-3k-QrZ">
-                                <rect key="frame" x="110" y="134" width="101" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="撤销" backgroundImage="btn_next_background.png">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QXD-Wg-7fv">
+                                <rect key="frame" x="20" y="148" width="280" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="撤销">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="backoutAction:" destination="aFU-c5-ZSy" eventType="touchUpInside" id="aRf-iY-8xk"/>
+                                    <action selector="backoutAction:" destination="aFU-c5-ZSy" eventType="touchUpInside" id="uk9-Xn-fbd"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="撤销消费" id="tm4-LD-Jt9"/>
                     <connections>
@@ -2750,7 +2742,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gfz-52-jQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2771" y="550"/>
+            <point key="canvasLocation" x="2437" y="576"/>
         </scene>
         <!--查询余额-->
         <scene sceneID="zed-Yf-rmL">
@@ -2825,7 +2817,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1w-yn-hZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3303" y="739"/>
+            <point key="canvasLocation" x="3160" y="760"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="awl-DJ-A5X">
@@ -2861,7 +2853,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZr-l8-tq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="1257"/>
+            <point key="canvasLocation" x="991" y="1340"/>
         </scene>
         <!--Update View Controller-->
         <scene sceneID="GVp-Vm-p3h">
@@ -2895,7 +2887,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rwf-tv-wfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1700" y="1295"/>
+            <point key="canvasLocation" x="1617" y="1330"/>
         </scene>
         <!--消费-->
         <scene sceneID="ddi-Ha-Dpi">
@@ -2909,26 +2901,13 @@ Cgo
                                 <rect key="frame" x="5" y="5" width="310" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" id="9fz-LZ-j8b">
-                                        <rect key="frame" x="52" y="37" width="138" height="35"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="9fz-LZ-j8b">
+                                        <rect key="frame" x="50" y="40" width="140" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.21960784310000001" green="0.80000000000000004" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dF6-Q1-QO8">
-                                        <rect key="frame" x="220" y="40" width="80" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.21960784310000001" green="0.80000000000000004" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="开始刷卡">
-                                            <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startAction:" destination="Saq-0e-qb2" eventType="touchUpInside" id="FJq-fS-P0W"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="eh9-6n-OQM">
                                         <rect key="frame" x="8" y="82" width="292" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -2937,8 +2916,9 @@ Cgo
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KxP-0X-ulp">
-                                        <rect key="frame" x="8" y="43" width="34" height="21"/>
+                                        <rect key="frame" x="8" y="40" width="44" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2950,8 +2930,22 @@ Cgo
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4mS-Av-X4U">
+                                        <rect key="frame" x="220" y="40" width="80" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="开始刷卡">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="next:" destination="tfu-5T-Dxb" eventType="touchUpInside" id="Zeg-wP-Qti"/>
+                                            <action selector="startAction:" destination="Saq-0e-qb2" eventType="touchUpInside" id="6xP-YK-ZK5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="Q7v-qP-n5z" customClass="KCalculator">
                                 <rect key="frame" x="0.0" y="133" width="320" height="371"/>
@@ -2959,14 +2953,13 @@ Cgo
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="消费" id="cVn-O5-Cca"/>
                     <connections>
                         <outlet property="kcalculatorView" destination="Q7v-qP-n5z" id="6qH-Gx-400"/>
                         <outlet property="numberText" destination="9fz-LZ-j8b" id="bk1-sH-eco"/>
                         <outlet property="proText" destination="eh9-6n-OQM" id="dzb-JV-VWV"/>
-                        <outlet property="startButton" destination="dF6-Q1-QO8" id="dtG-Ep-dvQ"/>
                         <outlet property="timeLabel" destination="uJg-6r-Oop" id="Avz-dZ-6ER"/>
                         <outlet property="topView" destination="QXR-4x-aE0" id="Ug9-hI-1zQ"/>
                         <segue destination="E8e-8l-lym" kind="push" identifier="custPushToSwip" id="HA1-qt-zOJ"/>
@@ -2974,7 +2967,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kk-e5-73h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2771" y="-119"/>
+            <point key="canvasLocation" x="2416" y="-268"/>
         </scene>
         <!--消费刷卡-->
         <scene sceneID="cph-Js-RGF">
@@ -3008,7 +3001,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpP-h7-h88" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="-119"/>
+            <point key="canvasLocation" x="3160" y="-268"/>
         </scene>
         <!--打印小票-->
         <scene sceneID="LaP-0n-Ztc">
@@ -3039,14 +3032,12 @@ Cgo
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MGC-gY-jLf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MGC-gY-jLf">
                                 <rect key="frame" x="203" y="8" width="101" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="请签名" backgroundImage="btn_next_background.png">
-                                    <color key="titleColor" red="0.24313725490196078" green="0.69019607843137254" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="请签名">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="signatureAction:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="oQL-8Y-EYo"/>
@@ -3064,9 +3055,9 @@ Cgo
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.50196078431372548" green="0.77254901960784317" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.49411764705882355" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pos_backgound.png" id="Zct-zg-lkc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="滚动条.png" id="Zct-zg-lkc">
                                 <rect key="frame" x="5" y="96" width="310" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -3194,13 +3185,12 @@ Cgo
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Phz-4Q-U6h">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Phz-4Q-U6h">
                                 <rect key="frame" x="85" y="470" width="150" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="确认上传" backgroundImage="btn_next_background.png">
-                                    <color key="titleColor" red="0.24313725489999999" green="0.69019607839999997" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="确认上传">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="uploadImage:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="ZJe-0Y-AG5"/>
@@ -3226,35 +3216,18 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KrC-cG-b4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3731" y="-119"/>
+            <point key="canvasLocation" x="3710" y="-268"/>
         </scene>
-        <!--Main Nav View Controller-->
-        <scene sceneID="2vZ-GS-acZ">
-            <objects>
-                <navigationController id="YzT-Ss-ZBL" customClass="MainNavViewController" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dDz-EV-ZWu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="5X4-BM-FwP" kind="relationship" relationship="rootViewController" id="zhr-FI-ZXr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Uo-Wm-3XQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1939" y="-119"/>
-        </scene>
-        <!--设置-->
+        <!--系统设置-->
         <scene sceneID="zhD-u0-5C2">
             <objects>
                 <viewController id="5X4-BM-FwP" customClass="DeviceConfigViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOR-RZ-7rW">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z6V-Zt-zPl">
-                                <rect key="frame" x="112" y="293" width="60" height="30"/>
+                                <rect key="frame" x="111" y="314" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="公钥下载">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -3265,7 +3238,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="siJ-1d-nbF">
-                                <rect key="frame" x="182" y="293" width="67" height="30"/>
+                                <rect key="frame" x="181" y="314" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="AID下载">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -3276,68 +3249,57 @@ Cgo
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收款宝-4.png" id="0Vc-OQ-SbJ">
-                                <rect key="frame" x="73" y="288" width="36" height="36"/>
+                                <rect key="frame" x="72" y="309" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="8Ch-ip-DHI">
-                                <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="kRP-ro-2qj">
-                                <rect key="frame" x="0.0" y="100" width="318" height="40"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="QCh-Vz-QwM">
-                                <rect key="frame" x="0.0" y="50" width="318" height="40"/>
+                                <rect key="frame" x="0.0" y="188" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vZu-gy-TTc">
-                                <rect key="frame" x="91" y="344" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RGc-wP-Q7g">
+                                <rect key="frame" x="20" y="416" width="280" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="保存">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveSettingValue:" destination="5X4-BM-FwP" eventType="touchUpInside" id="L1X-tN-3di"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ggi-Ub-Ib9">
-                                <rect key="frame" x="127" y="237" width="67" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="默认参数">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="setDefaultParameter:" destination="5X4-BM-FwP" eventType="touchUpInside" id="Wua-g5-pJc"/>
+                                    <action selector="saveSettingValue:" destination="5X4-BM-FwP" eventType="touchUpInside" id="Ba8-A6-Oi9"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="设置" id="0eZ-1p-l5w"/>
+                    <navigationItem key="navigationItem" title="系统设置" id="0eZ-1p-l5w"/>
                     <connections>
                         <outlet property="hostEditor" destination="QCh-Vz-QwM" id="S1D-Gb-Z7F"/>
                         <outlet property="portEditor" destination="kRP-ro-2qj" id="CoS-SG-Zvo"/>
-                        <outlet property="saveButton" destination="vZu-gy-TTc" id="QHt-T1-QSF"/>
+                        <outlet property="saveButton" destination="RGc-wP-Q7g" id="Uec-0Q-xG0"/>
                         <outlet property="shanghuNameText" destination="8Ch-ip-DHI" id="a7h-In-EE7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xh-XD-uYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2331" y="-119"/>
+            <point key="canvasLocation" x="1313" y="-297"/>
         </scene>
         <!--Main Nav View Controller-->
         <scene sceneID="CdJ-FO-erJ">
@@ -3355,7 +3317,7 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pP-iV-Rdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="1964"/>
+            <point key="canvasLocation" x="-160" y="2177"/>
         </scene>
         <!--Main Nav View Controller-->
         <scene sceneID="AfW-mB-2OT">
@@ -3373,7 +3335,7 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ov-s2-bHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-614"/>
+            <point key="canvasLocation" x="330" y="-952"/>
         </scene>
         <!--请输入用户名-->
         <scene sceneID="AXy-hS-g87">
@@ -3647,7 +3609,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0B-MS-eAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-1862"/>
+            <point key="canvasLocation" x="2316" y="-2322"/>
         </scene>
         <!--个人信息  商户信息  银行账号-->
         <scene sceneID="hKe-zb-VWh">
@@ -3738,7 +3700,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RBj-Q1-OwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2743" y="-1862"/>
+            <point key="canvasLocation" x="2746" y="-2322"/>
         </scene>
         <!--个人信息  商户信息  银行账号-->
         <scene sceneID="IJt-zJ-ISA">
@@ -3866,7 +3828,7 @@ Cgo
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户姓名：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gFe-h8-ZgF">
                                 <rect key="frame" x="0.0" y="325" width="150" height="30"/>
@@ -3930,7 +3892,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aj-zS-k0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3185" y="-1862"/>
+            <point key="canvasLocation" x="3172" y="-2322"/>
         </scene>
         <!--Main Nav View Controller-->
         <scene sceneID="vFp-Ku-3Qe">
@@ -3948,7 +3910,7 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akI-f5-hgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="-2588"/>
+            <point key="canvasLocation" x="120" y="-2588"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9SL-CY-vSO">
@@ -3985,18 +3947,17 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJJ-M7-kxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770" y="562"/>
+            <point key="canvasLocation" x="991" y="562"/>
         </scene>
     </scenes>
     <resources>
         <image name="LOGO.png" width="421" height="152"/>
-        <image name="btn_audio.png" width="80" height="80"/>
-        <image name="btn_background2.png" width="508" height="92"/>
-        <image name="btn_bluetooth.png" width="80" height="80"/>
         <image name="btn_next_background.png" width="170" height="62"/>
         <image name="icon_list_background6.jpg" width="600" height="1130"/>
-        <image name="icon_pos_backgound.png" width="580" height="30"/>
         <image name="收款宝-4.png" width="50" height="50"/>
+        <image name="滚动条.png" width="580" height="30"/>
+        <image name="蓝牙.png" width="100" height="100"/>
+        <image name="音频.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -4004,8 +3965,8 @@ Cgo
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gsO-y2-L4X"/>
         <segue reference="YJl-Xi-ecU"/>
-        <segue reference="5JX-DY-jhh"/>
+        <segue reference="HA1-qt-zOJ"/>
+        <segue reference="IBh-Aj-qd0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -52,6 +52,8 @@
 #define kServerIP @"122.112.12.20" //注册登录的ip
 #define kServerPort @"8081" //注册登录的端口
 
+//#define DEBUG false
+#define DEBUG true
 #endif
 
 NSMutableArray *searchDevices;

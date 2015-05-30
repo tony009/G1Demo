@@ -45,6 +45,7 @@
     self.bankBranch.delegate = self;
     self.accName.delegate = self;
     self.settleAccno.delegate = self;
+    self.settleBank.delegate = self;
     
 
     QRadioButton *accountType_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"accountType"];
@@ -83,6 +84,11 @@
 //提交审核
 - (IBAction)submit:(UIButton *)sender {
 
+    if (DEBUG) {
+        //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     
     //校验信息
     
@@ -171,7 +177,8 @@
 //            //[self presentModalViewController: ViewController animated:YES];
 //            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
 //            [self presentViewController:lvc animated:YES completion:nil];
-            [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+            //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
             
         }
         
@@ -225,12 +232,6 @@
     
 }
 
-
-- (IBAction)back:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
 
 - (void)didSelectedRadioButton:(QRadioButton *)radio groupId:(NSString *)groupId{
     

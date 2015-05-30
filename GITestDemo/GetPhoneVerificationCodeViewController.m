@@ -33,8 +33,6 @@
 }
 
 
-
-
 //获取手机验证码
 - (IBAction)getPhoneVerificationCode:(id)sender {
     
@@ -54,6 +52,10 @@
         
     }
     
+    if (DEBUG) {
+        [self performSegueWithIdentifier:@"GetPinToVerify" sender:self];
+        return;
+    }
     
     [self showHUD:@"正在获取"];
     

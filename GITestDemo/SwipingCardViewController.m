@@ -25,7 +25,7 @@
 //    sendValue = @"消费交易";
 //    [self performSelector:@selector(pushToPrint) withObject:nil afterDelay:1.0];
     
-    NSData *gif = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"文件刷卡动画2" ofType:@"gif"]];
+    NSData *gif = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"文件刷卡动画" ofType:@"gif"]];
     
     self.webView.userInteractionEnabled = NO;//用户不可交互
     [self.webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];

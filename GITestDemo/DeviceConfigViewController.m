@@ -242,14 +242,14 @@
     self.saveButton.layer.masksToBounds = YES;
     
     
-    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 50, 50);
-    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
-    backButton.backgroundColor = [UIColor clearColor];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
+//    backButton.frame = CGRectMake(0, 0, 50, 50);
+//    [backButton setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+//    backButton.backgroundColor = [UIColor clearColor];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     
     
     

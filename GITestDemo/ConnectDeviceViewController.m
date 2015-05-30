@@ -28,7 +28,7 @@
 - (void)_initSubViews
 {
     
-    _deviceView = [[UIView alloc] initWithFrame:CGRectMake(10, kScreenHeight-64-200, kScreenWidth-20, 180)];
+    _deviceView = [[UIView alloc] initWithFrame:CGRectMake(10, kScreenHeight-200, kScreenWidth-20, 180)];
     _deviceView.layer.cornerRadius = 20.0;
     _deviceView.layer.masksToBounds = YES;
     _deviceView.hidden = YES;
@@ -57,7 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    self.navigationController.navigationBar.translucent = YES;
     if(MiniPosSDKDeviceState()==0){
         self.statusLabel.text = @"已连接";
         self.bleStatusLabel.text = @"已连接";
@@ -66,6 +66,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDiscoverDevice) name:kDidDiscoverDevice object:nil];
 
 }
+
 
 -(void)getPosParams{
     
@@ -86,6 +87,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _isNeedAutoConnect = YES;
 }

@@ -30,6 +30,11 @@
 - (void)_initViews{
 
     
+    self.title = @"";
+    
+    
+    //self.navigationController.navigationBar.titleTextAttributes =@{NSFontAttributeName};
+    
     self.password.delegate = self;
     self.name.delegate = self;
     self.ID.delegate = self;
@@ -114,6 +119,10 @@
 
 - (IBAction)next:(id)sender {
     
+    if (DEBUG) {
+       [self performSegueWithIdentifier:@"NEXT" sender:nil];
+        return;
+    }
     
     //校验信息
     

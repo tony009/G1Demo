@@ -38,19 +38,19 @@
 
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 50)];
     label1.text = @"撤销金额：";
-    label1.font = [UIFont systemFontOfSize:20];
+    label1.font = [UIFont systemFontOfSize:17];
     label1.textColor = [UIColor darkGrayColor];
     label1.textAlignment = NSTextAlignmentRight;
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 50)];
     label2.text = @"凭证号：";
-    label2.font = [UIFont systemFontOfSize:20];
+    label2.font = [UIFont systemFontOfSize:17];
     label2.textColor = [UIColor darkGrayColor];
     label2.textAlignment = NSTextAlignmentRight;
     
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 50)];
     label3.text = @"元";
-    label3.font = [UIFont systemFontOfSize:20];
+    label3.font = [UIFont systemFontOfSize:17];
     label3.textColor = [UIColor darkGrayColor];
     label3.textAlignment = NSTextAlignmentRight;
     

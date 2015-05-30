@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initBLESDK];
     [self initViews];
 }
 
@@ -37,6 +38,7 @@
 //    
 //    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 //    NSLog(@"json:%@",json);
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +48,10 @@
 
 - (IBAction)next:(UIButton *)sender
 {
-    
+    if (DEBUG) {
+        [self performSegueWithIdentifier:@"NEXT" sender:nil];
+        return;
+    }
     
     //校验信息
     
@@ -67,11 +72,10 @@
     
 }
 
-- (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (IBAction)getSN:(id)sender {
+    
+    
     
     if(MiniPosSDKDeviceState()<0){
         

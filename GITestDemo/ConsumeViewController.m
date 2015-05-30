@@ -27,13 +27,9 @@
     
     self.kcalculatorView.delegate = self;
     
-    self.startButton.layer.cornerRadius = 3.0;
-    self.startButton.layer.masksToBounds = YES;
+//    self.startButton.layer.cornerRadius = 3.0;
+//    self.startButton.layer.masksToBounds = YES;
     
-    self.numberText.layer.cornerRadius = 4.0;
-    self.numberText.layer.masksToBounds = YES;
-    self.numberText.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.numberText.layer.borderWidth = 0.4;
 
     self.timeLabel.text = [UIUtils stringFromDate:[NSDate date] formate:@"yyyy-MM-dd hh:mm"];
     

@@ -66,6 +66,39 @@
     
 }
 
+- (void)initBLESDK{
+    
+    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
+    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
+    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
+    NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
+    NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
+    
+    
+    if (!shangHu) {
+        shangHu  = @"898100012340003";
+    }
+    if (!zhongDuan) {
+        zhongDuan = @"10700028";
+    }
+    if (!caoZhuoYuan) {
+        caoZhuoYuan = @"01";
+    }
+    if (!host) {
+        host = @"122.112.12.227";
+    }
+    if (!port) {
+        port = @"5555";
+    }
+    
+    MiniPosSDKInit();
+    NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
+    MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
+    MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
+    
+    MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
+}
+
 #pragma mark -
 #pragma mark - show tip
 - (void)showTipView:(NSString *)tip
@@ -111,7 +144,13 @@
 
 - (void)backAction:(UIButton *)button
 {
-    [self.navigationController popViewControllerAnimated:YES];
+
+        if ([self.navigationController.viewControllers count] > 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -42,7 +42,12 @@
 
 - (void)back
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.navigationController.viewControllers count] > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

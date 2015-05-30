@@ -80,6 +80,14 @@
 //提交服务器验证
 - (IBAction)submit:(id)sender {
     
+    if (DEBUG) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kSignUpPhoneNo];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self performSegueWithIdentifier:@"VerifyToSignup" sender:self];
+        return;
+    }
+    
     [self.view endEditing:YES];
     
     if ([self.verificationCode.text isEqualToString:@""]) {
