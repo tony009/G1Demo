@@ -25,8 +25,8 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = NO;
-    
-    _isNeedAutoConnect = YES;
+
+    //_isNeedAutoConnect = YES;
     
     //NSLog(@"沙盒路径：%@",NSHomeDirectory());
     //NSString *Path = [[NSBundle mainBundle] pathForResource:@"kernel" ofType:@""];
@@ -46,12 +46,12 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillshow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillhide:) name:UIKeyboardWillHideNotification object:nil];
-    if (MiniPosSDKDeviceState() == 0) {
-        [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
-    } else {
-        [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
-        self.connectDeviceButton.enabled = YES;
-    }
+//    if (MiniPosSDKDeviceState() == 0) {
+//        [self.connectDeviceButton setTitle:@"设备已连接" forState:UIControlStateNormal];
+//    } else {
+//        [self.connectDeviceButton setTitle:@"请先选择连接移动终端" forState:UIControlStateNormal];
+//        self.connectDeviceButton.enabled = YES;
+//    }
     
     
 }

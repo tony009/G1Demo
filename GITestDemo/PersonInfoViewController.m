@@ -29,11 +29,28 @@
 
 - (void)_initViews{
 
+
+
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 180, 44)];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(60, 0, 60, 44)];
+    UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(120, 0, 60, 44)];
+    [label1 setText:@"个人信息"];
+    [label2 setText:@"商户信息"];
+    [label3 setText:@"银行账号"];
+    [label1 setFont:[UIFont systemFontOfSize:14]];
+    [label2 setFont:[UIFont systemFontOfSize:14]];
+    [label3 setFont:[UIFont systemFontOfSize:14]];
+    [titleView addSubview:label1];
+    [titleView addSubview:label2];
+    [titleView addSubview:label3];
     
-    self.title = @"";
+    label1.textColor = [UIColor blackColor];
+    label2.textColor = [UIColor grayColor];
+    label3.textColor = [UIColor grayColor];
     
+    self.navigationItem.titleView = titleView;
     
-    //self.navigationController.navigationBar.titleTextAttributes =@{NSFontAttributeName};
     
     self.password.delegate = self;
     self.name.delegate = self;

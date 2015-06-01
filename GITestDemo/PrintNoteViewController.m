@@ -327,12 +327,14 @@
 
 - (IBAction)signatureAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    
+    NSLog(@"before:%@",sender);
     if (sender.selected) {
-        [sender setTitle:@"确认" forState:UIControlStateNormal];
         
+        [sender setTitle:@"确认" forState:UIControlStateNormal];
         self.ppsSignView.hidden = NO;
         self.uploadButton.hidden = YES;
+        
+        NSLog(@"after:%@",sender);
         
     } else {
         self.ppsSignView.hidden = YES;

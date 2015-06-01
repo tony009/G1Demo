@@ -85,10 +85,10 @@
         caoZhuoYuan = @"01";
     }
     if (!host) {
-        host = @"122.112.12.227";
+        host = @"122.112.12.20";
     }
     if (!port) {
-        port = @"5555";
+        port = @"6889";
     }
     
     MiniPosSDKInit();

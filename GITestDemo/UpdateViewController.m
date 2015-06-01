@@ -9,6 +9,7 @@
 #import "UpdateViewController.h"
 #import "AFNetworking.h"
 #import "UIUtils.h"
+#import "ConnectDeviceViewController.h"
 
 @interface UpdateViewController ()
 {
@@ -134,8 +135,25 @@
     
 }
 
+- (void)showConnectionAlert{
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    alertView.tag = 44;
+    [alertView show];
+    
+}
+
 - (IBAction)download:(id)sender {
+    
     //NSURLCacheStorageNotAllowed
+    if(MiniPosSDKDeviceState()<0){
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
+        return;
+    }
+    
+    
+    
     NSInteger row = [self.pickerView selectedRowInComponent:0];
     NSString *file = [pickerArray objectAtIndex:row];
     
@@ -236,6 +254,15 @@
     
 }
 
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 44) {
+        if (buttonIndex == 0) {
+            ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
+            [self.navigationController pushViewController:cdvc animated:YES];
+        }
+    }
+}
 
 
 #pragma mark -
