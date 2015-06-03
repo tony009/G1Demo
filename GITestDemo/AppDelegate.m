@@ -20,8 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    sleep(1);
-    
+    //sleep(1);
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
     return YES;
 }
 
