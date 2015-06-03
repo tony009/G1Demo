@@ -203,6 +203,16 @@
 //    
 //    return;
     
+    
+    NSString *shanghuName = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
+    NSString *ip = [[NSUserDefaults standardUserDefaults]objectForKey:kHostEditor];
+    NSString *port = [[NSUserDefaults standardUserDefaults]objectForKey:kPortEditor];
+    
+    if (shanghuName ==nil || ip ==nil || port == nil) {
+        [self showTipView:@"请先进入系统设置完成参数设置。"];
+        return;
+    }
+    
     if (DEBUG) {
         [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
         [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
@@ -223,7 +233,7 @@
         return;
     }
     
-    //[self showTipView:@"正在登陆"];
+    [self showHUD:@"正在登陆"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -271,14 +281,7 @@
         return;
     }
     
-    NSString *shanghuName = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
-    NSString *ip = [[NSUserDefaults standardUserDefaults]objectForKey:kHostEditor];
-    NSString *port = [[NSUserDefaults standardUserDefaults]objectForKey:kPortEditor];
-    
-    if (shanghuName ==nil || ip ==nil || port == nil) {
-        [self showTipView:@"请先进入系统设置完成参数设置。"];
-        return;
-    }
+
     
     
     if (MiniPosSDKDeviceState() == 0) {

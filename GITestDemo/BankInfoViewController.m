@@ -128,7 +128,7 @@
     }else if([UIUtils isEmptyString:self.accName.text]||[self.accName.text length] > 10){
         [self showTipView:@"请输入正确的姓名"];
         return;
-    }else if([UIUtils isEmptyString:self.settleBank.text]||[self.settleBank.text length] > 20){
+    }else if([UIUtils isEmptyString:self.settleBank.text]||[self.settleBank.text length] > 12){
         [self showTipView:@"请输入正确的银行联行号"];
         return;
     }

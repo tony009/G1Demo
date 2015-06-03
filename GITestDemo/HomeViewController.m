@@ -112,8 +112,7 @@
         //isFirstGetVersionInfo = false;
     }
     
-    
-    
+
     
     int width = self.view.frame.size.width;
     //int height = self.scrollView.frame.size.height;

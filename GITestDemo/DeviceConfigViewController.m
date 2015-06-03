@@ -255,10 +255,6 @@
     
 }
 
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (IBAction)downloadPulicKey:(UIButton *)sender {
     
@@ -340,7 +336,8 @@
     MiniPosSDKSetPublicParam("898100012340003","10700028","01");
     MiniPosSDKSetPostCenterParam(self.hostEditor.text.UTF8String, self.portEditor.text.intValue, 0);
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self backAction:sender];
 }
 
 - (void)recvMiniPosSDKStatus
