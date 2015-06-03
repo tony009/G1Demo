@@ -86,10 +86,14 @@
     }
     if (!host) {
         host = @"122.112.12.20";
+        [[NSUserDefaults standardUserDefaults] setObject:host forKey:kHostEditor];
     }
     if (!port) {
         port = @"6889";
+        [[NSUserDefaults standardUserDefaults] setObject:port forKey:kPortEditor];
     }
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
     
     MiniPosSDKInit();
     NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
