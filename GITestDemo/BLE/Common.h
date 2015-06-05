@@ -49,11 +49,17 @@
 #define kMposG1MerchantNo @"MerchantNo" //mpos商户号
 #define kMposG1MainKey  @"MainKey"  //mpos主密钥
 
-#define kServerIP @"122.112.12.20" //注册登录的ip
-#define kServerPort @"8081" //注册登录的端口
+#define kServerIP @"122.112.12.25" //注册登录的ip
+#define kServerPort @"18081" //注册登录的端口
+
+//#define kServerIP @"122.112.12.20" //注册登录的ip
+//#define kServerPort @"8081" //注册登录的端口
 
 #define DEBUG false
 //#define DEBUG true
+
+//#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
+#define kDecryptKey "22222222222222222222222222222222"
 #endif
 
 NSMutableArray *searchDevices;

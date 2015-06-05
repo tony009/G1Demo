@@ -71,9 +71,9 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新",@"账户签到"];
+    NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新",@"账户签到",@"参数更新"];
     //NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
-    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png",@"签到.png"];
+    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png",@"签到.png",@"btn_more.png"];
     for (int i = 0; i < titArray.count; i++) {
         ImgTButton *button = (ImgTButton *)[self.controlView viewWithTag:i+10];
         button.imageName = [imgArray objectAtIndex:i];
@@ -215,7 +215,7 @@ static char parse(char c) {
     
     unsigned char *lpIn = [src1 cStringUsingEncoding:NSUTF8StringEncoding];
     
-    unsigned char *key = "01CCA5D0712519DE01CCA5D0712519DE";
+    unsigned char *key = kDecryptKey;
     unsigned char key1[16];
     HexString2Bytes(key, key1);
     
@@ -281,7 +281,10 @@ static char parse(char c) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 [self hideHUD];
-                success();
+                if(success){
+                    success();
+                }
+                
             });
             
         });
@@ -303,7 +306,7 @@ static char parse(char c) {
         
         
         
-        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
+        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800003",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
         NSLog(@"url:%@",url);
         
         [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -543,14 +546,65 @@ static char parse(char c) {
 - (IBAction)updataKeyAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
-        [self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
         return;
     }
-    
-    if(MiniPosSDKDownloadParamCMD()>=0)
-    {
-        [self showHUD:@"正在下载参数..."];
-    }
+
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
+        NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
+        NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
+        NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
+        
+        
+        
+        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800364",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
+        NSLog(@"url:%@",url);
+        
+        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSLog(@"responseObject:%@",responseObject);
+            NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
+            
+            int code = [responseObject[@"resultMap"][@"code"]intValue];
+            
+            if (code == 3 ) {
+                
+                [self showHUD:@"正在写入参数"];
+                
+                
+                NSString *mainKey  = [self decryptMainKey:responseObject[@"resultMap"][@"tmk"]];
+                NSString *tid = responseObject[@"resultMap"][@"tid"];
+                NSString *mid = responseObject[@"resultMap"][@"mid"];
+                NSLog(@"mainKey:%@",mainKey);
+                
+                NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
+                
+                [self setPosWithParams:dictionary success:nil];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];
+                [[NSUserDefaults standardUserDefaults]setObject:tid forKey:kMposG1TerminalNo];
+                [[NSUserDefaults standardUserDefaults]setObject:mainKey forKey:kMposG1MainKey];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
+                
+                
+            }else{
+                
+                [self showTipView:responseObject[@"resultMap"][@"msg"]];
+            }
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self hideHUD];
+            NSLog(@"failure");
+            [self showTipView:@"网络异常"];
+        }];
+
     
 }
 
@@ -901,7 +955,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
             
             [self hideHUD];
             
-            NSString *info = [NSString stringWithFormat:@"机身号:%s\n内核版本：%s\n应用版本：%s\nApp版本：%@",MiniPosSDKGetDeviceID(),MiniPosSDKGetCoreVersion(),MiniPosSDKGetAppVersion(),@"iOS20150210003"];
+            NSString *info = [NSString stringWithFormat:@"机身号:%s\n内核版本：%s\n应用版本：%s\nApp版本：%@",MiniPosSDKGetDeviceID(),MiniPosSDKGetCoreVersion(),MiniPosSDKGetAppVersion(),@"iOS20150604003"];
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //            [alert show];
             

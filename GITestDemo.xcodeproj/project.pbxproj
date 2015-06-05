@@ -150,6 +150,9 @@
 		9C87445B1B043489002CC526 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C87445A1B043489002CC526 /* RootViewController.m */; };
 		9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */; };
 		9C8744611B04422E002CC526 /* BankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8744601B04422E002CC526 /* BankInfoViewController.m */; };
+		9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB0A1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m */; };
+		9C91CB0E1B203F17006D1024 /* RVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB0D1B203F17006D1024 /* RVerifyCodeViewController.m */; };
+		9C91CB121B214515006D1024 /* RNewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB111B214515006D1024 /* RNewPasswordViewController.m */; };
 		9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7721AD3B138001639C5 /* CoreLocation.framework */; };
 		9C96C7751AD3B148001639C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */; };
 		9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7761AD3B150001639C5 /* Security.framework */; };
@@ -389,6 +392,12 @@
 		9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInfoViewController.m; sourceTree = "<group>"; };
 		9C87445F1B04422E002CC526 /* BankInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankInfoViewController.h; sourceTree = "<group>"; };
 		9C8744601B04422E002CC526 /* BankInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankInfoViewController.m; sourceTree = "<group>"; };
+		9C91CB091B203D33006D1024 /* RGetPhoneVerificationCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGetPhoneVerificationCodeViewController.h; sourceTree = "<group>"; };
+		9C91CB0A1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGetPhoneVerificationCodeViewController.m; sourceTree = "<group>"; };
+		9C91CB0C1B203F17006D1024 /* RVerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVerifyCodeViewController.h; sourceTree = "<group>"; };
+		9C91CB0D1B203F17006D1024 /* RVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVerifyCodeViewController.m; sourceTree = "<group>"; };
+		9C91CB101B214515006D1024 /* RNewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNewPasswordViewController.h; sourceTree = "<group>"; };
+		9C91CB111B214515006D1024 /* RNewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNewPasswordViewController.m; sourceTree = "<group>"; };
 		9C96C7721AD3B138001639C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9C96C7761AD3B150001639C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -452,6 +461,7 @@
 		963716B51A2D5458002D34F3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9C91CB081B203BF8006D1024 /* RecoverPassword */,
 				9C81D92D1AFC8E9400CD9DD7 /* SignUp */,
 				96C560971A24685A00A25290 /* MainNavViewController.h */,
 				96C560981A24685A00A25290 /* MainNavViewController.m */,
@@ -907,6 +917,19 @@
 			path = QRadioButton;
 			sourceTree = "<group>";
 		};
+		9C91CB081B203BF8006D1024 /* RecoverPassword */ = {
+			isa = PBXGroup;
+			children = (
+				9C91CB091B203D33006D1024 /* RGetPhoneVerificationCodeViewController.h */,
+				9C91CB0A1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m */,
+				9C91CB0C1B203F17006D1024 /* RVerifyCodeViewController.h */,
+				9C91CB0D1B203F17006D1024 /* RVerifyCodeViewController.m */,
+				9C91CB101B214515006D1024 /* RNewPasswordViewController.h */,
+				9C91CB111B214515006D1024 /* RNewPasswordViewController.m */,
+			);
+			name = RecoverPassword;
+			sourceTree = "<group>";
+		};
 		9C9D4A811A84A780001ADA4B /* SIAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,6 +1136,7 @@
 				9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */,
 				96BC862C1A35ACE90012E746 /* PPSSignatureView.m in Sources */,
 				96C560931A2461EA00A25290 /* LoginViewController.m in Sources */,
+				9C91CB0E1B203F17006D1024 /* RVerifyCodeViewController.m in Sources */,
 				9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */,
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				9C7CA8EC1A53A4AF0067377C /* UIProgressView+AFNetworking.m in Sources */,
@@ -1127,6 +1151,7 @@
 				9CE662461A416F3B00B13444 /* ServerManager.m in Sources */,
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
+				9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				9C7CA8EA1A53A4AF0067377C /* UIButton+AFNetworking.m in Sources */,
 				9C7CA8E41A53A4AF0067377C /* AFURLRequestSerialization.m in Sources */,
@@ -1166,6 +1191,7 @@
 				9C12880C1B16C19200535745 /* FirstViewController.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
 				9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */,
+				9C91CB121B214515006D1024 /* RNewPasswordViewController.m in Sources */,
 				9CFCEBE01AE10341007D27CF /* WDPickView.m in Sources */,
 				9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */,
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,

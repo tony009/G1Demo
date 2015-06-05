@@ -57,6 +57,8 @@
     label1.textColor = [UIColor grayColor];
     label2.textColor = [UIColor grayColor];
     label3.textColor = [UIColor blackColor];
+    self.navigationItem.titleView = titleView;
+    
     //self.bankName.delegate = self;
     //self.province.delegate = self;
     //self.city.delegate = self;
@@ -102,11 +104,11 @@
 //提交审核
 - (IBAction)submit:(UIButton *)sender {
 
-    if (DEBUG) {
-        //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
+//    if (DEBUG) {
+//        //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        return;
+//    }
     
     //校验信息
     
