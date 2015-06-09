@@ -1,22 +1,23 @@
 //
-//  PersonInfoViewController.m
+//  EntPersonInfoViewController.m
 //  GITestDemo
 //
-//  Created by 吴狄 on 15/5/12.
+//  Created by 吴狄 on 15/6/8.
 //  Copyright (c) 2015年 Kyson. All rights reserved.
 //
 
-#import "PersonInfoViewController.h"
+
+#import "EntPersonInfoViewController.h"
 #import "UIUtils.h"
-@interface PersonInfoViewController ()
+@interface EntPersonInfoViewController ()
 {
     UIButton *_lastPressedBtn;
     NSString *_imageDocPath;
-
+    
 }
 @end
 
-@implementation PersonInfoViewController
+@implementation EntPersonInfoViewController
 
 
 
@@ -28,9 +29,9 @@
 }
 
 - (void)_initViews{
-
-
-
+    
+    
+    
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 180, 44)];
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(60, 0, 60, 44)];
@@ -61,14 +62,15 @@
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [path objectAtIndex:0];
     //指定新建文件夹路径
-    _imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_g"];
+    _imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_q"];
     //创建ImageFile文件夹
     [[NSFileManager defaultManager] createDirectoryAtPath:_imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
-
+    
     
     self.imagePath1 = @"";
     self.imagePath2 = @"";
     self.imagePath3 = @"";
+    self.imagePath5 = @"";
 }
 
 
@@ -91,7 +93,7 @@
     
     
     [self.actionSheet showInView:self.view];
-
+    
 }
 
 
@@ -137,7 +139,7 @@
 - (IBAction)next:(id)sender {
     
     if (DEBUG) {
-       [self performSegueWithIdentifier:@"NEXT" sender:nil];
+        [self performSegueWithIdentifier:@"NEXT" sender:nil];
         return;
     }
     
@@ -162,6 +164,9 @@
         [self showTipView:@"请选择身份证反面照"];
         return;
     }else if ([UIUtils isEmptyString:self.imagePath3]){
+        [self showTipView:@"请选择手持身份证照"];
+        return;
+    }else if ([UIUtils isEmptyString:self.imagePath5]){
         [self showTipView:@"请选择法人持身份证照"];
         return;
     }
@@ -178,7 +183,7 @@
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-     NSLog(@"imagePickerControllerDidCancel");
+    NSLog(@"imagePickerControllerDidCancel");
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -198,10 +203,10 @@
         //把图片转成NSData类型的数据来保存文件
         NSData *data;
         //判断图片是不是png格式的文件
-  
+        
         data = UIImageJPEGRepresentation(image, 1.0);
-      
-
+        
+        
         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         
         
@@ -215,9 +220,12 @@
         }else if (_lastPressedBtn == self.IDPhotoAndPerson){
             self.imagePath3 = [_imageDocPath stringByAppendingPathComponent:@"3.jpg"];
             [[NSFileManager defaultManager] createFileAtPath:self.imagePath3 contents:data attributes:nil];
+        }else if (_lastPressedBtn == self.KaiHuXuKeZheng){
+            self.imagePath5 = [_imageDocPath stringByAppendingPathComponent:@"5.jpg"];
+            [[NSFileManager defaultManager] createFileAtPath:self.imagePath5 contents:data attributes:nil];
         }
         
-       
+        
     }
     
     
@@ -235,13 +243,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

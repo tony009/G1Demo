@@ -139,6 +139,7 @@
 		9C7E3BD71B01A6D100F40A74 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */; };
 		9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */; };
 		9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */; };
+		9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */; };
 		9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA031AE642DD00A5124E /* MHTextField.m */; };
 		9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA061AE6516A00A5124E /* DemoTextField.m */; };
 		9C84DA091AE7323200A5124E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA081AE7323200A5124E /* Localizable.strings */; };
@@ -153,6 +154,8 @@
 		9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB0A1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m */; };
 		9C91CB0E1B203F17006D1024 /* RVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB0D1B203F17006D1024 /* RVerifyCodeViewController.m */; };
 		9C91CB121B214515006D1024 /* RNewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB111B214515006D1024 /* RNewPasswordViewController.m */; };
+		9C91CB171B2597B5006D1024 /* EntPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB161B2597B5006D1024 /* EntPersonInfoViewController.m */; };
+		9C91CB1A1B259848006D1024 /* EntMerchantInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C91CB191B259848006D1024 /* EntMerchantInfoViewController.m */; };
 		9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7721AD3B138001639C5 /* CoreLocation.framework */; };
 		9C96C7751AD3B148001639C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */; };
 		9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7761AD3B150001639C5 /* Security.framework */; };
@@ -375,6 +378,8 @@
 		9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPhoneVerificationCodeViewController.m; sourceTree = "<group>"; };
 		9C81D9311B003D2000CD9DD7 /* VerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeViewController.h; sourceTree = "<group>"; };
 		9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeViewController.m; sourceTree = "<group>"; };
+		9C82CE511B26D7DD00F21F21 /* EntBankInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntBankInfoViewController.h; sourceTree = "<group>"; };
+		9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntBankInfoViewController.m; sourceTree = "<group>"; };
 		9C84DA021AE642DD00A5124E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
 		9C84DA031AE642DD00A5124E /* MHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTextField.m; sourceTree = "<group>"; };
 		9C84DA051AE6516A00A5124E /* DemoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextField.h; sourceTree = "<group>"; };
@@ -398,6 +403,10 @@
 		9C91CB0D1B203F17006D1024 /* RVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVerifyCodeViewController.m; sourceTree = "<group>"; };
 		9C91CB101B214515006D1024 /* RNewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNewPasswordViewController.h; sourceTree = "<group>"; };
 		9C91CB111B214515006D1024 /* RNewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNewPasswordViewController.m; sourceTree = "<group>"; };
+		9C91CB151B2597B5006D1024 /* EntPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntPersonInfoViewController.h; sourceTree = "<group>"; };
+		9C91CB161B2597B5006D1024 /* EntPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntPersonInfoViewController.m; sourceTree = "<group>"; };
+		9C91CB181B259848006D1024 /* EntMerchantInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntMerchantInfoViewController.h; sourceTree = "<group>"; };
+		9C91CB191B259848006D1024 /* EntMerchantInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntMerchantInfoViewController.m; sourceTree = "<group>"; };
 		9C96C7721AD3B138001639C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9C96C7761AD3B150001639C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -894,12 +903,8 @@
 				9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */,
 				9C81D9311B003D2000CD9DD7 /* VerifyCodeViewController.h */,
 				9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */,
-				9C7E3BD51B01A6D100F40A74 /* PersonInfoViewController.h */,
-				9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */,
-				9C87445C1B043FF8002CC526 /* MerchantInfoViewController.h */,
-				9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */,
-				9C87445F1B04422E002CC526 /* BankInfoViewController.h */,
-				9C8744601B04422E002CC526 /* BankInfoViewController.m */,
+				9C91CB141B2591FD006D1024 /* Enterprise */,
+				9C91CB131B259194006D1024 /* Individual */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -928,6 +933,32 @@
 				9C91CB111B214515006D1024 /* RNewPasswordViewController.m */,
 			);
 			name = RecoverPassword;
+			sourceTree = "<group>";
+		};
+		9C91CB131B259194006D1024 /* Individual */ = {
+			isa = PBXGroup;
+			children = (
+				9C7E3BD51B01A6D100F40A74 /* PersonInfoViewController.h */,
+				9C7E3BD61B01A6D100F40A74 /* PersonInfoViewController.m */,
+				9C87445C1B043FF8002CC526 /* MerchantInfoViewController.h */,
+				9C87445D1B043FF8002CC526 /* MerchantInfoViewController.m */,
+				9C87445F1B04422E002CC526 /* BankInfoViewController.h */,
+				9C8744601B04422E002CC526 /* BankInfoViewController.m */,
+			);
+			name = Individual;
+			sourceTree = "<group>";
+		};
+		9C91CB141B2591FD006D1024 /* Enterprise */ = {
+			isa = PBXGroup;
+			children = (
+				9C91CB151B2597B5006D1024 /* EntPersonInfoViewController.h */,
+				9C91CB161B2597B5006D1024 /* EntPersonInfoViewController.m */,
+				9C91CB181B259848006D1024 /* EntMerchantInfoViewController.h */,
+				9C91CB191B259848006D1024 /* EntMerchantInfoViewController.m */,
+				9C82CE511B26D7DD00F21F21 /* EntBankInfoViewController.h */,
+				9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */,
+			);
+			name = Enterprise;
 			sourceTree = "<group>";
 		};
 		9C9D4A811A84A780001ADA4B /* SIAlertView */ = {
@@ -1137,11 +1168,13 @@
 				96BC862C1A35ACE90012E746 /* PPSSignatureView.m in Sources */,
 				96C560931A2461EA00A25290 /* LoginViewController.m in Sources */,
 				9C91CB0E1B203F17006D1024 /* RVerifyCodeViewController.m in Sources */,
+				9C91CB1A1B259848006D1024 /* EntMerchantInfoViewController.m in Sources */,
 				9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */,
 				96C560871A24606600A25290 /* UIViewExt.m in Sources */,
 				9C7CA8EC1A53A4AF0067377C /* UIProgressView+AFNetworking.m in Sources */,
 				9C7CA8E71A53A4AF0067377C /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */,
+				9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */,
 				9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */,
 				9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */,
 				9C7CA8E31A53A4AF0067377C /* AFURLConnectionOperation.m in Sources */,
@@ -1152,6 +1185,7 @@
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */,
+				9C91CB171B2597B5006D1024 /* EntPersonInfoViewController.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				9C7CA8EA1A53A4AF0067377C /* UIButton+AFNetworking.m in Sources */,
 				9C7CA8E41A53A4AF0067377C /* AFURLRequestSerialization.m in Sources */,

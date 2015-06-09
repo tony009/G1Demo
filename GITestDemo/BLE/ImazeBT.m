@@ -335,7 +335,7 @@
         NSLog(@"Service found with UUID : %@", aService.UUID);
         
         //Power Calibration Service
-        if ([aService.UUID isEqual:[CBUUID UUIDWithString:@"49535343-FE7D-4AE5-8FA9-9FAFD205E455"]])
+        if ([aService.UUID isEqual:[CBUUID UUIDWithString:KUUIDService]])
         {
             [aPeripheral discoverCharacteristics:nil forService:aService];
             calibrationService = aService;
@@ -356,7 +356,7 @@
     NSLog(@"Service : %@", [service.UUID description]);
     
     
-    if ([service.UUID isEqual:[CBUUID UUIDWithString:@"49535343-FE7D-4AE5-8FA9-9FAFD205E455"]])
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:KUUIDService]])
     {
         for (CBCharacteristic *aChar in service.characteristics)
         {
@@ -368,10 +368,10 @@
             if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"49535343-ACA3-481C-91EC-D85E28A60318"]]) {
                 characteristic2 = aChar;
             }
-            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"49535343-1E4D-4BD9-BA61-23C647249616"]]) {
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead]]) {
                 characteristic3 = aChar;
             }
-            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:@"49535343-8841-43F4-A8D4-ECBE34729BB3"]]) {
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:kUUIDWrite]]) {
                 characteristic4 = aChar;
                 
             }
@@ -397,7 +397,7 @@
     //NSLog(@"didUpdateValueForCharacteristic : %@", characteristic.UUID);
 
 
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"49535343-1E4D-4BD9-BA61-23C647249616"]])
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead]])
     {
         if( (characteristic.value)  || !error )
         {

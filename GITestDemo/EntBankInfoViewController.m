@@ -1,19 +1,19 @@
 //
-//  BankInfoViewController.m
+//  EntBankInfoViewController.m
 //  GITestDemo
 //
-//  Created by 吴狄 on 15/5/14.
+//  Created by 吴狄 on 15/6/9.
 //  Copyright (c) 2015年 Kyson. All rights reserved.
 //
 
-#import "BankInfoViewController.h"
+#import "EntBankInfoViewController.h"
 #import "QRadioButton.h"
 #import "AFNetworking.h"
-#import "PersonInfoViewController.h"
-#import "MerchantInfoViewController.h"
+#import "EntPersonInfoViewController.h"
+#import "EntMerchantInfoViewController.h"
 #import "LoginViewController.h"
-@interface BankInfoViewController (){
-        NSString *_imageDocPath;
+@interface EntBankInfoViewController (){
+    NSString *_imageDocPath;
 }
 
 @end
@@ -21,7 +21,7 @@
 #define kOFFSET_FOR_KEYBOARD 140
 #define kOFFSET_FOR_KEYBOARD_PAD 140
 
-@implementation BankInfoViewController
+@implementation EntBankInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,7 @@
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [path objectAtIndex:0];
     //指定新建文件夹路径
-    _imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_g"];
+    _imageDocPath = [documentPath stringByAppendingPathComponent:@"ImageFile_q"];
     //创建ImageFile文件夹
     [[NSFileManager defaultManager] createDirectoryAtPath:_imageDocPath withIntermediateDirectories:YES attributes:nil error:nil];
     self.imagePath4 = @"";
@@ -67,7 +67,7 @@
     self.settleAccno.delegate = self;
     self.settleBank.delegate = self;
     
-
+    
     QRadioButton *accountType_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"accountType"];
     accountType_radio1.frame = CGRectMake(150, 80, 100, 40);
     accountType_radio1.tag = 1;
@@ -103,12 +103,12 @@
 }
 //提交审核
 - (IBAction)submit:(UIButton *)sender {
-
-//    if (DEBUG) {
-//        //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        return;
-//    }
+    
+    //    if (DEBUG) {
+    //        //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    //        [self dismissViewControllerAnimated:YES completion:nil];
+    //        return;
+    //    }
     
     //校验信息
     
@@ -141,14 +141,14 @@
     
     
     
-    PersonInfoViewController *pivc = self.navigationController.viewControllers[3];
-    MerchantInfoViewController *mivc = self.navigationController.viewControllers[4];
+    EntPersonInfoViewController *pivc = self.navigationController.viewControllers[3];
+    EntMerchantInfoViewController *mivc = self.navigationController.viewControllers[4];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString *phoneNo = [[NSUserDefaults standardUserDefaults]objectForKey:kSignUpPhoneNo];
     //phoneNo = @"13202264038";
-   
+    
     NSLog(@" pivc.password.text:%@", pivc.password.text);
     NSLog(@" mivc.area.text:%@", mivc.area.text);
     NSLog(@" pivc.name.text:%@", pivc.name.text);
@@ -164,7 +164,7 @@
     NSLog(@" self.settleAccno.text:%@",self.settleAccno.text);
     NSLog(@"self.accName.text:%@",self.accName.text);
     
-    NSDictionary *parameters = @{@"merType": @"6",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20240404",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":self.settleBank.text};
+    NSDictionary *parameters = @{@"merType": @"5",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"linkMan":pivc.name.text,@"linkPhone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20240404",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":self.settleBank.text};
     
     
     NSLog(@"parameters:%@",parameters);
@@ -174,7 +174,12 @@
     NSURL *filePath2 = [NSURL fileURLWithPath:pivc.imagePath2];
     NSURL *filePath3 = [NSURL fileURLWithPath:pivc.imagePath3];
     NSURL *filePath4 = [NSURL fileURLWithPath:self.imagePath4];
-
+    NSURL *filePath5 = [NSURL fileURLWithPath:pivc.imagePath5];
+    NSURL *filePath6 = [NSURL fileURLWithPath:mivc.imagePath6];
+    NSURL *filePath7 = [NSURL fileURLWithPath:mivc.imagePath7];
+    NSURL *filePath8 = [NSURL fileURLWithPath:mivc.imagePath8];
+    NSURL *filePath9 = [NSURL fileURLWithPath:mivc.imagePath9];
+    
     [self showHUD:@"正在提交"];
     NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/registerMchInfo.action",kServerIP,kServerPort];
     [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
@@ -182,6 +187,12 @@
         [formData appendPartWithFileURL:filePath2 name:@"file2" error:nil];
         [formData appendPartWithFileURL:filePath3 name:@"file3" error:nil];
         [formData appendPartWithFileURL:filePath4 name:@"file4" error:nil];
+        [formData appendPartWithFileURL:filePath5 name:@"file5" error:nil];
+        [formData appendPartWithFileURL:filePath6 name:@"file6" error:nil];
+        [formData appendPartWithFileURL:filePath7 name:@"file7" error:nil];
+        [formData appendPartWithFileURL:filePath8 name:@"file8" error:nil];
+        [formData appendPartWithFileURL:filePath9 name:@"file9" error:nil];
+        
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         
@@ -189,14 +200,14 @@
         int code = [responseObject[@"resultMap"][@"code"]intValue];
         
         [self hideHUD];
-    
+        
         [self showTipView:responseObject[@"resultMap"][@"msg"]];
         
         if(code ==0){
             
-//            //[self presentModalViewController: ViewController animated:YES];
-//            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
-//            [self presentViewController:lvc animated:YES completion:nil];
+            //            //[self presentModalViewController: ViewController animated:YES];
+            //            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
+            //            [self presentViewController:lvc animated:YES completion:nil];
             //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
             
@@ -297,7 +308,7 @@
         //保存
         self.imagePath4 = [_imageDocPath stringByAppendingPathComponent:@"4.jpg"];
         [[NSFileManager defaultManager] createFileAtPath:self.imagePath4 contents:data attributes:nil];
-
+        
         
         
     }
@@ -333,7 +344,7 @@
                 rect.size.height += kOFFSET_FOR_KEYBOARD_PAD;
             }
         }
-
+        
     }
     else
     {
@@ -384,13 +395,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
