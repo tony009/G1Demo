@@ -433,12 +433,22 @@ static char parse(char c) {
 //撤销
 - (IBAction)unconsumeAction:(ImgTButton *)sender {
     
+    
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
     }else {
         [self verifyParamsSuccess:^{
+            
+            
+            NSString *pingZhengHao = [[NSUserDefaults standardUserDefaults] objectForKey:KLastPingZhengHao];
+            
+            if (!pingZhengHao || [pingZhengHao isEqualToString:@""]) {
+                [self showTipView:@"没有可以撤销的交易"];
+                
+                return ;
+            }
             
             if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
                 
@@ -448,9 +458,8 @@ static char parse(char c) {
             }
             
         }];
+        
     }
-    
-
     
     
 }
@@ -542,7 +551,7 @@ static char parse(char c) {
     
 
 }
-
+//更新参数
 - (IBAction)updataKeyAction:(ImgTButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
