@@ -62,8 +62,8 @@
 //#define kServerIP @"122.112.12.20" //注册登录的ip
 //#define kServerPort @"8081" //注册登录的端口
 
-#define DEBUG false
-//#define DEBUG true
+//#define DEBUG false
+#define DEBUG true
 
 //#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
 #define kDecryptKey "22222222222222222222222222222222"
