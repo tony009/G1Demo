@@ -18,7 +18,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *proText;
 
-@property (strong, nonatomic) IBOutlet KCalculator *kcalculatorView;
+@property (strong, nonatomic) IBOutlet UIView *kView;
+@property (strong, nonatomic)  KCalculator *kcalculatorView;
 
 - (IBAction)startAction:(UIButton *)sender;
 

@@ -118,6 +118,7 @@
 		9C6D9DBC1A820DC7002A7845 /* check_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9DB81A820DC7002A7845 /* check_icon@2x.png */; };
 		9C6D9DBD1A820DC7002A7845 /* uncheck_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9DB91A820DC7002A7845 /* uncheck_icon.png */; };
 		9C6D9DBE1A820DC7002A7845 /* uncheck_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9DBA1A820DC7002A7845 /* uncheck_icon@2x.png */; };
+		9C710A7F1B30068200F92CBA /* 19.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C710A7E1B30068200F92CBA /* 19.png */; };
 		9C7CA8B71A53A3870067377C /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8B61A53A3870067377C /* UpdateViewController.m */; };
 		9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BA1A53A4AF0067377C /* AFHTTPRequestOperation.m */; };
 		9C7CA8DF1A53A4AF0067377C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7CA8BC1A53A4AF0067377C /* AFHTTPRequestOperationManager.m */; };
@@ -334,6 +335,7 @@
 		9C6D9DB81A820DC7002A7845 /* check_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_icon@2x.png"; sourceTree = "<group>"; };
 		9C6D9DB91A820DC7002A7845 /* uncheck_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck_icon.png; sourceTree = "<group>"; };
 		9C6D9DBA1A820DC7002A7845 /* uncheck_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheck_icon@2x.png"; sourceTree = "<group>"; };
+		9C710A7E1B30068200F92CBA /* 19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 19.png; sourceTree = "<group>"; };
 		9C7CA8B51A53A3870067377C /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		9C7CA8B61A53A3870067377C /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		9C7CA8B91A53A4AF0067377C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 				9C12881F1B1964E300535745 /* 16.png */,
 				9C1288201B1964E300535745 /* 17.png */,
 				9C1288211B1964E300535745 /* 18.png */,
+				9C710A7E1B30068200F92CBA /* 19.png */,
 				9C1287F31B16B63A00535745 /* 人物标志.png */,
 				9C1287F41B16B63A00535745 /* 密码标志.png */,
 				9C1287F51B16B63A00535745 /* 按扭.png */,
@@ -1085,6 +1088,7 @@
 				96D6F8281A2C64E900CCD0B5 /* icon_date.png in Resources */,
 				9C84DA091AE7323200A5124E /* Localizable.strings in Resources */,
 				9C6D9DBB1A820DC7002A7845 /* check_icon.png in Resources */,
+				9C710A7F1B30068200F92CBA /* 19.png in Resources */,
 				9C84DA121AE79B1400A5124E /* radio_checked.png in Resources */,
 				9C1288041B16B63A00535745 /* 按扭.png in Resources */,
 				9C6D9D6D1A7F7C9B002A7845 /* icon_list_background3.jpg in Resources */,

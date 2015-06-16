@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.kcalculatorView.delegate = self;
+//    self.kcalculatorView.delegate = self;
     
 //    self.startButton.layer.cornerRadius = 3.0;
 //    self.startButton.layer.masksToBounds = YES;
@@ -46,18 +46,19 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"viewWillAppear:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
-    self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(self.kcalculatorView.frame.origin.x, self.kcalculatorView.frame.origin.y
-                                                                             , self.kcalculatorView.frame.size.width, self.kcalculatorView.frame.size.height)];
-    [self.view addSubview:self.kcalculatorView];
-    self.kcalculatorView.delegate = self;
+    NSLog(@"viewWillAppear:%f,height:%f,x:%f,y:%f",self.kView.frame.size.width,self.kView.frame.size.height,self.kView.frame.origin.x,self.kView.frame.origin.y);
+
     //NSLog(@"%@",self.kcalculatorView.frame);
 }
 
 
 - (void)viewDidAppear:(BOOL)animated{
-        NSLog(@"viewDidAppear:width:%f,height:%f,x:%f,y:%f",self.kcalculatorView.frame.size.width,self.kcalculatorView.frame.size.height,self.kcalculatorView.frame.origin.x,self.kcalculatorView.frame.origin.y);
+        NSLog(@"viewDidAppear:width:%f,height:%f,x:%f,y:%f",self.kView.frame.size.width,self.kView.frame.size.height,self.kView.frame.origin.x,self.kView.frame.origin.y);
     
+    self.kcalculatorView = [[KCalculator alloc] initWithFrame:CGRectMake(0, 0
+                                                                         , self.kView.frame.size.width, self.kView.frame.size.height)];
+    [self.kView addSubview:self.kcalculatorView];
+    self.kcalculatorView.delegate = self;
     //NSLog(@"%@",self.kcalculatorView.frame);
 }
 
