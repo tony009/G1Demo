@@ -52,6 +52,8 @@
 //    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 //    self.navigationItem.leftBarButtonItem = leftItem;
     
+    
+    self.navigationBar.barTintColor = rgb(231, 120, 23, 1);
 }
 
 - (void)didReceiveMemoryWarning

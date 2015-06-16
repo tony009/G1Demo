@@ -69,25 +69,25 @@
     
 
     QRadioButton *accountType_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"accountType"];
-    accountType_radio1.frame = CGRectMake(150, 80, 100, 40);
+    accountType_radio1.frame = CGRectMake(150, 75, 100, 40);
     accountType_radio1.tag = 1;
     [accountType_radio1 setTitle:@"借记卡" forState:UIControlStateNormal];
     [self.view addSubview:accountType_radio1];
     [accountType_radio1 setChecked:YES];
     QRadioButton *accountType_radio2 = [[QRadioButton alloc] initWithDelegate:self groupId:@"accountType"];
-    accountType_radio2.frame = CGRectMake(220, 80, 100, 40);
+    accountType_radio2.frame = CGRectMake(220, 75, 100, 40);
     accountType_radio2.tag = 2;
     [accountType_radio2 setTitle:@"贷记卡" forState:UIControlStateNormal];
     [self.view addSubview:accountType_radio2];
     
     QRadioButton *isPrivate_radio1 = [[QRadioButton alloc] initWithDelegate:self groupId:@"isPrivate"];
-    isPrivate_radio1.frame = CGRectMake(150, 115, 100, 40);
+    isPrivate_radio1.frame = CGRectMake(150, 105, 100, 40);
     isPrivate_radio1.tag = 1;
     [isPrivate_radio1 setTitle:@"对私" forState:UIControlStateNormal];
     [self.view addSubview:isPrivate_radio1];
     [isPrivate_radio1 setChecked:YES];
     QRadioButton *isPrivate_radio2 = [[QRadioButton alloc] initWithDelegate:self groupId:@"isPrivate"];
-    isPrivate_radio2.frame = CGRectMake(220, 115, 100, 40);
+    isPrivate_radio2.frame = CGRectMake(220, 105, 100, 40);
     isPrivate_radio2.tag = 0;
     [isPrivate_radio2 setTitle:@"对公" forState:UIControlStateNormal];
     [self.view addSubview:isPrivate_radio2];

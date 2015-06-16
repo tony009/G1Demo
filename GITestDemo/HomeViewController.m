@@ -73,7 +73,7 @@
     
     NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新",@"账户签到",@"参数更新"];
     //NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
-    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png",@"签到.png",@"btn_more.png"];
+    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png",@"签到.png",@"19.png"];
     for (int i = 0; i < titArray.count; i++) {
         ImgTButton *button = (ImgTButton *)[self.controlView viewWithTag:i+10];
         button.imageName = [imgArray objectAtIndex:i];
