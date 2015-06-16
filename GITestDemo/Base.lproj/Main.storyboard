@@ -1468,15 +1468,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="182" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0r-qU-lbi">
-                                <rect key="frame" x="67" y="8" width="46" height="31"/>
+                                <rect key="frame" x="67" y="8" width="69" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" red="0.72549019607843135" green="0.63137254901960782" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0we-vM-iID">
-                                <rect key="frame" x="121" y="14" width="51" height="25"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGC-gY-jLf">
@@ -1601,10 +1595,9 @@
                                 <rect key="frame" x="10" y="105" width="300" height="353"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfd-rH-vaJ" customClass="PPSSignatureView">
-                                        <rect key="frame" x="5" y="43" width="290" height="250"/>
+                                        <rect key="frame" x="5" y="20" width="290" height="273"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="5hh-Xy-13v"/>
                                             <constraint firstAttribute="width" constant="290" id="q6s-NE-OSW"/>
                                         </constraints>
                                     </view>
@@ -1625,6 +1618,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="yfd-rH-vaJ" firstAttribute="top" secondItem="ecI-59-4gc" secondAttribute="top" constant="20" id="5Pz-ed-bcu"/>
                                     <constraint firstAttribute="width" constant="300" id="CQL-C5-heF"/>
                                     <constraint firstItem="RaX-K6-zGI" firstAttribute="top" secondItem="yfd-rH-vaJ" secondAttribute="bottom" constant="10" id="F7L-1V-8IW"/>
                                     <constraint firstAttribute="bottom" secondItem="RaX-K6-zGI" secondAttribute="bottom" constant="20" id="Z0Y-NT-MGp"/>
@@ -1646,6 +1640,12 @@
                                     <action selector="uploadImage:" destination="GLh-7g-6Tj" eventType="touchUpInside" id="ZJe-0Y-AG5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0we-vM-iID">
+                                <rect key="frame" x="156" y="14" width="51" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
