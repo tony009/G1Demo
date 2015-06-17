@@ -67,7 +67,7 @@
 }
 
 - (void)initBLESDK{
-    
+    NSString *shangHuName = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuName];
     NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
     NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
     NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
@@ -85,12 +85,15 @@
         caoZhuoYuan = @"01";
     }
     if (!host) {
-        host = @"122.112.12.20";
-        [[NSUserDefaults standardUserDefaults] setObject:host forKey:kHostEditor];
+        //host = @"122.112.12.20";
+        [[NSUserDefaults standardUserDefaults] setObject:kServerIP forKey:kHostEditor];
     }
     if (!port) {
-        port = @"6889";
-        [[NSUserDefaults standardUserDefaults] setObject:port forKey:kPortEditor];
+        //port = @"6889";
+        [[NSUserDefaults standardUserDefaults] setObject:kServerPort forKey:kPortEditor];
+    }
+    if (!shangHuName) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"铜元支付" forKey:kShangHuName];
     }
     
     [[NSUserDefaults standardUserDefaults]synchronize];
