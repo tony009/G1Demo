@@ -58,9 +58,13 @@
 //腾氏
 //#define kServerIP @"122.112.12.25" //注册登录的ip
 //#define kServerPort @"18081" //注册登录的端口
+//#define kPosPort @"25679"
+//#define kDefaultShanghuName @"腾势支付"
 
 #define kServerIP @"122.112.12.20" //注册登录的ip
 #define kServerPort @"8081" //注册登录的端口
+#define kPosPort @"6889"
+#define kDefaultShanghuName @"铜元支付"
 
 #define DEBUG false
 //#define DEBUG true

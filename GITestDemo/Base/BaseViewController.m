@@ -90,10 +90,10 @@
     }
     if (!port) {
         //port = @"6889";
-        [[NSUserDefaults standardUserDefaults] setObject:kServerPort forKey:kPortEditor];
+        [[NSUserDefaults standardUserDefaults] setObject:kPosPort forKey:kPortEditor];
     }
     if (!shangHuName) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"铜元支付" forKey:kShangHuName];
+        [[NSUserDefaults standardUserDefaults] setObject:kDefaultShanghuName forKey:kShangHuName];
     }
     
     [[NSUserDefaults standardUserDefaults]synchronize];
