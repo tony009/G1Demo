@@ -90,8 +90,8 @@
         [[NSUserDefaults standardUserDefaults] setObject:kServerIP forKey:kHostEditor];
     }
     if (!port) {
-        //port = @"18081";
-        [[NSUserDefaults standardUserDefaults] setObject:kServerPort forKey:kPortEditor];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kPosPort forKey:kPortEditor];
     }
     if (!shangHuName) {
         [[NSUserDefaults standardUserDefaults] setObject:@"周黑鸭" forKey:kShangHuName];
