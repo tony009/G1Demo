@@ -663,11 +663,13 @@ static char parse(char c) {
 //            }
 //        }];
         
-        if(MiniPosSDKGetDeviceInfoCMD()>=0)
-        {
-            [self showHUD:@"正在获取设备信息"];
-            isGetDeviceMsgAction = true;
-        }
+        [self getPosParams];
+        
+//        if(MiniPosSDKGetDeviceInfoCMD()>=0)
+//        {
+//            [self showHUD:@"正在获取设备信息"];
+//            isGetDeviceMsgAction = true;
+//        }
     }
     
 
@@ -750,6 +752,20 @@ static char parse(char c) {
     
 }
 
+-(void)getPosParams{
+    
+    
+    char paramname[100];
+    
+    memset(paramname, 0x00, sizeof(paramname));
+    strcat(paramname, "TerminalNo");
+    strcat(paramname, "\x1C");
+    strcat(paramname, "MerchantNo");
+    strcat(paramname, "\x1C");
+    strcat(paramname, "SnNo");
+    
+    MiniPosSDKGetParams("88888888", paramname);
+}
 
 //从POS机获取版本信息
 - (void)getPosVersionInfo{
@@ -1065,6 +1081,24 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
         
         hasSettedParam = true;
+    }
+    
+    
+    if ([self.statusStr isEqualToString:@"获取参数成功"]) {
+        
+        NSString *SnNo = [NSString stringWithCString:MiniPosSDKGetParam("SnNo") encoding:NSUTF8StringEncoding];
+        NSString *TerminalNo = [NSString stringWithCString:MiniPosSDKGetParam("TerminalNo") encoding:NSUTF8StringEncoding];
+        NSString *MerchantNo = [NSString stringWithCString:MiniPosSDKGetParam("MerchantNo") encoding:NSUTF8StringEncoding];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:SnNo forKey:kMposG1SN];
+        [[NSUserDefaults standardUserDefaults] setObject:TerminalNo forKey:kMposG1TerminalNo];
+        [[NSUserDefaults standardUserDefaults] setObject:MerchantNo forKey:kMposG1MerchantNo];
+        
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        NSString *str = [NSString stringWithFormat:@"SnNo:%@,TerminalNo:%@,MerchantNo:%@",[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1MerchantNo]];
+        
+        [self showHUD:str];
     }
     
     self.statusStr=@"";
