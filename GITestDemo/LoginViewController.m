@@ -14,6 +14,7 @@
 #include "des.h"
 #import "LeftSlideViewController.h"
 #import "LeftSortsViewController.h"
+#import "AppDelegate.h"
 @interface LoginViewController ()<UIAlertViewDelegate,QCheckBoxDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -256,12 +257,15 @@
             
             //[self performSegueWithIdentifier:@"loginToHome" sender:self];
             
+            AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
             LeftSortsViewController *leftVC = [[LeftSortsViewController alloc]init];
             
             UINavigationController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
             
             LeftSlideViewController *leftSlideVC = [[LeftSlideViewController alloc]initWithLeftView:leftVC andMainView:mainVC];
+            
+            tempAppDelegate.LeftSlideVC = leftSlideVC;
             
             [self presentViewController:leftSlideVC animated:YES completion:nil];
             
