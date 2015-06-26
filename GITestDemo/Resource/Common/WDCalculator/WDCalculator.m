@@ -8,6 +8,15 @@
 
 #import "WDCalculator.h"
 
+@implementation WDCalculator{
+    
+    float _btWidth;
+    float _btHeight;
+    
+}
+
+@end
+
 @implementation WDCalculator
 
 /*
@@ -17,12 +26,20 @@
     // Drawing code
 }
 */
+
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-
+        
     }
     
     return self;
 }
+
+-(void)_initData{
+    
+    //_btWidth = self.frame.size.wi
+    
+}
+
 @end
