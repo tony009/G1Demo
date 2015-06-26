@@ -388,16 +388,23 @@ static char parse(char c) {
         return;
     }else{
         
-        [self verifyParamsSuccess:^{
+//        [self verifyParamsSuccess:^{
+//            
+//            if(MiniPosSDKPosLogin()>=0)
+//            {
+//                
+//                [self showHUD:@"正在签到"];
+//                
+//            }
+//            
+//        }];
+        
+        if(MiniPosSDKPosLogin()>=0)
+        {
             
-            if(MiniPosSDKPosLogin()>=0)
-            {
-                
-                [self showHUD:@"正在签到"];
-                
-            }
+            [self showHUD:@"正在签到"];
             
-        }];
+        }
         
     }
     
@@ -648,13 +655,19 @@ static char parse(char c) {
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
-            if(MiniPosSDKGetDeviceInfoCMD()>=0)
-            {
-                [self showHUD:@"正在获取设备信息"];
-                isGetDeviceMsgAction = true;
-            }
-        }];
+//        [self verifyParamsSuccess:^{
+//            if(MiniPosSDKGetDeviceInfoCMD()>=0)
+//            {
+//                [self showHUD:@"正在获取设备信息"];
+//                isGetDeviceMsgAction = true;
+//            }
+//        }];
+        
+        if(MiniPosSDKGetDeviceInfoCMD()>=0)
+        {
+            [self showHUD:@"正在获取设备信息"];
+            isGetDeviceMsgAction = true;
+        }
     }
     
 
