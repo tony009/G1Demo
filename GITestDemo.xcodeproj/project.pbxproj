@@ -82,11 +82,9 @@
 		9C1288041B16B63A00535745 /* 按扭.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F51B16B63A00535745 /* 按扭.png */; };
 		9C1288051B16B63A00535745 /* 未命名 -1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F61B16B63A00535745 /* 未命名 -1.jpg */; };
 		9C1288061B16B63A00535745 /* 白色按扭.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F71B16B63A00535745 /* 白色按扭.png */; };
-		9C1288071B16B63A00535745 /* 箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F81B16B63A00535745 /* 箭头.png */; };
 		9C12880C1B16C19200535745 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C12880B1B16C19200535745 /* FirstViewController.m */; };
 		9C1288171B1718FE00535745 /* 小方框.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1288151B1718FE00535745 /* 小方框.png */; };
 		9C1288181B1718FE00535745 /* 小方框2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1288161B1718FE00535745 /* 小方框2.png */; };
-		9C12881A1B171DE400535745 /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1288191B171DE400535745 /* LOGO.png */; };
 		9C1288221B1964E300535745 /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12881B1B1964E300535745 /* 12.png */; };
 		9C1288231B1964E300535745 /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12881C1B1964E300535745 /* 13.png */; };
 		9C1288241B1964E300535745 /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12881D1B1964E300535745 /* 14.png */; };
@@ -99,6 +97,9 @@
 		9C1288301B19BF6F00535745 /* 音频.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12882E1B19BF6F00535745 /* 音频.png */; };
 		9C1288321B19D57D00535745 /* 滚动条.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1288311B19D57D00535745 /* 滚动条.png */; };
 		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
+		9C4B50471B3D2B27003C8F2A /* LeftSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B50441B3D2B27003C8F2A /* LeftSlideViewController.m */; };
+		9C4B50481B3D2B27003C8F2A /* UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B50461B3D2B27003C8F2A /* UIView_extra.m */; };
+		9C4B504B1B3D2C3D003C8F2A /* LeftSortsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B504A1B3D2C3D003C8F2A /* LeftSortsViewController.m */; };
 		9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6671921A835997004BD24B /* ProtocolViewController.m */; };
 		9C69B5861AD3776A0075B9D9 /* libSystemPrivacySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C69B5841AD3776A0075B9D9 /* libSystemPrivacySDK.a */; };
 		9C6D9D6D1A7F7C9B002A7845 /* icon_list_background3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9D6C1A7F7C9B002A7845 /* icon_list_background3.jpg */; };
@@ -141,6 +142,8 @@
 		9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */; };
 		9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */; };
 		9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */; };
+		9C82E9151B3C01C9001F24DC /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C82E9141B3C01C9001F24DC /* LOGO.png */; };
+		9C82E9171B3C03B3001F24DC /* 箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C82E9161B3C03B3001F24DC /* 箭头.png */; };
 		9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA031AE642DD00A5124E /* MHTextField.m */; };
 		9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA061AE6516A00A5124E /* DemoTextField.m */; };
 		9C84DA091AE7323200A5124E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA081AE7323200A5124E /* Localizable.strings */; };
@@ -294,12 +297,10 @@
 		9C1287F51B16B63A00535745 /* 按扭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按扭.png"; sourceTree = "<group>"; };
 		9C1287F61B16B63A00535745 /* 未命名 -1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "未命名 -1.jpg"; sourceTree = "<group>"; };
 		9C1287F71B16B63A00535745 /* 白色按扭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "白色按扭.png"; sourceTree = "<group>"; };
-		9C1287F81B16B63A00535745 /* 箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头.png"; sourceTree = "<group>"; };
 		9C12880A1B16C19200535745 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		9C12880B1B16C19200535745 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		9C1288151B1718FE00535745 /* 小方框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小方框.png"; sourceTree = "<group>"; };
 		9C1288161B1718FE00535745 /* 小方框2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小方框2.png"; sourceTree = "<group>"; };
-		9C1288191B171DE400535745 /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
 		9C12881B1B1964E300535745 /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
 		9C12881C1B1964E300535745 /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
 		9C12881D1B1964E300535745 /* 14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 14.png; sourceTree = "<group>"; };
@@ -313,6 +314,12 @@
 		9C1288311B19D57D00535745 /* 滚动条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "滚动条.png"; sourceTree = "<group>"; };
 		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		9C4B50431B3D2B27003C8F2A /* LeftSlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSlideViewController.h; sourceTree = "<group>"; };
+		9C4B50441B3D2B27003C8F2A /* LeftSlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSlideViewController.m; sourceTree = "<group>"; };
+		9C4B50451B3D2B27003C8F2A /* UIView_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_extra.h; sourceTree = "<group>"; };
+		9C4B50461B3D2B27003C8F2A /* UIView_extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_extra.m; sourceTree = "<group>"; };
+		9C4B50491B3D2C3D003C8F2A /* LeftSortsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSortsViewController.h; sourceTree = "<group>"; };
+		9C4B504A1B3D2C3D003C8F2A /* LeftSortsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSortsViewController.m; sourceTree = "<group>"; };
 		9C6671911A835997004BD24B /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
 		9C6671921A835997004BD24B /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
 		9C69B5841AD3776A0075B9D9 /* libSystemPrivacySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSystemPrivacySDK.a; sourceTree = "<group>"; };
@@ -382,6 +389,8 @@
 		9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeViewController.m; sourceTree = "<group>"; };
 		9C82CE511B26D7DD00F21F21 /* EntBankInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntBankInfoViewController.h; sourceTree = "<group>"; };
 		9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntBankInfoViewController.m; sourceTree = "<group>"; };
+		9C82E9141B3C01C9001F24DC /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		9C82E9161B3C03B3001F24DC /* 箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头.png"; sourceTree = "<group>"; };
 		9C84DA021AE642DD00A5124E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
 		9C84DA031AE642DD00A5124E /* MHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTextField.m; sourceTree = "<group>"; };
 		9C84DA051AE6516A00A5124E /* DemoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextField.h; sourceTree = "<group>"; };
@@ -480,6 +489,8 @@
 				9C12880B1B16C19200535745 /* FirstViewController.m */,
 				96C560911A2461EA00A25290 /* LoginViewController.h */,
 				96C560921A2461EA00A25290 /* LoginViewController.m */,
+				9C4B50491B3D2C3D003C8F2A /* LeftSortsViewController.h */,
+				9C4B504A1B3D2C3D003C8F2A /* LeftSortsViewController.m */,
 				96C560941A24673500A25290 /* DeviceConfigViewController.h */,
 				96C560951A24673500A25290 /* DeviceConfigViewController.m */,
 				96D6F8311A2C687200CCD0B5 /* ConnectDeviceViewController.h */,
@@ -691,6 +702,7 @@
 				9C84DA031AE642DD00A5124E /* MHTextField.m */,
 				9C84DA051AE6516A00A5124E /* DemoTextField.h */,
 				9C84DA061AE6516A00A5124E /* DemoTextField.m */,
+				9C4B50421B3D2B27003C8F2A /* LeftSlideViewController */,
 				9CFCEBDC1AE0F790007D27CF /* WDPickView */,
 				9C9D4A811A84A780001ADA4B /* SIAlertView */,
 				9C7CA8B81A53A4AF0067377C /* AFNetworking */,
@@ -807,7 +819,7 @@
 				9C1288311B19D57D00535745 /* 滚动条.png */,
 				9C1288151B1718FE00535745 /* 小方框.png */,
 				9C1288161B1718FE00535745 /* 小方框2.png */,
-				9C1288191B171DE400535745 /* LOGO.png */,
+				9C82E9141B3C01C9001F24DC /* LOGO.png */,
 				9C12882D1B19BF6F00535745 /* 蓝牙.png */,
 				9C12882E1B19BF6F00535745 /* 音频.png */,
 				9C12882B1B19BF5A00535745 /* 签到.png */,
@@ -825,9 +837,20 @@
 				9C1287F51B16B63A00535745 /* 按扭.png */,
 				9C1287F61B16B63A00535745 /* 未命名 -1.jpg */,
 				9C1287F71B16B63A00535745 /* 白色按扭.png */,
-				9C1287F81B16B63A00535745 /* 箭头.png */,
+				9C82E9161B3C03B3001F24DC /* 箭头.png */,
 			);
 			path = IMG_v2;
+			sourceTree = "<group>";
+		};
+		9C4B50421B3D2B27003C8F2A /* LeftSlideViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B50431B3D2B27003C8F2A /* LeftSlideViewController.h */,
+				9C4B50441B3D2B27003C8F2A /* LeftSlideViewController.m */,
+				9C4B50451B3D2B27003C8F2A /* UIView_extra.h */,
+				9C4B50461B3D2B27003C8F2A /* UIView_extra.m */,
+			);
+			path = LeftSlideViewController;
 			sourceTree = "<group>";
 		};
 		9C6D9DB61A820BAA002A7845 /* QCheckBox */ = {
@@ -1077,7 +1100,6 @@
 				9637170E1A2DC6C6002D34F3 /* Default-568h@2x.png in Resources */,
 				96C560391A243A7800A25290 /* Main.storyboard in Resources */,
 				9C6D9DB11A820B90002A7845 /* checkbox1_checked.png in Resources */,
-				9C1288071B16B63A00535745 /* 箭头.png in Resources */,
 				96D6F82E1A2C64E900CCD0B5 /* 收款宝-4.png in Resources */,
 				96D6F8211A2C64E900CCD0B5 /* btn_next_background.png in Resources */,
 				9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */,
@@ -1096,7 +1118,6 @@
 				96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */,
 				96D6F81D1A2C64E900CCD0B5 /* btn_inquire.png in Resources */,
 				9C1288231B1964E300535745 /* 13.png in Resources */,
-				9C12881A1B171DE400535745 /* LOGO.png in Resources */,
 				96D6F8191A2C64E900CCD0B5 /* btn_cancel.png in Resources */,
 				9C9D4A851A84A780001ADA4B /* SIAlertView.bundle in Resources */,
 				9C6D9DBC1A820DC7002A7845 /* check_icon@2x.png in Resources */,
@@ -1138,6 +1159,7 @@
 				96C5603B1A243A7800A25290 /* Images.xcassets in Resources */,
 				9C6D9DA21A82015C002A7845 /* home_banner_4.png in Resources */,
 				96D6F8291A2C64E900CCD0B5 /* icon_list_backgound.png in Resources */,
+				9C82E9151B3C01C9001F24DC /* LOGO.png in Resources */,
 				96D6F8151A2C64E900CCD0B5 /* btn_back.png in Resources */,
 				963717101A2DC6C6002D34F3 /* Default@3x.png in Resources */,
 				96D6F82F1A2C64E900CCD0B5 /* 浅绿色色值.jpg in Resources */,
@@ -1145,6 +1167,7 @@
 				9C1288181B1718FE00535745 /* 小方框2.png in Resources */,
 				96D6F8201A2C64E900CCD0B5 /* btn_next2.png in Resources */,
 				9C1288061B16B63A00535745 /* 白色按扭.png in Resources */,
+				9C82E9171B3C03B3001F24DC /* 箭头.png in Resources */,
 				9C6D9DB21A820B90002A7845 /* checkbox1_checked@2x.png in Resources */,
 				96D6F8261A2C64E900CCD0B5 /* btn_sign_out.png in Resources */,
 				9C1288271B1964E300535745 /* 17.png in Resources */,
@@ -1189,6 +1212,7 @@
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */,
+				9C4B50471B3D2B27003C8F2A /* LeftSlideViewController.m in Sources */,
 				9C91CB171B2597B5006D1024 /* EntPersonInfoViewController.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				9C7CA8EA1A53A4AF0067377C /* UIButton+AFNetworking.m in Sources */,
@@ -1217,6 +1241,7 @@
 				96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */,
 				9C7CA8EB1A53A4AF0067377C /* UIImageView+AFNetworking.m in Sources */,
 				9C7CA8E91A53A4AF0067377C /* UIAlertView+AFNetworking.m in Sources */,
+				9C4B504B1B3D2C3D003C8F2A /* LeftSortsViewController.m in Sources */,
 				9C7E3BD71B01A6D100F40A74 /* PersonInfoViewController.m in Sources */,
 				9C7CA8E51A53A4AF0067377C /* AFURLResponseSerialization.m in Sources */,
 				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
@@ -1234,6 +1259,7 @@
 				9C7CA8DE1A53A4AF0067377C /* AFHTTPRequestOperation.m in Sources */,
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,
 				9C7CA8E81A53A4AF0067377C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				9C4B50481B3D2B27003C8F2A /* UIView_extra.m in Sources */,
 				9668E2821A25D10E0014FDD8 /* UndoCusViewController.m in Sources */,
 				96C560851A24606600A25290 /* MBProgressHUD.m in Sources */,
 			);

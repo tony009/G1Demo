@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Sde-ps-3Pb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Sde-ps-3Pb">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -413,7 +413,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LOGO.png" translatesAutoresizingMaskIntoConstraints="NO" id="QAH-C2-r3p">
-                                        <rect key="frame" x="55" y="162" width="210" height="76"/>
+                                        <rect key="frame" x="63" y="163" width="195" height="74"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.49411764705882355" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
@@ -423,13 +423,13 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYL-YK-rnl">
                                 <rect key="frame" x="20" y="500" width="280" height="45"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="yvs-ta-BRR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="注册">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -438,13 +438,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-fo-QXt">
                                 <rect key="frame" x="20" y="440" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.21568627450980393" green="0.49411764705882355" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9F7-HN-HJv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -493,18 +493,6 @@
                                     <action selector="connectDeviceAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="W6C-SZ-bYn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntm-Gc-gVQ">
-                                <rect key="frame" x="20" y="284" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="siginAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="dij-ON-bL2"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="登录密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Bb-LP-A0S">
                                 <rect key="frame" x="0.0" y="127" width="320" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -533,6 +521,18 @@
                                     </button>
                                 </subviews>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntm-Gc-gVQ">
+                                <rect key="frame" x="110" y="234" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="siginAction:" destination="obH-vd-F8r" eventType="touchUpInside" id="dij-ON-bL2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -2366,7 +2366,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ig9-KH-52a">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AgC-Xy-JuH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainVC" automaticallyAdjustsScrollViewInsets="NO" id="AgC-Xy-JuH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lg2-wj-gdD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VLl-MO-NkR">
@@ -2912,7 +2912,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LOGO.png" width="421" height="152"/>
+        <image name="LOGO.png" width="389" height="148"/>
         <image name="icon_list_background6.jpg" width="600" height="1130"/>
         <image name="收款宝-4.png" width="50" height="50"/>
         <image name="滚动条.png" width="580" height="30"/>

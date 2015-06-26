@@ -63,7 +63,7 @@
 - (void)_initSubViews
 {
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftButton.frame = CGRectMake(0, 0, 50, 50);
+    leftButton.frame = CGRectMake(0, 0, 20, 20);
     leftButton.backgroundColor = [UIColor clearColor];
     [leftButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];

@@ -29,7 +29,7 @@
     self.view.backgroundColor =rgb(229, 229, 229, 1);
     
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 50, 50);
+    backButton.frame = CGRectMake(0, 0, 20, 20);
     [backButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
     backButton.backgroundColor = [UIColor clearColor];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];

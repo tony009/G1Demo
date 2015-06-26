@@ -12,6 +12,8 @@
 #import "SIAlertView.h"
 #import "AFNetworking.h"
 #include "des.h"
+#import "LeftSlideViewController.h"
+#import "LeftSortsViewController.h"
 @interface LoginViewController ()<UIAlertViewDelegate,QCheckBoxDelegate>
 {
     UITapGestureRecognizer *disMissTap;
@@ -185,7 +187,7 @@
     [self performSegueWithIdentifier:@"loginModalToConfig" sender:self];
 }
 
-
+//登录
 - (IBAction)siginAction:(UIButton *)sender {
     
 //    char paramname[100];
@@ -252,7 +254,16 @@
             [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            [self performSegueWithIdentifier:@"loginToHome" sender:self];
+            //[self performSegueWithIdentifier:@"loginToHome" sender:self];
+            
+            
+            LeftSortsViewController *leftVC = [[LeftSortsViewController alloc]init];
+            
+            UINavigationController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
+            
+            LeftSlideViewController *leftSlideVC = [[LeftSlideViewController alloc]initWithLeftView:leftVC andMainView:mainVC];
+            
+            [self presentViewController:leftSlideVC animated:YES completion:nil];
             
         }else{
             [self showTipView:responseObject[@"resultMap"][@"msg"] ];
@@ -264,37 +275,6 @@
         [self showTipView:@"登录失败"];
     }];
     
-    
-    return;
-    
-    if (!self.checkBox.checked) {
-        
-        [self showTipView:@"请先勾选服务协议"];
-        return;
-    }
-    
-    
-    if (![self.phoneNo.text isEqualToString:@"01"] || ![self.password.text isEqualToString:@"0000"]) {
-        
-        [self showTipView:@"操作员号或密码错误！请检查后重试。"];
-        
-        return;
-    }
-    
-
-    
-    
-    if (MiniPosSDKDeviceState() == 0) {
-        if(MiniPosSDKPosLogin()>=0)
-        {
-            
-            [self showHUD:@"正在签到..."];
-            
-            
-        }
-    }else{
-        [self showTipView:@"设备未连接"];
-    }
     
 
 }
