@@ -1246,7 +1246,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="通用" id="wA1-c2-r83"/>
+                    <tabBarItem key="tabBarItem" title="Item 2" image="item_2.png" id="wA1-c2-r83"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZK3-hs-eZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1263,9 +1263,63 @@
                     <view key="view" contentMode="scaleToFill" id="WmM-O0-GLL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdN-mV-5JB">
+                                <rect key="frame" x="5" y="72" width="310" height="120"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ByA-Bu-8Q6">
+                                        <rect key="frame" x="50" y="40" width="140" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-Ta-rdp">
+                                        <rect key="frame" x="8" y="82" width="292" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdx-mX-fHk">
+                                        <rect key="frame" x="8" y="40" width="44" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2014-11-26 16:23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIG-f4-Jk3">
+                                        <rect key="frame" x="86" y="8" width="138" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iop-sg-tN6">
+                                        <rect key="frame" x="220" y="40" width="80" height="45"/>
+                                        <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="开始刷卡">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="next:" destination="tfu-5T-Dxb" eventType="touchUpInside" id="LHa-XL-AyR"/>
+                                            <action selector="startAction:" destination="Saq-0e-qb2" eventType="touchUpInside" id="oQ6-mZ-XnY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="H1S-Qr-MNa"/>
+                                    <constraint firstAttribute="width" constant="310" id="VM6-s6-23N"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rdN-mV-5JB" firstAttribute="leading" secondItem="WmM-O0-GLL" secondAttribute="leading" constant="5" id="8fA-42-7LA"/>
+                            <constraint firstItem="rdN-mV-5JB" firstAttribute="top" secondItem="WmM-O0-GLL" secondAttribute="top" constant="72" id="MPD-ND-mQk"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="通用" id="Fh7-pU-1ja"/>
+                    <tabBarItem key="tabBarItem" title="Item 1" image="item_1.png" id="Fh7-pU-1ja"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmh-UO-7gx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2936,10 +2990,11 @@
     <resources>
         <image name="LOGO.png" width="389" height="148"/>
         <image name="icon_list_background6.jpg" width="600" height="1130"/>
+        <image name="item_1.png" width="60" height="60"/>
+        <image name="item_2.png" width="60" height="60"/>
         <image name="收款宝-4.png" width="50" height="50"/>
         <image name="滚动条.png" width="580" height="30"/>
         <image name="蓝牙.png" width="100" height="100"/>
-        <image name="通用" width="72" height="72"/>
         <image name="音频.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
