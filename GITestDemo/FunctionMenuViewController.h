@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FunctionMenuViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *functionView;
 
 @end

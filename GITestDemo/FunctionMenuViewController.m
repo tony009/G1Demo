@@ -7,7 +7,7 @@
 //
 
 #import "FunctionMenuViewController.h"
-
+#import "WDImageButton.h"
 @interface FunctionMenuViewController ()
 
 @end
@@ -17,6 +17,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self _initSubViews];
+}
+
+-(void)_initSubViews{
+    
+    NSArray *labelArray = @[@"话费充值",@"机票服务",@"游戏点卡",@"基金理财",@"信用卡还款",@"余额查询",@"卡卡转账",@"交通违章",@"水电煤代缴"];
+    NSArray *imgArray = @[@"话费充值",@"机票服务",@"游戏点卡",@"基金理财",@"信用卡还款",@"余额查询",@"卡卡转账",@"交通违章",@"水电煤代缴"];
+    
+    for (int i =0 ; i < 4; i++) {
+        WDImageButton *button = (WDImageButton *)[self.functionView viewWithTag:i+10];
+        button.imageName = [imgArray objectAtIndex:i];
+        button.text = labelArray[i];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

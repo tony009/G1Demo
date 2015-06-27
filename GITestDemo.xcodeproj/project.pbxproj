@@ -76,6 +76,16 @@
 		96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F8121A2C64E900CCD0B5 /* 绿色色值.jpg */; };
 		96D6F8331A2C687200CCD0B5 /* ConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */; };
 		9C039AA91ADFA9800010FB72 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C039AA81ADFA9800010FB72 /* SignupViewController.m */; };
+		9C112D621B3EC9FA00F6BE8D /* WDImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C112D611B3EC9FA00F6BE8D /* WDImageButton.m */; };
+		9C112D6C1B3ECE2700F6BE8D /* 话费充值.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D631B3ECE2700F6BE8D /* 话费充值.png */; };
+		9C112D6D1B3ECE2700F6BE8D /* 机票服务.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D641B3ECE2700F6BE8D /* 机票服务.png */; };
+		9C112D6E1B3ECE2700F6BE8D /* 基金理财.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D651B3ECE2700F6BE8D /* 基金理财.png */; };
+		9C112D6F1B3ECE2700F6BE8D /* 交通违章.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D661B3ECE2700F6BE8D /* 交通违章.png */; };
+		9C112D701B3ECE2700F6BE8D /* 卡卡转账.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D671B3ECE2700F6BE8D /* 卡卡转账.png */; };
+		9C112D711B3ECE2700F6BE8D /* 水电煤代缴.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D681B3ECE2700F6BE8D /* 水电煤代缴.png */; };
+		9C112D721B3ECE2700F6BE8D /* 信用卡还款.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D691B3ECE2700F6BE8D /* 信用卡还款.png */; };
+		9C112D731B3ECE2700F6BE8D /* 游戏点卡.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D6A1B3ECE2700F6BE8D /* 游戏点卡.png */; };
+		9C112D741B3ECE2700F6BE8D /* 余额查询.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D6B1B3ECE2700F6BE8D /* 余额查询.png */; };
 		9C1287F91B16B63A00535745 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287EA1B16B63A00535745 /* 11.png */; };
 		9C1288021B16B63A00535745 /* 人物标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F31B16B63A00535745 /* 人物标志.png */; };
 		9C1288031B16B63A00535745 /* 密码标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F41B16B63A00535745 /* 密码标志.png */; };
@@ -311,6 +321,17 @@
 		96D6F8321A2C687200CCD0B5 /* ConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectDeviceViewController.m; sourceTree = "<group>"; };
 		9C039AA71ADFA9800010FB72 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		9C039AA81ADFA9800010FB72 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		9C112D601B3EC9FA00F6BE8D /* WDImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImageButton.h; sourceTree = "<group>"; };
+		9C112D611B3EC9FA00F6BE8D /* WDImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImageButton.m; sourceTree = "<group>"; };
+		9C112D631B3ECE2700F6BE8D /* 话费充值.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "话费充值.png"; sourceTree = "<group>"; };
+		9C112D641B3ECE2700F6BE8D /* 机票服务.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "机票服务.png"; sourceTree = "<group>"; };
+		9C112D651B3ECE2700F6BE8D /* 基金理财.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "基金理财.png"; sourceTree = "<group>"; };
+		9C112D661B3ECE2700F6BE8D /* 交通违章.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交通违章.png"; sourceTree = "<group>"; };
+		9C112D671B3ECE2700F6BE8D /* 卡卡转账.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "卡卡转账.png"; sourceTree = "<group>"; };
+		9C112D681B3ECE2700F6BE8D /* 水电煤代缴.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "水电煤代缴.png"; sourceTree = "<group>"; };
+		9C112D691B3ECE2700F6BE8D /* 信用卡还款.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "信用卡还款.png"; sourceTree = "<group>"; };
+		9C112D6A1B3ECE2700F6BE8D /* 游戏点卡.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "游戏点卡.png"; sourceTree = "<group>"; };
+		9C112D6B1B3ECE2700F6BE8D /* 余额查询.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额查询.png"; sourceTree = "<group>"; };
 		9C1287EA1B16B63A00535745 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
 		9C1287F31B16B63A00535745 /* 人物标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人物标志.png"; sourceTree = "<group>"; };
 		9C1287F41B16B63A00535745 /* 密码标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码标志.png"; sourceTree = "<group>"; };
@@ -521,6 +542,8 @@
 			children = (
 				963716B61A2D54BB002D34F3 /* ImgTButton.h */,
 				963716B71A2D54BB002D34F3 /* ImgTButton.m */,
+				9C112D601B3EC9FA00F6BE8D /* WDImageButton.h */,
+				9C112D611B3EC9FA00F6BE8D /* WDImageButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -871,6 +894,15 @@
 		9C1287E91B16B63A00535745 /* IMG_v2 */ = {
 			isa = PBXGroup;
 			children = (
+				9C112D631B3ECE2700F6BE8D /* 话费充值.png */,
+				9C112D641B3ECE2700F6BE8D /* 机票服务.png */,
+				9C112D651B3ECE2700F6BE8D /* 基金理财.png */,
+				9C112D661B3ECE2700F6BE8D /* 交通违章.png */,
+				9C112D671B3ECE2700F6BE8D /* 卡卡转账.png */,
+				9C112D681B3ECE2700F6BE8D /* 水电煤代缴.png */,
+				9C112D691B3ECE2700F6BE8D /* 信用卡还款.png */,
+				9C112D6A1B3ECE2700F6BE8D /* 游戏点卡.png */,
+				9C112D6B1B3ECE2700F6BE8D /* 余额查询.png */,
 				9C4B50721B3E7F0C003C8F2A /* note.png */,
 				9C1288311B19D57D00535745 /* 滚动条.png */,
 				9C1288151B1718FE00535745 /* 小方框.png */,
@@ -1198,10 +1230,12 @@
 				96D6F81F1A2C64E900CCD0B5 /* btn_next.png in Resources */,
 				9C6D9DB31A820B90002A7845 /* checkbox1_unchecked.png in Resources */,
 				9C4B50681B3E4B36003C8F2A /* 4@2x.png in Resources */,
+				9C112D711B3ECE2700F6BE8D /* 水电煤代缴.png in Resources */,
 				96D6F8131A2C64E900CCD0B5 /* btn_audio.png in Resources */,
 				96D6F82B1A2C64E900CCD0B5 /* icon_pos_backgound.png in Resources */,
 				96D6F8281A2C64E900CCD0B5 /* icon_date.png in Resources */,
 				9C84DA091AE7323200A5124E /* Localizable.strings in Resources */,
+				9C112D6C1B3ECE2700F6BE8D /* 话费充值.png in Resources */,
 				9C6D9DBB1A820DC7002A7845 /* check_icon.png in Resources */,
 				9C710A7F1B30068200F92CBA /* 19.png in Resources */,
 				9C84DA121AE79B1400A5124E /* radio_checked.png in Resources */,
@@ -1226,10 +1260,13 @@
 				96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */,
 				9C6D9D771A81EB7D002A7845 /* 文件刷卡动画.gif in Resources */,
 				96D6F8161A2C64E900CCD0B5 /* btn_background1.png in Resources */,
+				9C112D701B3ECE2700F6BE8D /* 卡卡转账.png in Resources */,
 				96D6F82C1A2C64E900CCD0B5 /* inco_me1.png in Resources */,
 				96D6F81A1A2C64E900CCD0B5 /* btn_update.png in Resources */,
 				9C4B50631B3E4B36003C8F2A /* +@2x.png in Resources */,
+				9C112D6F1B3ECE2700F6BE8D /* 交通违章.png in Resources */,
 				96D6F8251A2C64E900CCD0B5 /* btn_sign_in.png in Resources */,
+				9C112D741B3ECE2700F6BE8D /* 余额查询.png in Resources */,
 				9C6D9DA01A82015C002A7845 /* home_banner_2.png in Resources */,
 				96D6F8181A2C64E900CCD0B5 /* btn_bluetooth.png in Resources */,
 				9C4B506D1B3E4B36003C8F2A /* 9@2x.png in Resources */,
@@ -1237,10 +1274,12 @@
 				9C4B50651B3E4B36003C8F2A /* 1@2x.png in Resources */,
 				9C84DA141AE79B1400A5124E /* radio_unchecked.png in Resources */,
 				9C1288301B19BF6F00535745 /* 音频.png in Resources */,
+				9C112D6D1B3ECE2700F6BE8D /* 机票服务.png in Resources */,
 				96D6F8271A2C64E900CCD0B5 /* icon1.png in Resources */,
 				9C1288241B1964E300535745 /* 14.png in Resources */,
 				9C12882F1B19BF6F00535745 /* 蓝牙.png in Resources */,
 				9CF64D401B0C58E700DB2B84 /* json-array-of-city.json in Resources */,
+				9C112D721B3ECE2700F6BE8D /* 信用卡还款.png in Resources */,
 				9C6D9DBD1A820DC7002A7845 /* uncheck_icon.png in Resources */,
 				9C84DA131AE79B1400A5124E /* radio_checked@2x.png in Resources */,
 				96D6F82A1A2C64E900CCD0B5 /* icon_password1.png in Resources */,
@@ -1262,6 +1301,7 @@
 				9C4B506A1B3E4B36003C8F2A /* 6@2x.png in Resources */,
 				9C82E9151B3C01C9001F24DC /* LOGO.png in Resources */,
 				96D6F8151A2C64E900CCD0B5 /* btn_back.png in Resources */,
+				9C112D6E1B3ECE2700F6BE8D /* 基金理财.png in Resources */,
 				963717101A2DC6C6002D34F3 /* Default@3x.png in Resources */,
 				9C4B506C1B3E4B36003C8F2A /* 8@2x.png in Resources */,
 				96D6F82F1A2C64E900CCD0B5 /* 浅绿色色值.jpg in Resources */,
@@ -1270,6 +1310,7 @@
 				9C1288181B1718FE00535745 /* 小方框2.png in Resources */,
 				96D6F8201A2C64E900CCD0B5 /* btn_next2.png in Resources */,
 				9C1288061B16B63A00535745 /* 白色按扭.png in Resources */,
+				9C112D731B3ECE2700F6BE8D /* 游戏点卡.png in Resources */,
 				9C82E9171B3C03B3001F24DC /* 箭头.png in Resources */,
 				9C6D9DB21A820B90002A7845 /* checkbox1_checked@2x.png in Resources */,
 				96D6F8261A2C64E900CCD0B5 /* btn_sign_out.png in Resources */,
@@ -1317,6 +1358,7 @@
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,
 				9C87445B1B043489002CC526 /* RootViewController.m in Sources */,
 				9CE662461A416F3B00B13444 /* ServerManager.m in Sources */,
+				9C112D621B3EC9FA00F6BE8D /* WDImageButton.m in Sources */,
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */,

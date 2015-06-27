@@ -1245,9 +1245,95 @@
                     <view key="view" contentMode="scaleToFill" id="wrc-Ib-nvU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDh-Dt-uC6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="109"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="109" id="T8l-9b-M1E"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sg-r5-5bk">
+                                <rect key="frame" x="20" y="189" width="280" height="322"/>
+                                <subviews>
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQg-oH-Ymr" customClass="WDImageButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ftM-S7-IyP"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nW6-YO-bfW" customClass="WDImageButton">
+                                        <rect key="frame" x="72" y="0.0" width="64" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="DFh-At-iOx"/>
+                                            <constraint firstAttribute="height" constant="60" id="YBZ-uv-enk"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="u3d-ZA-uk5"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBg-ds-4wa" customClass="WDImageButton">
+                                        <rect key="frame" x="144" y="0.0" width="64" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="pgl-5W-MeI"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="yLP-Su-Ia6"/>
+                                            <constraint firstAttribute="height" constant="60" id="ypJ-PN-inP"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pG6-YK-qA0" customClass="WDImageButton">
+                                        <rect key="frame" x="216" y="0.0" width="64" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="5QQ-2g-BL9"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="HkE-HT-mw5"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="PQg-oH-Ymr" firstAttribute="leading" secondItem="6sg-r5-5bk" secondAttribute="leading" id="3UH-gd-IeE"/>
+                                    <constraint firstItem="fBg-ds-4wa" firstAttribute="width" secondItem="PQg-oH-Ymr" secondAttribute="width" id="C2A-H2-DrV"/>
+                                    <constraint firstItem="pG6-YK-qA0" firstAttribute="leading" secondItem="fBg-ds-4wa" secondAttribute="trailing" constant="8" id="DN0-0Q-wlO"/>
+                                    <constraint firstAttribute="trailing" secondItem="pG6-YK-qA0" secondAttribute="trailing" id="KO3-c9-zKv"/>
+                                    <constraint firstItem="nW6-YO-bfW" firstAttribute="leading" secondItem="PQg-oH-Ymr" secondAttribute="trailing" constant="8" id="NLP-t4-GWO"/>
+                                    <constraint firstItem="nW6-YO-bfW" firstAttribute="top" secondItem="6sg-r5-5bk" secondAttribute="top" id="SYK-pY-eqO"/>
+                                    <constraint firstItem="PQg-oH-Ymr" firstAttribute="top" secondItem="6sg-r5-5bk" secondAttribute="top" id="T97-QW-LmW"/>
+                                    <constraint firstItem="fBg-ds-4wa" firstAttribute="width" secondItem="pG6-YK-qA0" secondAttribute="width" id="Ulk-XF-svm"/>
+                                    <constraint firstItem="fBg-ds-4wa" firstAttribute="width" secondItem="nW6-YO-bfW" secondAttribute="width" id="YFe-gm-boc"/>
+                                    <constraint firstItem="fBg-ds-4wa" firstAttribute="top" secondItem="6sg-r5-5bk" secondAttribute="top" id="rfB-4o-oyy"/>
+                                    <constraint firstItem="pG6-YK-qA0" firstAttribute="top" secondItem="6sg-r5-5bk" secondAttribute="top" id="tgq-tv-tcS"/>
+                                    <constraint firstItem="fBg-ds-4wa" firstAttribute="leading" secondItem="nW6-YO-bfW" secondAttribute="trailing" constant="8" id="ukb-fq-zAU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="YDh-Dt-uC6" firstAttribute="top" secondItem="hj1-Cs-75K" secondAttribute="bottom" id="5Ha-Au-5lf"/>
+                            <constraint firstItem="iPr-LR-ld3" firstAttribute="top" secondItem="6sg-r5-5bk" secondAttribute="bottom" constant="8" id="JAN-XE-0fX"/>
+                            <constraint firstItem="6sg-r5-5bk" firstAttribute="top" secondItem="YDh-Dt-uC6" secondAttribute="bottom" constant="16" id="cYR-3T-Gpq"/>
+                            <constraint firstItem="6sg-r5-5bk" firstAttribute="leading" secondItem="wrc-Ib-nvU" secondAttribute="leading" constant="20" id="kpO-Vg-hrV"/>
+                            <constraint firstAttribute="trailing" secondItem="6sg-r5-5bk" secondAttribute="trailing" constant="20" id="tqE-iG-RJl"/>
+                            <constraint firstAttribute="trailing" secondItem="YDh-Dt-uC6" secondAttribute="trailing" id="uH8-cN-mDs"/>
+                            <constraint firstItem="YDh-Dt-uC6" firstAttribute="leading" secondItem="wrc-Ib-nvU" secondAttribute="leading" id="wY4-o4-Fze"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="item_2.png" id="wA1-c2-r83"/>
+                    <connections>
+                        <outlet property="functionView" destination="6sg-r5-5bk" id="sdp-VO-LUx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZK3-hs-eZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
