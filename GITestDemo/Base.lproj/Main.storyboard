@@ -1096,6 +1096,7 @@
                             <constraint firstItem="LfS-Ms-DVE" firstAttribute="top" secondItem="BII-zB-eFM" secondAttribute="bottom" constant="2" id="mWc-pN-hdo"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Uqm-rX-0g1"/>
                     <navigationItem key="navigationItem" title="功能界面" id="CF4-PL-xvG"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -1255,7 +1256,7 @@
         <!--Item 1-->
         <scene sceneID="yQ6-AY-Er4">
             <objects>
-                <viewController id="FCR-wi-zgH" sceneMemberID="viewController">
+                <viewController id="FCR-wi-zgH" customClass="GatheringViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ahz-XH-Fic"/>
                         <viewControllerLayoutGuide type="bottom" id="Vf3-Jt-M6a"/>
@@ -1312,14 +1313,25 @@
                                     <constraint firstAttribute="width" constant="310" id="VM6-s6-23N"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-J7-oPa">
+                                <rect key="frame" x="0.0" y="200" width="320" height="311"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Tho-J7-oPa" firstAttribute="leading" secondItem="WmM-O0-GLL" secondAttribute="leading" id="6Dd-UZ-cFQ"/>
                             <constraint firstItem="rdN-mV-5JB" firstAttribute="leading" secondItem="WmM-O0-GLL" secondAttribute="leading" constant="5" id="8fA-42-7LA"/>
                             <constraint firstItem="rdN-mV-5JB" firstAttribute="top" secondItem="WmM-O0-GLL" secondAttribute="top" constant="72" id="MPD-ND-mQk"/>
+                            <constraint firstItem="Vf3-Jt-M6a" firstAttribute="top" secondItem="Tho-J7-oPa" secondAttribute="bottom" constant="8" id="PVd-Gb-aiS"/>
+                            <constraint firstAttribute="trailing" secondItem="Tho-J7-oPa" secondAttribute="trailing" id="UHP-DS-SpT"/>
+                            <constraint firstItem="Tho-J7-oPa" firstAttribute="top" secondItem="rdN-mV-5JB" secondAttribute="bottom" constant="8" id="psY-Kw-mkJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" image="item_1.png" id="Fh7-pU-1ja"/>
+                    <connections>
+                        <outlet property="calculatorView" destination="Tho-J7-oPa" id="63r-cJ-vU4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmh-UO-7gx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3003,9 +3015,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HA1-qt-zOJ"/>
         <segue reference="jGi-GX-hUj"/>
         <segue reference="2uD-WS-Hoj"/>
+        <segue reference="gsO-y2-L4X"/>
         <segue reference="zWV-Zx-zg9"/>
     </inferredMetricsTieBreakers>
 </document>
