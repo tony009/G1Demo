@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GatheringViewController : UIViewController
+#import "BaseViewController.h"
+@interface GatheringViewController :BaseViewController
 
 @property (strong, nonatomic) IBOutlet UIView *calculatorView;
 
+@property (strong, nonatomic) IBOutlet UILabel *totalNum; //合计金额
+
+@property (strong, nonatomic) IBOutlet UILabel *num; //单次金额
 @end

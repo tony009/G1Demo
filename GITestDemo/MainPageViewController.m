@@ -8,6 +8,7 @@
 
 #import "MainPageViewController.h"
 #import "AppDelegate.h"
+#import "WDCalculator.h"
 #define vBackBarButtonItemName  @"backArrow.png"    //导航条返回默认图片名
 @interface MainPageViewController ()
 
@@ -17,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"支付页面";
+    //self.title = @"支付页面";
+    self.tabBar.tintColor =[UIColor whiteColor];
     self.view.backgroundColor = [UIColor whiteColor];
 
     UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];

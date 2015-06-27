@@ -12,7 +12,7 @@
 #include "BLEDriver.h"
 
 @class MBProgressHUD;
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController<UIAlertViewDelegate>
 
 
 @property (assign, nonatomic) MiniPosSDKSessionType sessionType;
@@ -24,6 +24,10 @@
 
 
 @property (nonatomic, strong) MBProgressHUD  *hud;
+
+
+//显示连接蓝牙提示
+- (void)showConnectionAlert;
 
 - (void)backAction:(UIButton *)button;
 
@@ -38,9 +42,10 @@
 //隐藏加载显示加载完成提示
 - (void)hideHUDWithTitle:(NSString *)title;
 
+//显示提示
 - (void)showTipView:(NSString *)tip;
 
-
+//回调
 - (void)recvMiniPosSDKStatus;
 //初始化BLE SDK
 - (void)initBLESDK;

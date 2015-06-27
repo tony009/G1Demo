@@ -11,7 +11,14 @@
 
 
 @class WDCalculator;
+@protocol WDCalculatorDelegate <NSObject>
+-(void)WDCalculatorDidClick:(WDCalculator *)WDCalculator;
 
+@end
 @interface WDCalculator : UIView
 
+
+@property (nonatomic) double totalNum;
+@property (nonatomic) double num;
+@property (nonatomic, weak) id <WDCalculatorDelegate>delegate;
 @end

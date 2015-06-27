@@ -8,7 +8,7 @@
 
 #import "GatheringViewController.h"
 #import "WDCalculator.h"
-@interface GatheringViewController ()
+@interface GatheringViewController ()<WDCalculatorDelegate>
 
 @end
 
@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.num.text =@"￥ 0.00";
+    self.totalNum.text = @"0.00";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,11 +28,23 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     
+    [super viewDidAppear:animated];
     
     WDCalculator *calculator = [[WDCalculator alloc]initWithFrame:self.calculatorView.frame];
-    
+    calculator.delegate = self;
     [self.view addSubview:calculator];
 }
+
+//常规消费
+- (IBAction)normalConsume:(UIButton *)sender {
+    
+    if(MiniPosSDKDeviceState()<0){
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
+        return;
+    }
+}
+
 
 /*
 #pragma mark - Navigation
@@ -41,5 +55,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark - WDCalculatorDelegate
+-(void)WDCalculatorDidClick:(WDCalculator *)WDCalculator{
+    self.num.text  = [NSString stringWithFormat:@"￥ %.2f",WDCalculator.num];
+    self.totalNum.text = [NSString stringWithFormat:@"%.2f",WDCalculator.totalNum];;
+}
 @end

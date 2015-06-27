@@ -10,6 +10,7 @@
 #import "MBProgressHUD.h"
 #import "UIUtils.h"
 #import "LPPopup.h"
+#import "ConnectDeviceViewController.h"
 
 @interface BaseViewController ()
 {
@@ -18,6 +19,31 @@
 @end
 
 @implementation BaseViewController
+
+
+- (void)showConnectionAlert{
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    alertView.tag = 44;
+    [alertView show];
+    
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSLog(@"sssssssssuper");
+    
+    if (alertView.tag == 44) {
+        if (buttonIndex == 0) {
+            ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
+            [self.navigationController pushViewController:cdvc animated:YES];
+            //[self presentViewController:cdvc animated:YES completion:nil];
+        }
+    }
+    
+}
 
 #pragma mark - HUB
 //显示加载
@@ -65,6 +91,7 @@
     [self.hud hide:YES afterDelay:1];
     
 }
+
 
 - (void)initBLESDK{
     

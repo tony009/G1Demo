@@ -618,26 +618,13 @@ static char parse(char c) {
 }
 
 
-- (void)showConnectionAlert{
-    
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-    alertView.tag = 44;
-    [alertView show];
-    
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"设备未连接"
-//                                                                   message:@"点击跳转设备连接界面"
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
+//- (void)showConnectionAlert{
 //    
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action) {
-//                                                              ConnectDeviceViewController *cdvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CD"];
-//                                                              [self.navigationController pushViewController:cdvc animated:YES];
-//                                                          }];
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+//    alertView.tag = 44;
+//    [alertView show];
 //    
-//    [alert addAction:defaultAction];
-//    [self presentViewController:alert animated:YES completion:nil];
-    
-}
+//}
 
 
 - (IBAction)getDeviceMsgAction:(ImgTButton *)sender {
@@ -788,7 +775,8 @@ static char parse(char c) {
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-
+    [super alertView:alertView clickedButtonAtIndex:buttonIndex];
+     NSLog(@"Hooooooooooooooom");
     
     if (alertView.tag == 44) {
         if (buttonIndex == 0) {
