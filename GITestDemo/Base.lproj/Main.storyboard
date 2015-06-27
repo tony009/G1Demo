@@ -1521,7 +1521,7 @@
         <!--消费刷卡-->
         <scene sceneID="cph-Js-RGF">
             <objects>
-                <viewController id="E8e-8l-lym" customClass="SwipingCardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SC" id="E8e-8l-lym" customClass="SwipingCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="seK-e0-81M"/>
                         <viewControllerLayoutGuide type="bottom" id="wpR-iv-2FL"/>
@@ -2494,7 +2494,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tAr-Vh-AqU" kind="relationship" relationship="rootViewController" id="ViJ-Kr-aeg"/>
+                        <segue destination="tAr-Vh-AqU" kind="relationship" relationship="rootViewController" id="QXJ-K2-tsX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJJ-M7-kxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3048,8 +3048,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="jGi-GX-hUj"/>
-        <segue reference="2uD-WS-Hoj"/>
-        <segue reference="gsO-y2-L4X"/>
         <segue reference="zWV-Zx-zg9"/>
+        <segue reference="gsO-y2-L4X"/>
+        <segue reference="2uD-WS-Hoj"/>
     </inferredMetricsTieBreakers>
 </document>

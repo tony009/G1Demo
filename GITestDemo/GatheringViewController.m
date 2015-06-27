@@ -8,6 +8,7 @@
 
 #import "GatheringViewController.h"
 #import "WDCalculator.h"
+#import "SwipingCardViewController.h"
 @interface GatheringViewController ()<WDCalculatorDelegate>
 
 @end
@@ -42,6 +43,47 @@
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
+    }else{
+        
+        [self verifyParamsSuccess:^{
+            
+            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+                
+                int amount  = [self.totalNum.text doubleValue]*100;
+                
+                if (amount > 0) {
+                    
+                    char buf[20];
+                    
+                    sprintf(buf,"%012d",amount);
+                    
+                    NSLog(@"amount: %s",buf);
+                    
+                    
+                    _type = 1;
+                    MiniPosSDKSaleTradeCMD(buf, NULL);
+                    
+                    SwipingCardViewController *scvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SC"];
+                    [self.navigationController pushViewController:scvc animated:YES];
+                    //[self presentViewController:cdvc animated:YES completion:nil];
+                    
+                    
+                    
+                } else {
+                    
+                    [self showTipView:@"请确定交易金额！"];
+                    
+                    
+                }
+                
+            }else{
+                [self showTipView:@"设备繁忙，稍后再试"];
+            }
+            
+        }];
+        
+        
+        
     }
 }
 

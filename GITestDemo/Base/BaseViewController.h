@@ -25,6 +25,12 @@
 
 @property (nonatomic, strong) MBProgressHUD  *hud;
 
+//解密从服务器获取的主密钥
+-(NSString *)decryptMainKey:(NSString *)mainKey;
+//向pos端写入参数
+- (void)setPosWithParams:(NSDictionary *)dictionary success:(void (^)())success;
+//验证pos端的参数，成功后执行block
+- (void) verifyParamsSuccess:(void (^)())success;
 
 //显示连接蓝牙提示
 - (void)showConnectionAlert;

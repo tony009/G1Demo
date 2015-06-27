@@ -11,14 +11,197 @@
 #import "UIUtils.h"
 #import "LPPopup.h"
 #import "ConnectDeviceViewController.h"
+#import "AFNetworking.h"
+#include "des.h"
 
 @interface BaseViewController ()
 {
     NSTimer *timer;
+    BOOL hasSettedParam;
 }
 @end
 
 @implementation BaseViewController
+
+
+static void HexString2Bytes(unsigned char *hexstr,unsigned char *str) {
+    int no = strlen(hexstr)/2;
+		  for (int i = 0; i < no; i++) {
+              unsigned char c0 = *hexstr++;
+              unsigned char c1 = *hexstr++;
+              str[i] = (unsigned char) ((parse(c0) << 4) | parse(c1));
+              //printf("%x\n",str[i]);
+          }
+    
+}
+
+static char parse(char c) {
+    if (c >= 'a')
+        return (c - 'a' + 10) & 0x0f;
+    if (c >= 'A')
+        return (c - 'A' + 10) & 0x0f;
+    return (c - '0') & 0x0f;
+}
+
+//解密从服务器获取的主密钥
+-(NSString *)decryptMainKey:(NSString *)mainKey{
+    
+    NSMutableString *des = [[NSMutableString alloc]initWithString:@""];
+    
+    NSString *src1 = [mainKey substringToIndex:16];
+    NSString *src2 = [mainKey substringFromIndex:16];
+    
+    
+    unsigned char *lpIn = [src1 cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    unsigned char *key = kDecryptKey;
+    unsigned char key1[16];
+    HexString2Bytes(key, key1);
+    
+    unsigned char lpIn1[8];
+    HexString2Bytes(lpIn, lpIn1);
+    
+    unsigned char lpOut[8];
+    
+    
+    des3_decrypt(lpIn1, lpOut, key1);
+    
+    
+    unsigned char d[17];
+    d[16] = '\0';
+    for (int i = 0; i<8; i++) {
+        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+    }
+    
+    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
+    
+    lpIn = [src2 cStringUsingEncoding:NSUTF8StringEncoding];
+    HexString2Bytes(lpIn, lpIn1);
+    des3_decrypt(lpIn1, lpOut, key1);
+    
+    for (int i = 0; i<8; i++) {
+        sprintf(&d[i * 2],"%.2X",lpOut[i]);
+    }
+    
+    [des appendString:[NSString stringWithCString:d encoding:NSUTF8StringEncoding]];
+    
+    
+    return des;
+}
+
+- (void)setPosWithParams:(NSDictionary *)dictionary success:(void (^)())success{
+    
+    
+    dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.downloadParam", DISPATCH_QUEUE_SERIAL);
+    
+    
+    NSArray *array = [dictionary allKeys];
+    
+    for (NSString *key in array) {
+        
+        dispatch_async(serial_queue, ^{
+            hasSettedParam = false;
+            MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:key], [[dictionary objectForKey:key]UTF8String]);
+            while (hasSettedParam ==false) {
+                
+            }
+            
+        });
+        
+    }
+    
+    dispatch_async(serial_queue, ^{
+        hasSettedParam = false;
+        MiniPosSDKSetParam("000000000", "", "");
+        while (hasSettedParam ==false) {
+            
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self hideHUD];
+            if(success){
+                success();
+            }
+            
+        });
+        
+    });
+    
+    
+}
+
+//验证pos端的参数，成功后执行block
+- (void) verifyParamsSuccess:(void (^)())success{
+    {
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
+        NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
+        NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
+        NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
+        
+        
+        
+        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800003",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
+        NSLog(@"url:%@",url);
+        
+        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSLog(@"responseObject:%@",responseObject);
+            NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
+            
+            int code = [responseObject[@"resultMap"][@"code"]intValue];
+            
+            if (code == 3 ) {
+                
+                [self showHUD:@"正在写入参数"];
+                
+                
+                NSString *mainKey  = [self decryptMainKey:responseObject[@"resultMap"][@"tmk"]];
+                NSString *tid = responseObject[@"resultMap"][@"tid"];
+                NSString *mid = responseObject[@"resultMap"][@"mid"];
+                NSLog(@"mainKey:%@",mainKey);
+                
+                NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
+                
+                [self setPosWithParams:dictionary success:^{
+                    if(MiniPosSDKPosLogin()>=0)
+                    {
+                        
+                        [self showHUD:@"正在签到"];
+                        
+                    }
+                }];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];
+                [[NSUserDefaults standardUserDefaults]setObject:tid forKey:kMposG1TerminalNo];
+                [[NSUserDefaults standardUserDefaults]setObject:mainKey forKey:kMposG1MainKey];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
+                
+                
+            }else  if (code == 0 ) {
+                
+                
+                success();
+                
+            }else{
+                
+                [self showTipView:responseObject[@"resultMap"][@"msg"]];
+            }
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self hideHUD];
+            NSLog(@"failure");
+            [self showTipView:@"网络异常"];
+        }];
+    }
+}
 
 
 - (void)showConnectionAlert{
@@ -752,6 +935,11 @@ static void MiniPosSDKResponce(void *userData,
     if ([self.statusStr isEqualToString:@"设备繁忙，稍后再试"]) {
         [self hideHUD];
         [self showTipView:self.statusStr];
+    }
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+        
+        hasSettedParam = true;
     }
     
 }
