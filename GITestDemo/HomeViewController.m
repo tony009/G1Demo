@@ -107,10 +107,10 @@
     
     MiniPosSDKInit();
     
-    if (isFirstGetVersionInfo) {
-        MiniPosSDKGetDeviceInfoCMD();
-        //isFirstGetVersionInfo = false;
-    }
+//    if (isFirstGetVersionInfo) {
+//        MiniPosSDKGetDeviceInfoCMD();
+//        //isFirstGetVersionInfo = false;
+//    }
     
 
     
