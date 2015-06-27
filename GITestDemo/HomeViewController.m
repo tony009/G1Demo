@@ -1098,7 +1098,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         
         NSString *str = [NSString stringWithFormat:@"SnNo:%@,TerminalNo:%@,MerchantNo:%@",[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1MerchantNo]];
         
-        [self showHUD:str];
+        [self showTipView:str];
     }
     
     self.statusStr=@"";
