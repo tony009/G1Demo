@@ -25,7 +25,7 @@
     NSArray *labelArray = @[@"话费充值",@"机票服务",@"游戏点卡",@"基金理财",@"信用卡还款",@"余额查询",@"卡卡转账",@"交通违章",@"水电煤代缴"];
     NSArray *imgArray = @[@"话费充值",@"机票服务",@"游戏点卡",@"基金理财",@"信用卡还款",@"余额查询",@"卡卡转账",@"交通违章",@"水电煤代缴"];
     
-    for (int i =0 ; i < 4; i++) {
+    for (int i =0 ; i < labelArray.count; i++) {
         WDImageButton *button = (WDImageButton *)[self.functionView viewWithTag:i+10];
         button.imageName = [imgArray objectAtIndex:i];
         button.text = labelArray[i];
@@ -38,7 +38,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //self.navigationItem.title = @"功能界面";
+    self.tabBarController.navigationItem.title = @"功能界面";
 }
 /*
 #pragma mark - Navigation

@@ -105,11 +105,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    otherViewController *vc = [[otherViewController alloc] init];
-//    [tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
-//    
-//    [tempAppDelegate.mainNavigationController pushViewController:vc animated:NO];
+    
+    AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //[tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
+    
+    //[tempAppDelegate.mainNavigationController pushViewController:vc animated:NO];
+    
+    //otherViewController *vc = [[otherViewController alloc] init];
+    
+    
+    switch (indexPath.row) {
+        case 0:
+  
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3: //退出
+            [tempAppDelegate.LeftSlideVC dismissViewControllerAnimated:YES completion:nil];
+           
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -31,9 +31,15 @@
     
     [super viewDidAppear:animated];
     
+    
     WDCalculator *calculator = [[WDCalculator alloc]initWithFrame:self.calculatorView.frame];
     calculator.delegate = self;
     [self.view addSubview:calculator];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.navigationItem.title = @"支付页面";
 }
 
 //常规消费
