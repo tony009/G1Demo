@@ -8,7 +8,7 @@
 
 #import "LeftSortsViewController.h"
 #import "AppDelegate.h"
-//#import "otherViewController.h"
+#import "CommonViewController.h"
 
 @interface LeftSortsViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -107,22 +107,34 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    //[tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
+    
     
     //[tempAppDelegate.mainNavigationController pushViewController:vc animated:NO];
     
     //otherViewController *vc = [[otherViewController alloc] init];
+   // tempAppDelegate.i
     
+
     
     switch (indexPath.row) {
-        case 0:
+        case 0://功能
+        {
+            UIViewController *vc = [tempAppDelegate.LeftSlideVC.presentingViewController.storyboard
+                                    instantiateViewControllerWithIdentifier:@"MainVC"];
+            [tempAppDelegate.LeftSlideVC replaceMainView:vc];
+            break;
+        }
   
         case 1:
-            
+ 
             break;
-        case 2:
-            
+        case 2://通用
+        {
+            UIViewController *vc = [tempAppDelegate.LeftSlideVC.presentingViewController.storyboard
+                                     instantiateViewControllerWithIdentifier:@"TY"];
+            [tempAppDelegate.LeftSlideVC replaceMainView:vc];
             break;
+        }
         case 3: //退出
             [tempAppDelegate.LeftSlideVC dismissViewControllerAnimated:YES completion:nil];
            
@@ -131,6 +143,8 @@
         default:
             break;
     }
+    
+    [tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

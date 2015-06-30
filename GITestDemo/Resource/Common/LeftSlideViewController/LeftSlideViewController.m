@@ -79,6 +79,22 @@
     return self;
 }
 
+- (void)replaceMainView:(UIViewController *)mainVC{
+    
+    
+    [self.mainVC.view removeFromSuperview];
+    self.mainVC = mainVC;
+    
+    self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    [self.pan setCancelsTouchesInView:YES];
+    self.pan.delegate = self;
+    
+    [self.mainVC.view addGestureRecognizer:self.pan];
+
+    [self.view addSubview:self.mainVC.view];
+    self.closed = YES;
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

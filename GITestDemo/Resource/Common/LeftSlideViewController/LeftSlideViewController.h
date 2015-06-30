@@ -71,4 +71,6 @@
  */
 - (void)setPanEnabled: (BOOL) enabled;
 
+
+- (void)replaceMainView:(UIViewController *)mainVC;
 @end

@@ -86,6 +86,11 @@
 		9C112D721B3ECE2700F6BE8D /* 信用卡还款.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D691B3ECE2700F6BE8D /* 信用卡还款.png */; };
 		9C112D731B3ECE2700F6BE8D /* 游戏点卡.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D6A1B3ECE2700F6BE8D /* 游戏点卡.png */; };
 		9C112D741B3ECE2700F6BE8D /* 余额查询.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D6B1B3ECE2700F6BE8D /* 余额查询.png */; };
+		9C112D761B402F6E00F6BE8D /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D751B402F6E00F6BE8D /* 返回.png */; };
+		9C112D7A1B402F9500F6BE8D /* 个人设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D771B402F9500F6BE8D /* 个人设置.png */; };
+		9C112D7B1B402F9500F6BE8D /* 蓝点.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D781B402F9500F6BE8D /* 蓝点.png */; };
+		9C112D7C1B402F9500F6BE8D /* 右箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D791B402F9500F6BE8D /* 右箭头.png */; };
+		9C112D7F1B40D54D00F6BE8D /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */; };
 		9C1287F91B16B63A00535745 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287EA1B16B63A00535745 /* 11.png */; };
 		9C1288021B16B63A00535745 /* 人物标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F31B16B63A00535745 /* 人物标志.png */; };
 		9C1288031B16B63A00535745 /* 密码标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F41B16B63A00535745 /* 密码标志.png */; };
@@ -332,6 +337,12 @@
 		9C112D691B3ECE2700F6BE8D /* 信用卡还款.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "信用卡还款.png"; sourceTree = "<group>"; };
 		9C112D6A1B3ECE2700F6BE8D /* 游戏点卡.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "游戏点卡.png"; sourceTree = "<group>"; };
 		9C112D6B1B3ECE2700F6BE8D /* 余额查询.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额查询.png"; sourceTree = "<group>"; };
+		9C112D751B402F6E00F6BE8D /* 返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "返回.png"; sourceTree = "<group>"; };
+		9C112D771B402F9500F6BE8D /* 个人设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "个人设置.png"; sourceTree = "<group>"; };
+		9C112D781B402F9500F6BE8D /* 蓝点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "蓝点.png"; sourceTree = "<group>"; };
+		9C112D791B402F9500F6BE8D /* 右箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右箭头.png"; sourceTree = "<group>"; };
+		9C112D7D1B40D54D00F6BE8D /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
 		9C1287EA1B16B63A00535745 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
 		9C1287F31B16B63A00535745 /* 人物标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人物标志.png"; sourceTree = "<group>"; };
 		9C1287F41B16B63A00535745 /* 密码标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码标志.png"; sourceTree = "<group>"; };
@@ -569,6 +580,8 @@
 				9C4B504D1B3D392D003C8F2A /* MainPageViewController.m */,
 				9C4B507E1B3EA1D6003C8F2A /* FunctionMenuViewController.h */,
 				9C4B507F1B3EA1D6003C8F2A /* FunctionMenuViewController.m */,
+				9C112D7D1B40D54D00F6BE8D /* CommonViewController.h */,
+				9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */,
 				96C5609A1A246EB300A25290 /* HomeViewController.h */,
 				96C5609B1A246EB300A25290 /* HomeViewController.m */,
 				9668E2771A25C8480014FDD8 /* ConsumeViewController.h */,
@@ -894,6 +907,10 @@
 		9C1287E91B16B63A00535745 /* IMG_v2 */ = {
 			isa = PBXGroup;
 			children = (
+				9C112D771B402F9500F6BE8D /* 个人设置.png */,
+				9C112D781B402F9500F6BE8D /* 蓝点.png */,
+				9C112D791B402F9500F6BE8D /* 右箭头.png */,
+				9C112D751B402F6E00F6BE8D /* 返回.png */,
 				9C112D631B3ECE2700F6BE8D /* 话费充值.png */,
 				9C112D641B3ECE2700F6BE8D /* 机票服务.png */,
 				9C112D651B3ECE2700F6BE8D /* 基金理财.png */,
@@ -1256,6 +1273,7 @@
 				9C1288171B1718FE00535745 /* 小方框.png in Resources */,
 				96C4A2741A2E9F1000799505 /* Default.png in Resources */,
 				9C6D9DBE1A820DC7002A7845 /* uncheck_icon@2x.png in Resources */,
+				9C112D7B1B402F9500F6BE8D /* 蓝点.png in Resources */,
 				9C6D9DA31A82015C002A7845 /* home_banner_5.png in Resources */,
 				96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */,
 				9C6D9D771A81EB7D002A7845 /* 文件刷卡动画.gif in Resources */,
@@ -1291,7 +1309,9 @@
 				9C4B50661B3E4B36003C8F2A /* 2@2x.png in Resources */,
 				96D6F81E1A2C64E900CCD0B5 /* btn_more.png in Resources */,
 				96D6F81C1A2C64E900CCD0B5 /* btn_gathring.png in Resources */,
+				9C112D761B402F6E00F6BE8D /* 返回.png in Resources */,
 				96D6F8221A2C64E900CCD0B5 /* btn_set.png in Resources */,
+				9C112D7A1B402F9500F6BE8D /* 个人设置.png in Resources */,
 				9C1287F91B16B63A00535745 /* 11.png in Resources */,
 				96C5603B1A243A7800A25290 /* Images.xcassets in Resources */,
 				9C6D9DA21A82015C002A7845 /* home_banner_4.png in Resources */,
@@ -1313,6 +1333,7 @@
 				9C112D731B3ECE2700F6BE8D /* 游戏点卡.png in Resources */,
 				9C82E9171B3C03B3001F24DC /* 箭头.png in Resources */,
 				9C6D9DB21A820B90002A7845 /* checkbox1_checked@2x.png in Resources */,
+				9C112D7C1B402F9500F6BE8D /* 右箭头.png in Resources */,
 				96D6F8261A2C64E900CCD0B5 /* btn_sign_out.png in Resources */,
 				9C1288271B1964E300535745 /* 17.png in Resources */,
 				96D6F8231A2C64E900CCD0B5 /* btn_set1.png in Resources */,
@@ -1360,6 +1381,7 @@
 				9CE662461A416F3B00B13444 /* ServerManager.m in Sources */,
 				9C112D621B3EC9FA00F6BE8D /* WDImageButton.m in Sources */,
 				9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */,
+				9C112D7F1B40D54D00F6BE8D /* CommonViewController.m in Sources */,
 				9CE6623C1A40464800B13444 /* FTPManager.m in Sources */,
 				9C91CB0B1B203D33006D1024 /* RGetPhoneVerificationCodeViewController.m in Sources */,
 				9C4B50471B3D2B27003C8F2A /* LeftSlideViewController.m in Sources */,

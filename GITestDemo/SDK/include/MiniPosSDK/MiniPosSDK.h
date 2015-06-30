@@ -317,7 +317,7 @@ int MiniPosSDKGetDeviceInfoCMD();
  参数1（金额参数）	N12 	以分为单位，前补’0’
  参数2（收银流水号）	AN20	（可选，如有，记入交易流水文件对应信息）
  *************************************************************/
-int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode);
+int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode, const char* t);
 
 /************************************************************
  消费撤销
@@ -472,6 +472,8 @@ int MiniPosSDKGetParams(const char* syscode, const char* paramname);
  解析从pos端获取的参数
  */
 char *MiniPosSDKGetParam(char* paramname);
+    
+    
 #ifdef __cplusplus
 }
 #endif

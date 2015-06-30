@@ -163,10 +163,7 @@
 }
 
 
-- (IBAction)connectDeviceAction:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"loginModalToConnect" sender:self];
-    
-}
+
 
 
 
@@ -264,7 +261,6 @@
             UINavigationController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
             
             LeftSlideViewController *leftSlideVC = [[LeftSlideViewController alloc]initWithLeftView:leftVC andMainView:mainVC];
-            
             tempAppDelegate.LeftSlideVC = leftSlideVC;
             
             [self presentViewController:leftSlideVC animated:YES completion:nil];

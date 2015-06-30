@@ -99,7 +99,7 @@
         
         
         _type = 1;
-        MiniPosSDKSaleTradeCMD(buf, NULL);
+        MiniPosSDKSaleTradeCMD(buf, NULL,"1");
         
         
         
@@ -148,7 +148,7 @@
 //            
 //            
 //            _type = 1;
-//            MiniPosSDKSaleTradeCMD(buf, NULL);
+//            MiniPosSDKSaleTradeCMD(buf, NULL,"1");
 //            
 //            
 //            

@@ -983,7 +983,6 @@ int DealSaleTrade()
     if(gDealPackStep == PACK_STEP_SEND_SERVER)
     {
         len = GET_DATA_LEN(gRecvBuf);
-        
         if(GET_PACKET_ATTRIBUTE(gRecvBuf) == 0x02 && *GET_DATA_INDEX(gRecvBuf) == 0x15)
         {
             gResponseFun(gUserData,
@@ -1034,31 +1033,24 @@ int DealSaleTrade()
         gSDKBuf[len] = 0x1C;
         len++;
         memset((unsigned char*)&gSDKBuf[len], 0x30, 12);
-        if(strlen((char*)gInputParam) > 12)
-        {
-            //金额超过12字节就截掉大于12字节部分
-            my_memcpy(gInputParam + (strlen((char*)gInputParam) - 12), gInputParam, 12, 1);
-            gInputParam[12] = 0x00;
-        }
-        strcpy((char*)&gSDKBuf[len + 12 - strlen((char*)gInputParam)], (char*)gInputParam);
-        //HexToStr(gInputParam, (unsigned char*)&gSDKBuf[len], 12);
+        memcpy((unsigned char*)&gSDKBuf[len], gInputParam, 12);
         len += 12;
         gSDKBuf[len] = 0x1C;
         len++;
-        /*
-         strcpy((char*)&gBuf[len], (char*)"01");
-         len += 2;
-         len += 13;
-         gBuf[len] = 0x1C;
-         len++;
-         gBuf[len] = 0x1C;
-         len++;
-         */
+        memcpy((char*)&gSDKBuf[len], &gInputParam[20], 1);
+        len += 1;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        gSDKBuf[len] = 0x1C;
+        len++;
+        /**/
         gSDKBuf[0] = (len - 2) >> 8;
         gSDKBuf[1] = (len - 2);
         
         gDealPackStep = PACK_STEP_SEND_SERVER;
-        gTimeOut = MAX_USRER_TIMEOUT;
+        gTimeOut = 50000;
         SDKSendToPos(gSDKBuf, &len);
         return 0;
     }
@@ -2153,8 +2145,9 @@ int MiniPosSDKGetDeviceInfoCMD()
  消费
  参数1（金额参数）	N12 	以分为单位，前补’0’
  参数2（收银流水号）	AN20	（可选，如有，记入交易流水文件对应信息）
+ 参数3  “1”:T+1  "0":T+0
  *************************************************************/
-int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode)
+int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode, const char* t)
 {
     if(gSessionPos != SESSION_POS_UNKNOWN)
     {
@@ -2167,6 +2160,7 @@ int MiniPosSDKSaleTradeCMD(const char *amount, const char *cashierSerialCode)
     }
     memset(gInputParam, 0x00, sizeof(gInputParam));
     strncpy((char*)gInputParam, amount, 12);
+    strncpy((char*)&gInputParam[20], t, 2);
     gSessionPos = SESSION_POS_SALE_TRADE;
     gTimeOut = MAX_POS_TIMEOUT;
     if(MiniPosSDKTestConnect() < 0)
