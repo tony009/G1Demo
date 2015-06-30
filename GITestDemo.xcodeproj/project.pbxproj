@@ -91,6 +91,14 @@
 		9C112D7B1B402F9500F6BE8D /* 蓝点.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D781B402F9500F6BE8D /* 蓝点.png */; };
 		9C112D7C1B402F9500F6BE8D /* 右箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D791B402F9500F6BE8D /* 右箭头.png */; };
 		9C112D7F1B40D54D00F6BE8D /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */; };
+		9C112D861B427B6000F6BE8D /* 身份证.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D801B427B6000F6BE8D /* 身份证.png */; };
+		9C112D871B427B6000F6BE8D /* 身份证反.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D811B427B6000F6BE8D /* 身份证反.png */; };
+		9C112D881B427B6000F6BE8D /* 手拿身份证.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D821B427B6000F6BE8D /* 手拿身份证.png */; };
+		9C112D891B427B6000F6BE8D /* 银行卡背面.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D831B427B6000F6BE8D /* 银行卡背面.png */; };
+		9C112D8A1B427B6000F6BE8D /* 银行卡正面2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D841B427B6000F6BE8D /* 银行卡正面2.png */; };
+		9C112D8B1B427B6000F6BE8D /* 正面照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D851B427B6000F6BE8D /* 正面照片.png */; };
+		9C112D8D1B42809200F6BE8D /* 交易记录.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C112D8C1B42809200F6BE8D /* 交易记录.png */; };
+		9C112D901B42816100F6BE8D /* ConsumeRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C112D8F1B42816100F6BE8D /* ConsumeRecordsViewController.m */; };
 		9C1287F91B16B63A00535745 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287EA1B16B63A00535745 /* 11.png */; };
 		9C1288021B16B63A00535745 /* 人物标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F31B16B63A00535745 /* 人物标志.png */; };
 		9C1288031B16B63A00535745 /* 密码标志.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1287F41B16B63A00535745 /* 密码标志.png */; };
@@ -343,6 +351,15 @@
 		9C112D791B402F9500F6BE8D /* 右箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "右箭头.png"; sourceTree = "<group>"; };
 		9C112D7D1B40D54D00F6BE8D /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
 		9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		9C112D801B427B6000F6BE8D /* 身份证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "身份证.png"; sourceTree = "<group>"; };
+		9C112D811B427B6000F6BE8D /* 身份证反.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "身份证反.png"; sourceTree = "<group>"; };
+		9C112D821B427B6000F6BE8D /* 手拿身份证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手拿身份证.png"; sourceTree = "<group>"; };
+		9C112D831B427B6000F6BE8D /* 银行卡背面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "银行卡背面.png"; sourceTree = "<group>"; };
+		9C112D841B427B6000F6BE8D /* 银行卡正面2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "银行卡正面2.png"; sourceTree = "<group>"; };
+		9C112D851B427B6000F6BE8D /* 正面照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "正面照片.png"; sourceTree = "<group>"; };
+		9C112D8C1B42809200F6BE8D /* 交易记录.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交易记录.png"; sourceTree = "<group>"; };
+		9C112D8E1B42816100F6BE8D /* ConsumeRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeRecordsViewController.h; sourceTree = "<group>"; };
+		9C112D8F1B42816100F6BE8D /* ConsumeRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumeRecordsViewController.m; sourceTree = "<group>"; };
 		9C1287EA1B16B63A00535745 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
 		9C1287F31B16B63A00535745 /* 人物标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人物标志.png"; sourceTree = "<group>"; };
 		9C1287F41B16B63A00535745 /* 密码标志.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码标志.png"; sourceTree = "<group>"; };
@@ -582,6 +599,8 @@
 				9C4B507F1B3EA1D6003C8F2A /* FunctionMenuViewController.m */,
 				9C112D7D1B40D54D00F6BE8D /* CommonViewController.h */,
 				9C112D7E1B40D54D00F6BE8D /* CommonViewController.m */,
+				9C112D8E1B42816100F6BE8D /* ConsumeRecordsViewController.h */,
+				9C112D8F1B42816100F6BE8D /* ConsumeRecordsViewController.m */,
 				96C5609A1A246EB300A25290 /* HomeViewController.h */,
 				96C5609B1A246EB300A25290 /* HomeViewController.m */,
 				9668E2771A25C8480014FDD8 /* ConsumeViewController.h */,
@@ -907,6 +926,13 @@
 		9C1287E91B16B63A00535745 /* IMG_v2 */ = {
 			isa = PBXGroup;
 			children = (
+				9C112D8C1B42809200F6BE8D /* 交易记录.png */,
+				9C112D801B427B6000F6BE8D /* 身份证.png */,
+				9C112D811B427B6000F6BE8D /* 身份证反.png */,
+				9C112D821B427B6000F6BE8D /* 手拿身份证.png */,
+				9C112D831B427B6000F6BE8D /* 银行卡背面.png */,
+				9C112D841B427B6000F6BE8D /* 银行卡正面2.png */,
+				9C112D851B427B6000F6BE8D /* 正面照片.png */,
 				9C112D771B402F9500F6BE8D /* 个人设置.png */,
 				9C112D781B402F9500F6BE8D /* 蓝点.png */,
 				9C112D791B402F9500F6BE8D /* 右箭头.png */,
@@ -1240,10 +1266,12 @@
 				9637170E1A2DC6C6002D34F3 /* Default-568h@2x.png in Resources */,
 				9C4B50691B3E4B36003C8F2A /* 5@2x.png in Resources */,
 				96C560391A243A7800A25290 /* Main.storyboard in Resources */,
+				9C112D891B427B6000F6BE8D /* 银行卡背面.png in Resources */,
 				9C6D9DB11A820B90002A7845 /* checkbox1_checked.png in Resources */,
 				96D6F82E1A2C64E900CCD0B5 /* 收款宝-4.png in Resources */,
 				96D6F8211A2C64E900CCD0B5 /* btn_next_background.png in Resources */,
 				9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */,
+				9C112D871B427B6000F6BE8D /* 身份证反.png in Resources */,
 				96D6F81F1A2C64E900CCD0B5 /* btn_next.png in Resources */,
 				9C6D9DB31A820B90002A7845 /* checkbox1_unchecked.png in Resources */,
 				9C4B50681B3E4B36003C8F2A /* 4@2x.png in Resources */,
@@ -1273,8 +1301,10 @@
 				9C1288171B1718FE00535745 /* 小方框.png in Resources */,
 				96C4A2741A2E9F1000799505 /* Default.png in Resources */,
 				9C6D9DBE1A820DC7002A7845 /* uncheck_icon@2x.png in Resources */,
+				9C112D8A1B427B6000F6BE8D /* 银行卡正面2.png in Resources */,
 				9C112D7B1B402F9500F6BE8D /* 蓝点.png in Resources */,
 				9C6D9DA31A82015C002A7845 /* home_banner_5.png in Resources */,
+				9C112D8D1B42809200F6BE8D /* 交易记录.png in Resources */,
 				96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */,
 				9C6D9D771A81EB7D002A7845 /* 文件刷卡动画.gif in Resources */,
 				96D6F8161A2C64E900CCD0B5 /* btn_background1.png in Resources */,
@@ -1283,6 +1313,7 @@
 				96D6F81A1A2C64E900CCD0B5 /* btn_update.png in Resources */,
 				9C4B50631B3E4B36003C8F2A /* +@2x.png in Resources */,
 				9C112D6F1B3ECE2700F6BE8D /* 交通违章.png in Resources */,
+				9C112D881B427B6000F6BE8D /* 手拿身份证.png in Resources */,
 				96D6F8251A2C64E900CCD0B5 /* btn_sign_in.png in Resources */,
 				9C112D741B3ECE2700F6BE8D /* 余额查询.png in Resources */,
 				9C6D9DA01A82015C002A7845 /* home_banner_2.png in Resources */,
@@ -1302,6 +1333,7 @@
 				9C84DA131AE79B1400A5124E /* radio_checked@2x.png in Resources */,
 				96D6F82A1A2C64E900CCD0B5 /* icon_password1.png in Resources */,
 				9C1288031B16B63A00535745 /* 密码标志.png in Resources */,
+				9C112D861B427B6000F6BE8D /* 身份证.png in Resources */,
 				9C1288221B1964E300535745 /* 12.png in Resources */,
 				96D6F8241A2C64E900CCD0B5 /* btn_settlement.png in Resources */,
 				9C6D9D731A7F99AD002A7845 /* icon_list_background6.jpg in Resources */,
@@ -1328,6 +1360,7 @@
 				9C1288021B16B63A00535745 /* 人物标志.png in Resources */,
 				9C4B506B1B3E4B36003C8F2A /* 7@2x.png in Resources */,
 				9C1288181B1718FE00535745 /* 小方框2.png in Resources */,
+				9C112D8B1B427B6000F6BE8D /* 正面照片.png in Resources */,
 				96D6F8201A2C64E900CCD0B5 /* btn_next2.png in Resources */,
 				9C1288061B16B63A00535745 /* 白色按扭.png in Resources */,
 				9C112D731B3ECE2700F6BE8D /* 游戏点卡.png in Resources */,
@@ -1361,6 +1394,7 @@
 				9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */,
 				96BC862C1A35ACE90012E746 /* PPSSignatureView.m in Sources */,
 				96C560931A2461EA00A25290 /* LoginViewController.m in Sources */,
+				9C112D901B42816100F6BE8D /* ConsumeRecordsViewController.m in Sources */,
 				9C91CB0E1B203F17006D1024 /* RVerifyCodeViewController.m in Sources */,
 				9C91CB1A1B259848006D1024 /* EntMerchantInfoViewController.m in Sources */,
 				9C7CA8EE1A53A4AF0067377C /* UIWebView+AFNetworking.m in Sources */,

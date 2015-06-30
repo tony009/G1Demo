@@ -17,11 +17,16 @@
 @property (strong, nonatomic) IBOutlet UILabel *audioStatusLabel;
 
 
+@property (strong, nonatomic) IBOutlet UILabel *bluetoothName;
+@property (strong, nonatomic) IBOutlet UILabel *SN;
+@property (strong, nonatomic) IBOutlet UILabel *time;
+
+
+
+
 @property (nonatomic, strong) UITableView *deviceTable;
 @property (nonatomic, strong) UIView *deviceView;
 
 - (IBAction)bleConnectAction:(UIButton *)sender;
-
-- (IBAction)audioConnectAction:(UIButton *)sender;
 
 @end

@@ -125,7 +125,14 @@
             break;
         }
   
-        case 1:
+        case 1:{
+            {
+                UIViewController *vc = [tempAppDelegate.LeftSlideVC.presentingViewController.storyboard
+                                        instantiateViewControllerWithIdentifier:@"JYJL"];
+                [tempAppDelegate.LeftSlideVC replaceMainView:vc];
+                break;
+            }
+        }
  
             break;
         case 2://通用

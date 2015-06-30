@@ -7,7 +7,7 @@
 //
 
 #import "ConnectDeviceViewController.h"
-
+#import "UIUtils.h"
 @interface ConnectDeviceViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSTimer *timer;
@@ -119,36 +119,11 @@
 
 - (IBAction)bleConnectAction:(UIButton *)sender {
     
-//    NSString *zhongduan = [[NSUserDefaults standardUserDefaults] objectForKey:kZhongDuanEditor];
-//    if (zhongduan == nil) {
-//        [self showTipView:@"你还未设置终端号！请先进入系统设置完成信息设置。"];
-//        return;
-//    }
     
     curLabel = self.bleStatusLabel;
-    
-//    self.audioStatusLabel.text = @"未连接";
-//    self.statusLabel.text = @"未连接";
-//    self.bleStatusLabel.text =@"未连接";
-    
-    //MiniPosSDKInit();
-    //DeviceDriverInterface *t;
-    //t=GetBLEDeviceInterface();
-    //MiniPosSDKRegisterDeviceInterface(t);
     [[BleManager sharedManager] startScan];
     self.deviceView.hidden = NO;
     
-}
-
-- (IBAction)audioConnectAction:(UIButton *)sender {
-    
-    
-    [self cancelAction];
-    
-    curLabel = self.audioStatusLabel;
-    self.bleStatusLabel.text = @"未连接";
-    self.statusLabel.text = @"未连接";
-     //MiniPosSDKRegisterDeviceInterface(GetAudioDeviceInterface());
 }
 
 
@@ -193,7 +168,8 @@
         
         NSLog(@"SnNo:%@,TerminalNo:%@,MerchantNo:%@",[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1MerchantNo]);
 
-        
+        self.SN.text = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN];
+        self.time.text = [UIUtils stringFromDate:[NSDate date] formate:@"yyyy.MM.dd"];
     }
     
     self.statusStr = @"";
@@ -236,9 +212,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-20, 40)];
-    label.backgroundColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:14];
-    label.text = @"请选择连接设备";
+    label.text = @"设备目录";
     label.textAlignment = NSTextAlignmentCenter;
     
     return label;
@@ -252,7 +229,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _deviceView.hidden = YES;
-    [[BleManager sharedManager].imBT connect:[searchDevices objectAtIndex:indexPath.row]]; 
+    [[BleManager sharedManager].imBT connect:[searchDevices objectAtIndex:indexPath.row]];
+    
+    
+    CBPeripheral *aper = [searchDevices objectAtIndex:indexPath.row];
+    self.bluetoothName.text = aper.name;
 }
 
 - (void)cancelAction
