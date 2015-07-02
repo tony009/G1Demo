@@ -105,13 +105,19 @@
             self.num  = 0;
         }
 
-    }else if (button.tag == 11) {
+    }else if (button.tag == 11) { //+
         self.num =  0;
     }else {
         
         self.totalNum -= self.num;
         self.num = self.num * 10 + button.tag*0.01;
+        if (self.num >999999.99) {
+            self.num = 999999.99;
+        }
         self.totalNum +=self.num;
+        if (self.totalNum > 9999999.99) {
+            self.totalNum = 9999999.99;
+        }
         
     }
     

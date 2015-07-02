@@ -120,7 +120,7 @@ static char parse(char c) {
         
         [self hideHUD];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             
             if(success){
@@ -224,7 +224,7 @@ static char parse(char c) {
                         NSLog(@"mainKey:%@",mainKey);
                         
                         NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
-                        NSLog(@"dictionary:%@",dictionary);
+                        
                         [self setPosWithParams:dictionary success:^{
                             if(MiniPosSDKPosLogin()>=0)
                             {
@@ -232,6 +232,7 @@ static char parse(char c) {
                                 [self showHUD:@"正在签到"];
                                 
                             }
+
                         }];
                         
                         [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];

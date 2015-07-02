@@ -9,6 +9,7 @@
 #import "GatheringViewController.h"
 #import "WDCalculator.h"
 #import "SwipingCardViewController.h"
+#import "AFNetworking.h"
 @interface GatheringViewController ()<WDCalculatorDelegate>
 
 @end
@@ -44,6 +45,21 @@
 
 //常规消费
 - (IBAction)normalConsume:(UIButton *)sender {
+//    if(MiniPosSDKDeviceState()<0){
+//        //[self showTipView:@"设备未连接"];
+//        [self showConnectionAlert];
+//        return;
+//    }else{
+//        if(MiniPosSDKPosLogin()>=0)
+//        {
+//            
+//            [self showHUD:@"正在签到"];
+//            
+//        }
+//        return;
+//    }
+//    
+
     
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
@@ -145,6 +161,8 @@
         
     }
 }
+
+
 
 - (void)recvMiniPosSDKStatus
 {
