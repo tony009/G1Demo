@@ -40,6 +40,10 @@
 //隐藏加载
 - (void)hideHUD;
 
+-(void)showProgressWithStatus:(NSString *)status;
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds;
+
+
 - (void)showHUDDelayHid:(NSString *)title;
 
 //显示加载

@@ -208,6 +208,12 @@
 		9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7761AD3B150001639C5 /* Security.framework */; };
 		9C9D4A851A84A780001ADA4B /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */; };
 		9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D4A841A84A780001ADA4B /* SIAlertView.m */; };
+		9CA301101B4513BE002E316E /* UIColor+KVNContrast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */; };
+		9CA301111B4513BE002E316E /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300FA1B4513BE002E316E /* UIImage+KVNEmpty.m */; };
+		9CA301121B4513BE002E316E /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300FC1B4513BE002E316E /* UIImage+KVNImageEffects.m */; };
+		9CA301131B4513BE002E316E /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300FF1B4513BE002E316E /* KVNProgress.m */; };
+		9CA301141B4513BE002E316E /* KVNProgressConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA301011B4513BE002E316E /* KVNProgressConfiguration.m */; };
+		9CA3011B1B4513BE002E316E /* KVNProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA3010E1B4513BE002E316E /* KVNProgressView.xib */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
 		9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */; };
 		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
@@ -520,6 +526,17 @@
 		9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SIAlertView.bundle; sourceTree = "<group>"; };
 		9C9D4A831A84A780001ADA4B /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
 		9C9D4A841A84A780001ADA4B /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAlertView.m; sourceTree = "<group>"; };
+		9CA300F71B4513BE002E316E /* UIColor+KVNContrast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KVNContrast.h"; sourceTree = "<group>"; };
+		9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KVNContrast.m"; sourceTree = "<group>"; };
+		9CA300F91B4513BE002E316E /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
+		9CA300FA1B4513BE002E316E /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
+		9CA300FB1B4513BE002E316E /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
+		9CA300FC1B4513BE002E316E /* UIImage+KVNImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNImageEffects.m"; sourceTree = "<group>"; };
+		9CA300FE1B4513BE002E316E /* KVNProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVNProgress.h; sourceTree = "<group>"; };
+		9CA300FF1B4513BE002E316E /* KVNProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVNProgress.m; sourceTree = "<group>"; };
+		9CA301001B4513BE002E316E /* KVNProgressConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVNProgressConfiguration.h; sourceTree = "<group>"; };
+		9CA301011B4513BE002E316E /* KVNProgressConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVNProgressConfiguration.m; sourceTree = "<group>"; };
+		9CA3010E1B4513BE002E316E /* KVNProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KVNProgressView.xib; sourceTree = "<group>"; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		9CE6623F1A4154BF00B13444 /* MiniPosSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPosSDK.m; sourceTree = "<group>"; };
@@ -806,6 +823,7 @@
 		96C560791A24606600A25290 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9CA300F31B4513BE002E316E /* KVNProgress */,
 				9C4B50741B3E9FB9003C8F2A /* MtabbarS */,
 				9C4B50531B3D5571003C8F2A /* WDCalculator */,
 				9C84DA021AE642DD00A5124E /* MHTextField.h */,
@@ -1162,6 +1180,48 @@
 			path = SIAlertView;
 			sourceTree = "<group>";
 		};
+		9CA300F31B4513BE002E316E /* KVNProgress */ = {
+			isa = PBXGroup;
+			children = (
+				9CA300F61B4513BE002E316E /* Categories */,
+				9CA300FD1B4513BE002E316E /* Classes */,
+				9CA3010D1B4513BE002E316E /* Resources */,
+			);
+			path = KVNProgress;
+			sourceTree = "<group>";
+		};
+		9CA300F61B4513BE002E316E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9CA300F71B4513BE002E316E /* UIColor+KVNContrast.h */,
+				9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */,
+				9CA300F91B4513BE002E316E /* UIImage+KVNEmpty.h */,
+				9CA300FA1B4513BE002E316E /* UIImage+KVNEmpty.m */,
+				9CA300FB1B4513BE002E316E /* UIImage+KVNImageEffects.h */,
+				9CA300FC1B4513BE002E316E /* UIImage+KVNImageEffects.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9CA300FD1B4513BE002E316E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9CA300FE1B4513BE002E316E /* KVNProgress.h */,
+				9CA300FF1B4513BE002E316E /* KVNProgress.m */,
+				9CA301001B4513BE002E316E /* KVNProgressConfiguration.h */,
+				9CA301011B4513BE002E316E /* KVNProgressConfiguration.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9CA3010D1B4513BE002E316E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9CA3010E1B4513BE002E316E /* KVNProgressView.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9CFCEBDC1AE0F790007D27CF /* WDPickView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,6 +1330,7 @@
 				9C6D9DB11A820B90002A7845 /* checkbox1_checked.png in Resources */,
 				96D6F82E1A2C64E900CCD0B5 /* 收款宝-4.png in Resources */,
 				96D6F8211A2C64E900CCD0B5 /* btn_next_background.png in Resources */,
+				9CA3011B1B4513BE002E316E /* KVNProgressView.xib in Resources */,
 				9CFCEBEA1AE10EBC007D27CF /* Address.plist in Resources */,
 				9C112D871B427B6000F6BE8D /* 身份证反.png in Resources */,
 				96D6F81F1A2C64E900CCD0B5 /* btn_next.png in Resources */,
@@ -1408,6 +1469,7 @@
 				9C4B504E1B3D392D003C8F2A /* MainPageViewController.m in Sources */,
 				9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */,
 				9C7CA8E31A53A4AF0067377C /* AFURLConnectionOperation.m in Sources */,
+				9CA301101B4513BE002E316E /* UIColor+KVNContrast.m in Sources */,
 				9C4B507C1B3E9FB9003C8F2A /* CustomTabBarViewController.m in Sources */,
 				96C5608D1A24606C00A25290 /* BaseNavViewController.m in Sources */,
 				9668E27C1A25CD6B0014FDD8 /* PrintNoteViewController.m in Sources */,
@@ -1421,6 +1483,7 @@
 				9C4B50471B3D2B27003C8F2A /* LeftSlideViewController.m in Sources */,
 				9C91CB171B2597B5006D1024 /* EntPersonInfoViewController.m in Sources */,
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
+				9CA301131B4513BE002E316E /* KVNProgress.m in Sources */,
 				9C7CA8EA1A53A4AF0067377C /* UIButton+AFNetworking.m in Sources */,
 				9C7CA8E41A53A4AF0067377C /* AFURLRequestSerialization.m in Sources */,
 				963716B81A2D54BB002D34F3 /* ImgTButton.m in Sources */,
@@ -1450,6 +1513,7 @@
 				9C7CA8E91A53A4AF0067377C /* UIAlertView+AFNetworking.m in Sources */,
 				9C4B504B1B3D2C3D003C8F2A /* LeftSortsViewController.m in Sources */,
 				9C7E3BD71B01A6D100F40A74 /* PersonInfoViewController.m in Sources */,
+				9CA301141B4513BE002E316E /* KVNProgressConfiguration.m in Sources */,
 				9C4B507D1B3E9FB9003C8F2A /* NSString+HexColor.m in Sources */,
 				9C7CA8E51A53A4AF0067377C /* AFURLResponseSerialization.m in Sources */,
 				9CE662401A4154BF00B13444 /* MiniPosSDK.m in Sources */,
@@ -1460,6 +1524,7 @@
 				9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */,
 				9C7CA8E11A53A4AF0067377C /* AFNetworkReachabilityManager.m in Sources */,
 				9C12880C1B16C19200535745 /* FirstViewController.m in Sources */,
+				9CA301121B4513BE002E316E /* UIImage+KVNImageEffects.m in Sources */,
 				96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */,
 				9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */,
 				9C91CB121B214515006D1024 /* RNewPasswordViewController.m in Sources */,
@@ -1468,6 +1533,7 @@
 				96C4A2771A2ECE2200799505 /* KCalculator.m in Sources */,
 				9C7CA8E81A53A4AF0067377C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9C4B50481B3D2B27003C8F2A /* UIView_extra.m in Sources */,
+				9CA301111B4513BE002E316E /* UIImage+KVNEmpty.m in Sources */,
 				9668E2821A25D10E0014FDD8 /* UndoCusViewController.m in Sources */,
 				96C560851A24606600A25290 /* MBProgressHUD.m in Sources */,
 			);

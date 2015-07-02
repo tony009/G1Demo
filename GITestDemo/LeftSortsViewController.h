@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LeftSortsViewController : UIViewController
+#import "BaseViewController.h"
+@interface LeftSortsViewController : BaseViewController
 @property (nonatomic,strong) UITableView *tableview;
 @end

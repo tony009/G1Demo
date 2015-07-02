@@ -144,7 +144,17 @@
         }
         case 3: //退出
             [tempAppDelegate.LeftSlideVC dismissViewControllerAnimated:YES completion:nil];
-           
+            
+//            [KVNProgress showWithStatus:@"感谢您的使用"];
+//            
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [KVNProgress dismiss];
+//            });
+            
+            [self showProgressWithStatus:@"感谢您的使用"];
+        
+            [self hideProgressAfterDelaysInSeconds:3.0];
+            
             break;
             
         default:

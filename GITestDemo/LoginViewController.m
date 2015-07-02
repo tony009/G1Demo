@@ -15,10 +15,12 @@
 #import "LeftSlideViewController.h"
 #import "LeftSortsViewController.h"
 #import "AppDelegate.h"
+#import "KVNProgress.h"
 @interface LoginViewController ()<UIAlertViewDelegate,QCheckBoxDelegate>
 {
     UITapGestureRecognizer *disMissTap;
     NSTimer *timer;
+    KVNProgressConfiguration *basicConfiguration;
 }
 @end
 
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = NO;
+
 
     //_isNeedAutoConnect = YES;
     
@@ -233,7 +236,8 @@
         return;
     }
     
-    [self showHUD:@"正在登陆"];
+    [KVNProgress showWithStatus:@"Loading..."];
+    //[self showHUD:@"正在登陆"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -242,8 +246,10 @@
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"responseObject:%@",responseObject[@"resultMap"][@"msg"]);
         
-        [self hideHUD];
+        //[self hideHUD];
         
+        [self hideProgressAfterDelaysInSeconds:3.0];
+
         int code = [responseObject[@"resultMap"][@"code"]intValue];
         
         if(code == 0){

@@ -109,6 +109,7 @@
 //    NSData *tranCodeData = [NSData dataWithBytes:(const void *)gTransacAmount length:sizeof( char)*6];
 //    NSString *tranCodeString = [[NSString alloc] initWithData:mcCodeData encoding:NSUTF8StringEncoding];
     
+    self.countLabel.text = _countStr;
     //卡号
     char str[30];
     memset(str, 0x00, sizeof(str));
@@ -266,7 +267,6 @@
                 break;
             case 20:
                 label.text = [NSString stringWithFormat:@"%@",_countStr];
-                
                 break;
                 
             default:

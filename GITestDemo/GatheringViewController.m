@@ -96,7 +96,7 @@
 //即时收款
 - (IBAction)immediatelyConsume:(UIButton *)sender {
     
-    return;
+    //return;
 
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
@@ -145,6 +145,31 @@
         
     }
 }
+
+- (void)recvMiniPosSDKStatus
+{
+    [super recvMiniPosSDKStatus];
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
+        [self hideHUD];
+        NSLog(@"LoginViewController ----签到成功");
+        
+        [self showTipView:self.statusStr];
+    }
+    
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到失败"]]) {
+        [self hideHUD];
+        NSLog(@"LoginViewController ----签到失败");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到失败！" message:self.displayString delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        
+    }
+    
+    self.statusStr = @"";
+    
+}
+
 
 /*
 #pragma mark - Navigation
