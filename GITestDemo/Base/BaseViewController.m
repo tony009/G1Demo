@@ -104,8 +104,11 @@ static char parse(char c) {
             hasSettedParam = false;
             MiniPosSDKSetParam("000000000", [UIUtils UTF8_To_GB2312:key], [[dictionary objectForKey:key]UTF8String]);
             while (hasSettedParam ==false) {
-                
+                //NSLog(@"MiniPosSDKSetParam----while");
+                [NSThread sleepForTimeInterval:0.125];
             }
+            
+            NSLog(@"MiniPosSDKSetParam----done");
             
         });
         
@@ -115,7 +118,8 @@ static char parse(char c) {
         hasSettedParam = false;
         MiniPosSDKSetParam("000000000", "", "");
         while (hasSettedParam ==false) {
-            
+            //NSLog(@"MiniPosSDKSetParam----while");
+            [NSThread sleepForTimeInterval:0.125];
         }
         
         [self hideHUD];

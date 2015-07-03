@@ -1161,7 +1161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjE-Om-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="1868"/>
+            <point key="canvasLocation" x="1989" y="1883"/>
         </scene>
         <!--Gathering View Controller-->
         <scene sceneID="yQ6-AY-Er4">
@@ -1440,7 +1440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNK-GJ-DoW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="1238"/>
+            <point key="canvasLocation" x="2019" y="1238"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="Wko-Dd-Rhz">
@@ -3153,7 +3153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Spx-9n-3TQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2476" y="1934"/>
+            <point key="canvasLocation" x="2440" y="1919"/>
         </scene>
         <!--打印小票-->
         <scene sceneID="pIS-KW-4I9">
@@ -3467,8 +3467,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="C5q-41-Thl"/>
         <segue reference="yuI-o7-DPd"/>
-        <segue reference="wAp-xb-U2p"/>
         <segue reference="gsO-y2-L4X"/>
         <segue reference="YJl-Xi-ecU"/>
     </inferredMetricsTieBreakers>
