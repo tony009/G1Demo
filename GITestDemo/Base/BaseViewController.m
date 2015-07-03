@@ -303,16 +303,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 #pragma mark - HUB
 //显示加载
 - (void)showHUD:(NSString *)title {
-    if (_hud) {
-        
-        self.hud.labelText = title;
-        [self.hud show:YES];
-        
-    }else{
-        
-        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.hud.labelText = title;
-    }
+//    if (_hud) {
+//        
+//        self.hud.labelText = title;
+//        [self.hud show:YES];
+//        
+//    }else{
+//        
+//        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        self.hud.labelText = title;
+//    }
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = title;
 
 }
 
