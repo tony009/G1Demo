@@ -416,6 +416,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         [KVNProgress dismiss];
     });
 }
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds withCompletion:(void (^)())completion{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [KVNProgress dismiss];
+        completion();
+    });
+}
 
 - (void)viewDidLoad
 {

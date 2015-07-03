@@ -206,6 +206,7 @@
 //    
 //    return;
     
+    [self dismissAction];
     
     NSString *shanghuName = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
     NSString *ip = [[NSUserDefaults standardUserDefaults]objectForKey:kHostEditor];
@@ -248,37 +249,44 @@
         
         //[self hideHUD];
         
-        [self hideProgressAfterDelaysInSeconds:3.0];
+        //[self hideProgressAfterDelaysInSeconds:0];
 
-        int code = [responseObject[@"resultMap"][@"code"]intValue];
-        
-        if(code == 0){
+        [self hideProgressAfterDelaysInSeconds:3 withCompletion:^{
+            int code = [responseObject[@"resultMap"][@"code"]intValue];
             
-            [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
-            [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            //[self performSegueWithIdentifier:@"loginToHome" sender:self];
-            
-            AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            LeftSortsViewController *leftVC = [[LeftSortsViewController alloc]init];
-            
-            UINavigationController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
-            
-            LeftSlideViewController *leftSlideVC = [[LeftSlideViewController alloc]initWithLeftView:leftVC andMainView:mainVC];
-            tempAppDelegate.LeftSlideVC = leftSlideVC;
-            
-            [self presentViewController:leftSlideVC animated:YES completion:nil];
-            
-        }else{
-            [self showTipView:responseObject[@"resultMap"][@"msg"] ];
-        }
+            if(code == 0){
+                
+                [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
+                [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                //[self performSegueWithIdentifier:@"loginToHome" sender:self];
+                
+                AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                
+                LeftSortsViewController *leftVC = [[LeftSortsViewController alloc]init];
+                
+                UINavigationController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainVC"];
+                
+                LeftSlideViewController *leftSlideVC = [[LeftSlideViewController alloc]initWithLeftView:leftVC andMainView:mainVC];
+                tempAppDelegate.LeftSlideVC = leftSlideVC;
+                
+                [self presentViewController:leftSlideVC animated:YES completion:nil];
+                
+            }else{
+                [self showTipView:responseObject[@"resultMap"][@"msg"] ];
+            }
+        }];
+ 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self hideHUD];
-        NSLog(@"failure");
-        [self showTipView:@"登录失败"];
+        
+        //[self hideHUD];
+        [self hideProgressAfterDelaysInSeconds:1 withCompletion:^{
+            NSLog(@"failure");
+            [self showTipView:@"登录失败"];
+        }];
+ 
     }];
     
     

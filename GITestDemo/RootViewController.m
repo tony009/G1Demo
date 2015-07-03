@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "LPPopup.h"
+#import "KVNProgress.h"
 @interface RootViewController ()
 
 @end
@@ -18,7 +19,20 @@
 }
 
 
-
+-(void)showProgressWithStatus:(NSString *)status{
+    [KVNProgress showWithStatus:status];
+}
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [KVNProgress dismiss];
+    });
+}
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds withCompletion:(void (^)())completion{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [KVNProgress dismiss];
+        completion();
+    });
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -1472,7 +1472,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NXN-pg-xTH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MeT-vS-dFm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49T-ZR-WdL">
@@ -3467,9 +3467,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="yuI-o7-DPd"/>
+        <segue reference="wAp-xb-U2p"/>
         <segue reference="gsO-y2-L4X"/>
-        <segue reference="2uD-WS-Hoj"/>
         <segue reference="YJl-Xi-ecU"/>
-        <segue reference="C5q-41-Thl"/>
     </inferredMetricsTieBreakers>
 </document>

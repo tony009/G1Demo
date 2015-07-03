@@ -22,4 +22,9 @@
 
 
 -(void)showTipView:(NSString *)tip;
+
+-(void)showProgressWithStatus:(NSString *)status;
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds;
+-(void)hideProgressAfterDelaysInSeconds:(float)seconds withCompletion:(void (^)())completion;
+
 @end
