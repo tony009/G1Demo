@@ -69,6 +69,7 @@
     self.imagePath1 = @"";
     self.imagePath2 = @"";
     self.imagePath3 = @"";
+    self.imagePath10 = @"";
 }
 
 
@@ -164,6 +165,9 @@
     }else if ([UIUtils isEmptyString:self.imagePath3]){
         [self showTipView:@"请选择法人持身份证照"];
         return;
+    }else if ([UIUtils isEmptyString:self.imagePath10]){
+        [self showTipView:@"请选择现场照片"];
+        return;
     }
     
     //跳转
@@ -215,6 +219,9 @@
         }else if (_lastPressedBtn == self.IDPhotoAndPerson){
             self.imagePath3 = [_imageDocPath stringByAppendingPathComponent:@"3.jpg"];
             [[NSFileManager defaultManager] createFileAtPath:self.imagePath3 contents:data attributes:nil];
+        }else if (_lastPressedBtn == self.XianChangZhaoPian){
+            self.imagePath10 = [_imageDocPath stringByAppendingPathComponent:@"10.jpg"];
+            [[NSFileManager defaultManager] createFileAtPath:self.imagePath10 contents:data attributes:nil];
         }
         
        

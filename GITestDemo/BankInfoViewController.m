@@ -174,6 +174,7 @@
     NSURL *filePath2 = [NSURL fileURLWithPath:pivc.imagePath2];
     NSURL *filePath3 = [NSURL fileURLWithPath:pivc.imagePath3];
     NSURL *filePath4 = [NSURL fileURLWithPath:self.imagePath4];
+    NSURL *filePath10 = [NSURL fileURLWithPath:pivc.imagePath10];
 
     [self showHUD:@"正在提交"];
     NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/registerMchInfo.action",kServerIP,kServerPort];
@@ -182,6 +183,7 @@
         [formData appendPartWithFileURL:filePath2 name:@"file2" error:nil];
         [formData appendPartWithFileURL:filePath3 name:@"file3" error:nil];
         [formData appendPartWithFileURL:filePath4 name:@"file4" error:nil];
+        [formData appendPartWithFileURL:filePath10 name:@"file10" error:nil];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         
