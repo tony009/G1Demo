@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoBack;  //身份证背面
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoAndPerson; //法人手持正面
 @property (strong, nonatomic) IBOutlet UIButton *KaiHuXuKeZheng; //开户许可证
-
+@property (strong, nonatomic) IBOutlet UIButton *XianChangZhaoPian; //现场照片
 
 @property (strong,nonatomic) UIActionSheet *actionSheet;
 
@@ -26,4 +26,5 @@
 @property (strong,nonatomic) NSString *imagePath2; //身份证背面路径
 @property (strong,nonatomic) NSString *imagePath3; //法人手持正面路径
 @property (strong,nonatomic) NSString *imagePath5; //开户许可证路径
+@property (strong,nonatomic) NSString *imagePath10; //现场照片路径
 @end
