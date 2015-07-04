@@ -63,17 +63,18 @@
 //#define kDecryptKey "22222222222222222222222222222222"
 
 //腾氏生产
-#define kServerIP @"122.112.12.29" //注册登录的ip
-#define kServerPort @"8081" //注册登录的端口
-#define kPosIP @"122.112.12.24"
-#define kPosPort @"5679"
-#define kDecryptKey "00000003000011650000000300001165"
-
-//#define kServerIP @"122.112.12.20" //注册登录的ip
+//#define kServerIP @"122.112.12.29" //注册登录的ip
 //#define kServerPort @"8081" //注册登录的端口
-//#define kPosPort @"6889"
-//#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
-//#define kPosIP @"122.112.12.20"
+//#define kPosIP @"122.112.12.24"
+//#define kPosPort @"5679"
+//#define kDecryptKey "00000003000011650000000300001165"
+
+//铜元支付
+#define kServerIP @"122.112.12.20" //注册登录的ip
+#define kServerPort @"8081" //注册登录的端口
+#define kPosPort @"6889"
+#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
+#define kPosIP @"122.112.12.20"
 
 #define DEBUG false
 //#define DEBUG true

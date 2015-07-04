@@ -119,6 +119,10 @@
 		9C12882F1B19BF6F00535745 /* 蓝牙.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12882D1B19BF6F00535745 /* 蓝牙.png */; };
 		9C1288301B19BF6F00535745 /* 音频.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C12882E1B19BF6F00535745 /* 音频.png */; };
 		9C1288321B19D57D00535745 /* 滚动条.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1288311B19D57D00535745 /* 滚动条.png */; };
+		9C1DF00E1B47BF20005353D9 /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1DF00D1B47BF20005353D9 /* LOGO.png */; };
+		9C1DF0101B47BF74005353D9 /* 登陆页LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1DF00F1B47BF74005353D9 /* 登陆页LOGO.png */; };
+		9C1DF0121B47BFC3005353D9 /* 登陆页.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1DF0111B47BFC3005353D9 /* 登陆页.png */; };
+		9C1DF0141B47C14E005353D9 /* APPbanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C1DF0131B47C14E005353D9 /* APPbanner.png */; };
 		9C2917121A5A711F00D28A63 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2917111A5A711F00D28A63 /* CustomAlertView.m */; };
 		9C4B50471B3D2B27003C8F2A /* LeftSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B50441B3D2B27003C8F2A /* LeftSlideViewController.m */; };
 		9C4B50481B3D2B27003C8F2A /* UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B50461B3D2B27003C8F2A /* UIView_extra.m */; };
@@ -185,7 +189,6 @@
 		9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */; };
 		9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */; };
 		9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */; };
-		9C82E9151B3C01C9001F24DC /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C82E9141B3C01C9001F24DC /* LOGO.png */; };
 		9C82E9171B3C03B3001F24DC /* 箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C82E9161B3C03B3001F24DC /* 箭头.png */; };
 		9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA031AE642DD00A5124E /* MHTextField.m */; };
 		9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA061AE6516A00A5124E /* DemoTextField.m */; };
@@ -387,6 +390,10 @@
 		9C12882D1B19BF6F00535745 /* 蓝牙.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "蓝牙.png"; sourceTree = "<group>"; };
 		9C12882E1B19BF6F00535745 /* 音频.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "音频.png"; sourceTree = "<group>"; };
 		9C1288311B19D57D00535745 /* 滚动条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "滚动条.png"; sourceTree = "<group>"; };
+		9C1DF00D1B47BF20005353D9 /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		9C1DF00F1B47BF74005353D9 /* 登陆页LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登陆页LOGO.png"; sourceTree = "<group>"; };
+		9C1DF0111B47BFC3005353D9 /* 登陆页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登陆页.png"; sourceTree = "<group>"; };
+		9C1DF0131B47C14E005353D9 /* APPbanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = APPbanner.png; sourceTree = "<group>"; };
 		9C2917101A5A711F00D28A63 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		9C2917111A5A711F00D28A63 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		9C4B50431B3D2B27003C8F2A /* LeftSlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSlideViewController.h; sourceTree = "<group>"; };
@@ -491,7 +498,6 @@
 		9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeViewController.m; sourceTree = "<group>"; };
 		9C82CE511B26D7DD00F21F21 /* EntBankInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntBankInfoViewController.h; sourceTree = "<group>"; };
 		9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntBankInfoViewController.m; sourceTree = "<group>"; };
-		9C82E9141B3C01C9001F24DC /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
 		9C82E9161B3C03B3001F24DC /* 箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头.png"; sourceTree = "<group>"; };
 		9C84DA021AE642DD00A5124E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
 		9C84DA031AE642DD00A5124E /* MHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTextField.m; sourceTree = "<group>"; };
@@ -946,12 +952,15 @@
 			children = (
 				9C112D8C1B42809200F6BE8D /* 交易记录.png */,
 				9C112D801B427B6000F6BE8D /* 身份证.png */,
+				9C1DF0131B47C14E005353D9 /* APPbanner.png */,
 				9C112D811B427B6000F6BE8D /* 身份证反.png */,
 				9C112D821B427B6000F6BE8D /* 手拿身份证.png */,
 				9C112D831B427B6000F6BE8D /* 银行卡背面.png */,
 				9C112D841B427B6000F6BE8D /* 银行卡正面2.png */,
 				9C112D851B427B6000F6BE8D /* 正面照片.png */,
+				9C1DF0111B47BFC3005353D9 /* 登陆页.png */,
 				9C112D771B402F9500F6BE8D /* 个人设置.png */,
+				9C1DF00F1B47BF74005353D9 /* 登陆页LOGO.png */,
 				9C112D781B402F9500F6BE8D /* 蓝点.png */,
 				9C112D791B402F9500F6BE8D /* 右箭头.png */,
 				9C112D751B402F6E00F6BE8D /* 返回.png */,
@@ -967,8 +976,8 @@
 				9C4B50721B3E7F0C003C8F2A /* note.png */,
 				9C1288311B19D57D00535745 /* 滚动条.png */,
 				9C1288151B1718FE00535745 /* 小方框.png */,
+				9C1DF00D1B47BF20005353D9 /* LOGO.png */,
 				9C1288161B1718FE00535745 /* 小方框2.png */,
-				9C82E9141B3C01C9001F24DC /* LOGO.png */,
 				9C12882D1B19BF6F00535745 /* 蓝牙.png */,
 				9C12882E1B19BF6F00535745 /* 音频.png */,
 				9C12882B1B19BF5A00535745 /* 签到.png */,
@@ -1313,6 +1322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C1DF0121B47BFC3005353D9 /* 登陆页.png in Resources */,
 				9C1288261B1964E300535745 /* 16.png in Resources */,
 				9C84DA151AE79B1400A5124E /* radio_unchecked@2x.png in Resources */,
 				9C1288281B1964E300535745 /* 18.png in Resources */,
@@ -1348,6 +1358,7 @@
 				9C4B506E1B3E4B36003C8F2A /* c@2x.png in Resources */,
 				9C1288041B16B63A00535745 /* 按扭.png in Resources */,
 				9C6D9D6D1A7F7C9B002A7845 /* icon_list_background3.jpg in Resources */,
+				9C1DF0101B47BF74005353D9 /* 登陆页LOGO.png in Resources */,
 				9CE6624B1A4413D800B13444 /* 152.png in Resources */,
 				96D6F8301A2C64E900CCD0B5 /* 绿色色值.jpg in Resources */,
 				96D6F81D1A2C64E900CCD0B5 /* btn_inquire.png in Resources */,
@@ -1357,6 +1368,7 @@
 				9C6D9DBC1A820DC7002A7845 /* check_icon@2x.png in Resources */,
 				963716BA1A2D6F44002D34F3 /* icon_logo.png in Resources */,
 				9C12882C1B19BF5A00535745 /* 签到.png in Resources */,
+				9C1DF00E1B47BF20005353D9 /* LOGO.png in Resources */,
 				96D6F81B1A2C64E900CCD0B5 /* btn_equipment.png in Resources */,
 				9C6D9DA11A82015C002A7845 /* home_banner_3.png in Resources */,
 				9C1288171B1718FE00535745 /* 小方框.png in Resources */,
@@ -1368,6 +1380,7 @@
 				9C112D8D1B42809200F6BE8D /* 交易记录.png in Resources */,
 				96D6F8171A2C64E900CCD0B5 /* btn_background2.png in Resources */,
 				9C6D9D771A81EB7D002A7845 /* 文件刷卡动画.gif in Resources */,
+				9C1DF0141B47C14E005353D9 /* APPbanner.png in Resources */,
 				96D6F8161A2C64E900CCD0B5 /* btn_background1.png in Resources */,
 				9C112D701B3ECE2700F6BE8D /* 卡卡转账.png in Resources */,
 				96D6F82C1A2C64E900CCD0B5 /* inco_me1.png in Resources */,
@@ -1412,7 +1425,6 @@
 				9C4B50641B3E4B36003C8F2A /* 0@2x.png in Resources */,
 				9C4B50731B3E7F0C003C8F2A /* note.png in Resources */,
 				9C4B506A1B3E4B36003C8F2A /* 6@2x.png in Resources */,
-				9C82E9151B3C01C9001F24DC /* LOGO.png in Resources */,
 				96D6F8151A2C64E900CCD0B5 /* btn_back.png in Resources */,
 				9C112D6E1B3ECE2700F6BE8D /* 基金理财.png in Resources */,
 				963717101A2DC6C6002D34F3 /* Default@3x.png in Resources */,
