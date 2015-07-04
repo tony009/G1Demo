@@ -372,7 +372,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     }
     if (!host) {
         //host = @"122.112.12.25";
-        [[NSUserDefaults standardUserDefaults] setObject:kServerIP forKey:kHostEditor];
+        [[NSUserDefaults standardUserDefaults] setObject:kPosIP forKey:kHostEditor];
     }
     if (!port) {
         

@@ -8,6 +8,7 @@
 
 #import "FunctionMenuViewController.h"
 #import "WDImageButton.h"
+#import "SwipingCardViewController.h"
 @interface FunctionMenuViewController ()
 
 @end
@@ -40,6 +41,43 @@
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"功能界面";
 }
+
+//查询余额
+- (IBAction)checkAccountAction:(id)sender {
+    //sendValue = @"查询余额";
+    
+    if(MiniPosSDKDeviceState()<0){
+        //[self showTipView:@"设备未连接"];
+        [self showConnectionAlert];
+        return;
+    }else {
+        [self verifyParamsSuccess:^{
+            
+            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+                
+                //[self performSegueWithIdentifier:@"chaxun" sender:self];
+                SwipingCardViewController *scvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SC"];
+                if ([scvc respondsToSelector:@selector(setType:)]) {
+                    [scvc setValue:@"查询余额" forKey:@"type"];
+                }
+                [self.navigationController pushViewController:scvc animated:YES];
+                
+                if(MiniPosSDKQuery()>=0)
+                {
+                    NSLog(@"正在查询余额...");
+                }
+                
+            }
+            
+
+        }];
+        
+    }
+    
+    
+    
+}
+
 /*
 #pragma mark - Navigation
 

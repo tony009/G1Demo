@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FunctionMenuViewController : UIViewController
+#import "BaseViewController.h"
+@interface FunctionMenuViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet UIView *functionView;
 
 @end
