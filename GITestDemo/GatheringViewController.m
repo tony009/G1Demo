@@ -372,7 +372,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 //即时收款
 - (IBAction)immediatelyConsume:(UIButton *)sender {
     
-    //return;
+    return;
 
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
