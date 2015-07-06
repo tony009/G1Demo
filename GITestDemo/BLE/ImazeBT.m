@@ -168,7 +168,9 @@
  */
 - (void)startScan
 {
+
     NSLog(@"startScan");
+    [searchDevices removeAllObjects];
     if ([self isLECapableHardware]) {
         
         [manager scanForPeripheralsWithServices:nil options:nil];
@@ -268,7 +270,10 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral
 {
     [aPeripheral setDelegate:self];
-    [aPeripheral discoverServices:nil];
+    
+    NSArray *serviceUUIDs  = @[[CBUUID UUIDWithString:KUUIDService],[CBUUID UUIDWithString:KUUIDService1]];
+    
+    [aPeripheral discoverServices:serviceUUIDs];
     peripheral = aPeripheral;
     
     [[NSUserDefaults standardUserDefaults] setObject:aPeripheral.name forKey:kLastConnectedDevice];
@@ -339,6 +344,10 @@
         {
             [aPeripheral discoverCharacteristics:nil forService:aService];
             calibrationService = aService;
+        }else if([aService.UUID isEqual:[CBUUID UUIDWithString:KUUIDService1]]){
+            
+            [aPeripheral discoverCharacteristics:nil forService:aService];
+            calibrationService = aService;
         }
         
         
@@ -386,6 +395,31 @@
    
     }
     
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:KUUIDService1]])
+    {
+        for (CBCharacteristic *aChar in service.characteristics)
+        {
+            [peripheral setNotifyValue:YES forCharacteristic:aChar];
+            NSLog(@"Calibration Characteristic : %@", aChar.UUID);
+            
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead1]]) {
+                characteristic3 = aChar;
+            }
+            if ([aChar.UUID isEqual:[CBUUID UUIDWithString:kUUIDWrite1]]) {
+                characteristic4 = aChar;
+                
+            }
+        }
+        
+        
+        if (characteristic4) {
+            self.isConnected = YES;
+            //通知设备已经连上
+            deviceErrorFunc(2);
+        }
+        
+    }
+    
 }
 
 /*
@@ -397,7 +431,7 @@
     //NSLog(@"didUpdateValueForCharacteristic : %@", characteristic.UUID);
 
 
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead]])
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead]] || [characteristic.UUID isEqual:[CBUUID UUIDWithString:kUUIDRead1]])
     {
         if( (characteristic.value)  || !error )
         {

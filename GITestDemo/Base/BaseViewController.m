@@ -318,6 +318,23 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.hud.labelText = title;
 
 }
+-(void)showHUD:(NSString *)title afterTime:(double)seconds failStr:(NSString *)str{
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = title;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if (_hud) {
+            [_hud hide:YES];
+            _hud = nil;
+            [self showTipView:str];
+        }
+        
+        
+    });
+    
+    
+}
 
 - (void)showHUDDelayHid:(NSString *)title {
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -332,6 +349,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [_hud hide:YES];
+            _hud = nil;
         });
     }
     

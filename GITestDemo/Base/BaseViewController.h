@@ -37,6 +37,8 @@
 
 - (void)backAction:(UIButton *)button;
 
+-(void)showHUD:(NSString *)title afterTime:(double)seconds failStr:(NSString *)str;
+
 //隐藏加载
 - (void)hideHUD;
 

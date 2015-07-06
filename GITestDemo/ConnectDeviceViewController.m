@@ -12,6 +12,7 @@
 {
     NSTimer *timer;
     UILabel *curLabel;
+    NSString *connectedBluetoothName;
 }
 @end
 
@@ -168,8 +169,11 @@
         
         NSLog(@"SnNo:%@,TerminalNo:%@,MerchantNo:%@",[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo],[[NSUserDefaults standardUserDefaults]stringForKey:kMposG1MerchantNo]);
 
+        self.bluetoothName.text = connectedBluetoothName;
         self.SN.text = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1SN];
         self.time.text = [UIUtils stringFromDate:[NSDate date] formate:@"yyyy.MM.dd"];
+        [self hideHUD];
+        [self showTipView:@"连接成功"];
     }
     
     self.statusStr = @"";
@@ -228,12 +232,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    [self showHUD:@"正在连接" afterTime:8 failStr:@"连接失败"];
+
+    self.bluetoothName.text = @"";
+    self.SN.text = @"";
+    self.time.text = @"";
+    MiniPosSDKInit();
+    
     _deviceView.hidden = YES;
     [[BleManager sharedManager].imBT connect:[searchDevices objectAtIndex:indexPath.row]];
     
-    
     CBPeripheral *aper = [searchDevices objectAtIndex:indexPath.row];
-    self.bluetoothName.text = aper.name;
+    connectedBluetoothName = aper.name;
+    
 }
 
 - (void)cancelAction

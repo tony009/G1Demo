@@ -26,9 +26,9 @@
 #define kUUIDRead @"49535343-1E4D-4BD9-BA61-23C647249616"
 #define kUUIDWrite @"49535343-8841-43F4-A8D4-ECBE34729BB3"
 
-//#define KUUIDService @"FFFF"
-//#define kUUIDRead @"FF01"
-//#define kUUIDWrite @"FF02"
+#define KUUIDService1 @"FFFF"
+#define kUUIDRead1 @"FF01"
+#define kUUIDWrite1 @"FF02"
 
 #define kDidDiscoverDevice @"didDiscoverDevice"
 #define kDidConnectDevice @"didConnectDevice"
