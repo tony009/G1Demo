@@ -3426,25 +3426,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="登陆页.png" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Tv-jGo">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-7O-fl6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rqf-IH-oRa">
+                                        <rect key="frame" x="80" y="133" width="160" height="145"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="145" id="4in-zj-VvN"/>
+                                            <constraint firstAttribute="width" constant="160" id="VES-ak-yXQ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="568" id="wKS-Ru-pW6"/>
+                                    <constraint firstAttribute="centerX" secondItem="Rqf-IH-oRa" secondAttribute="centerX" id="Fh2-7J-ABc"/>
+                                    <constraint firstAttribute="centerY" secondItem="Rqf-IH-oRa" secondAttribute="centerY" id="m6m-4Y-M3A"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LOGO.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rqf-IH-oRa">
-                                <rect key="frame" x="67" y="136" width="186" height="169"/>
-                            </imageView>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pg7-zB-Cah">
                                 <rect key="frame" x="20" y="440" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.85490196080000003" green="0.1450980392" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="dIG-Ca-6qk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3453,13 +3460,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-U4-dcn">
                                 <rect key="frame" x="20" y="500" width="280" height="45"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.4941176471" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="W6Q-qC-fgf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="注册">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3469,14 +3476,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="udL-Tv-jGo" secondAttribute="bottom" id="2oX-Ja-9BY"/>
                             <constraint firstItem="c6O-3i-D7g" firstAttribute="top" secondItem="1l6-U4-dcn" secondAttribute="bottom" constant="23" id="3gA-9j-1lI"/>
-                            <constraint firstItem="udL-Tv-jGo" firstAttribute="leading" secondItem="dXf-md-Kod" secondAttribute="leading" id="7Lj-EB-b7V"/>
                             <constraint firstItem="1l6-U4-dcn" firstAttribute="leading" secondItem="pg7-zB-Cah" secondAttribute="leading" id="C10-MZ-Yxb"/>
                             <constraint firstItem="1l6-U4-dcn" firstAttribute="trailing" secondItem="pg7-zB-Cah" secondAttribute="trailing" id="J4s-G0-bSQ"/>
                             <constraint firstItem="1l6-U4-dcn" firstAttribute="top" secondItem="pg7-zB-Cah" secondAttribute="bottom" constant="15" id="ODN-KE-bdo"/>
-                            <constraint firstAttribute="trailing" secondItem="udL-Tv-jGo" secondAttribute="trailing" id="egP-iY-SIE"/>
+                            <constraint firstItem="pg7-zB-Cah" firstAttribute="top" secondItem="6NZ-7O-fl6" secondAttribute="bottom" constant="30" id="Xvv-SV-oq8"/>
+                            <constraint firstAttribute="trailing" secondItem="6NZ-7O-fl6" secondAttribute="trailing" id="dop-eS-ZSL"/>
+                            <constraint firstItem="6NZ-7O-fl6" firstAttribute="top" secondItem="dXf-md-Kod" secondAttribute="top" id="lD1-Zm-tpy"/>
                             <constraint firstItem="1l6-U4-dcn" firstAttribute="leading" secondItem="dXf-md-Kod" secondAttribute="leadingMargin" constant="4" id="rbC-ya-k3z"/>
+                            <constraint firstItem="6NZ-7O-fl6" firstAttribute="leading" secondItem="dXf-md-Kod" secondAttribute="leading" id="uJS-Kz-6QK"/>
                             <constraint firstItem="1l6-U4-dcn" firstAttribute="centerX" secondItem="dXf-md-Kod" secondAttribute="centerX" id="w8a-9T-bbi"/>
                         </constraints>
                     </view>
@@ -3489,7 +3497,7 @@
     </scenes>
     <resources>
         <image name="APPbanner.png" width="750" height="276"/>
-        <image name="LOGO.png" width="378" height="338"/>
+        <image name="LOGO.png" width="318" height="290"/>
         <image name="icon_list_background6.jpg" width="600" height="1130"/>
         <image name="item_1.png" width="60" height="60"/>
         <image name="item_2.png" width="60" height="60"/>
@@ -3500,7 +3508,6 @@
         <image name="收款宝-4.png" width="50" height="50"/>
         <image name="更多" width="21" height="12"/>
         <image name="滚动条.png" width="580" height="30"/>
-        <image name="登陆页.png" width="640" height="1136"/>
         <image name="蓝点.png" width="15" height="15"/>
         <image name="蓝牙.png" width="100" height="100"/>
         <image name="身份证.png" width="168" height="94"/>
