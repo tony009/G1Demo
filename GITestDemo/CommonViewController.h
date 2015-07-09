@@ -10,6 +10,5 @@
 
 @interface CommonViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *phoneNo;
-@property (strong, nonatomic) IBOutlet UITextField *phoneNoTextField;
 
 @end

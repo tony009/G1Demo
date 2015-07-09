@@ -8,10 +8,7 @@
 
 #import "CommonViewController.h"
 #import "AppDelegate.h"
-
-#define kOFFSET_FOR_KEYBOARD 200.0
-
-@interface CommonViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface CommonViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *_array;
     BOOL isOpen;
@@ -29,8 +26,6 @@
     _array = [[NSMutableArray alloc]initWithArray:@[@"设备信息",@"交易规则",@"固件升级",@"使用帮助",@"关于我们"]];
     
     self.phoneNo.text = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
-    
-    self.phoneNoTextField.delegate = self;
     
 }
 
@@ -166,49 +161,5 @@
     
 }
 
-#pragma mark -- UITextFieldDelegate
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    NSLog(@"textFieldShouldBeginEditing");
-    
-
-    [self setViewMovedUp:YES];
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    NSLog(@"textFieldShouldReturn");
-
-    [self setViewMovedUp:NO];
-    [textField resignFirstResponder];
-    return YES;
-}
-
-
-- (void)setViewMovedUp:(BOOL)movedUp{
-    
-    
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        CGRect rect = self.view.frame;
-        if (movedUp) {
-            if (rect.origin.y >=0) {
-                rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-                
-            }
-        }else{
-            if (rect.origin.y <0) {
-                rect.origin.y += kOFFSET_FOR_KEYBOARD;
-            }
-        }
-        
-        self.view.frame = rect;
-    }];
-    
-
-}
 
 @end
