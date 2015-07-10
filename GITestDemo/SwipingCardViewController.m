@@ -22,6 +22,10 @@
     [super viewDidLoad];
     self.title = self.type;
     
+    if ([self.type isEqualToString:@"即时收款"]) {
+        self.label.hidden = NO;
+    }
+    
 //    sendValue = @"消费交易";
 //    [self performSelector:@selector(pushToPrint) withObject:nil afterDelay:1.0];
     

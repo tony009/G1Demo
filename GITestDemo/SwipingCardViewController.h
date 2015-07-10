@@ -13,5 +13,7 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, assign) float count;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UILabel *label;
+
 
 @end

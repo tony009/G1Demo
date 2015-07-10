@@ -69,6 +69,7 @@
 #define kPosPort @"5679"
 #define kDecryptKey "00000003000011650000000300001165"
 
+//铜元
 //#define kServerIP @"122.112.12.20" //注册登录的ip
 //#define kServerPort @"8081" //注册登录的端口
 //#define kPosPort @"6889"

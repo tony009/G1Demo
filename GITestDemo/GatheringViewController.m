@@ -347,8 +347,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                     
                     SwipingCardViewController *scvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SC"];
                     [self.navigationController pushViewController:scvc animated:YES];
-                    //[self presentViewController:cdvc animated:YES completion:nil];
-                    
+                    [scvc setValue:@"常规消费" forKey:@"type"];
                     
                     
                 } else {
@@ -372,7 +371,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 //即时收款
 - (IBAction)immediatelyConsume:(UIButton *)sender {
     
-    return;
+    //return;
 
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
@@ -400,7 +399,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                     
                     SwipingCardViewController *scvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SC"];
                     [self.navigationController pushViewController:scvc animated:YES];
-                    //[self presentViewController:cdvc animated:YES completion:nil];
+                    [scvc setValue:@"即时收款" forKey:@"type"];
+                    
                     
                     
                     
