@@ -2746,7 +2746,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeImage:" destination="tfu-5T-Dxb" eventType="touchUpInside" id="AdO-Tl-Smg"/>
+                                    <action selector="changeImage:" destination="Ck0-5h-Aqe" eventType="touchUpInside" id="gIp-ro-CxT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uce-cU-Wv6">
