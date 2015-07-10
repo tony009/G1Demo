@@ -2668,22 +2668,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="现场照片：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuF-eo-itP">
-                                <rect key="frame" x="60" y="325" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0G-uI-dfP">
-                                <rect key="frame" x="148" y="321" width="40" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeImage:" destination="tfu-5T-Dxb" eventType="touchUpInside" id="AdO-Tl-Smg"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uce-cU-Wv6">
                                 <rect key="frame" x="148" y="366" width="40" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2694,6 +2678,22 @@
                                     <action selector="changeImage:" destination="Ck0-5h-Aqe" eventType="touchUpInside" id="jjo-yE-s0X"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irm-Ok-bty">
+                                <rect key="frame" x="148" y="323" width="40" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeImage:" destination="Ck0-5h-Aqe" eventType="touchUpInside" id="IVE-hX-VeE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="现场照片：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-tS-Me3">
+                                <rect key="frame" x="60" y="327" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2709,7 +2709,7 @@
                         <outlet property="IDPhotoBack" destination="SqD-IY-Ncs" id="zOS-xL-etF"/>
                         <outlet property="IDPhotoFront" destination="9qt-iW-D58" id="Wyw-NM-bdG"/>
                         <outlet property="KaiHuXuKeZheng" destination="uce-cU-Wv6" id="jle-mo-LFp"/>
-                        <outlet property="XianChangZhaoPian" destination="E0G-uI-dfP" id="9fD-6g-6n3"/>
+                        <outlet property="XianChangZhaoPian" destination="irm-Ok-bty" id="16n-Yl-43i"/>
                         <outlet property="name" destination="BFa-lV-M7q" id="bC0-E8-P3g"/>
                         <outlet property="password" destination="VNb-Fr-W1E" id="NK9-43-J9T"/>
                         <outlet property="rePassword" destination="A41-6V-GEK" id="Krl-iG-gKO"/>

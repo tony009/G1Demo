@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-
+#import <PgySDK/PgyManager.h>
 @interface FirstViewController ()
 
 @end
@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [[PgyManager sharedPgyManager] checkUpdate];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
