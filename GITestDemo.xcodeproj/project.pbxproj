@@ -185,6 +185,12 @@
 		9C81480B1B4F626500C5E48A /* 银联.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8148091B4F626500C5E48A /* 银联.png */; };
 		9C81480C1B4F626500C5E48A /* 英文.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C81480A1B4F626500C5E48A /* 英文.png */; };
 		9C81480E1B4F62AC00C5E48A /* 签名底板.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C81480D1B4F62AC00C5E48A /* 签名底板.png */; };
+		9C8148101B4F6A1500C5E48A /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C81480F1B4F6A1500C5E48A /* PgySDK.framework */; };
+		9C8148121B4F6A4D00C5E48A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8148111B4F6A4D00C5E48A /* CoreTelephony.framework */; };
+		9C8148141B4F6A5700C5E48A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8148131B4F6A5700C5E48A /* OpenGLES.framework */; };
+		9C8148161B4F6A6B00C5E48A /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8148151B4F6A6B00C5E48A /* SceneKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9C8148181B4F6A7800C5E48A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8148171B4F6A7800C5E48A /* CoreMotion.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		9C81481A1B4F6A9000C5E48A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8148191B4F6A9000C5E48A /* AVFoundation.framework */; };
 		9C81D9301AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */; };
 		9C81D9331B003D2000CD9DD7 /* VerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C81D9321B003D2000CD9DD7 /* VerifyCodeViewController.m */; };
 		9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C82CE521B26D7DD00F21F21 /* EntBankInfoViewController.m */; };
@@ -491,6 +497,12 @@
 		9C8148091B4F626500C5E48A /* 银联.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "银联.png"; sourceTree = "<group>"; };
 		9C81480A1B4F626500C5E48A /* 英文.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "英文.png"; sourceTree = "<group>"; };
 		9C81480D1B4F62AC00C5E48A /* 签名底板.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签名底板.png"; sourceTree = "<group>"; };
+		9C81480F1B4F6A1500C5E48A /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		9C8148111B4F6A4D00C5E48A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		9C8148131B4F6A5700C5E48A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		9C8148151B4F6A6B00C5E48A /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		9C8148171B4F6A7800C5E48A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		9C8148191B4F6A9000C5E48A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9C81D92E1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetPhoneVerificationCodeViewController.h; sourceTree = "<group>"; };
 		9C81D92F1AFC92AD00CD9DD7 /* GetPhoneVerificationCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPhoneVerificationCodeViewController.m; sourceTree = "<group>"; };
 		9C81D9311B003D2000CD9DD7 /* VerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeViewController.h; sourceTree = "<group>"; };
@@ -565,15 +577,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */,
 				9C96C7751AD3B148001639C5 /* SystemConfiguration.framework in Frameworks */,
+				9C81481A1B4F6A9000C5E48A /* AVFoundation.framework in Frameworks */,
+				96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */,
+				9C8148181B4F6A7800C5E48A /* CoreMotion.framework in Frameworks */,
+				9C8148161B4F6A6B00C5E48A /* SceneKit.framework in Frameworks */,
+				9C8148141B4F6A5700C5E48A /* OpenGLES.framework in Frameworks */,
+				9C8148121B4F6A4D00C5E48A /* CoreTelephony.framework in Frameworks */,
+				9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */,
+				9C8148101B4F6A1500C5E48A /* PgySDK.framework in Frameworks */,
 				9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */,
 				96C560771A243F8600A25290 /* libc++.dylib in Frameworks */,
 				96C5609E1A24877000A25290 /* openssl.framework in Frameworks */,
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				9C69B5861AD3776A0075B9D9 /* libSystemPrivacySDK.a in Frameworks */,
-				96C560711A243F5800A25290 /* AudioToolbox.framework in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,12 +689,18 @@
 		96C560211A243A7800A25290 = {
 			isa = PBXGroup;
 			children = (
+				9C8148191B4F6A9000C5E48A /* AVFoundation.framework */,
+				9C8148171B4F6A7800C5E48A /* CoreMotion.framework */,
+				9C8148151B4F6A6B00C5E48A /* SceneKit.framework */,
+				9C8148131B4F6A5700C5E48A /* OpenGLES.framework */,
+				9C8148111B4F6A4D00C5E48A /* CoreTelephony.framework */,
 				9C96C7761AD3B150001639C5 /* Security.framework */,
 				9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */,
 				9C96C7721AD3B138001639C5 /* CoreLocation.framework */,
 				96C5609D1A24877000A25290 /* openssl.framework */,
 				96C560761A243F8600A25290 /* libc++.dylib */,
 				96C560741A243F7A00A25290 /* libstdc++.dylib */,
+				9C81480F1B4F6A1500C5E48A /* PgySDK.framework */,
 				96C560721A243F6800A25290 /* MediaPlayer.framework */,
 				96C560701A243F5800A25290 /* AudioToolbox.framework */,
 				96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */,
