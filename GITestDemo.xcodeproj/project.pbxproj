@@ -216,7 +216,7 @@
 		9C9D6DA71B4FAD7A008B84D1 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D6DA61B4FAD7A008B84D1 /* SceneKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C9D6DA91B4FAD8D008B84D1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D6DA81B4FAD8D008B84D1 /* OpenGLES.framework */; };
 		9C9D6DAB1B4FAD9D008B84D1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D6DAA1B4FAD9D008B84D1 /* CoreTelephony.framework */; };
-		9C9D6DAD1B4FAE4B008B84D1 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D6DAC1B4FAE4B008B84D1 /* PgySDK.framework */; };
+		9C9D6DB11B4FB2E8008B84D1 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9D6DB01B4FB2E8008B84D1 /* PgySDK.framework */; };
 		9CA301101B4513BE002E316E /* UIColor+KVNContrast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */; };
 		9CA301111B4513BE002E316E /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300FA1B4513BE002E316E /* UIImage+KVNEmpty.m */; };
 		9CA301121B4513BE002E316E /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300FC1B4513BE002E316E /* UIImage+KVNImageEffects.m */; };
@@ -543,7 +543,7 @@
 		9C9D6DA61B4FAD7A008B84D1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		9C9D6DA81B4FAD8D008B84D1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9C9D6DAA1B4FAD9D008B84D1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		9C9D6DAC1B4FAE4B008B84D1 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		9C9D6DB01B4FB2E8008B84D1 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
 		9CA300F71B4513BE002E316E /* UIColor+KVNContrast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KVNContrast.h"; sourceTree = "<group>"; };
 		9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KVNContrast.m"; sourceTree = "<group>"; };
 		9CA300F91B4513BE002E316E /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
@@ -591,7 +591,7 @@
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				9C69B5861AD3776A0075B9D9 /* libSystemPrivacySDK.a in Frameworks */,
-				9C9D6DAD1B4FAE4B008B84D1 /* PgySDK.framework in Frameworks */,
+				9C9D6DB11B4FB2E8008B84D1 /* PgySDK.framework in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,7 +700,7 @@
 				96C5609D1A24877000A25290 /* openssl.framework */,
 				96C560761A243F8600A25290 /* libc++.dylib */,
 				96C560741A243F7A00A25290 /* libstdc++.dylib */,
-				9C9D6DAC1B4FAE4B008B84D1 /* PgySDK.framework */,
+				9C9D6DB01B4FB2E8008B84D1 /* PgySDK.framework */,
 				96C560721A243F6800A25290 /* MediaPlayer.framework */,
 				96C560701A243F5800A25290 /* AudioToolbox.framework */,
 				96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */,
