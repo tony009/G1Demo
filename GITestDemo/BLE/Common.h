@@ -56,18 +56,18 @@
 #define kMposG1MainKey  @"MainKey"  //mpos主密钥
 
 ////腾氏测试
-//#define kServerIP @"122.112.12.25" //注册登录的ip
-//#define kServerPort @"18081" //注册登录的端口
-//#define kPosIP @"122.112.12.25"
-//#define kPosPort @"25679"
-//#define kDecryptKey "22222222222222222222222222222222"
+#define kServerIP @"122.112.12.25" //注册登录的ip
+#define kServerPort @"18081" //注册登录的端口
+#define kPosIP @"122.112.12.25"
+#define kPosPort @"25679"
+#define kDecryptKey "22222222222222222222222222222222"
 
 //腾氏生产
-#define kServerIP @"122.112.12.29" //注册登录的ip
-#define kServerPort @"8081" //注册登录的端口
-#define kPosIP @"122.112.12.24"
-#define kPosPort @"5679"
-#define kDecryptKey "00000003000011650000000300001165"
+//#define kServerIP @"122.112.12.29" //注册登录的ip
+//#define kServerPort @"8081" //注册登录的端口
+//#define kPosIP @"122.112.12.24"
+//#define kPosPort @"5679"
+//#define kDecryptKey "00000003000011650000000300001165"
 
 //铜元
 //#define kServerIP @"122.112.12.20" //注册登录的ip
