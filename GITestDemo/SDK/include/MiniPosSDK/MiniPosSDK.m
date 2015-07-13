@@ -699,6 +699,7 @@ int DealLogIn()
     }
     if(gDealPackStep == PACK_STEP_RETURN_POS)
     {
+        NSLog(@"DealLogIn---PACK_STEP_RETURN_POS");
         if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             gResponseFun(gUserData,
