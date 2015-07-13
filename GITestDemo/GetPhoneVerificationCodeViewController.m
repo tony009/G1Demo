@@ -146,7 +146,7 @@
 
 - (BOOL)checkPhoneNo:(NSString *)str{
     
-    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^1\\d{10}$";
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     
