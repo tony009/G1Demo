@@ -280,7 +280,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     self.connected = @"Connected";
-    NSLog(@"Device did connected!");
+    NSLog(@"didConnectPeripheral");
     [self stopScan];
    
     
@@ -415,6 +415,7 @@
         if (characteristic4) {
             self.isConnected = YES;
             //通知设备已经连上
+            [NSThread sleepForTimeInterval:0.1];
             deviceErrorFunc(2);
         }
         
@@ -476,21 +477,21 @@
     
     //已经连接，先断开连接
     if (self.isConnected && peripheral != nil) {
-        [self disconnectPeripheral:peripheral];
+             [self disconnectPeripheral:peripheral];
     }
 
     
     //aper
     
-    if (aper.UUID) {
-        NSLog(@"Retrieve....");
-        [manager retrievePeripherals:[NSArray arrayWithObject:(id)aper.UUID]];
-    } else {
+//    if (aper.UUID) {
+//        NSLog(@"Retrieve....");
+//        [manager retrievePeripherals:[NSArray arrayWithObject:(id)aper.UUID]];
+//    } else {
         NSLog(@"connecting ....%@",aper.name);
         [manager connectPeripheral:aper options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey]];
         peripheral = aper;
         //[manager retrieveConnectedPeripherals];
-    }
+//    }
     
 }
 
