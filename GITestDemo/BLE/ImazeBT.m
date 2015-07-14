@@ -448,15 +448,15 @@
     
     //aper
     
-    if (aper.UUID) {
-        NSLog(@"Retrieve....");
-        [manager retrievePeripherals:[NSArray arrayWithObject:(id)aper.UUID]];
-    } else {
+//    if (aper.UUID) {
+//        NSLog(@"Retrieve....");
+//        [manager retrievePeripherals:[NSArray arrayWithObject:(id)aper.UUID]];
+//    } else {
         NSLog(@"connecting ....%@",aper.name);
         [manager connectPeripheral:aper options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey]];
         peripheral = aper;
         //[manager retrieveConnectedPeripherals];
-    }
+  //  }
     
 }
 

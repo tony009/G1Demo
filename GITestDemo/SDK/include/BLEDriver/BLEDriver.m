@@ -154,9 +154,25 @@ int WritePosData(unsigned char *data, int datalen)
             }
             
         }
-
-        NSData *sendData = [NSData dataWithBytes:(const void *)data length:sizeof( char)*datalen];
-        [bleManager.imBT writeValue:sendData];
+    
+        NSData *sendData;
+        int num = 20;
+        while (datalen - num >0) {
+            
+            sendData = [NSData dataWithBytes:(const void *)data length:sizeof( char)*num];
+            [bleManager.imBT writeValue:sendData];
+            data = data + num;
+            datalen -=num;
+            [NSThread sleepForTimeInterval:0.01];
+        }
+        
+        if (datalen >0) {
+            sendData = [NSData dataWithBytes:(const void *)data length:sizeof( char)*datalen];
+            [bleManager.imBT writeValue:sendData];
+        }
+        
+        //NSData *sendData = [NSData dataWithBytes:(const void *)data length:sizeof( char)*datalen];
+        //[bleManager.imBT writeValue:sendData];
         return 0;
     }
    
