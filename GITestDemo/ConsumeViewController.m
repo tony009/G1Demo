@@ -2,20 +2,19 @@
 //  ConsumeViewController.m
 //  GITestDemo
 //
-//  Created by Femto03 on 14/11/26.
-//  Copyright (c) 2014年 Kyson. All rights reserved.
+//  Created by wudi on 15/07/15.
+//  Copyright (c) 2015年 Yogia. All rights reserved.
 //
 
 #import "ConsumeViewController.h"
 #import "SwipingCardViewController.h"
 #import "UIUtils.h"
 #import "KCalculator.h"
-#import "SystemPrivacySDK.h"
+
 
 @interface ConsumeViewController ()<kCalculatorDelegate>
 {
     float _allMoneyCount;
-    SystemPrivacySDK *_sysSDK;
     BOOL hasSettedParam;
 }
 @end

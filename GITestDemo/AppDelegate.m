@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <PgySDK/PgyManager.h>
 #include "MiniPosSDK.h"
 #include "BLEDriver.h"
 
@@ -20,10 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //sleep(1);
-    //[[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"71efd1ebf0e6c3c99ef5893dd95cee97"];
-    [[PgyManager sharedPgyManager] setThemeColor:rgb(55, 126, 180, 1)];
     return YES;
 }
 

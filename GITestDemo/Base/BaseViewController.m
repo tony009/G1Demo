@@ -399,12 +399,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (!shangHuName) {
         [[NSUserDefaults standardUserDefaults] setObject:@"周黑鸭" forKey:kShangHuName];
     }
+    
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     MiniPosSDKInit();
     NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
-    //MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
-   // MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
     
     MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
 }

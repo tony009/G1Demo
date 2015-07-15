@@ -13,9 +13,8 @@
 //第一步，初始化SDK
 //第二步，注册SDK回调函数
 //第三步，注册与设备通讯驱动，支持蓝牙、音频、USB通讯驱动
-//第四步，设置商户号，终端号，操作员号
-//第五步，设置POS中心服务器IP地址，端口号
-//第六步，调用交易请求函数
+//第四步，设置POS中心服务器IP地址，端口号
+//第五步，调用交易请求函数
 
 static void MiniPosSDKResponce(void *userData,
                                MiniPosSDKSessionType sessionType,
@@ -98,19 +97,13 @@ void testSDK()
     //第二步，注册SDK回调函数
     MiniPosSDKAddDelegate(NULL, MiniPosSDKResponce);
     
-    //第三步，注册与设备通讯驱动，支持蓝牙BLE、蓝牙HFP、有线音频，同一时间只能使用一种驱动
+    //第三步，注册与设备通讯驱动
+    MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
     
-    MiniPosSDKRegisterDeviceInterface(GetAudioDeviceInterface());
-    //MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
-    //MiniPosSDKRegisterDeviceInterface(GetHFPDeviceInterface());
-    
-    //第四步，设置商户号，终端号，操作员号
-    MiniPosSDKSetPublicParam("123456789012345", "12345678", "01");
-    
-    //第五步，设置POS中心服务器IP地址，端口号，是否使用SSL
+    //第四步，设置POS中心服务器IP地址，端口号，是否使用SSL
     MiniPosSDKSetPostCenterParam("172.29.0.102", 8000, 0);
     
-    //第六步，请求签到
+    //第五步，请求签到
     MiniPosSDKPosLogin();
     
     //请求消费
@@ -347,10 +340,10 @@ MiniPosSDKSessionType MiniPosSDKGetCurrentSessionType();
  *************************************************************/
 int MiniPosSDKCancelCMD();
 
-/************************************************************
-传输固件
-*************************************************************/
-int DownThread(void *cva,NSArray *array);
+///************************************************************
+//传输固件
+//*************************************************************/
+//int DownThread(void *cva,NSArray *array);
 
 /************************************************************
 超时检测

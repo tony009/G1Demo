@@ -2,8 +2,8 @@
 //  UpdateViewController.m
 //  GITestDemo
 //
-//  Created by 吴狄 on 14/12/31.
-//  Copyright (c) 2014年 Kyson. All rights reserved.
+//  Created by wudi on 15/07/15.
+//  Copyright (c) 2015年 Yogia. All rights reserved.
 //
 
 #import "UpdateViewController.h"

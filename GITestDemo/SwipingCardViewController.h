@@ -2,8 +2,8 @@
 //  SwipingCardViewController.h
 //  GITestDemo
 //
-//  Created by Femto03 on 14/11/26.
-//  Copyright (c) 2014年 Kyson. All rights reserved.
+//  Created by wudi on 15/07/15.
+//  Copyright (c) 2015年 Yogia. All rights reserved.
 //
 
 #import "BaseViewController.h"

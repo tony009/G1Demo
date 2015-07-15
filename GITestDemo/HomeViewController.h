@@ -2,8 +2,8 @@
 //  HomeViewController.h
 //  GITestDemo
 //
-//  Created by Femto03 on 14/11/25.
-//  Copyright (c) 2014年 Kyson. All rights reserved.
+//  Created by wudi on 15/07/15.
+//  Copyright (c) 2015年 Yogia. All rights reserved.
 //
 
 #import "BaseViewController.h"
@@ -12,7 +12,6 @@
 
 @interface HomeViewController : BaseViewController <UIScrollViewDelegate,UIAlertViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *topView;
 
 @property (strong, nonatomic) IBOutlet UIView *controlView;
 
@@ -23,23 +22,18 @@
 
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 
-- (IBAction)consumeAction:(ImgTButton *)sender;
+- (IBAction)consumeAction:(ImgTButton *)sender; //消费
 
-- (IBAction)unconsumeAction:(ImgTButton *)sender;
+- (IBAction)unconsumeAction:(ImgTButton *)sender; //撤销
 
-- (IBAction)checkAccountAction:(ImgTButton *)sender;
+- (IBAction)checkAccountAction:(ImgTButton *)sender; //查询余额
 
-- (IBAction)sginOutAction:(ImgTButton *)sender;
+- (IBAction)sginOutAction:(ImgTButton *)sender; //签退
 
-- (IBAction)payoffAction:(ImgTButton *)sender;
+- (IBAction)payoffAction:(ImgTButton *)sender; //结算
 
-- (IBAction)updataKeyAction:(ImgTButton *)sender;
+- (IBAction)updataKeyAction:(ImgTButton *)sender; //更新参数
 
-- (IBAction)getDeviceMsgAction:(ImgTButton *)sender;
-
-- (IBAction)updateAction:(ImgTButton *)sender;
-
-
-- (IBAction)changePage:(id)sender;
+- (IBAction)getDeviceMsgAction:(ImgTButton *)sender; //获取设备信息
 
 @end

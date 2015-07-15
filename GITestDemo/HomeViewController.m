@@ -2,8 +2,8 @@
 //  HomeViewController.m
 //  GITestDemo
 //
-//  Created by Femto03 on 14/11/25.
-//  Copyright (c) 2014年 Kyson. All rights reserved.
+//  Created by wudi on 15/07/15.
+//  Copyright (c) 2015年 Yogia. All rights reserved.
 //
 
 #import "HomeViewController.h"
@@ -12,7 +12,6 @@
 #import "CustomAlertView.h"
 #import "AFNetworking.h"
 #import "ConnectDeviceViewController.h"
-#import "LoginViewController.h"
 #include "des.h"
 #import "UIUtils.h"
 @interface HomeViewController ()
@@ -38,16 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self _initSubViews];
+    [self initBLESDK];
     _isNeedAutoConnect = YES;
     isFirstGetVersionInfo = true;
 
 
-    
-}
-
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -62,14 +56,6 @@
 
 - (void)_initSubViews
 {
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftButton.frame = CGRectMake(0, 0, 20, 20);
-    leftButton.backgroundColor = [UIColor clearColor];
-    [leftButton setImage:[UIImage imageNamed:@"箭头.png"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftItem;
     
     NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新",@"账户签到",@"参数更新"];
     //NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
@@ -79,23 +65,6 @@
         button.imageName = [imgArray objectAtIndex:i];
         button.titext = [titArray objectAtIndex:i];
     }
-    
-    //int width = self.view.frame.size.width;
-    //int height = self.scrollView.frame.size.height;
-    //int height = 140;
-    
-    //int height = self.scrollView.bounds.size.height;
-    
-   // NSLog(@"%d:%d",width,height);
-    
-
-    
-//    UIImageView *leftImgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-//    leftImgview.backgroundColor = [UIColor clearColor];
-//    leftImgview.image = [UIImage imageNamed:@"icon_logo.png"];
-//    
-//    UIBarButtonItem *legtItem = [[UIBarButtonItem alloc] initWithCustomView:leftImgview];
-//    self.navigationItem.leftBarButtonItem = legtItem;
     
     
 }
@@ -111,64 +80,15 @@
         MiniPosSDKGetDeviceInfoCMD();
         //isFirstGetVersionInfo = false;
     }
-    
 
-    
-    int width = self.view.frame.size.width;
-    //int height = self.scrollView.frame.size.height;
-    //int height = 140;
-    
-    int height = self.scrollView.bounds.size.height;
-    
-    NSLog(@"scrollView %d:%d",width,height);
-    
-    self.scrollView.contentSize = CGSizeMake(width*5, height);
-    
-    UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
-    UIImageView *imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(width, 0, width, height)];
-    UIImageView *imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(width *2, 0, width, height)];
-    UIImageView *imageView4 = [[UIImageView alloc]initWithFrame:CGRectMake(width *3, 0, width, height)];
-    UIImageView *imageView5 = [[UIImageView alloc]initWithFrame:CGRectMake(width *4, 0, width, height)];
-
-    
-    [imageView1 setImage:[UIImage imageNamed:@"home_banner_1"]];
-    [imageView2 setImage:[UIImage imageNamed:@"home_banner_2"]];
-    [imageView3 setImage:[UIImage imageNamed:@"home_banner_3"]];
-    [imageView4 setImage:[UIImage imageNamed:@"home_banner_4"]];
-    [imageView5 setImage:[UIImage imageNamed:@"home_banner_5"]];
-    
-    [self.scrollView addSubview:imageView1];
-    [self.scrollView addSubview:imageView2];
-    [self.scrollView addSubview:imageView3];
-    [self.scrollView addSubview:imageView4];
-    [self.scrollView addSubview:imageView5];
-    
-    
-    
-    self.scrollView.delegate = self;
 }
+
 
 -(void) viewWillDisappear:(BOOL)animated{
     //self.navigationController.navigationBar.translucent = YES;
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void) scrollViewDidScroll: (UIScrollView *) aScrollView
-{
 
-    CGPoint offset = aScrollView.contentOffset;
-    self.pageControl.currentPage = offset.x / 320.0f;
-    //NSLog(@"scrollViewDidScroll:%d",self.pageControl.currentPage);
-
-}
-
-- (IBAction)changePage:(id)sender {
-    NSLog(@"changePage");
-    [UIView animateWithDuration:0.3f animations:^{
-        int whichPage = self.pageControl.currentPage;
-        self.scrollView.contentOffset = CGPointMake(320.0f * whichPage, 0.0f);
-    }];
-}
 
 
 #pragma mark - Navigation
@@ -188,20 +108,6 @@
 
 //签到
 - (IBAction)siginAction:(ImgTButton *)sender {
-    
-//    NSDictionary *dictionary = @{@"商户号":@"123",@"终端号":@"123",@"主密钥1":@"123"};
-//    [self showHUD:@"正在写入参数"];
-//    //[self showTipView:@"正在写入参数"];
-//    [self setPosWithParams:dictionary success:^{
-//        if(MiniPosSDKPosLogin()>=0)
-//        {
-//            
-//            [self showHUD:@"正在签到"];
-//            
-//        }
-//    }];
-//
-//    return;
     
 
     if(MiniPosSDKDeviceState()<0){
@@ -476,18 +382,6 @@
     [self showTipView:str];
 }
 
-- (IBAction)updateAction:(ImgTButton *)sender {
-    
-    
-     [self downloadWebVersionFile];
-
-//    updateFiles = [[NSMutableArray alloc]init];
-//    
-//    [updateFiles addObject:@"kernel"];
-//    [updateFiles addObject:@"task"];
-//
-//    [self downloadFromWebAndTransmitToPos];
-}
 
 //从服务器下载版本文件
 - (void)downloadWebVersionFile{
@@ -597,7 +491,7 @@
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    //[super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    
      NSLog(@"Hooooooooooooooom");
     
     if (alertView.tag == 44) {
@@ -637,7 +531,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                     [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
                     
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                        DownThread((__bridge void*)cav,updateFiles);
+                        //DownThread((__bridge void*)cav,updateFiles);
                         
                         [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
                         
@@ -658,7 +552,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                 [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    DownThread((__bridge void*)cav,updateFiles);
+                    //DownThread((__bridge void*)cav,updateFiles);
                     
                     [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
                     
