@@ -331,12 +331,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.shanghuNameText.text forKey:kShangHuName];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-//    MiniPosSDKSetPublicParam(self.shangHuEditor.text.UTF8String, self.zhongDuanEditor.text.UTF8String, self.caoZhuoYuanEditor.text.UTF8String);
-    
-    MiniPosSDKSetPublicParam("898100012340003","10700028","01");
-    MiniPosSDKSetPostCenterParam(self.hostEditor.text.UTF8String, self.portEditor.text.intValue, 0);
-    
-    
     [self backAction:sender];
 }
 
@@ -345,7 +339,7 @@
     [super recvMiniPosSDKStatus];
     
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"上传参数成功"]]) {
         
         
         NSLog(@"------------");

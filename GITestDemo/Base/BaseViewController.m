@@ -403,8 +403,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     MiniPosSDKInit();
     NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
-    MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
-    MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
+    //MiniPosSDKSetPublicParam(shangHu.UTF8String, zhongDuan.UTF8String, caoZhuoYuan.UTF8String);
+   // MiniPosSDKSetPostCenterParam(host.UTF8String, port.intValue, 0);
     
     MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
 }
@@ -610,10 +610,6 @@ static void MiniPosSDKResponce(void *userData,
         {
             self.statusStr=@"下载AID参数成功";
         }
-        else if(self.sessionType==SESSION_POS_DOWNLOAD_PARAM)
-        {
-            self.statusStr=@"下载参数成功";
-        }
         else if(self.sessionType==SESSION_POS_CANCEL_READ_CARD)
         {
             self.statusStr=@"中断刷卡成功";
@@ -652,27 +648,35 @@ static void MiniPosSDKResponce(void *userData,
         }
         else if(self.sessionType==SESSION_POS_READ_CARD_INFO)
         {
-            self.statusStr=@"获取磁道信息成功";
-            NSString *info = [NSString stringWithFormat:@"磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+//            self.statusStr=@"获取磁道信息成功";
+//            NSString *info = [NSString stringWithFormat:@"磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alert show];
             return;
         }
         else if(self.sessionType==SESSION_POS_READ_PIN_CARD_INFO)
         {
             self.statusStr=@"获取磁道和密码信息成功";
-            NSString *info = [NSString stringWithFormat:@"加密后卡密:%s\n磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetEncryptPin(),MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+//            NSString *info = [NSString stringWithFormat:@"加密后卡密:%s\n磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetEncryptPin(),MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alert show];
+            return;
+        }
+        else if(self.sessionType== SESSION_POS_DOWNLOAD_PARAM)
+        {
+            
+            self.statusStr = @"获取参数成功";
+            //self.statusStr=[NSString stringWithFormat:@"获取%@成功",[UIUtils GB2312_To_UTF8:MiniPosSDKGetParamName()]];
+            
             return;
         }
         else if(self.sessionType== SESSION_POS_UPLOAD_PARAM)
         {
             
-            self.statusStr = @"获取参数成功";
-            //self.statusStr=[NSString stringWithFormat:@"获取%@成功",[UIUtils GB2312_To_UTF8:MiniPosSDKGetParamName()]];
+            self.statusStr = @"上传参数成功";
             return;
         }
+
         
        // self.statusStr = [NSString stringWithFormat:@"%@ [%@ %@]",self.statusStr,self.codeString,self.displayString];
     }
@@ -1048,7 +1052,7 @@ static void MiniPosSDKResponce(void *userData,
         [self showTipView:self.statusStr];
     }
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"上传参数成功"]]) {
         
         hasSettedParam = true;
     }

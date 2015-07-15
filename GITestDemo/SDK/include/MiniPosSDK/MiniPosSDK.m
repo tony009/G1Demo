@@ -54,9 +54,11 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
 int ReadPosData(unsigned char *data, int datalen);
 struct _DeviceDriverInterface *gInterface = NULL;
 
-static unsigned char gSDKMerchantCode[16];
-static unsigned char gSDKTerminalCode[9];
-static unsigned char gSDKOperator[3];
+static unsigned char gSDKMerchantCode[16] = "898100012340003";
+static unsigned char gSDKTerminalCode[9] = "10700028";
+static unsigned char gSDKOperator[3] = "01";
+static unsigned char gSDKIp[15]; //服务器ip
+static int gSDKPort; //服务器端口
 static void* gUserData = NULL;
 
 static SDKResponceFunc gResponseFun = NULL;
@@ -627,7 +629,7 @@ int MiniPosSDKSetParam(const char* syscode, const char* paramname, const char* p
         return -1;
     }
     gWaitConfirm = 0;
-    gSessionPos = SESSION_POS_DOWNLOAD_PARAM;
+    gSessionPos = SESSION_POS_UPLOAD_PARAM;
     memset((char*)gInputParam, 0x00, sizeof(gInputParam));
     strcpy((char*)gInputParam, paramname);
     strcpy((char*)gInputParam + strlen(paramname) + 1, paramvalue);
@@ -810,7 +812,7 @@ int DealLogOut()
     return 0;
 }
 
-int DealDownParam()
+int DealUploadParam()
 {
     int len;
     unsigned char* paramname = NULL;
@@ -1366,9 +1368,6 @@ static void DealSendPack()
         case SESSION_POS_SETTLE:
             DealSettleTrade();
             return;
-        case SESSION_POS_DOWNLOAD_PARAM:
-            DealDownParam();
-            return;
         case SESSION_POS_GET_DEVICE_INFO:
             if(DealGetDeviceInfo() >= 0)
             {
@@ -1402,6 +1401,9 @@ static void DealSendPack()
         case SESSION_POS_DOWN_PRO:
             DealDownPro();
             break;
+        case SESSION_POS_DOWNLOAD_PARAM:
+            DealDownParam();
+            return;
         case SESSION_POS_UPLOAD_PARAM:
             if(DealUploadParam() >= 0)
             {
@@ -2009,29 +2011,6 @@ void Crc16CCITT(const unsigned char *pbyDataIn, unsigned long dwDataLen, unsigne
 
 
 
-/*******************************************************************
- 函数名称: void BcdToAsc(u8 *Dest,u8 *Src,u32 Len)
- 函数功能: 将压缩BCD码转换为ascii码
- 入口参数: 1.ascii码地址; 2.压缩BCD数组地址; 3.Bcd码字节个数
- 返 回 值: 无
- 相关调用:
- 备    注: Dest地址为Len的两倍
- 修改信息:
- ********************************************************************/
-void BcdToAsc(char *Dest,char *Src,int Len){
-    
-}
-
-/*******************************************************************
- 函数名称: void AscToBcd(u8 *Dest,u8 *Src,u32 Len)
- 函数功能: 将ascii码转换为压缩BCD码
- 入口参数: 1.压缩bcd数组地址; 2.ascii码地址; 3.ascii字节个数
- 返 回 值: 无
- 相关调用:
- 备    注: 末尾不够补0x00,非ascii码填0x00
- 修改信息:
- ********************************************************************/
-void AscToBcd(char *Dest,const char *Src,int Len);
 
 
 /************************************************************
@@ -2067,6 +2046,10 @@ int MiniPosSDKRemoveDelegate(void *userData){
  参数3（是否使用SSL）       int  0：不使用 1：使用
  *************************************************************/
 int MiniPosSDKSetPostCenterParam(const char *host, int port, int isUseSSL){
+    
+    memset((char*)gSDKIp, 0x00, sizeof(gSDKIp));
+    strncpy((char*)gSDKIp, host, 15);
+    gSDKPort = port;
     return 0;
 }
 
@@ -2644,9 +2627,9 @@ int DealDownPro()
 //    
 //    return 0;
 //}
+;
 
-
-int DealUploadParam()
+int DealDownParam()
 {
     int len;
     
@@ -2744,6 +2727,8 @@ int DealUploadParam()
  **返回值: >= 0:成功； < 0:失败。
  **备注:异步调用，返回状态在回调函数中。
  */
+//SESSION_POS_DOWN_PRO,					//下载参数
+//SESSION_POS_UPLOAD_PARAM
 int MiniPosSDKGetParams(const char* syscode, const char* paramname)
 {
     if(gSessionPos != SESSION_POS_UNKNOWN)
@@ -2758,7 +2743,7 @@ int MiniPosSDKGetParams(const char* syscode, const char* paramname)
     memset((char*)gInputParam, 0x00, sizeof(gInputParam));
     strncpy((char*)gInputParam, syscode, 8);
     strncpy((char*)&gInputParam[9], paramname, 30);
-    gSessionPos = SESSION_POS_UPLOAD_PARAM;
+    gSessionPos = SESSION_POS_DOWNLOAD_PARAM;
     gTimeOut = MAX_POS_TIMEOUT;
     if(MiniPosSDKTestConnect() < 0)
     {

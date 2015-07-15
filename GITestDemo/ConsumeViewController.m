@@ -194,7 +194,7 @@
     [super recvMiniPosSDKStatus];
     
     
-    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"下载参数成功"]]) {
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"上传参数成功"]]) {
         
         
         NSLog(@"------------");
