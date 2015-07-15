@@ -39,7 +39,6 @@
 		96C5608E1A24606C00A25290 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5608C1A24606C00A25290 /* BaseViewController.m */; };
 		96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C560951A24673500A25290 /* DeviceConfigViewController.m */; };
 		96C5609C1A246EB300A25290 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5609B1A246EB300A25290 /* HomeViewController.m */; };
-		96C5609E1A24877000A25290 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C5609D1A24877000A25290 /* openssl.framework */; };
 		96D6F8131A2C64E900CCD0B5 /* btn_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7F51A2C64E900CCD0B5 /* btn_audio.png */; };
 		96D6F8151A2C64E900CCD0B5 /* btn_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7F71A2C64E900CCD0B5 /* btn_back.png */; };
 		96D6F8161A2C64E900CCD0B5 /* btn_background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D6F7F81A2C64E900CCD0B5 /* btn_background1.png */; };
@@ -162,8 +161,6 @@
 		9C84DA041AE642DD00A5124E /* MHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA031AE642DD00A5124E /* MHTextField.m */; };
 		9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C84DA061AE6516A00A5124E /* DemoTextField.m */; };
 		9C84DA091AE7323200A5124E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C84DA081AE7323200A5124E /* Localizable.strings */; };
-		9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7721AD3B138001639C5 /* CoreLocation.framework */; };
-		9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C96C7761AD3B150001639C5 /* Security.framework */; };
 		9C9D4A851A84A780001ADA4B /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */; };
 		9C9D4A861A84A780001ADA4B /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D4A841A84A780001ADA4B /* SIAlertView.m */; };
 		9CA301101B4513BE002E316E /* UIColor+KVNContrast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA300F81B4513BE002E316E /* UIColor+KVNContrast.m */; };
@@ -173,11 +170,11 @@
 		9CA301141B4513BE002E316E /* KVNProgressConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA301011B4513BE002E316E /* KVNProgressConfiguration.m */; };
 		9CA3011B1B4513BE002E316E /* KVNProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA3010E1B4513BE002E316E /* KVNProgressView.xib */; };
 		9CDE711E1B56581F00B0EE0A /* LPPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE711D1B56581F00B0EE0A /* LPPopup.m */; };
-		9CDE71911B567C2600B0EE0A /* libG1SDKLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CDE71901B567C2600B0EE0A /* libG1SDKLibrary.a */; };
 		9CE6623C1A40464800B13444 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6623B1A40464800B13444 /* FTPManager.m */; };
 		9CE662461A416F3B00B13444 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662451A416F3B00B13444 /* ServerManager.m */; };
 		9CE662491A4177FE00B13444 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE662481A4177FE00B13444 /* AsyncSocket.m */; };
 		9CE6624B1A4413D800B13444 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE6624A1A4413D800B13444 /* 152.png */; };
+		9CEE53871B56B27E00B71ECC /* libG1SDKlibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE53861B56B27E00B71ECC /* libG1SDKlibrary.a */; };
 		9CF64D401B0C58E700DB2B84 /* json-array-of-city.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CF64D3F1B0C58E700DB2B84 /* json-array-of-city.json */; };
 		9CF64D421B0C58F000DB2B84 /* json-array-of-province.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CF64D411B0C58F000DB2B84 /* json-array-of-province.json */; };
 		9CF64D451B0D8C8F00DB2B84 /* des.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF64D431B0D8C8F00DB2B84 /* des.m */; };
@@ -257,7 +254,6 @@
 		96C560951A24673500A25290 /* DeviceConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DeviceConfigViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		96C5609A1A246EB300A25290 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		96C5609B1A246EB300A25290 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		96C5609D1A24877000A25290 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		96D6F7F51A2C64E900CCD0B5 /* btn_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_audio.png; sourceTree = "<group>"; };
 		96D6F7F71A2C64E900CCD0B5 /* btn_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back.png; sourceTree = "<group>"; };
 		96D6F7F81A2C64E900CCD0B5 /* btn_background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_background1.png; sourceTree = "<group>"; };
@@ -401,11 +397,6 @@
 		9C8148091B4F626500C5E48A /* 银联.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "银联.png"; sourceTree = "<group>"; };
 		9C81480A1B4F626500C5E48A /* 英文.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "英文.png"; sourceTree = "<group>"; };
 		9C81480D1B4F62AC00C5E48A /* 签名底板.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签名底板.png"; sourceTree = "<group>"; };
-		9C8148111B4F6A4D00C5E48A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		9C8148131B4F6A5700C5E48A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		9C8148151B4F6A6B00C5E48A /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
-		9C8148171B4F6A7800C5E48A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		9C8148191B4F6A9000C5E48A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9C82E9141B3C01C9001F24DC /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
 		9C82E9161B3C03B3001F24DC /* 箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头.png"; sourceTree = "<group>"; };
 		9C84DA021AE642DD00A5124E /* MHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTextField.h; sourceTree = "<group>"; };
@@ -413,8 +404,6 @@
 		9C84DA051AE6516A00A5124E /* DemoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTextField.h; sourceTree = "<group>"; };
 		9C84DA061AE6516A00A5124E /* DemoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTextField.m; sourceTree = "<group>"; };
 		9C84DA081AE7323200A5124E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		9C96C7721AD3B138001639C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9C96C7761AD3B150001639C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C9D4A821A84A780001ADA4B /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SIAlertView.bundle; sourceTree = "<group>"; };
 		9C9D4A831A84A780001ADA4B /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
@@ -432,7 +421,6 @@
 		9CA3010E1B4513BE002E316E /* KVNProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KVNProgressView.xib; sourceTree = "<group>"; };
 		9CDE711C1B56581F00B0EE0A /* LPPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPopup.h; sourceTree = "<group>"; };
 		9CDE711D1B56581F00B0EE0A /* LPPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPopup.m; sourceTree = "<group>"; };
-		9CDE71901B567C2600B0EE0A /* libG1SDKLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libG1SDKLibrary.a; sourceTree = "<group>"; };
 		9CE6623A1A40464800B13444 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		9CE6623B1A40464800B13444 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		9CE662441A416F3B00B13444 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
@@ -440,6 +428,7 @@
 		9CE662471A4177FE00B13444 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		9CE662481A4177FE00B13444 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		9CE6624A1A4413D800B13444 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
+		9CEE53861B56B27E00B71ECC /* libG1SDKlibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libG1SDKlibrary.a; sourceTree = "<group>"; };
 		9CF64D3F1B0C58E700DB2B84 /* json-array-of-city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "json-array-of-city.json"; sourceTree = "<group>"; };
 		9CF64D411B0C58F000DB2B84 /* json-array-of-province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "json-array-of-province.json"; sourceTree = "<group>"; };
 		9CF64D431B0D8C8F00DB2B84 /* des.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = des.m; path = ../../des.m; sourceTree = "<group>"; };
@@ -454,13 +443,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C96C7771AD3B150001639C5 /* Security.framework in Frameworks */,
-				9C96C7731AD3B138001639C5 /* CoreLocation.framework in Frameworks */,
 				96C560771A243F8600A25290 /* libc++.dylib in Frameworks */,
-				96C5609E1A24877000A25290 /* openssl.framework in Frameworks */,
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
 				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
-				9CDE71911B567C2600B0EE0A /* libG1SDKLibrary.a in Frameworks */,
+				9CEE53871B56B27E00B71ECC /* libG1SDKlibrary.a in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,15 +519,7 @@
 		96C560211A243A7800A25290 = {
 			isa = PBXGroup;
 			children = (
-				9C8148191B4F6A9000C5E48A /* AVFoundation.framework */,
-				9C8148171B4F6A7800C5E48A /* CoreMotion.framework */,
-				9C8148151B4F6A6B00C5E48A /* SceneKit.framework */,
-				9C8148131B4F6A5700C5E48A /* OpenGLES.framework */,
-				9C8148111B4F6A4D00C5E48A /* CoreTelephony.framework */,
 				9C96C7761AD3B150001639C5 /* Security.framework */,
-				9C96C7741AD3B148001639C5 /* SystemConfiguration.framework */,
-				9C96C7721AD3B138001639C5 /* CoreLocation.framework */,
-				96C5609D1A24877000A25290 /* openssl.framework */,
 				96C560761A243F8600A25290 /* libc++.dylib */,
 				96C560741A243F7A00A25290 /* libstdc++.dylib */,
 				96C560721A243F6800A25290 /* MediaPlayer.framework */,
@@ -668,7 +646,7 @@
 		96C560651A243F2D00A25290 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				9CDE71901B567C2600B0EE0A /* libG1SDKLibrary.a */,
+				9CEE53861B56B27E00B71ECC /* libG1SDKlibrary.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
