@@ -5,37 +5,32 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "iOS Simulator Screen Shot 2015年7月12日 下午2.58.43.png",
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
+      "orientation" : "portrait",
       "idiom" : "iphone",
-      "subtype" : "retina4",
-      "filename" : "iOS Simulator Screen Shot 2015年7月12日 下午3.03.06.png",
+      "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "orientation" : "portrait",
+      "subtype" : "retina4",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "iOS Simulator Screen Shot 2015年7月12日 下午2.58.43-2.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "iOS Simulator Screen Shot 2015年7月12日 下午2.58.43-1.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "iOS Simulator Screen Shot 2015年7月12日 下午3.03.06-1.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }

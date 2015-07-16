@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		963716B81A2D54BB002D34F3 /* ImgTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 963716B71A2D54BB002D34F3 /* ImgTButton.m */; };
 		963716BA1A2D6F44002D34F3 /* icon_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 963716B91A2D6F44002D34F3 /* icon_logo.png */; };
 		963716C21A2D9E7F002D34F3 /* BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 963716BF1A2D9E7F002D34F3 /* BleManager.m */; };
 		963716C31A2D9E7F002D34F3 /* ImazeBT.m in Sources */ = {isa = PBXBuildFile; fileRef = 963716C11A2D9E7F002D34F3 /* ImazeBT.m */; };
@@ -29,7 +28,6 @@
 		96C5604A1A243A7800A25290 /* GITestDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C560491A243A7800A25290 /* GITestDemoTests.m */; };
 		96C5606A1A243F2D00A25290 /* BLEDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5605F1A243F2D00A25290 /* BLEDriver.m */; };
 		96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */; };
-		96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560721A243F6800A25290 /* MediaPlayer.framework */; };
 		96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560741A243F7A00A25290 /* libstdc++.dylib */; };
 		96C560771A243F8600A25290 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C560761A243F8600A25290 /* libc++.dylib */; };
 		96C560851A24606600A25290 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C5607E1A24606600A25290 /* MBProgressHUD.m */; };
@@ -184,8 +182,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		963716B61A2D54BB002D34F3 /* ImgTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgTButton.h; sourceTree = "<group>"; };
-		963716B71A2D54BB002D34F3 /* ImgTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgTButton.m; sourceTree = "<group>"; };
 		963716B91A2D6F44002D34F3 /* icon_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_logo.png; sourceTree = "<group>"; };
 		963716BE1A2D9E7F002D34F3 /* BleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleManager.h; sourceTree = "<group>"; };
 		963716BF1A2D9E7F002D34F3 /* BleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleManager.m; sourceTree = "<group>"; };
@@ -226,8 +222,6 @@
 		96C560631A243F2D00A25290 /* FunctionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionDefine.h; sourceTree = "<group>"; };
 		96C560641A243F2D00A25290 /* MiniPosSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniPosSDK.h; sourceTree = "<group>"; };
 		96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		96C560701A243F5800A25290 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		96C560721A243F6800A25290 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		96C560741A243F7A00A25290 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		96C560761A243F8600A25290 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		96C5607D1A24606600A25290 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -418,7 +412,6 @@
 			files = (
 				96C560771A243F8600A25290 /* libc++.dylib in Frameworks */,
 				96C560751A243F7A00A25290 /* libstdc++.dylib in Frameworks */,
-				96C560731A243F6800A25290 /* MediaPlayer.framework in Frameworks */,
 				9CEE53871B56B27E00B71ECC /* libG1SDKlibrary.a in Frameworks */,
 				96C5606F1A243F3E00A25290 /* CoreBluetooth.framework in Frameworks */,
 			);
@@ -434,15 +427,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		963716B41A2D5447002D34F3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				963716B61A2D54BB002D34F3 /* ImgTButton.h */,
-				963716B71A2D54BB002D34F3 /* ImgTButton.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		963716B51A2D5458002D34F3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,8 +477,6 @@
 				9C96C7761AD3B150001639C5 /* Security.framework */,
 				96C560761A243F8600A25290 /* libc++.dylib */,
 				96C560741A243F7A00A25290 /* libstdc++.dylib */,
-				96C560721A243F6800A25290 /* MediaPlayer.framework */,
-				96C560701A243F5800A25290 /* AudioToolbox.framework */,
 				96C5606E1A243F3E00A25290 /* CoreBluetooth.framework */,
 				96C5602C1A243A7800A25290 /* GITestDemo */,
 				96C560461A243A7800A25290 /* GITestDemoTests */,
@@ -687,7 +669,6 @@
 			isa = PBXGroup;
 			children = (
 				963716B51A2D5458002D34F3 /* Controller */,
-				963716B41A2D5447002D34F3 /* View */,
 			);
 			name = MainDemo;
 			sourceTree = "<group>";
@@ -1109,7 +1090,6 @@
 				96C560961A24673500A25290 /* DeviceConfigViewController.m in Sources */,
 				9C7CA8EA1A53A4AF0067377C /* UIButton+AFNetworking.m in Sources */,
 				9C7CA8E41A53A4AF0067377C /* AFURLRequestSerialization.m in Sources */,
-				963716B81A2D54BB002D34F3 /* ImgTButton.m in Sources */,
 				9668E27F1A25D0DC0014FDD8 /* SwipingCardViewController.m in Sources */,
 				963716C31A2D9E7F002D34F3 /* ImazeBT.m in Sources */,
 				96C5609C1A246EB300A25290 /* HomeViewController.m in Sources */,

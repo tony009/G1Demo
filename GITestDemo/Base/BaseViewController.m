@@ -479,18 +479,11 @@ static void MiniPosSDKResponce(void *userData,
         }
         else if(self.sessionType==SESSION_POS_READ_CARD_INFO)
         {
-//            self.statusStr=@"获取磁道信息成功";
-//            NSString *info = [NSString stringWithFormat:@"磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
             return;
         }
         else if(self.sessionType==SESSION_POS_READ_PIN_CARD_INFO)
         {
             self.statusStr=@"获取磁道和密码信息成功";
-//            NSString *info = [NSString stringWithFormat:@"加密后卡密:%s\n磁道二: %s\n磁道三:%s\n磁道一：%s",MiniPosSDKGetEncryptPin(),MiniPosSDKGetTrack2(),MiniPosSDKGetTrack3(),MiniPosSDKGetTrack1()];
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
             return;
         }
         else if(self.sessionType== SESSION_POS_DOWNLOAD_PARAM)
