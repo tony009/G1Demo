@@ -7,7 +7,6 @@
 //
 
 #import "HomeViewController.h"
-#import "ImgTButton.h"
 #import "SwipingCardViewController.h"
 #import "CustomAlertView.h"
 #import "AFNetworking.h"
@@ -18,17 +17,7 @@
 {
     NSTimer *timer;
     NSString *sendValue;
-    BOOL isFirstGetVersionInfo;
-    BOOL isGetDeviceMsgAction;
-    
-    NSString *web_kernel;
-    NSString *web_task;
-    NSString *pos_kernel;
-    NSString *pos_task;
-    NSMutableArray *updateFiles;
-    CustomAlertView *cav;
-    
-    //BOOL hasSettedParam;
+
 }
 @end
 
@@ -36,38 +25,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self _initSubViews];
-    [self initBLESDK];
-    _isNeedAutoConnect = YES;
-    isFirstGetVersionInfo = true;
-
-
     
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-
-- (void)_initSubViews
-{
     
-    NSArray *titArray = @[@"消费交易",@"撤销消费",@"查询余额",@"账户签退",@"资金结算",@"设备信息",@"固件更新",@"账户签到",@"参数更新"];
-    //NSArray *imgArray = @[@"btn_gathring.png",@"btn_cancel.png",@"btn_inquire.png",@"btn_sign_out.png",@"btn_settlement.png",@"btn_equipment.png",@"btn_update.png"];
-    NSArray *imgArray = @[@"12.png",@"13.png",@"18.png",@"17.png",@"14.png",@"15.png",@"16.png",@"签到.png",@"19.png"];
-    for (int i = 0; i < titArray.count; i++) {
-        ImgTButton *button = (ImgTButton *)[self.controlView viewWithTag:i+10];
-        button.imageName = [imgArray objectAtIndex:i];
-        button.titext = [titArray objectAtIndex:i];
+    NSString *shangHuName  = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
+    NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
+    NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
+    
+    
+    if (!host) {
+        [[NSUserDefaults standardUserDefaults] setObject:kPosIP forKey:kHostEditor];
+    }
+    if (!port) {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kPosPort forKey:kPortEditor];
+    }
+    if (!shangHuName) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"周黑鸭" forKey:kShangHuName];
     }
     
+    [[NSUserDefaults standardUserDefaults]synchronize];
     
+    MiniPosSDKInit();
+    MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
+
 }
+
+
+
+
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -76,19 +61,8 @@
     
     MiniPosSDKInit();
     
-    if (isFirstGetVersionInfo) {
-        MiniPosSDKGetDeviceInfoCMD();
-        //isFirstGetVersionInfo = false;
-    }
 
 }
-
-
--(void) viewWillDisappear:(BOOL)animated{
-    //self.navigationController.navigationBar.translucent = YES;
-}
-
-
 
 
 #pragma mark - Navigation
@@ -107,7 +81,7 @@
 
 
 //签到
-- (IBAction)siginAction:(ImgTButton *)sender {
+- (IBAction)siginAction:(UIButton *)sender {
     
 
     if(MiniPosSDKDeviceState()<0){
@@ -115,17 +89,14 @@
         [self showConnectionAlert];
         return;
     }else{
+    
         
-        [self verifyParamsSuccess:^{
+        if(MiniPosSDKPosLogin()>=0)
+        {
             
-            if(MiniPosSDKPosLogin()>=0)
-            {
-                
-                [self showHUD:@"正在签到"];
-                
-            }
+            [self showHUD:@"正在签到"];
             
-        }];
+        }
         
     }
     
@@ -133,7 +104,7 @@
 }
 
 //消费
-- (IBAction)consumeAction:(ImgTButton *)sender {
+- (IBAction)consumeAction:(UIButton *)sender {
  
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
@@ -141,25 +112,19 @@
         return;
     }else{
         
-        [self verifyParamsSuccess:^{
+        if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
             
-            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-                
-                [self performSegueWithIdentifier:@"xiaofei" sender:self];
-                
-            }else{
-                [self showTipView:@"设备繁忙，稍后再试"];
-            }
+            [self performSegueWithIdentifier:@"xiaofei" sender:self];
             
-        }];
-        
-        
+        }else{
+            [self showTipView:@"设备繁忙，稍后再试"];
+        }
         
     }
     
 }
 //撤销
-- (IBAction)unconsumeAction:(ImgTButton *)sender {
+- (IBAction)unconsumeAction:(UIButton *)sender {
     
     
     if(MiniPosSDKDeviceState()<0){
@@ -167,25 +132,21 @@
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
+        
+        NSString *pingZhengHao = [[NSUserDefaults standardUserDefaults] objectForKey:KLastPingZhengHao];
+        
+        if (!pingZhengHao || [pingZhengHao isEqualToString:@""]) {
+            [self showTipView:@"没有可以撤销的交易"];
             
+            return ;
+        }
+        
+        if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
             
-            NSString *pingZhengHao = [[NSUserDefaults standardUserDefaults] objectForKey:KLastPingZhengHao];
-            
-            if (!pingZhengHao || [pingZhengHao isEqualToString:@""]) {
-                [self showTipView:@"没有可以撤销的交易"];
-                
-                return ;
-            }
-            
-            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-                
-                [self performSegueWithIdentifier:@"chexiao" sender:self];
-            }else {
-                [self showTipView:@"设备繁忙，稍后再试"];
-            }
-            
-        }];
+            [self performSegueWithIdentifier:@"chexiao" sender:self];
+        }else {
+            [self showTipView:@"设备繁忙，稍后再试"];
+        }
         
     }
     
@@ -200,30 +161,19 @@
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
-            
-            if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-                
-                [self performSegueWithIdentifier:@"chaxun" sender:self];
-                
-            }
-            
-            if(MiniPosSDKQuery()>=0)
-            {
-                NSLog(@"正在查询余额...");
-            }
-        }];
         
-//                    if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
-//        
-//                        [self performSegueWithIdentifier:@"chaxun" sender:self];
-//        
-//                    }
-//        
-//                    if(MiniPosSDKQuery()>=0)
-//                    {
-//                        NSLog(@"正在查询余额...");
-//                    }
+        
+        if (MiniPosSDKGetCurrentSessionType()== SESSION_POS_UNKNOWN) {
+            
+            [self performSegueWithIdentifier:@"chaxun" sender:self];
+            
+        }
+        
+        if(MiniPosSDKQuery()>=0)
+        {
+            NSLog(@"正在查询余额...");
+        }
+
         
     }
     
@@ -231,56 +181,45 @@
     
 }
 //签退
-- (IBAction)sginOutAction:(ImgTButton *)sender {
+- (IBAction)sginOutAction:(UIButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
-            
-            if(MiniPosSDKPosLogout()>=0)
-            {
-                [self showHUD:@"正在签退..."];
-            }
-            
-        }];
+
         
-//        if(MiniPosSDKPosLogout()>=0)
-//        {
-//            [self showHUD:@"正在签退..."];
-//        }
+        if(MiniPosSDKPosLogout()>=0)
+        {
+            [self showHUD:@"正在签退..."];
+        }
     }
     
     
 
 }
 //结算
-- (IBAction)payoffAction:(ImgTButton *)sender {
+- (IBAction)payoffAction:(UIButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
-            if(MiniPosSDKSettleTradeCMD(NULL)>=0)
-            {
-                [self showHUD:@"正在结算..."];
-            }
-        }];
-//        if(MiniPosSDKSettleTradeCMD(NULL)>=0)
-//        {
-//            [self showHUD:@"正在结算..."];
-//        }
+
+        if(MiniPosSDKSettleTradeCMD(NULL)>=0)
+        {
+            [self showHUD:@"正在结算..."];
+        }
+        
     }
     
     
 
 }
 //更新参数
-- (IBAction)updataKeyAction:(ImgTButton *)sender {
+- (IBAction)updataKeyAction:(UIButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
         [self showConnectionAlert];
@@ -291,13 +230,10 @@
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
-        NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
+        NSString *sn = @"G1000100130";
+        NSString *phoneNo = @"13202264038";
         NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
         NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
-        NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
-        
-        
-        
         NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800364",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
         NSLog(@"url:%@",url);
         
@@ -346,16 +282,8 @@
 }
 
 
-//- (void)showConnectionAlert{
-//    
-//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"设备未连接" message:@"点击跳转设备连接界面" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-//    alertView.tag = 44;
-//    [alertView show];
-//    
-//}
 
-
-- (IBAction)getDeviceMsgAction:(ImgTButton *)sender {
+- (IBAction)getDeviceMsgAction:(UIButton *)sender {
     
     if(MiniPosSDKDeviceState()<0){
         //[self showTipView:@"设备未连接"];
@@ -363,13 +291,11 @@
         [self showConnectionAlert];
         return;
     }else {
-        [self verifyParamsSuccess:^{
-            if(MiniPosSDKGetDeviceInfoCMD()>=0)
-            {
-                [self showHUD:@"正在获取设备信息"];
-                isGetDeviceMsgAction = true;
-            }
-        }];
+        
+        if(MiniPosSDKGetDeviceInfoCMD()>=0)
+        {
+            [self showHUD:@"正在获取设备信息"];
+                    }
     }
     
 
@@ -383,110 +309,10 @@
 }
 
 
-//从服务器下载版本文件
-- (void)downloadWebVersionFile{
-    
-    if(isFirstGetVersionInfo==false){
-        [self showHUD:@"正在从服务器获取版本信息"];
-    }
-    
-    // 1
-    NSString *baseURLString = @"http://120.24.213.123/app/version.json";
-    NSURL *url = [NSURL URLWithString:baseURLString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    // 2
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    //operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/version.json"];
-    
-    operation.inputStream = [NSInputStream inputStreamWithURL:url];
-    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:str append:NO];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [self hideHUD];
-    
-        
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]initWithContentsOfFile:str] options:kNilOptions error:NULL];
-        
-        NSLog(@"%@",dictionary);
-        
-        NSDictionary *g1 = dictionary[@"G1"];
-        
-        web_kernel = g1[@"kernel"];
-        web_task = g1[@"task"];
-        
-        NSString *message = [NSString stringWithFormat:@"web_kernel:%@\nweb_task:%@",web_kernel,web_task];
-        
-        NSLog(@"message:%@",message);
-        
-        
-        //成功就获取本地版本号
-        [self getPosVersionInfo];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failure");
-        [self hideHUD];
-        [self showTipView:@"获取失败,请检查网络"];
-        
-    }];
-    
-    // 5
-    [operation start];
-    
-    
-}
 
 
-//从POS机获取版本信息
-- (void)getPosVersionInfo{
-    
-    //MiniPosSDKGetDeviceInfoCMD();
-    
-    if(pos_kernel && pos_task){
-        [self compareVersionInfo];
-    }
-}
 
-//比较版本信息
-- (void)compareVersionInfo{
-    
-    updateFiles = [[NSMutableArray alloc]init];
-    
-    
-    if ([pos_kernel compare:web_kernel options:NSNumericSearch] == NSOrderedAscending) {
-        [updateFiles addObject:@"kernel"];
-    }
-    
-    if ([pos_task compare:web_task options:NSNumericSearch] == NSOrderedAscending)
-    {
-        [updateFiles addObject:@"task"];
-    }
-    
 
-    if([updateFiles count]>0){
-        
-        NSString *info = [NSString stringWithFormat:@"有%i个文件需要更新，预计耗时%i分钟",[updateFiles count],[updateFiles count]*5];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定更新", nil];
-        
-        [alert show];
-        
-    }else if(isFirstGetVersionInfo==false){
-        
-        NSString *info = [NSString stringWithFormat:@"您的软件是最新版本"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NULL message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-    }
-    
-    isFirstGetVersionInfo = false;
-    
-    
-}
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -500,131 +326,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
             [self.navigationController pushViewController:cdvc animated:YES];
             //[self presentViewController:cdvc animated:YES completion:nil];
         }
-    }else{
-        if (buttonIndex ==1) {
-            [self downloadFromWebAndTransmitToPos ];
-        }
-    }
-    
-    
-}
-
-//
-- (void)downloadFromWebAndTransmitToPos{
-    
-    
-    
-    if ([updateFiles count]>0) {
-        
-        cav = [[CustomAlertView alloc]init];
-        
-        //[self.view addSubview:cav];
-        [cav show];
-        
-        [self download:updateFiles[0] CompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //NSLog(@"download %@ success",updateFiles[0]);
-            if ([updateFiles count] >1) {
-                [self download:updateFiles[1] CompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
-                    MiniPosSDKDownPro();
-                    
-                    [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
-                    
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                        //DownThread((__bridge void*)cav,updateFiles);
-                        
-                        [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
-                        
-
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [cav dismiss];
-                        });
-                        
-                    });
-                    
-
-                    
-                }];
-            }else{
-                
-                MiniPosSDKDownPro();
-                
-                [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    //DownThread((__bridge void*)cav,updateFiles);
-                    
-                    [ [ UIApplication sharedApplication] setIdleTimerDisabled:NO ] ;
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [cav dismiss];
-                    });
-                    
-                });
-                
-                
-            }
-            
-        }];
-    }else{
-        
-        //[self showTipView:@"您的软件是最新版本"];
     }
     
 }
 
 
-- (void)download:(NSString *)fileName CompletionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success{
-    
-    if (fileName ==nil) {
-        return;
-    }
-    
-        NSString *baseURLString = [NSString stringWithFormat:@"http://120.24.213.123/app/%@",fileName];
-        NSURL *baseURL = [NSURL URLWithString:baseURLString];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:baseURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-        
-        NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
-        NSLog(@"%@",baseURLString);
-        NSLog(@"%@",str);
-        
-        operation.inputStream = [NSInputStream inputStreamWithURL:baseURL];
-        operation.outputStream = [NSOutputStream outputStreamToFileAtPath:str append:NO];
-        
-        
-        
-        [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-            NSLog(@"%@ is download：%f",fileName, (float)totalBytesRead/totalBytesExpectedToRead);
-            //self.progressView set
-            float progress = (float)totalBytesRead/totalBytesExpectedToRead;
-            
-            
-            [cav updateProgress:progress];
-            [cav updateTitle:[NSString stringWithFormat:@"正在下载%@",fileName]];
-             
-            
-             }];
-            
-            //NSString *filePath = [NSString alloc]in
-            
-            [operation setCompletionBlockWithSuccess:success failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"failure");
-            }];
-            
-            [operation start];
-    
-    
-            NSLog(@"download,%@",fileName);
-    
-  
-}
-
-
-
-#pragma mark - 
 #pragma mark - 复写接受方法
 - (void)recvMiniPosSDKStatus
 {
@@ -664,7 +370,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     if ([self.statusStr isEqualToString:@"获取设备信息成功"] ) {
         
         
-        if (isGetDeviceMsgAction) {
+        
             
             [self hideHUD];
             
@@ -683,22 +389,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
             salertView.transitionStyle = SIAlertViewTransitionStyleSlideFromTop;
             [salertView show];
             
-            isGetDeviceMsgAction = false;
-        }else{
-            
-            pos_kernel = [NSString stringWithCString:MiniPosSDKGetCoreVersion() encoding:NSASCIIStringEncoding];
-            pos_task = [NSString stringWithCString:MiniPosSDKGetAppVersion() encoding:NSASCIIStringEncoding];
-            
-            NSString *message = [NSString stringWithFormat:@"pos_kernel:%@\npos_task:%@",pos_kernel,pos_task];
-            
-        
-            NSLog(@"message:%@",message);
-            
-            [self downloadWebVersionFile];
 
-        }
-
-        
     }
     
     
@@ -715,8 +406,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 
     
     if ([self.statusStr isEqualToString:@"设备未连接"]) {
-        [self bleConnectAction];
-
+       
     }
     
     if ([self.statusStr isEqualToString:@"获取参数成功"]) {
@@ -748,7 +438,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         [self showTipView:self.statusStr];
     }
     
-    if ([self.statusStr isEqualToString:@"获取设备信息响应超时"] && isGetDeviceMsgAction) {
+    if ([self.statusStr isEqualToString:@"获取设备信息响应超时"] ) {
         [self hideHUD];
         [self showTipView:self.statusStr];
     }
@@ -765,14 +455,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-- (void)bleConnectAction {
-    
-    DeviceDriverInterface *t;
-    t=GetBLEDeviceInterface();
-    MiniPosSDKRegisterDeviceInterface(t);
-    
-}
 
 
 

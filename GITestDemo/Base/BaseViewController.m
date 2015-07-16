@@ -13,7 +13,7 @@
 #import "ConnectDeviceViewController.h"
 #import "AFNetworking.h"
 #include "des.h"
-#import "KVNProgress.h"
+
 
 @interface BaseViewController ()
 {
@@ -138,141 +138,6 @@ static char parse(char c) {
     
 }
 
-//验证pos端的参数，成功后执行block
-- (void) verifyParamsSuccess:(void (^)())success{
-    {
-        
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        
-        NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
-        NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
-        NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
-        NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
-        
-        
-        
-        NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800003",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
-        NSLog(@"url:%@",url);
-        
-        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            NSLog(@"responseObject:%@",responseObject);
-            NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
-            
-            int code = [responseObject[@"resultMap"][@"code"]intValue];
-            
-            if (code == 3 ) {
-                
-                [self showHUD:@"正在写入参数"];
-                
-                
-                NSString *mainKey  = [self decryptMainKey:responseObject[@"resultMap"][@"tmk"]];
-                NSString *tid = responseObject[@"resultMap"][@"tid"];
-                NSString *mid = responseObject[@"resultMap"][@"mid"];
-                NSLog(@"mainKey:%@",mainKey);
-                
-                NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
-                
-                [self setPosWithParams:dictionary success:^{
-                    if(MiniPosSDKPosLogin()>=0)
-                    {
-                        
-                        [self showHUD:@"正在签到"];
-                        
-                    }
-                }];
-                
-                [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];
-                [[NSUserDefaults standardUserDefaults]setObject:tid forKey:kMposG1TerminalNo];
-                [[NSUserDefaults standardUserDefaults]setObject:mainKey forKey:kMposG1MainKey];
-                [[NSUserDefaults standardUserDefaults]synchronize];
-                
-                
-                
-            }else  if (code == 0 ) {
-                
-                
-                success();
-                
-            }else if(code == 4){
-                
-                
-                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                
-                NSString *sn = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1SN];
-                NSString *merchantNo  = [[NSUserDefaults standardUserDefaults] stringForKey:kMposG1MerchantNo];
-                NSString *terminalNo  = [[NSUserDefaults standardUserDefaults]stringForKey:kMposG1TerminalNo];
-                NSString *phoneNo = [[NSUserDefaults standardUserDefaults] stringForKey:kLoginPhoneNo];
-                
-                
-                
-                NSString *url = [NSString stringWithFormat:@"http://%@:%@/MposApp/keyIssued.action?sn=%@&user=%@&mid=%@&tid=%@&flag=0800364",kServerIP,kServerPort,sn,phoneNo,merchantNo,terminalNo];
-                NSLog(@"url:%@",url);
-                
-                [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
-                    NSLog(@"responseObject:%@",responseObject);
-                    NSLog(@"msg:%@",responseObject[@"resultMap"][@"msg"]);
-                    
-                    int code = [responseObject[@"resultMap"][@"code"]intValue];
-                    
-                    if (code == 3 ) {
-                        
-                        [self showHUD:@"正在写入参数"];
-                        
-                        
-                        NSString *mainKey  = [self decryptMainKey:responseObject[@"resultMap"][@"tmk"]];
-                        NSString *tid = responseObject[@"resultMap"][@"tid"];
-                        NSString *mid = responseObject[@"resultMap"][@"mid"];
-                        NSLog(@"mainKey:%@",mainKey);
-                        
-                        NSDictionary *dictionary = @{@"商户号":mid,@"终端号":tid,@"主密钥1":mainKey};
-                        
-                        [self setPosWithParams:dictionary success:^{
-                            if(MiniPosSDKPosLogin()>=0)
-                            {
-                                
-                                [self showHUD:@"正在签到"];
-                                
-                            }
-
-                        }];
-                        
-                        [[NSUserDefaults standardUserDefaults]setObject:mid forKey:kMposG1MerchantNo];
-                        [[NSUserDefaults standardUserDefaults]setObject:tid forKey:kMposG1TerminalNo];
-                        [[NSUserDefaults standardUserDefaults]setObject:mainKey forKey:kMposG1MainKey];
-                        [[NSUserDefaults standardUserDefaults]synchronize];
-                        
-                        
-                        
-                    }else{
-                        
-                        [self showTipView:responseObject[@"resultMap"][@"msg"]];
-                    }
-                    
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    
-                    [self hideHUD];
-                    NSLog(@"failure");
-                    [self showTipView:@"网络异常"];
-                }];
-                
-            }else{
-                
-                [self showTipView:responseObject[@"resultMap"][@"msg"]];
-            }
-            
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            [self hideHUD];
-            NSLog(@"failure");
-            [self showTipView:@"网络异常"];
-        }];
-    }
-}
 
 
 - (void)showConnectionAlert{
@@ -372,24 +237,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 - (void)initBLESDK{
     
     NSString *shangHuName  = [[NSUserDefaults standardUserDefaults] objectForKey:kShangHuName];
-    NSString *shangHu = [[NSUserDefaults standardUserDefaults] stringForKey:kShangHuEditor];
-    NSString *zhongDuan = [[NSUserDefaults standardUserDefaults] stringForKey:kZhongDuanEditor];
-    NSString *caoZhuoYuan = [[NSUserDefaults standardUserDefaults] stringForKey:kCaoZhuoYuanEditor];
     NSString *host = [[NSUserDefaults standardUserDefaults] stringForKey:kHostEditor];
     NSString *port = [[NSUserDefaults standardUserDefaults] stringForKey:kPortEditor];
     
     
-    if (!shangHu) {
-        shangHu  = @"898100012340003";
-    }
-    if (!zhongDuan) {
-        zhongDuan = @"10700028";
-    }
-    if (!caoZhuoYuan) {
-        caoZhuoYuan = @"01";
-    }
     if (!host) {
-        //host = @"122.112.12.25";
         [[NSUserDefaults standardUserDefaults] setObject:kPosIP forKey:kHostEditor];
     }
     if (!port) {
@@ -403,8 +255,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     MiniPosSDKInit();
-    NSLog(@"LoginViewController-host:%s,port:%d",host.UTF8String,port.intValue);
-    
     MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
 }
 
@@ -432,20 +282,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     return self;
 }
 
--(void)showProgressWithStatus:(NSString *)status{
-    [KVNProgress showWithStatus:status];
-}
--(void)hideProgressAfterDelaysInSeconds:(float)seconds{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [KVNProgress dismiss];
-    });
-}
--(void)hideProgressAfterDelaysInSeconds:(float)seconds withCompletion:(void (^)())completion{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [KVNProgress dismiss];
-        completion();
-    });
-}
 
 - (void)viewDidLoad
 {
@@ -462,10 +298,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
         self.navigationItem.leftBarButtonItem = leftItem;
     }
-    
-    KVNProgressConfiguration *basicConfiguration = [KVNProgressConfiguration defaultConfiguration];
-    basicConfiguration.fullScreen = YES;
-    [KVNProgress setConfiguration:basicConfiguration];
 
 }
 

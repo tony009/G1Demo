@@ -132,6 +132,7 @@ int MiniPosSDKInit()
 
 int MiniPosSDKRunThread()
 {
+
 	switch(gDealPackStep)
 	{
 	case PACK_STEP_IDLE:

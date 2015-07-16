@@ -91,26 +91,18 @@ static void MiniPosSDKResponce(void *userData,
 
 void testSDK()
 {
-    //第一步，初始化SDK
-    MiniPosSDKInit();
-    
-    //第二步，注册SDK回调函数
-    MiniPosSDKAddDelegate(NULL, MiniPosSDKResponce);
-    
-    //第三步，注册与设备通讯驱动
-    MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
-    
-    //第四步，设置POS中心服务器IP地址，端口号，是否使用SSL
-    MiniPosSDKSetPostCenterParam("172.29.0.102", 8000, 0);
-    
-    //第五步，请求签到
-    MiniPosSDKPosLogin();
-    
-    //请求消费
-    //MiniPosSDKSaleTradeCMD("000000000001", NULL);
-    
-    //请求消费撤销
-    //MiniPosSDKVoidSaleTradeCMD("000000000001", "123456", "NULL");
+ 
+ //第一步，初始化SDK
+ MiniPosSDKInit();
+ 
+ //第二步，注册与设备通讯驱动
+ MiniPosSDKRegisterDeviceInterface(GetBLEDeviceInterface());
+ 
+ //第三步，注册SDK回调函数
+ MiniPosSDKAddDelegate((__bridge void*)self, MiniPosSDKResponce);
+ 
+ //第四步，调用交易请求函数
+ MiniPosSDKPosLogin();
 }
 
 */

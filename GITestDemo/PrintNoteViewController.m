@@ -333,7 +333,7 @@
         [sender setTitle:@"确认" forState:UIControlStateNormal];
         self.ppsSignView.hidden = NO;
         self.uploadButton.hidden = YES;
-        self.navigationController.navigationBarHidden = YES;
+        //self.navigationController.navigationBarHidden = YES;
         NSLog(@"after:%@",sender);
         
     } else {
@@ -342,7 +342,7 @@
         [sender setTitle:@"重签" forState:UIControlStateNormal];
         self.signImgView.image = self.signView.signatureImage;
         self.uploadButton.hidden = NO;
-        self.navigationController.navigationBarHidden = NO;
+        //self.navigationController.navigationBarHidden = NO;
     }
     
     
