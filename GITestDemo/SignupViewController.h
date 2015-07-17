@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Kyson. All rights reserved.
 //
 #import "DemoTextField.h"
-#import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "QRadioButton.h"
 @interface SignupViewController : BaseViewController

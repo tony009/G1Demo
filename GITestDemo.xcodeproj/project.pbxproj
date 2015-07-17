@@ -143,7 +143,6 @@
 		9C4B507C1B3E9FB9003C8F2A /* CustomTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B50781B3E9FB9003C8F2A /* CustomTabBarViewController.m */; };
 		9C4B507D1B3E9FB9003C8F2A /* NSString+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B507A1B3E9FB9003C8F2A /* NSString+HexColor.m */; };
 		9C4B50801B3EA1D6003C8F2A /* FunctionMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B507F1B3EA1D6003C8F2A /* FunctionMenuViewController.m */; };
-		9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6671921A835997004BD24B /* ProtocolViewController.m */; };
 		9C69B5861AD3776A0075B9D9 /* libSystemPrivacySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C69B5841AD3776A0075B9D9 /* libSystemPrivacySDK.a */; };
 		9C6D9D6D1A7F7C9B002A7845 /* icon_list_background3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9D6C1A7F7C9B002A7845 /* icon_list_background3.jpg */; };
 		9C6D9D731A7F99AD002A7845 /* icon_list_background6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C6D9D721A7F99AD002A7845 /* icon_list_background6.jpg */; };
@@ -431,8 +430,6 @@
 		9C4B507A1B3E9FB9003C8F2A /* NSString+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HexColor.m"; sourceTree = "<group>"; };
 		9C4B507E1B3EA1D6003C8F2A /* FunctionMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionMenuViewController.h; sourceTree = "<group>"; };
 		9C4B507F1B3EA1D6003C8F2A /* FunctionMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionMenuViewController.m; sourceTree = "<group>"; };
-		9C6671911A835997004BD24B /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
-		9C6671921A835997004BD24B /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
 		9C69B5841AD3776A0075B9D9 /* libSystemPrivacySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSystemPrivacySDK.a; sourceTree = "<group>"; };
 		9C69B5851AD3776A0075B9D9 /* SystemPrivacySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemPrivacySDK.h; sourceTree = "<group>"; };
 		9C6D9D6C1A7F7C9B002A7845 /* icon_list_background3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_list_background3.jpg; sourceTree = "<group>"; };
@@ -658,8 +655,6 @@
 				963716BC1A2D878A002D34F3 /* CheckResultViewController.m */,
 				9C7CA8B51A53A3870067377C /* UpdateViewController.h */,
 				9C7CA8B61A53A3870067377C /* UpdateViewController.m */,
-				9C6671911A835997004BD24B /* ProtocolViewController.h */,
-				9C6671921A835997004BD24B /* ProtocolViewController.m */,
 				9C039AA71ADFA9800010FB72 /* SignupViewController.h */,
 				9C039AA81ADFA9800010FB72 /* SignupViewController.m */,
 			);
@@ -1501,7 +1496,6 @@
 				9C84DA071AE6516A00A5124E /* DemoTextField.m in Sources */,
 				9C82CE531B26D7DE00F21F21 /* EntBankInfoViewController.m in Sources */,
 				9C4B50561B3D55F7003C8F2A /* WDCalculator.m in Sources */,
-				9C6671931A835997004BD24B /* ProtocolViewController.m in Sources */,
 				9C4B504E1B3D392D003C8F2A /* MainPageViewController.m in Sources */,
 				9C87445E1B043FF8002CC526 /* MerchantInfoViewController.m in Sources */,
 				9C7CA8E31A53A4AF0067377C /* AFURLConnectionOperation.m in Sources */,

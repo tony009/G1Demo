@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Kyson. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "MiniPosSDK.h"
 #include "BLEDriver.h"
