@@ -76,8 +76,8 @@
 //#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
 //#define kPosIP @"122.112.12.20"
 
-//#define DEBUG false
-#define DEBUG true
+#define DEBUG false
+//#define DEBUG true
 
 
 
