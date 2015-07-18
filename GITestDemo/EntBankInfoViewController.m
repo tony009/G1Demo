@@ -164,7 +164,7 @@
     NSLog(@" self.settleAccno.text:%@",self.settleAccno.text);
     NSLog(@"self.accName.text:%@",self.accName.text);
     
-    NSDictionary *parameters = @{@"merType": @"5",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"linkMan":pivc.name.text,@"linkPhone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":@"20240404",@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":self.settleBank.text};
+    NSDictionary *parameters = @{@"merType": @"5",@"passwd":pivc.password.text,@"areaCode":mivc.areaCode,@"lawMan":pivc.name.text,@"phone":phoneNo,@"linkMan":pivc.name.text,@"linkPhone":phoneNo,@"certType":@"1",@"certNo":pivc.ID.text,@"certExpdate":pivc.certExpdate.text,@"mchAddr":mivc.address.text,@"accountType":self.accountType.text,@"isPrivate":self.isPrivate.text,@"bankName":self.bankName.text,@"province":self.province.text,@"city":self.city.text,@"bankBranch":self.bankBranch.text,@"settleAccno":self.settleAccno.text,@"accName":self.accName.text,@"sn":mivc.sn.text,@"settleBank":self.settleBank.text};
     
     
     NSLog(@"parameters:%@",parameters);

@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *rePassword; //确认密码
 @property (strong, nonatomic) IBOutlet UITextField *name; //姓名
 @property (strong, nonatomic) IBOutlet UITextField *ID; //身份证
+@property (strong, nonatomic) IBOutlet UITextField *certExpdate; //身份证有效期
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoFront; //身份证正面
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoBack;  //身份证背面
 @property (strong, nonatomic) IBOutlet UIButton *IDPhotoAndPerson; //法人手持正面

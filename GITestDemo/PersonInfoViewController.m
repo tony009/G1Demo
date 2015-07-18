@@ -156,6 +156,9 @@
     }else if (![UIUtils isCorrectID:self.ID.text]) {
         [self showTipView:@"请输入正确的身份证号码"];
         return;
+    }else if ([UIUtils isEmptyString:self.certExpdate.text]) {
+        [self showTipView:@"请输入正确的身份证有效期"];
+        return;
     }else if ([UIUtils isEmptyString:self.imagePath1]){
         [self showTipView:@"请选择身份证正面照"];
         return;
