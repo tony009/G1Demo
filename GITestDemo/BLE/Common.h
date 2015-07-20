@@ -49,6 +49,7 @@
 #define kSignUpPhoneNo @"SignUpPhoneNo" //注册时验证通过的手机号码
 #define kLoginPhoneNo @"LoginPhoneNo" //登录成功的手机号码
 #define KPassword @"Password" //登录成功的密码
+#define kHasSignedIn @"HasSignedIn" //用户登录成功后是否签到
 
 #define kMposG1SN @"SnNo"  //mposSN号
 #define kMposG1TerminalNo @"TerminalNo" //mpos终端号

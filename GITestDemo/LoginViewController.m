@@ -258,6 +258,7 @@
                 
                 [[NSUserDefaults standardUserDefaults] setObject:self.phoneNo.text forKey:kLoginPhoneNo];
                 [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:KPassword];
+                [[NSUserDefaults standardUserDefaults] setBool:false forKey:kHasSignedIn];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 //[self performSegueWithIdentifier:@"loginToHome" sender:self];

@@ -78,6 +78,18 @@
     
 }
 
+- (void)recvMiniPosSDKStatus
+{
+
+    [super recvMiniPosSDKStatus];
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
+        [self hideHUD];
+        [self showTipView:self.statusStr];
+    }
+}
+
+
 /*
 #pragma mark - Navigation
 

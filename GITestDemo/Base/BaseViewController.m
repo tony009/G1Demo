@@ -19,6 +19,7 @@
 {
     NSTimer *timer;
     BOOL hasSettedParam;
+    BOOL hasDone;
 }
 @end
 
@@ -192,8 +193,45 @@ static char parse(char c) {
                 
             }else  if (code == 0 ) {
                 
+                dispatch_queue_t serial_queue =  dispatch_queue_create("cn.yogia.SDK", DISPATCH_QUEUE_SERIAL);
                 
-                success();
+                
+                BOOL hasSignedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kHasSignedIn];
+                
+
+                if (!hasSignedIn) {
+                    dispatch_async(serial_queue, ^{
+                        hasDone = false;
+                        
+                        if(MiniPosSDKPosLogin()>=0)
+                        {
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self showHUD:@"正在签到"];
+                            });
+                            
+                            
+                        }
+                        
+                        while (hasDone ==false) {
+                            [NSThread sleepForTimeInterval:0.125];
+                        }
+                        
+                        [[NSUserDefaults standardUserDefaults]setBool:true forKey:kHasSignedIn];
+                        NSLog(@"hasDone");
+                    });
+                }
+                
+                dispatch_async(serial_queue, ^{
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        success();
+                    });
+                    
+                });
+                
+                               
+                
                 
             }else if(code == 4){
                 
@@ -1057,6 +1095,10 @@ static void MiniPosSDKResponce(void *userData,
         hasSettedParam = true;
     }
     
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
+        
+        hasDone = true;
+    }
 }
 
 
