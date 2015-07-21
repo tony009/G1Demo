@@ -12,6 +12,7 @@
 #import "PersonInfoViewController.h"
 #import "MerchantInfoViewController.h"
 #import "LoginViewController.h"
+#import "SIAlertView.h"
 @interface BankInfoViewController (){
         NSString *_imageDocPath;
 }
@@ -196,11 +197,19 @@
         
         if(code ==0){
             
-//            //[self presentModalViewController: ViewController animated:YES];
-//            LoginViewController *lvc = [self.storyboard instantiateViewControllerWithIdentifier:@"LOGIN"];
-//            [self presentViewController:lvc animated:YES completion:nil];
-            //[self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            SIAlertView *salertView = [[SIAlertView alloc] initWithTitle:@"提交成功" andMessage:NULL];
+            [salertView addButtonWithTitle:@"确定"
+                                      type:SIAlertViewButtonTypeDefault
+                                   handler:^(SIAlertView *alertView) {
+                                       
+                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+            salertView.cornerRadius = 10;
+            salertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+            salertView.transitionStyle = SIAlertViewTransitionStyleFade;
+            [salertView show];
+            
+            
             
         }
         
