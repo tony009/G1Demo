@@ -87,6 +87,15 @@
         [self hideHUD];
         [self showTipView:self.statusStr];
     }
+    
+    if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到失败"]]) {
+        [self hideHUD];
+        NSLog(@"LoginViewController ----签到失败");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"签到失败！" message:self.displayString delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        
+    }
+    self.statusStr = @"";
 }
 
 

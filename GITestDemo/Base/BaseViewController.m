@@ -1098,6 +1098,7 @@ static void MiniPosSDKResponce(void *userData,
     if ([self.statusStr isEqualToString:[NSString stringWithFormat:@"签到成功"]]) {
         
         hasDone = true;
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:kHasSignedIn];
     }
 }
 
