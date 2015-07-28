@@ -398,7 +398,7 @@
     self.serialQueue = dispatch_queue_create("com.wudi", DISPATCH_QUEUE_SERIAL);
     
   //  NSString *destionation =@"122.112.12.23/mpos";
-    NSString *destionation =@"123.56.106.39/mpos";
+    NSString *destionation =@"123.56.106.39/mpos/hzly";
     NSString *username = @"mpos";
     NSString *password = @"tenmpos123";
     int  port = 2221;
