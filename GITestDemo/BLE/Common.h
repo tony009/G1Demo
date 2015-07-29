@@ -64,11 +64,11 @@
 //#define kDecryptKey "22222222222222222222222222222222"
 
 //腾氏生产
-#define kServerIP @"122.112.12.29" //注册登录的ip
-#define kServerPort @"8081" //注册登录的端口
-#define kPosIP @"122.112.12.24"
-#define kPosPort @"5679"
-#define kDecryptKey "00000003000011650000000300001165"
+//#define kServerIP @"122.112.12.29" //注册登录的ip
+//#define kServerPort @"8081" //注册登录的端口
+//#define kPosIP @"122.112.12.24"
+//#define kPosPort @"5679"
+//#define kDecryptKey "00000003000011650000000300001165"
 
 //铜元
 //#define kServerIP @"122.112.12.20" //注册登录的ip
@@ -76,6 +76,13 @@
 //#define kPosPort @"6889"
 //#define kDecryptKey "01CCA5D0712519DE01CCA5D0712519DE"
 //#define kPosIP @"122.112.12.20"
+
+//广西开创金融
+#define kServerIP @"122.112.12.21" //注册登录的ip
+#define kServerPort @"19288" //注册登录的端口
+#define kPosIP @"122.112.12.21"
+#define kPosPort @"18899"
+#define kDecryptKey "EA4E8D2F609F2B4AEA4E8D2F609F2B4A"
 
 #define DEBUG false
 //#define DEBUG true
