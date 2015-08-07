@@ -611,7 +611,7 @@ static void MiniPosSDKResponce(void *userData,
     {
         if(self.sessionType==SESSION_POS_UNKNOWN)
         {
-            self.statusStr=@"未知";
+            //self.statusStr=@"未知";
         }
         else if(self.sessionType==SESSION_POS_LOGIN)
         {

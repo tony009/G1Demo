@@ -73,6 +73,7 @@ static unsigned char gInputParam[400];
 
 static unsigned char gSDKBuf[800];
 static unsigned char gRecvBuf[800];
+static unsigned short gRecvDownLen = 0;
 static unsigned short gRecvLen = 0;
 static unsigned char gSDKCnt = 0x00;
 static unsigned char gDealPackStep = PACK_STEP_IDLE;
@@ -447,6 +448,224 @@ int DownThread(void *c,NSArray *array)
     return 0;
 }
 
+unsigned short checksum(char* buffer, int size)
+{
+    unsigned long cksum = 0;
+    
+    while(size > 1){
+        cksum += (((unsigned long)*buffer) & 0x000000FF);
+        buffer += 2;
+        size -= sizeof(unsigned short);
+    }
+    
+    if(size){
+        cksum += (((unsigned long)*buffer) & 0x000000FF);
+    }
+    
+    cksum = ((cksum >> 16) & 0x0000FFFF) + (cksum & 0x0000FFFF);  	//将高16bit与低16bit相加
+    cksum += ((cksum >> 16) & 0x0000FFFF);             		//将进位到高位的16bit与低16bit 再相加
+    
+    return (unsigned short)(~cksum);
+}
+
+#define START_MARK "\x55\x55\x55\x55"
+#define END_MARK "\xAA\xAA\xAA\xAA"
+
+typedef struct _strProHead{
+    unsigned char m_version;
+    unsigned char m_headlen;
+    unsigned short m_crc;
+    unsigned short m_type;
+    unsigned short m_status;
+    unsigned short m_attribute;
+    unsigned short m_winsize;//窗口大小，用于快速创送大量数据
+    unsigned short m_cnt;
+    unsigned short m_datalen;
+}strProHead;
+
+typedef struct _strFileInfo{
+    unsigned short m_filecnt;		/* 下载文件总数 */
+    unsigned short m_curfilecnt;	/* 当前下载文件的序号 */
+    unsigned long m_len;			/* 下载文件的长度 */
+    unsigned long m_crc;			/* 下载文件的校验 */
+    unsigned short m_posver;		/* 机器版本标识*/
+    unsigned char m_filename[256];	/* 下载文件名 */
+};
+
+#define MAX_PACKSIZE 1024
+#define REPEAT_TIMES 3
+int judge_recvpack(char* buf, int len)
+{
+    int re = -1;
+    struct _strProHead* heap = (struct _strProHead*)&buf[4];
+    if(len >= sizeof(struct _strProHead) + 4
+       && len >= heap->m_headlen + heap->m_datalen + 4 + 4){
+        re = 0;
+    }
+    
+    return re;
+}
+
+int DownThread1(void *c,NSArray *array)
+{
+    //DownProgram *dlg = (DownProgram*)lPvoid;
+    CustomAlertView *cav = (__bridge CustomAlertView*)c;
+    unsigned char downbuf[4 + 256 + 1024 + 4];
+    unsigned char recvbuf[256];
+    int readlen = 0;
+    int index = 0;
+    unsigned long fileindex = 0;
+    const unsigned char version = 0x00;
+    struct _strProHead* headpack;
+    struct _strFileInfo* fileinfo;
+    unsigned short cnt = 0;
+    FILE* pfile = NULL;
+    char repeat = 0;
+    int i, j;
+    int filelen;
+    unsigned char init = 0;
+    unsigned short filedownindex = 0;
+    
+    while(1){
+        
+        if(filedownindex >= [array count]){
+            break;
+        }
+        NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",array[filedownindex]]];
+        
+        NSLog(@"str---%@",str);
+        memset(recvbuf, 0x00, sizeof(recvbuf));
+        strcat((char*)recvbuf, [str cStringUsingEncoding:NSASCIIStringEncoding]);
+        
+        pfile = fopen((char*)recvbuf, "rb");
+//        dlg->m_downpro.ShowWindow(SW_SHOW);
+//        dlg->m_downpro.SetPos(0);
+        fileindex = 0;
+        fseek(pfile, 0, SEEK_END);
+        filelen = ftell(pfile);
+        fseek(pfile, 0, SEEK_SET);
+        init = 0;
+        while(1){
+            memset(downbuf, 0x00, sizeof(downbuf));
+            
+            index = 0;
+            
+            /* 起始符 */
+            memcpy((char*)&downbuf[index], START_MARK, 4);
+            index += 4;
+            
+            headpack = (struct _strProHead*)&downbuf[index];
+            
+            headpack->m_version = version;
+            headpack->m_headlen = sizeof(struct _strProHead) + 4;
+            headpack->m_type = 1;//下载程序类型
+            headpack->m_status = 0;
+            headpack->m_attribute = 0;
+            headpack->m_winsize = 0;
+            headpack->m_cnt = cnt;
+            index += sizeof(struct _strProHead);
+            
+            memcpy((char*)&downbuf[index], &fileindex, 4);
+            index += 4;
+            
+            readlen = fread((char*)&downbuf[index], 1, MAX_PACKSIZE, pfile);
+            if(readlen <= 0){
+                readlen = 0;
+                headpack->m_attribute = 0x0020;
+            }
+            headpack->m_datalen = readlen;
+            index += readlen;
+            fileindex += readlen;
+            
+            if(init == 0){
+                init = 1;
+                fseek(pfile, 0, SEEK_SET);
+                headpack->m_attribute = 0x0040;
+                index = 4 + headpack->m_headlen;
+                fileinfo = (struct _strFileInfo*)&downbuf[index];
+                fileinfo->m_curfilecnt = filedownindex;
+                fileinfo->m_filecnt = [array count];
+                fileinfo->m_len = filelen;
+                headpack->m_datalen = sizeof(struct _strFileInfo);
+                memset(fileinfo->m_filename, 0x00, sizeof(fileinfo->m_filename));
+                //get_dest_file(filedownindex, (char*)(fileinfo->m_filename), dlg);
+                strcat((char*)(fileinfo->m_filename), [array[filedownindex] cStringUsingEncoding:NSASCIIStringEncoding]);
+                index += sizeof(struct _strFileInfo);
+            }
+            headpack->m_crc = checksum((char*)&downbuf[8], index - 8);
+            
+            memcpy((char*)&downbuf[index], END_MARK, 4);
+            index += 4;
+            
+            for(repeat = 0; repeat < REPEAT_TIMES; repeat++){
+//                if(dlg->m_istostop == 1){
+//                    fclose(pfile);
+//                    goto EXIT_DownThread;
+//                }
+                /* 发送数据 */
+                //dlg->SendData((char*)downbuf, index);
+                gInterface->WritePosData((char*)downbuf, index);
+                /* 等待状态返回 */
+                i = 0;
+                readlen = 0;
+                while(1){
+//                    if(dlg->m_istostop == 1){
+//                        fclose(pfile);
+//                        goto EXIT_DownThread;
+//                    }
+                    //gRecvBuf
+                    //j = dlg->RecvData((char*)&recvbuf[readlen], 4 + sizeof(struct _strProHead) + 4 + 4 + 4);
+                    memcpy((char*)&recvbuf[readlen], gRecvBuf, gRecvDownLen);
+                    if(j > 0){
+                        readlen += j;
+                        i = 0;
+                    }
+                    
+                    if(judge_recvpack((char*)recvbuf, readlen) >= 0){
+                        
+                        repeat = -1;
+                        break;
+                    }
+                    //Sleep(500);
+                    [NSThread sleepForTimeInterval:0.5];
+                    i++;
+                    if(i > 3){
+                        //超时
+                        break;
+                    }
+                }
+                if(repeat < 0){
+                    break;
+                }
+            }
+            sprintf((char*)recvbuf, "%d%%", fileindex * 100 / filelen);
+            //dlg->SetDlgItemText(IDC_ST_DOWN, CString(recvbuf));
+           // dlg->m_downpro.SetPos(fileindex * 100 / filelen);
+            [cav updateTitle:[NSString stringWithFormat:@"正在传输%@",array[filedownindex]]];
+            [cav updateProgress:(fileindex * 100 / (float)filelen)];
+            if(repeat >= REPEAT_TIMES){
+                //发送失败
+                fclose(pfile);
+                //dlg->SetDlgItemText(IDC_ST_STATUS, "接收超时");
+                filedownindex = (unsigned short)(-1);
+                goto EXIT_DownThread;
+            }
+            if(headpack->m_attribute & 0x0020){
+                //下载完成
+                break;
+            }
+        }
+        
+        fclose(pfile);
+        filedownindex++;
+    }
+    
+EXIT_DownThread:
+    //[cav updateTitle:[NSString stringWithFormat:@"正在传输%@",array[filedownindex]]];
+    return 0;
+}
+
+
 int ErrorFunc(int error)
 {
     
@@ -701,6 +920,7 @@ int DealLogIn()
     }
     if(gDealPackStep == PACK_STEP_RETURN_POS)
     {
+        NSLog(@"DealLogIn---PACK_STEP_RETURN_POS");
         if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             gResponseFun(gUserData,
@@ -749,7 +969,7 @@ int DealLogOut()
                          NULL,
                          NULL);
             gDealPackStep = PACK_STEP_RETURN_POS;
-        }
+        } 
         return 0;
     }
     if(gDealPackStep == PACK_STEP_POS_STRUCT)
@@ -820,6 +1040,7 @@ int DealUploadParam()
     
     if(gDealPackStep == PACK_STEP_POS_STRUCT)
     {
+        NSLog(@"DealUploadParam---PACK_STEP_POS_STRUCT");
         gInputParam[sizeof(gInputParam) - 1] = 0x00;
         paramname = (unsigned char*)gInputParam;
         paramvalue = strlen((char*)gInputParam) + 1 + (unsigned char*)gInputParam;
@@ -861,11 +1082,13 @@ int DealUploadParam()
     }
     if(gDealPackStep == PACK_STEP_RETURN_POS)
     {
+        NSLog(@"DealUploadParam---PACK_STEP_RETURN_POS");
         if(*GET_DATA_INDEX(gRecvBuf) == 0x06)
         {
             //len = GET_DATA_LEN(gRecvBuf);
             //memset(gInputParam, 0x00, sizeof(gInputParam));
             //memcpy(gInputParam, GET_DATA_INDEX(gRecvBuf) + 2, len -2);
+            NSLog(@"DealUploadParam---PACK_STEP_RETURN_POS---06");
             gResponseFun(gUserData,
                          gSessionPos,
                          SESSION_ERROR_ACK,
@@ -876,6 +1099,7 @@ int DealUploadParam()
         }
         else if(*GET_DATA_INDEX(gRecvBuf) == 0x15)
         {
+            NSLog(@"DealUploadParam---PACK_STEP_RETURN_POS---15");
             gResponseFun(gUserData,
                          gSessionPos,
                          SESSION_ERROR_NAK,
@@ -1534,6 +1758,8 @@ int ReadPosData(unsigned char *data, int datalen)
         }
     }
     printf("\n");
+    
+    gRecvDownLen = datalen;
     
 	static unsigned long timeout = 0;
 	unsigned short re;

@@ -37,6 +37,7 @@
 
 @property (strong,nonatomic) dispatch_queue_t serialQueue;
 
+@property (strong, nonatomic) IBOutlet UILabel *ShuiYin; //水印
 - (IBAction)signatureAction:(UIButton *)sender;
 
 

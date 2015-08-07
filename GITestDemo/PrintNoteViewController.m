@@ -25,6 +25,10 @@
     NSString *_jiaoYiShiJian; //交易时间
     NSString *_jiaoYiCanKaoHao; //交易参考号
     
+    
+    NSString *_qingSuanRiQi; //清算日期
+    
+    NSString *_jiaoYiTeZhengMa; //交易特征码
 
     FMServer* server;
     FTPManager* man;
@@ -155,11 +159,42 @@
     [dateFormatter setDateFormat:@"yyyy"];
      
     NSString *year = [dateFormatter stringFromDate:d];
-    
+    NSLog(@"date:%d",date);
     _dateStr = [NSString stringWithFormat:@"%04d/%02d/%02d %02d:%02d:%02d",[year intValue],date/100,date%100,time/10000,(time%10000)/100,time%100];
     
     _jiaoYiShiJian = [NSString stringWithFormat:@"%04d%02d%02d",[year intValue],date/100,date%100];
     
+    
+    _qingSuanRiQi = [NSString stringWithFormat:@"%02d%02d",date/100,date%100];
+    
+    NSString *temp = [_qingSuanRiQi stringByAppendingString:_jiaoYiCanKaoHao];
+    
+    NSLog(@"temp:%@",temp);
+    
+    char *c1 = [[temp substringToIndex:8] cStringUsingEncoding:NSASCIIStringEncoding];
+    char *c2 = [[temp substringFromIndex:8]cStringUsingEncoding:NSASCIIStringEncoding];
+    
+//    char *c1 = "12231234";
+//    char *c2 = "56781234";
+    char c3[9];
+    
+    int i1,i2,i3;
+    for (int i=0; i<8; i++) {
+        i1 = c1[i] -'0';
+        i2 = c2[i] -'0';
+        i3 = i1 ^ i2;
+        printf("c3[%d]=%x\n",i,i3);
+        sprintf(&c3[i],"%x",i3);
+    }
+    c3[8] = '\0';
+    NSLog(@"c3:%s",c3);
+
+    _jiaoYiTeZhengMa = [NSString stringWithCString:c3 encoding:NSASCIIStringEncoding];
+    
+    NSLog(@"_jiaoYiTeZhengMa:%@",_jiaoYiTeZhengMa);
+    
+    
+    self.ShuiYin.text = _jiaoYiTeZhengMa;
     //[NSDate]
     
 //    NSData *timeCodeData = [NSData dataWithBytes:(const void *)gLocalTime length:sizeof( char)*3];
